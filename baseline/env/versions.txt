@@ -1,0 +1,2 @@
+mujoco 2.3.7
+opensim version 4.4.1-2023-07-13-710e13be5, build date 23:45:44 Jul 14 2023

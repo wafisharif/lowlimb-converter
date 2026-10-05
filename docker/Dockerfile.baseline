@@ -1,0 +1,21 @@
+# Baseline build for MyoConverter @ cadf380.
+# Replaces upstream docker/Dockerfile, which no longer builds:
+# Debian 11 security repos were retired at EOL (Aug 31, 2026).
+# conda_env.yml (the actual runtime dependencies) is unchanged from upstream.
+FROM --platform=linux/amd64 condaforge/miniforge3:latest
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      libgl1 libegl1 libosmesa6 libglib2.0-0 libxrender1 libxext6 libsm6 libxt6 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY conda_env.yml .
+RUN mamba env create -f conda_env.yml && mamba clean -afy
+
+COPY myoconverter myoconverter
+COPY models models
+COPY examples examples
+
+ENV PATH=/opt/conda/envs/myoconverter/bin:$PATH \
+    PYTHONPATH=/app
+CMD ["bash"]

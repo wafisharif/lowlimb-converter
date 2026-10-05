@@ -1,0 +1,6 @@
+# Upstream MyoConverter is a separate clone pinned at cadf380; not vendored here.
+upstream/
+# Geometry meshes are copied verbatim from upstream by the pipeline.
+baseline/*/Geometry/
+.DS_Store
+__pycache__/
