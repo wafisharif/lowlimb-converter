@@ -1,3 +1,5 @@
+# Modified by lowlimb-converter (2026-10-06), from MyoConverter @ cadf380: vec2str writes every number at full
+# precision (shortest round-trip repr) instead of 4 significant figures (Station 2, change 2.2).
 """ This module contains a collection of utility functions useful for parsing and converting the OpenSim model.
 
 @author: Aleksi Ikkala
@@ -29,7 +31,9 @@ def str2vec(string):
   return np.array(string.split(), dtype=float)
 
 def vec2str(vec):
-  return ' '.join(['%.4g' % num for num in vec])
+  # lowlimb-converter: was '%.4g', which rounded every offset, axis, angle and polynomial coefficient to 4 significant
+  # figures (e.g. the 90 deg root rotation became 1.571 rad = 90.0117 deg)
+  return ' '.join([repr(float(num)) for num in vec])
 
 def num2str(x):
   if isinstance(x, (np.ndarray, list)):

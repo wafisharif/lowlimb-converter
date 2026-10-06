@@ -1,0 +1,255 @@
+{
+ "model": "gait2354_cvt1.xml",
+ "mujoco_version": "3.15.0",
+ "numpy_version": "2.5.3",
+ "opensim_version": "4.6",
+ "seed": 20261006,
+ "poses": 1943,
+ "random_poses": 1000,
+ "swept_coordinates": [
+  "pelvis_tilt",
+  "pelvis_list",
+  "pelvis_rotation",
+  "pelvis_tx",
+  "pelvis_ty",
+  "pelvis_tz",
+  "hip_flexion_r",
+  "hip_adduction_r",
+  "hip_rotation_r",
+  "knee_angle_r",
+  "ankle_angle_r",
+  "subtalar_angle_r",
+  "mtp_angle_r",
+  "hip_flexion_l",
+  "hip_adduction_l",
+  "hip_rotation_l",
+  "knee_angle_l",
+  "ankle_angle_l",
+  "subtalar_angle_l",
+  "mtp_angle_l",
+  "lumbar_extension",
+  "lumbar_bending",
+  "lumbar_rotation"
+ ],
+ "locked_coordinates": [],
+ "coupled_coordinates": [],
+ "bodies_compared": 12,
+ "mesh_geoms_removed": 19,
+ "joints_from_coordinates": 23,
+ "joints_from_equalities": 38,
+ "max_equality_residual": 1.0148132334464322e-16,
+ "max_osim_qerr": 0.0,
+ "K0": "PASS",
+ "K0_problems": [],
+ "pos_worst_mm": {
+  "value": 0.8793518974157104,
+  "body": "talus_r",
+  "pose": 295,
+  "pose_label": "random"
+ },
+ "rot_worst_deg": {
+  "value": 5.661466608162926e-14,
+  "body": "toes_r",
+  "pose": 244,
+  "pose_label": "random"
+ },
+ "pos_rms_all_mm": 0.577752978130405,
+ "rot_rms_all_deg": 1.3014129935385213e-14,
+ "pos_rms_random_mm": 0.4342771109309575,
+ "per_body": {
+  "pelvis": {
+   "pos_mean_mm": 5.713963070638994e-17,
+   "pos_rms_mm": 2.518684847868282e-15,
+   "pos_max_mm": 1.1102230246251565e-13,
+   "rot_mean_deg": 5.136832332157222e-15,
+   "rot_rms_deg": 7.635106076051045e-15,
+   "rot_max_deg": 2.8096458161939e-14
+  },
+  "femur_r": {
+   "pos_mean_mm": 4.2602663226612857e-14,
+   "pos_rms_mm": 1.040023957765774e-13,
+   "pos_max_mm": 8.887203554511427e-13,
+   "rot_mean_deg": 7.878079866776254e-15,
+   "rot_rms_deg": 1.11784545221955e-14,
+   "rot_max_deg": 3.725946423098306e-14
+  },
+  "tibia_r": {
+   "pos_mean_mm": 0.6634702217124482,
+   "pos_rms_mm": 0.7097472252912616,
+   "pos_max_mm": 0.8793518974157081,
+   "rot_mean_deg": 8.552897102175987e-15,
+   "rot_rms_deg": 1.208668765337756e-14,
+   "rot_max_deg": 4.101063680988609e-14
+  },
+  "talus_r": {
+   "pos_mean_mm": 0.6634702217124478,
+   "pos_rms_mm": 0.7097472252912619,
+   "pos_max_mm": 0.8793518974157104,
+   "rot_mean_deg": 9.70589410276112e-15,
+   "rot_rms_deg": 1.3615487273727868e-14,
+   "rot_max_deg": 4.429364122232924e-14
+  },
+  "calcn_r": {
+   "pos_mean_mm": 0.6634702217124475,
+   "pos_rms_mm": 0.7097472252912612,
+   "pos_max_mm": 0.8793518974157104,
+   "rot_mean_deg": 1.0779200637443529e-14,
+   "rot_rms_deg": 1.5003639897676682e-14,
+   "rot_max_deg": 4.9311574741871807e-14
+  },
+  "toes_r": {
+   "pos_mean_mm": 0.6634702217124431,
+   "pos_rms_mm": 0.7097472252912576,
+   "pos_max_mm": 0.8793518974154885,
+   "rot_mean_deg": 1.1722657889653198e-14,
+   "rot_rms_deg": 1.626467012917387e-14,
+   "rot_max_deg": 5.661466608162926e-14
+  },
+  "femur_l": {
+   "pos_mean_mm": 4.017287221502069e-14,
+   "pos_rms_mm": 1.0421355921311985e-13,
+   "pos_max_mm": 9.155133597044475e-13,
+   "rot_mean_deg": 7.755693742794095e-15,
+   "rot_rms_deg": 1.1012794302887903e-14,
+   "rot_max_deg": 3.97671417625574e-14
+  },
+  "tibia_l": {
+   "pos_mean_mm": 0.6586733285167872,
+   "pos_rms_mm": 0.7054462328250212,
+   "pos_max_mm": 0.8792851529755366,
+   "rot_mean_deg": 8.581957119217113e-15,
+   "rot_rms_deg": 1.2098961999136967e-14,
+   "rot_max_deg": 3.821337793171046e-14
+  },
+  "talus_l": {
+   "pos_mean_mm": 0.6586733285167855,
+   "pos_rms_mm": 0.7054462328250212,
+   "pos_max_mm": 0.879285152975526,
+   "rot_mean_deg": 9.56605103353367e-15,
+   "rot_rms_deg": 1.3422823314235247e-14,
+   "rot_max_deg": 4.754985073063112e-14
+  },
+  "calcn_l": {
+   "pos_mean_mm": 0.6586733285167881,
+   "pos_rms_mm": 0.7054462328250232,
+   "pos_max_mm": 0.879285152975526,
+   "rot_mean_deg": 1.0477864135576643e-14,
+   "rot_rms_deg": 1.463592045334407e-14,
+   "rot_max_deg": 4.8422004714795085e-14
+  },
+  "toes_l": {
+   "pos_mean_mm": 0.6586733285167825,
+   "pos_rms_mm": 0.7054462328250182,
+   "pos_max_mm": 0.879285152975526,
+   "rot_mean_deg": 1.135893363573528e-14,
+   "rot_rms_deg": 1.5712284451534483e-14,
+   "rot_max_deg": 5.0172892955508515e-14
+  },
+  "torso": {
+   "pos_mean_mm": 4.331087033460206e-14,
+   "pos_rms_mm": 1.0735014419716112e-13,
+   "pos_max_mm": 8.881784197001252e-13,
+   "rot_mean_deg": 7.647154897315563e-15,
+   "rot_rms_deg": 1.091399436230262e-14,
+   "rot_max_deg": 3.5263280187862733e-14
+  }
+ },
+ "per_sweep": {
+  "pelvis_tilt": {
+   "pos_max_mm": 0.8672670992790602,
+   "rot_max_deg": 1.1491023312692772e-14
+  },
+  "pelvis_list": {
+   "pos_max_mm": 0.8672670992787914,
+   "rot_max_deg": 1.9541278803099003e-14
+  },
+  "pelvis_rotation": {
+   "pos_max_mm": 0.86726709927885,
+   "rot_max_deg": 1.2009292154791545e-14
+  },
+  "pelvis_tx": {
+   "pos_max_mm": 0.8672670992788524,
+   "rot_max_deg": 0.0
+  },
+  "pelvis_ty": {
+   "pos_max_mm": 0.8672670992787292,
+   "rot_max_deg": 0.0
+  },
+  "pelvis_tz": {
+   "pos_max_mm": 0.8672670992787292,
+   "rot_max_deg": 0.0
+  },
+  "hip_flexion_r": {
+   "pos_max_mm": 0.8672670992790118,
+   "rot_max_deg": 1.2305065217063246e-14
+  },
+  "hip_adduction_r": {
+   "pos_max_mm": 0.8672670992787671,
+   "rot_max_deg": 1.6508988042571106e-14
+  },
+  "hip_rotation_r": {
+   "pos_max_mm": 0.8672670992788469,
+   "rot_max_deg": 1.2305065217063246e-14
+  },
+  "knee_angle_r": {
+   "pos_max_mm": 0.8760389046876456,
+   "rot_max_deg": 1.1679829574112335e-14
+  },
+  "ankle_angle_r": {
+   "pos_max_mm": 0.8672670992787642,
+   "rot_max_deg": 1.9353422657517237e-14
+  },
+  "subtalar_angle_r": {
+   "pos_max_mm": 0.8672670992787646,
+   "rot_max_deg": 1.4315653483644944e-14
+  },
+  "mtp_angle_r": {
+   "pos_max_mm": 0.8672670992787147,
+   "rot_max_deg": 1.8291921767194858e-14
+  },
+  "hip_flexion_l": {
+   "pos_max_mm": 0.8672670992790118,
+   "rot_max_deg": 1.2305065217063246e-14
+  },
+  "hip_adduction_l": {
+   "pos_max_mm": 0.8672670992787671,
+   "rot_max_deg": 1.6508988042571106e-14
+  },
+  "hip_rotation_l": {
+   "pos_max_mm": 0.8672670992788478,
+   "rot_max_deg": 1.2305065217063246e-14
+  },
+  "knee_angle_l": {
+   "pos_max_mm": 0.8760389046876516,
+   "rot_max_deg": 1.1679829574112335e-14
+  },
+  "ankle_angle_l": {
+   "pos_max_mm": 0.867267099278744,
+   "rot_max_deg": 1.2151143440165927e-14
+  },
+  "subtalar_angle_l": {
+   "pos_max_mm": 0.8672670992787697,
+   "rot_max_deg": 1.5429766316350958e-14
+  },
+  "mtp_angle_l": {
+   "pos_max_mm": 0.8672670992787147,
+   "rot_max_deg": 1.715439377164328e-14
+  },
+  "lumbar_extension": {
+   "pos_max_mm": 0.8672670992787147,
+   "rot_max_deg": 1.1491023312692772e-14
+  },
+  "lumbar_bending": {
+   "pos_max_mm": 0.8672670992787147,
+   "rot_max_deg": 1.9541278803099003e-14
+  },
+  "lumbar_rotation": {
+   "pos_max_mm": 0.8672670992787147,
+   "rot_max_deg": 1.2009292154791545e-14
+  }
+ },
+ "K1": "PASS",
+ "K2": "PASS",
+ "bodies_failing_K1": [],
+ "bodies_failing_K2": []
+}
