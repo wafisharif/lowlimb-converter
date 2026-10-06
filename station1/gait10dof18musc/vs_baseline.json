@@ -1,0 +1,73 @@
+{
+  "P3_same_structure": {
+    "joints_equal": true,
+    "actuators_equal": true,
+    "n_joints": 38,
+    "n_actuators": 18,
+    "neq_ported": 28,
+    "neq_baseline": 28,
+    "joints_only_in_ported": [],
+    "joints_only_in_baseline": [],
+    "pass": true
+  },
+  "P4_moment_arms": {
+    "same_groups": true,
+    "n": 18,
+    "max_increase_m": 7.204862249345079e-18,
+    "worst": "tib_ant_r|ankle_angle_r",
+    "max_decrease_m": -6.938893903907228e-18,
+    "n_worse_than_tol": 0,
+    "per_group_ported_minus_baseline_m": {
+      "soleus_l|ankle_angle_l": 7.259072357969354e-19,
+      "glut_max_r|hip_flexion_r": 1.799097979968134e-18,
+      "iliopsoas_l|hip_flexion_l": 3.469446951953614e-18,
+      "tib_ant_r|ankle_angle_r": 7.204862249345079e-18,
+      "vasti_l|knee_angle_l": 2.6020852139652106e-18,
+      "gastroc_l|ankle_angle_l+knee_angle_l": 1.734723475976807e-18,
+      "rect_fem_r|hip_flexion_r+knee_angle_r": -6.938893903907228e-18,
+      "hamstrings_r|hip_flexion_r+knee_angle_r": -1.734723475976807e-18,
+      "rect_fem_l|hip_flexion_l+knee_angle_l": -6.938893903907228e-18,
+      "tib_ant_l|ankle_angle_l": -2.918875536238319e-18,
+      "soleus_r|ankle_angle_r": 3.1424922343134543e-19,
+      "bifemsh_l|knee_angle_l": 0.0,
+      "gastroc_r|ankle_angle_r+knee_angle_r": 1.734723475976807e-18,
+      "vasti_r|knee_angle_r": -8.673617379884035e-19,
+      "bifemsh_r|knee_angle_r": 0.0,
+      "iliopsoas_r|hip_flexion_r": 3.469446951953614e-18,
+      "glut_max_l|hip_flexion_l": 1.0638733817514012e-18,
+      "hamstrings_l|hip_flexion_l+knee_angle_l": -5.204170427930421e-18
+    },
+    "pass": true
+  },
+  "P5_forces": {
+    "same_muscles": true,
+    "n": 18,
+    "mean_ported": 0.11123722161089813,
+    "mean_baseline": 0.1112372216108985,
+    "mean_ratio": 0.9999999999999968,
+    "max_increase": 2.7755575615628914e-16,
+    "worst": "rect_fem_r",
+    "max_decrease": -2.0747292772682613e-15,
+    "per_muscle_ported_minus_baseline": {
+      "bifemsh_l": -1.1449174941446927e-16,
+      "bifemsh_r": -9.71445146547012e-17,
+      "gastroc_l": -9.43689570931383e-16,
+      "gastroc_r": -1.609823385706477e-15,
+      "glut_max_l": -2.498001805406602e-16,
+      "glut_max_r": -3.3306690738754696e-16,
+      "hamstrings_l": -1.8041124150158794e-16,
+      "hamstrings_r": -5.273559366969494e-16,
+      "iliopsoas_l": 1.249000902703301e-16,
+      "iliopsoas_r": -7.979727989493313e-16,
+      "rect_fem_l": 1.1102230246251565e-16,
+      "rect_fem_r": 2.7755575615628914e-16,
+      "soleus_l": -2.220446049250313e-16,
+      "soleus_r": -1.1102230246251565e-16,
+      "tib_ant_l": 1.5959455978986625e-16,
+      "tib_ant_r": -4.996003610813204e-16,
+      "vasti_l": 5.551115123125783e-17,
+      "vasti_r": -2.0747292772682613e-15
+    },
+    "pass": true
+  }
+}

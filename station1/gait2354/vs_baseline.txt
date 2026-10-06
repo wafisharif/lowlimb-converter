@@ -1,0 +1,3 @@
+P3_same_structure: PASS  {'joints_equal': True, 'actuators_equal': True, 'n_joints': 61, 'n_actuators': 54, 'neq_ported': 38, 'neq_baseline': 38, 'joints_only_in_ported': [], 'joints_only_in_baseline': []}
+P4_moment_arms: PASS  {'same_groups': True, 'n': 58, 'max_increase_m': 5.637851296924623e-18, 'worst': 'psoas_l|hip_adduction_l+hip_flexion_l+hip_rotation_l', 'max_decrease_m': -6.938893903907228e-18, 'n_worse_than_tol': 0}
+P5_forces: PASS  {'same_muscles': True, 'n': 54, 'mean_ported': 0.20438483252557874, 'mean_baseline': 0.20438483252557876, 'mean_ratio': 0.9999999999999999, 'max_increase': 8.881784197001252e-16, 'worst': 'gem_r', 'max_decrease': -5.551115123125783e-16}

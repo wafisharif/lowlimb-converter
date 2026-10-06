@@ -1,0 +1,925 @@
+2026-10-06 07:19:43.345 | INFO     | myoconverter.O2MPipeline:O2MPipeline:52 - Start the conversion pipeline for : gait10dof18musc
+2026-10-06 07:19:43.345 | INFO     | myoconverter.O2MPipeline:coordinate_kwargs:75 - Coordinate the input configurations, remove conflicts.
+2026-10-06 07:19:43.345 | INFO     | myoconverter.O2MPipeline:coordinate_kwargs:86 -    Checking configurations for step 2 conversion.
+2026-10-06 07:19:43.345 | INFO     | myoconverter.O2MPipeline:coordinate_kwargs:101 -        Configure of previous run does not exist, set osim_data_overwrite to TRUE.
+2026-10-06 07:19:43.345 | INFO     | myoconverter.O2MPipeline:coordinate_kwargs:103 -        All good now.
+2026-10-06 07:19:43.345 | INFO     | myoconverter.O2MPipeline:coordinate_kwargs:119 -    Checking configurations for step 3 conversion.
+2026-10-06 07:19:43.345 | INFO     | myoconverter.O2MPipeline:coordinate_kwargs:134 -        Configure of previous run does not exist, set osim_data_overwrite to TRUE.
+2026-10-06 07:19:43.345 | INFO     | myoconverter.O2MPipeline:coordinate_kwargs:136 -        All good now.
+2026-10-06 07:19:43.345 | INFO     | myoconverter.conversion_steps.O2MSteps:__init__:84 - Given OpenSim model file: models/osim/Gait10dof18musc/gait10dof18musc.osim
+2026-10-06 07:19:43.345 | INFO     | myoconverter.conversion_steps.O2MSteps:__init__:85 - Reading mesh files from folder models/osim/Gait10dof18musc/Geometry
+2026-10-06 07:19:43.345 | INFO     | myoconverter.conversion_steps.O2MSteps:__init__:86 - Converted model will be saved in folder /home/claude/repo/station1/gait10dof18musc
+2026-10-06 07:19:43.345 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:124 - Started step 1 conversion - cvt1.
+2026-10-06 07:19:43.734 | INFO     | myoconverter.xml.converter:convert:40 - Commencing the conversion procedure!
+2026-10-06 07:19:43.734 | INFO     | myoconverter.xml.converter:_parse_ground:138 - Parsing the ground
+2026-10-06 07:19:43.734 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Ground] ground
+2026-10-06 07:19:43.734 | INFO     | myoconverter.xml.converter:_parse_constraints:147 - Starting to parse constraints
+2026-10-06 07:19:43.734 | INFO     | myoconverter.xml.converter:_parse_bodies_and_joints:80 - Starting to parse bodies, wrapping objects, and joints
+2026-10-06 07:19:43.735 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] pelvis
+/home/claude/repo/station1/../src/myoconverter/xml/bodies/utils.py:50: PyVistaFutureWarning: The default value of `algorithm` for the filter
+`PolyData.extract_surface` will change in the future. It currently defaults to
+`'dataset_surface'`, but will change to `None`. Explicitly set the `algorithm` keyword to
+silence this warning.
+  pymesh = pymesh.extract_surface().triangulate()
+2026-10-06 07:19:43.782 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: CustomJoint] ground_pelvis
+2026-10-06 07:19:43.784 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] femur_r
+2026-10-06 07:19:43.796 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] hip_r
+2026-10-06 07:19:43.797 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] tibia_r
+2026-10-06 07:19:43.811 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: CustomJoint] knee_r
+2026-10-06 07:19:44.164 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] talus_r
+/home/claude/repo/station1/../src/myoconverter/xml/bodies/utils.py:50: PyVistaFutureWarning: The default value of `algorithm` for the filter
+`PolyData.extract_surface` will change in the future. It currently defaults to
+`'dataset_surface'`, but will change to `None`. Explicitly set the `algorithm` keyword to
+silence this warning.
+  pymesh = pymesh.extract_surface().triangulate()
+2026-10-06 07:19:44.173 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] ankle_r
+2026-10-06 07:19:44.174 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] calcn_r
+2026-10-06 07:19:44.199 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: WeldJoint] subtalar_r
+2026-10-06 07:19:44.200 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] toes_r
+2026-10-06 07:19:44.226 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: WeldJoint] mtp_r
+2026-10-06 07:19:44.227 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] femur_l
+2026-10-06 07:19:44.238 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] hip_l
+2026-10-06 07:19:44.239 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] tibia_l
+2026-10-06 07:19:44.255 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: CustomJoint] knee_l
+2026-10-06 07:19:44.625 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] talus_l
+/home/claude/repo/station1/../src/myoconverter/xml/bodies/utils.py:50: PyVistaFutureWarning: The default value of `algorithm` for the filter
+`PolyData.extract_surface` will change in the future. It currently defaults to
+`'dataset_surface'`, but will change to `None`. Explicitly set the `algorithm` keyword to
+silence this warning.
+  pymesh = pymesh.extract_surface().triangulate()
+2026-10-06 07:19:44.635 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] ankle_l
+2026-10-06 07:19:44.637 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] calcn_l
+2026-10-06 07:19:44.665 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: WeldJoint] subtalar_l
+2026-10-06 07:19:44.666 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] toes_l
+2026-10-06 07:19:44.689 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: WeldJoint] mtp_l
+2026-10-06 07:19:44.690 | INFO     | myoconverter.xml.parsers:parse:59 - [BodyParser: Body] torso
+2026-10-06 07:19:46.729 | INFO     | myoconverter.xml.parsers:parse:59 - [JointParser: PinJoint] back
+2026-10-06 07:19:46.729 | INFO     | myoconverter.xml.converter:_parse_forces:156 - Starting to parse forces, including path points and wrap paths
+2026-10-06 07:19:46.730 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] hamstrings_r
+2026-10-06 07:19:46.730 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bifemlh_r-P1
+2026-10-06 07:19:46.730 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bifemlh_r-P2
+2026-10-06 07:19:46.730 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bifemlh_r-P3
+2026-10-06 07:19:46.730 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:46.730 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] bifemsh_r
+2026-10-06 07:19:46.730 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bifemsh_r-P1
+2026-10-06 07:19:46.730 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bifemsh_r-P2
+2026-10-06 07:19:46.731 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bifemsh_r-P3
+2026-10-06 07:19:46.731 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:46.731 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glut_max_r
+2026-10-06 07:19:46.731 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glut_max_r-P1
+2026-10-06 07:19:46.731 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glut_max_r-P2
+2026-10-06 07:19:46.731 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glut_max_r-P3
+2026-10-06 07:19:46.731 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glut_max_r-P4
+2026-10-06 07:19:46.731 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:46.731 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] iliopsoas_r
+2026-10-06 07:19:46.731 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_r-P1
+2026-10-06 07:19:46.731 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_r-P2
+2026-10-06 07:19:46.731 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: ConditionalPathPoint] psoas_r-P3
+2026-10-06 07:19:47.232 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_r-P4
+2026-10-06 07:19:47.232 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_r-P5
+2026-10-06 07:19:47.232 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:47.232 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] rect_fem_r
+2026-10-06 07:19:47.233 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] rect_fem_r-P1
+2026-10-06 07:19:47.233 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: ConditionalPathPoint] rect_fem_r-P2
+2026-10-06 07:19:47.233 | WARNING  | myoconverter.xml.path_points.ConditionalPathPoint:parse:79 - Suitable 'anchor' PathPoint was not found for ConditionalPathPoint rect_fem_r-P2, treating this as a normal PathPoint.
+2026-10-06 07:19:47.233 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: MovingPathPoint] rect_fem_r-P3
+2026-10-06 07:19:47.583 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:47.583 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] vasti_r
+2026-10-06 07:19:47.584 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vas_int_r-P1
+2026-10-06 07:19:47.584 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vas_int_r-P2
+2026-10-06 07:19:47.584 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: ConditionalPathPoint] vas_int_r-P3
+2026-10-06 07:19:47.932 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: MovingPathPoint] vas_int_r-P4
+2026-10-06 07:19:48.316 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:48.317 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] gastroc_r
+2026-10-06 07:19:48.317 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] med_gas_r-P1
+2026-10-06 07:19:48.317 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: ConditionalPathPoint] med_gas_r-P2
+2026-10-06 07:19:48.722 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] med_gas_r-P3
+2026-10-06 07:19:48.722 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:48.722 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] soleus_r
+2026-10-06 07:19:48.722 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] soleus_r-P1
+2026-10-06 07:19:48.722 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] soleus_r-P2
+2026-10-06 07:19:48.722 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:48.722 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] tib_ant_r
+2026-10-06 07:19:48.723 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tib_ant_r-P1
+2026-10-06 07:19:48.723 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tib_ant_r-P2
+2026-10-06 07:19:48.723 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tib_ant_r-P3
+2026-10-06 07:19:48.723 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:48.723 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] hamstrings_l
+2026-10-06 07:19:48.723 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bifemlh_l-P1
+2026-10-06 07:19:48.723 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bifemlh_l-P2
+2026-10-06 07:19:48.723 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bifemlh_l-P3
+2026-10-06 07:19:48.723 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:48.723 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] bifemsh_l
+2026-10-06 07:19:48.723 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bifemsh_l-P1
+2026-10-06 07:19:48.724 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bifemsh_l-P2
+2026-10-06 07:19:48.724 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] bifemsh_l-P3
+2026-10-06 07:19:48.724 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:48.724 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] glut_max_l
+2026-10-06 07:19:48.724 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glut_max_l-P1
+2026-10-06 07:19:48.724 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glut_max_l-P2
+2026-10-06 07:19:48.724 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glut_max_l-P3
+2026-10-06 07:19:48.724 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] glut_max_l-P4
+2026-10-06 07:19:48.724 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:48.724 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] iliopsoas_l
+2026-10-06 07:19:48.724 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_l-P1
+2026-10-06 07:19:48.724 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_l-P2
+2026-10-06 07:19:48.724 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: ConditionalPathPoint] psoas_l-P3
+2026-10-06 07:19:49.172 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_l-P4
+2026-10-06 07:19:49.172 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] psoas_l-P5
+2026-10-06 07:19:49.172 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:49.172 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] rect_fem_l
+2026-10-06 07:19:49.173 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] rect_fem_l-P1
+2026-10-06 07:19:49.173 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: ConditionalPathPoint] rect_fem_l-P2
+2026-10-06 07:19:49.173 | WARNING  | myoconverter.xml.path_points.ConditionalPathPoint:parse:79 - Suitable 'anchor' PathPoint was not found for ConditionalPathPoint rect_fem_l-P2, treating this as a normal PathPoint.
+2026-10-06 07:19:49.173 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: MovingPathPoint] rect_fem_l-P3
+2026-10-06 07:19:49.765 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:49.765 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] vasti_l
+2026-10-06 07:19:49.766 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vas_int_l-P1
+2026-10-06 07:19:49.766 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] vas_int_l-P2
+2026-10-06 07:19:49.766 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: ConditionalPathPoint] vas_int_l-P3
+2026-10-06 07:19:50.297 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: MovingPathPoint] vas_int_l-P4
+2026-10-06 07:19:50.728 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:50.728 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] gastroc_l
+2026-10-06 07:19:50.729 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] med_gas_l-P1
+2026-10-06 07:19:50.729 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: ConditionalPathPoint] med_gas_l-P2
+2026-10-06 07:19:51.208 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] med_gas_l-P3
+2026-10-06 07:19:51.208 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:51.209 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] soleus_l
+2026-10-06 07:19:51.209 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] soleus_l-P1
+2026-10-06 07:19:51.209 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] soleus_l-P2
+2026-10-06 07:19:51.209 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:51.209 | INFO     | myoconverter.xml.parsers:parse:59 - [ForceParser: Millard2012EquilibriumMuscle] tib_ant_l
+2026-10-06 07:19:51.209 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tib_ant_l-P1
+2026-10-06 07:19:51.210 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tib_ant_l-P2
+2026-10-06 07:19:51.210 | INFO     | myoconverter.xml.parsers:parse:59 - [PathPointParser: PathPoint] tib_ant_l-P3
+2026-10-06 07:19:51.210 | INFO     | myoconverter.xml.parsers:parse:59 - [PathWrapSetParser: PathWrapSet] 
+2026-10-06 07:19:51.210 | INFO     | myoconverter.xml.converter:_parse_markers:165 - Starting to parse markers
+2026-10-06 07:19:51.210 | INFO     | myoconverter.xml.converter:_set_keyframe:176 - Setting the default keyframe
+2026-10-06 07:19:51.212 | INFO     | myoconverter.xml.converter:convert:65 - Writing the converted model into /home/claude/repo/station1/gait10dof18musc/gait10dof18musc_cvt1.xml
+2026-10-06 07:19:51.213 | INFO     | myoconverter.xml.converter:convert:68 - All good, conversion procedure is finished
+2026-10-06 07:19:51.213 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:126 - Finished step 1 conversion - cvt1.
+2026-10-06 07:19:51.213 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:132 - Started step 1 validation - val1.
+2026-10-06 07:19:51.213 | INFO     | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:123 - Extract marker names (as endpoints) from osim model
+[info] Updating Model file from 40000 to latest format...
+[info] Loaded model gait10dof18musc.osim from file models/osim/Gait10dof18musc/gait10dof18musc.osim
+2026-10-06 07:19:51.297 | INFO     | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:145 - Get the endpoint locations by meshing the joint angles within the range limits
+[info] Updating Model file from 40000 to latest format...
+[info] Loaded model gait10dof18musc.osim from file models/osim/Gait10dof18musc/gait10dof18musc.osim
+2026-10-06 07:19:51.545 | INFO     | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:152 - Check if the joint motion ranges are the same between Osim and Mjc models
+2026-10-06 07:19:51.546 | INFO     | myoconverter.conversion_steps.O2MStep1:vlt1_forwardKinematicsValidation:172 - Finished with joint operation range check. Saved Results
+2026-10-06 07:19:51.546 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:180 - Plot each endpoint's location errors in x, y, z.
+/home/claude/venv312/lib/python3.12/site-packages/numpy/_core/fromnumeric.py:3862: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/home/claude/venv312/lib/python3.12/site-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+/home/claude/venv312/lib/python3.12/site-packages/numpy/_core/_methods.py:219: RuntimeWarning: Degrees of freedom <= 0 for slice
+  ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/claude/venv312/lib/python3.12/site-packages/numpy/_core/_methods.py:178: RuntimeWarning: invalid value encountered in divide
+  arrmean = um.true_divide(arrmean, div, out=arrmean,
+/home/claude/venv312/lib/python3.12/site-packages/numpy/_core/_methods.py:211: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+2026-10-06 07:19:51.548 | INFO     | myoconverter.conversion_steps.O2MStep1:endPointsPlot:256 - Generate overall error Bar plot
+2026-10-06 07:19:51.550 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:142 - Finished step 1 validation - val1.
+2026-10-06 07:19:51.550 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:175 - xxx_cvt2 model does not exist, start from xxx_cvt1
+[info] Updating Model file from 40000 to latest format...
+[info] Loaded model gait10dof18musc.osim from file models/osim/Gait10dof18musc/gait10dof18musc.osim
+2026-10-06 07:19:51.681 | INFO     | myoconverter.conversion_steps.O2MStep2:__init__:102 - Overwrite command confirmed
+2026-10-06 07:19:51.682 | INFO     | myoconverter.conversion_steps.O2MStep2:__init__:103 - Generating MA data from OsimMuscleStates, may take a while
+2026-10-06 07:19:51.682 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getWrapingCoords:65 - Extract the joints that muscle wrapped over from Osim model
+['Joint ', 'subtalar_r', ' has no dof.']
+['Joint ', 'subtalar_r', ' has no dof.']
+['Joint ', 'subtalar_r', ' has no dof.']
+['Joint ', 'subtalar_l', ' has no dof.']
+['Joint ', 'subtalar_l', ' has no dof.']
+['Joint ', 'subtalar_l', ' has no dof.']
+2026-10-06 07:19:51.990 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:163 - Calculate moment arms from Osim model
+2026-10-06 07:19:51.990 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: hamstrings_r
+2026-10-06 07:19:52.015 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: bifemsh_r
+2026-10-06 07:19:52.032 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: glut_max_r
+2026-10-06 07:19:52.039 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: iliopsoas_r
+2026-10-06 07:19:52.048 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: rect_fem_r
+2026-10-06 07:19:52.076 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: vasti_r
+2026-10-06 07:19:52.082 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: gastroc_r
+2026-10-06 07:19:52.116 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: soleus_r
+2026-10-06 07:19:52.127 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: tib_ant_r
+2026-10-06 07:19:52.139 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: hamstrings_l
+2026-10-06 07:19:52.158 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: bifemsh_l
+2026-10-06 07:19:52.168 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: glut_max_l
+2026-10-06 07:19:52.179 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: iliopsoas_l
+2026-10-06 07:19:52.187 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: rect_fem_l
+2026-10-06 07:19:52.219 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: vasti_l
+2026-10-06 07:19:52.231 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: gastroc_l
+2026-10-06 07:19:52.267 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: soleus_l
+2026-10-06 07:19:52.281 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMomentArms:168 - Muscle: tib_ant_l
+2026-10-06 07:19:52.291 | INFO     | myoconverter.conversion_steps.O2MStep2:__init__:173 - Finished cvt2 initialize
+2026-10-06 07:19:52.291 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:198 - Started step 2 conversion - cvt2.
+2026-10-06 07:19:52.291 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:191 - Running MA optimization with the given muscle list one by one
+2026-10-06 07:19:52.291 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : hamstrings_r 
+2026-10-06 07:19:52.291 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: hip_flexion_r
+2026-10-06 07:19:52.338 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:227 -     Start MA optimization
+2026-10-06 07:19:52.338 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:231 -     No wrapping information extracted, skipped
+2026-10-06 07:19:52.339 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : bifemsh_r 
+2026-10-06 07:19:52.340 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: knee_angle_r
+2026-10-06 07:19:52.351 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:227 -     Start MA optimization
+2026-10-06 07:19:52.351 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:231 -     No wrapping information extracted, skipped
+2026-10-06 07:19:52.352 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : glut_max_r 
+2026-10-06 07:19:52.352 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: hip_flexion_r
+2026-10-06 07:19:52.362 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:220 -     MA errors between Osim and Mjc models are smaller than throshold, optimization skipped
+2026-10-06 07:19:52.363 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : iliopsoas_r 
+2026-10-06 07:19:52.363 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: hip_flexion_r
+2026-10-06 07:19:52.372 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:227 -     Start MA optimization
+2026-10-06 07:19:52.372 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:231 -     No wrapping information extracted, skipped
+2026-10-06 07:19:52.373 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : rect_fem_r 
+2026-10-06 07:19:52.373 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: hip_flexion_r
+2026-10-06 07:19:52.426 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:227 -     Start MA optimization
+2026-10-06 07:19:52.427 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:231 -     No wrapping information extracted, skipped
+2026-10-06 07:19:52.428 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : vasti_r 
+2026-10-06 07:19:52.428 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: knee_angle_r
+2026-10-06 07:19:52.438 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:227 -     Start MA optimization
+2026-10-06 07:19:52.438 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:231 -     No wrapping information extracted, skipped
+2026-10-06 07:19:52.439 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : gastroc_r 
+2026-10-06 07:19:52.439 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: ankle_angle_r
+2026-10-06 07:19:52.492 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:227 -     Start MA optimization
+2026-10-06 07:19:52.493 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:231 -     No wrapping information extracted, skipped
+2026-10-06 07:19:52.494 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : soleus_r 
+2026-10-06 07:19:52.494 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: ankle_angle_r
+2026-10-06 07:19:52.506 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:220 -     MA errors between Osim and Mjc models are smaller than throshold, optimization skipped
+2026-10-06 07:19:52.507 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : tib_ant_r 
+2026-10-06 07:19:52.507 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: ankle_angle_r
+2026-10-06 07:19:52.517 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:220 -     MA errors between Osim and Mjc models are smaller than throshold, optimization skipped
+2026-10-06 07:19:52.518 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : hamstrings_l 
+2026-10-06 07:19:52.518 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: hip_flexion_l
+2026-10-06 07:19:52.569 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:227 -     Start MA optimization
+2026-10-06 07:19:52.569 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:231 -     No wrapping information extracted, skipped
+2026-10-06 07:19:52.570 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : bifemsh_l 
+2026-10-06 07:19:52.570 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: knee_angle_l
+2026-10-06 07:19:52.579 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:227 -     Start MA optimization
+2026-10-06 07:19:52.579 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:231 -     No wrapping information extracted, skipped
+2026-10-06 07:19:52.580 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : glut_max_l 
+2026-10-06 07:19:52.580 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: hip_flexion_l
+2026-10-06 07:19:52.590 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:220 -     MA errors between Osim and Mjc models are smaller than throshold, optimization skipped
+2026-10-06 07:19:52.591 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : iliopsoas_l 
+2026-10-06 07:19:52.591 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: hip_flexion_l
+2026-10-06 07:19:52.602 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:227 -     Start MA optimization
+2026-10-06 07:19:52.602 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:231 -     No wrapping information extracted, skipped
+2026-10-06 07:19:52.603 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : rect_fem_l 
+2026-10-06 07:19:52.604 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: hip_flexion_l
+2026-10-06 07:19:52.656 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:227 -     Start MA optimization
+2026-10-06 07:19:52.657 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:231 -     No wrapping information extracted, skipped
+2026-10-06 07:19:52.658 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : vasti_l 
+2026-10-06 07:19:52.658 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: knee_angle_l
+2026-10-06 07:19:52.670 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:227 -     Start MA optimization
+2026-10-06 07:19:52.671 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:231 -     No wrapping information extracted, skipped
+2026-10-06 07:19:52.672 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : gastroc_l 
+2026-10-06 07:19:52.672 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: ankle_angle_l
+2026-10-06 07:19:52.723 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:227 -     Start MA optimization
+2026-10-06 07:19:52.724 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:231 -     No wrapping information extracted, skipped
+2026-10-06 07:19:52.725 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : soleus_l 
+2026-10-06 07:19:52.725 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: ankle_angle_l
+2026-10-06 07:19:52.735 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:220 -     MA errors between Osim and Mjc models are smaller than throshold, optimization skipped
+2026-10-06 07:19:52.736 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:195 - Muscle : tib_ant_l 
+2026-10-06 07:19:52.737 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:208 -     At joints: ankle_angle_l
+2026-10-06 07:19:52.744 | INFO     | myoconverter.conversion_steps.O2MStep2:optMomentArms:220 -     MA errors between Osim and Mjc models are smaller than throshold, optimization skipped
+2026-10-06 07:19:52.746 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:200 - Finished step 2 conversion - cvt2.
+2026-10-06 07:19:52.746 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:206 - Started step 2 validation - val2.
+2026-10-06 07:19:57.002 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:208 - Finished step 2 validation - val2.
+2026-10-06 07:19:57.002 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:237 - xxx_cvt3 model does not exist, start from xxx_cvt2
+[info] Updating Model file from 40000 to latest format...
+[info] Loaded model gait10dof18musc.osim from file models/osim/Gait10dof18musc/gait10dof18musc.osim
+2026-10-06 07:19:57.097 | INFO     | myoconverter.conversion_steps.O2MStep3:__init__:96 - Overwrite command confirmed
+2026-10-06 07:19:57.097 | INFO     | myoconverter.conversion_steps.O2MStep3:__init__:97 - Generating force map data from OsimMuscleStates, may take a while
+2026-10-06 07:19:57.097 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getWrapingCoords:65 - Extract the joints that muscle wrapped over from Osim model
+['Joint ', 'subtalar_r', ' has no dof.']
+['Joint ', 'subtalar_r', ' has no dof.']
+['Joint ', 'subtalar_r', ' has no dof.']
+['Joint ', 'subtalar_l', ' has no dof.']
+['Joint ', 'subtalar_l', ' has no dof.']
+['Joint ', 'subtalar_l', ' has no dof.']
+2026-10-06 07:19:57.342 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:267 - Calculate muscle force curves from Osim model
+2026-10-06 07:19:57.343 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: hamstrings_r
+2026-10-06 07:19:57.375 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: bifemsh_r
+2026-10-06 07:19:57.399 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: glut_max_r
+2026-10-06 07:19:57.418 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: iliopsoas_r
+2026-10-06 07:19:57.431 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: rect_fem_r
+2026-10-06 07:19:57.450 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: vasti_r
+2026-10-06 07:19:57.464 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: gastroc_r
+2026-10-06 07:19:57.483 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: soleus_r
+2026-10-06 07:19:57.497 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: tib_ant_r
+2026-10-06 07:19:57.510 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: hamstrings_l
+2026-10-06 07:19:57.529 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: bifemsh_l
+2026-10-06 07:19:57.542 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: glut_max_l
+2026-10-06 07:19:57.555 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: iliopsoas_l
+2026-10-06 07:19:57.570 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: rect_fem_l
+2026-10-06 07:19:57.589 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: vasti_l
+2026-10-06 07:19:57.603 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: gastroc_l
+2026-10-06 07:19:57.621 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: soleus_l
+2026-10-06 07:19:57.635 | INFO     | myoconverter.optimization.model_states.OsimMuscleStates:getMuscleForceMaps:272 - Muscle: tib_ant_l
+2026-10-06 07:19:57.651 | INFO     | myoconverter.conversion_steps.O2MStep3:__init__:195 - Finished cvt3 initialize ...
+2026-10-06 07:19:57.652 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:260 - Started step 3 conversion - cvt3.
+2026-10-06 07:19:57.652 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:208 - Running MF optimization with the given muscle list one by one
+2026-10-06 07:19:57.658 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : hamstrings_r 
+2026-10-06 07:19:57.971 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.112
+2026-10-06 07:19:58.266 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.112
+2026-10-06 07:19:58.506 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.112
+2026-10-06 07:19:58.751 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.112
+2026-10-06 07:19:59.003 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.112
+2026-10-06 07:19:59.243 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.10722
+2026-10-06 07:19:59.486 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.10375
+2026-10-06 07:19:59.725 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.10243
+2026-10-06 07:19:59.972 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 1 percentage similarities; Best obj: 0.10021
+2026-10-06 07:20:00.237 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.09819
+2026-10-06 07:20:00.471 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 2 percentage similarities; Best obj: 0.09709
+2026-10-06 07:20:00.708 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 5 percentage similarities; Best obj: 0.09677
+2026-10-06 07:20:00.953 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 6 percentage similarities; Best obj: 0.09633
+2026-10-06 07:20:01.188 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 6 percentage similarities; Best obj: 0.09617
+2026-10-06 07:20:01.427 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 8 percentage similarities; Best obj: 0.09576
+2026-10-06 07:20:01.660 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 9 percentage similarities; Best obj: 0.09569
+2026-10-06 07:20:01.895 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 10 percentage similarities; Best obj: 0.0956
+2026-10-06 07:20:02.129 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 10 percentage similarities; Best obj: 0.09554
+2026-10-06 07:20:02.396 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 18 ; 12 percentage similarities; Best obj: 0.09549
+2026-10-06 07:20:02.696 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 19 ; 25 percentage similarities; Best obj: 0.09547
+2026-10-06 07:20:02.946 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 20 ; 39 percentage similarities; Best obj: 0.09546
+2026-10-06 07:20:02.947 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:20:02.965 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : bifemsh_r 
+2026-10-06 07:20:03.223 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.04246
+2026-10-06 07:20:03.433 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.04246
+2026-10-06 07:20:03.651 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.04246
+2026-10-06 07:20:03.879 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.03766
+2026-10-06 07:20:04.129 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.03766
+2026-10-06 07:20:04.369 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.03766
+2026-10-06 07:20:04.588 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.03762
+2026-10-06 07:20:04.806 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 2 percentage similarities; Best obj: 0.03478
+2026-10-06 07:20:05.057 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 2 percentage similarities; Best obj: 0.03126
+2026-10-06 07:20:05.289 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.02819
+2026-10-06 07:20:05.506 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 1 percentage similarities; Best obj: 0.0272
+2026-10-06 07:20:05.732 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 1 percentage similarities; Best obj: 0.02559
+2026-10-06 07:20:05.987 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 1 percentage similarities; Best obj: 0.0252
+2026-10-06 07:20:06.209 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 1 percentage similarities; Best obj: 0.02505
+2026-10-06 07:20:06.427 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 4 percentage similarities; Best obj: 0.02461
+2026-10-06 07:20:06.645 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 4 percentage similarities; Best obj: 0.02427
+2026-10-06 07:20:06.885 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 6 percentage similarities; Best obj: 0.02384
+2026-10-06 07:20:07.104 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 5 percentage similarities; Best obj: 0.02363
+2026-10-06 07:20:07.315 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 18 ; 4 percentage similarities; Best obj: 0.02359
+2026-10-06 07:20:07.520 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 19 ; 8 percentage similarities; Best obj: 0.02358
+2026-10-06 07:20:07.747 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 20 ; 10 percentage similarities; Best obj: 0.02353
+2026-10-06 07:20:08.003 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 21 ; 11 percentage similarities; Best obj: 0.02351
+2026-10-06 07:20:08.212 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 22 ; 15 percentage similarities; Best obj: 0.02349
+2026-10-06 07:20:08.434 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 23 ; 18 percentage similarities; Best obj: 0.02349
+2026-10-06 07:20:08.641 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 24 ; 20 percentage similarities; Best obj: 0.02349
+2026-10-06 07:20:08.976 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 25 ; 24 percentage similarities; Best obj: 0.02348
+2026-10-06 07:20:09.220 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 26 ; 25 percentage similarities; Best obj: 0.02348
+2026-10-06 07:20:09.443 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 27 ; 25 percentage similarities; Best obj: 0.02347
+2026-10-06 07:20:09.671 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 28 ; 35 percentage similarities; Best obj: 0.02347
+2026-10-06 07:20:09.902 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 29 ; 39 percentage similarities; Best obj: 0.02347
+2026-10-06 07:20:10.104 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 30 ; 41 percentage similarities; Best obj: 0.02347
+2026-10-06 07:20:10.321 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 31 ; 44 percentage similarities; Best obj: 0.02347
+2026-10-06 07:20:10.321 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:20:10.340 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : glut_max_r 
+2026-10-06 07:20:10.601 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.18458
+2026-10-06 07:20:10.789 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.15442
+2026-10-06 07:20:11.004 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.12641
+2026-10-06 07:20:11.206 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.12066
+2026-10-06 07:20:11.395 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.12039
+2026-10-06 07:20:11.587 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.12037
+2026-10-06 07:20:11.783 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.12037
+2026-10-06 07:20:11.974 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.12037
+2026-10-06 07:20:12.159 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 1 percentage similarities; Best obj: 0.12037
+2026-10-06 07:20:12.343 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.12037
+2026-10-06 07:20:12.536 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 1 percentage similarities; Best obj: 0.12037
+2026-10-06 07:20:12.712 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 1 percentage similarities; Best obj: 0.12037
+2026-10-06 07:20:12.896 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 1 percentage similarities; Best obj: 0.12037
+2026-10-06 07:20:13.100 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 1 percentage similarities; Best obj: 0.12037
+2026-10-06 07:20:13.296 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 1 percentage similarities; Best obj: 0.12037
+2026-10-06 07:20:13.497 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 1 percentage similarities; Best obj: 0.12037
+2026-10-06 07:20:13.685 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 1 percentage similarities; Best obj: 0.12037
+2026-10-06 07:20:13.872 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 1 percentage similarities; Best obj: 0.12037
+2026-10-06 07:20:13.872 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:212 -         Break the optimization, since global obj maintained the same value for certain iterations
+2026-10-06 07:20:13.892 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : iliopsoas_r 
+2026-10-06 07:20:14.147 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.10448
+2026-10-06 07:20:14.336 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.10448
+2026-10-06 07:20:14.543 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.10448
+2026-10-06 07:20:14.742 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.10448
+2026-10-06 07:20:14.943 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.09326
+2026-10-06 07:20:15.142 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.08182
+2026-10-06 07:20:15.340 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.07943
+2026-10-06 07:20:15.538 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.07887
+2026-10-06 07:20:15.757 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 1 percentage similarities; Best obj: 0.07874
+2026-10-06 07:20:15.965 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.07863
+2026-10-06 07:20:16.205 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 2 percentage similarities; Best obj: 0.07754
+2026-10-06 07:20:16.418 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 2 percentage similarities; Best obj: 0.07353
+2026-10-06 07:20:16.627 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 1 percentage similarities; Best obj: 0.07292
+2026-10-06 07:20:16.868 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 1 percentage similarities; Best obj: 0.06684
+2026-10-06 07:20:17.153 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 1 percentage similarities; Best obj: 0.06537
+2026-10-06 07:20:17.412 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 1 percentage similarities; Best obj: 0.06503
+2026-10-06 07:20:17.681 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 1 percentage similarities; Best obj: 0.06494
+2026-10-06 07:20:18.010 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 1 percentage similarities; Best obj: 0.06382
+2026-10-06 07:20:18.269 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 18 ; 1 percentage similarities; Best obj: 0.06317
+2026-10-06 07:20:18.575 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 19 ; 2 percentage similarities; Best obj: 0.0603
+2026-10-06 07:20:18.879 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 20 ; 2 percentage similarities; Best obj: 0.05926
+2026-10-06 07:20:19.164 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 21 ; 1 percentage similarities; Best obj: 0.05887
+2026-10-06 07:20:19.482 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 22 ; 5 percentage similarities; Best obj: 0.05841
+2026-10-06 07:20:19.789 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 23 ; 4 percentage similarities; Best obj: 0.05831
+2026-10-06 07:20:20.074 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 24 ; 4 percentage similarities; Best obj: 0.05829
+2026-10-06 07:20:20.309 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 25 ; 4 percentage similarities; Best obj: 0.05769
+2026-10-06 07:20:20.535 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 26 ; 1 percentage similarities; Best obj: 0.05759
+2026-10-06 07:20:20.807 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 27 ; 4 percentage similarities; Best obj: 0.05757
+2026-10-06 07:20:21.069 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 28 ; 8 percentage similarities; Best obj: 0.05756
+2026-10-06 07:20:21.344 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 29 ; 10 percentage similarities; Best obj: 0.05756
+2026-10-06 07:20:21.556 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 30 ; 10 percentage similarities; Best obj: 0.05755
+2026-10-06 07:20:21.795 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 31 ; 10 percentage similarities; Best obj: 0.05748
+2026-10-06 07:20:22.008 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 32 ; 11 percentage similarities; Best obj: 0.05746
+2026-10-06 07:20:22.223 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 33 ; 11 percentage similarities; Best obj: 0.05746
+2026-10-06 07:20:22.463 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 34 ; 12 percentage similarities; Best obj: 0.05746
+2026-10-06 07:20:22.693 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 35 ; 14 percentage similarities; Best obj: 0.05746
+2026-10-06 07:20:22.923 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 36 ; 22 percentage similarities; Best obj: 0.05746
+2026-10-06 07:20:23.138 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 37 ; 28 percentage similarities; Best obj: 0.05745
+2026-10-06 07:20:23.414 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 38 ; 32 percentage similarities; Best obj: 0.05745
+2026-10-06 07:20:23.746 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 39 ; 38 percentage similarities; Best obj: 0.05745
+2026-10-06 07:20:24.017 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 40 ; 45 percentage similarities; Best obj: 0.05745
+2026-10-06 07:20:24.258 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 41 ; 49 percentage similarities; Best obj: 0.05744
+2026-10-06 07:20:24.258 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:20:24.283 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : rect_fem_r 
+2026-10-06 07:20:24.614 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.27642
+2026-10-06 07:20:24.932 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.27642
+2026-10-06 07:20:25.250 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.27642
+2026-10-06 07:20:25.542 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.27642
+2026-10-06 07:20:25.828 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.27642
+2026-10-06 07:20:26.117 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 2 percentage similarities; Best obj: 0.27642
+2026-10-06 07:20:26.434 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 2 percentage similarities; Best obj: 0.27373
+2026-10-06 07:20:26.764 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 2 percentage similarities; Best obj: 0.27295
+2026-10-06 07:20:27.097 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 5 percentage similarities; Best obj: 0.27285
+2026-10-06 07:20:27.390 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 11 percentage similarities; Best obj: 0.27284
+2026-10-06 07:20:27.701 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 11 percentage similarities; Best obj: 0.27283
+2026-10-06 07:20:27.985 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 12 percentage similarities; Best obj: 0.27283
+2026-10-06 07:20:28.245 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 20 percentage similarities; Best obj: 0.27283
+2026-10-06 07:20:28.513 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 28 percentage similarities; Best obj: 0.27264
+2026-10-06 07:20:28.781 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 50 percentage similarities; Best obj: 0.27254
+2026-10-06 07:20:28.781 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:20:28.801 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : vasti_r 
+2026-10-06 07:20:29.168 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.12649
+2026-10-06 07:20:29.435 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.12649
+2026-10-06 07:20:29.639 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 2 percentage similarities; Best obj: 0.08287
+2026-10-06 07:20:29.856 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.06705
+2026-10-06 07:20:30.099 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.06325
+2026-10-06 07:20:30.315 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.06231
+2026-10-06 07:20:30.574 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.06208
+2026-10-06 07:20:30.790 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.06202
+2026-10-06 07:20:31.006 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 1 percentage similarities; Best obj: 0.062
+2026-10-06 07:20:31.269 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.05686
+2026-10-06 07:20:31.503 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 1 percentage similarities; Best obj: 0.05571
+2026-10-06 07:20:31.720 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 1 percentage similarities; Best obj: 0.05536
+2026-10-06 07:20:31.938 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 4 percentage similarities; Best obj: 0.05344
+2026-10-06 07:20:32.158 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 1 percentage similarities; Best obj: 0.05306
+2026-10-06 07:20:32.376 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 2 percentage similarities; Best obj: 0.05231
+2026-10-06 07:20:32.608 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 2 percentage similarities; Best obj: 0.05214
+2026-10-06 07:20:32.819 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 4 percentage similarities; Best obj: 0.05211
+2026-10-06 07:20:33.035 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 4 percentage similarities; Best obj: 0.05195
+2026-10-06 07:20:33.248 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 18 ; 5 percentage similarities; Best obj: 0.05192
+2026-10-06 07:20:33.479 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 19 ; 5 percentage similarities; Best obj: 0.05188
+2026-10-06 07:20:33.693 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 20 ; 8 percentage similarities; Best obj: 0.05186
+2026-10-06 07:20:33.912 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 21 ; 9 percentage similarities; Best obj: 0.05186
+2026-10-06 07:20:34.138 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 22 ; 10 percentage similarities; Best obj: 0.05186
+2026-10-06 07:20:34.340 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 23 ; 11 percentage similarities; Best obj: 0.05185
+2026-10-06 07:20:34.568 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 24 ; 20 percentage similarities; Best obj: 0.05185
+2026-10-06 07:20:34.776 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 25 ; 38 percentage similarities; Best obj: 0.05185
+2026-10-06 07:20:34.996 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 26 ; 41 percentage similarities; Best obj: 0.05185
+2026-10-06 07:20:34.996 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:20:35.016 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : gastroc_r 
+2026-10-06 07:20:35.320 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.19799
+2026-10-06 07:20:35.575 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.15306
+2026-10-06 07:20:35.825 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.15116
+2026-10-06 07:20:36.071 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.15071
+2026-10-06 07:20:36.320 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.1506
+2026-10-06 07:20:36.572 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.15057
+2026-10-06 07:20:36.809 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:37.062 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:37.303 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 1 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:37.542 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:37.781 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 1 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:38.018 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 1 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:38.252 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 1 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:38.487 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 1 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:38.729 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 1 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:38.987 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 1 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:39.224 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 1 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:39.465 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 1 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:39.722 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 18 ; 2 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:39.971 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 19 ; 2 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:40.219 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 20 ; 2 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:40.451 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 21 ; 4 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:40.689 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 22 ; 6 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:40.925 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 23 ; 6 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:41.171 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 24 ; 10 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:41.407 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 25 ; 10 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:41.659 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 26 ; 10 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:41.932 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 27 ; 10 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:42.187 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 28 ; 10 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:42.435 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 29 ; 21 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:42.672 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 30 ; 30 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:42.931 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 31 ; 32 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:43.169 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 32 ; 35 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:43.413 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 33 ; 41 percentage similarities; Best obj: 0.15056
+2026-10-06 07:20:43.413 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:20:43.431 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : soleus_r 
+2026-10-06 07:20:43.664 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.22281
+2026-10-06 07:20:43.829 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.18745
+2026-10-06 07:20:44.002 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.17108
+2026-10-06 07:20:44.159 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.16515
+2026-10-06 07:20:44.321 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.16515
+2026-10-06 07:20:44.485 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.16515
+2026-10-06 07:20:44.679 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.16512
+2026-10-06 07:20:44.837 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.16511
+2026-10-06 07:20:45.001 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 1 percentage similarities; Best obj: 0.1651
+2026-10-06 07:20:45.161 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.16382
+2026-10-06 07:20:45.317 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 4 percentage similarities; Best obj: 0.16113
+2026-10-06 07:20:45.477 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 1 percentage similarities; Best obj: 0.16062
+2026-10-06 07:20:45.635 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 4 percentage similarities; Best obj: 0.1598
+2026-10-06 07:20:45.801 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 6 percentage similarities; Best obj: 0.1594
+2026-10-06 07:20:45.975 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 8 percentage similarities; Best obj: 0.15932
+2026-10-06 07:20:46.137 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 9 percentage similarities; Best obj: 0.15917
+2026-10-06 07:20:46.309 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 9 percentage similarities; Best obj: 0.15913
+2026-10-06 07:20:46.477 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 10 percentage similarities; Best obj: 0.15899
+2026-10-06 07:20:46.659 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 18 ; 10 percentage similarities; Best obj: 0.15896
+2026-10-06 07:20:46.827 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 19 ; 15 percentage similarities; Best obj: 0.1589
+2026-10-06 07:20:46.991 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 20 ; 20 percentage similarities; Best obj: 0.15889
+2026-10-06 07:20:47.151 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 21 ; 29 percentage similarities; Best obj: 0.15889
+2026-10-06 07:20:47.312 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 22 ; 29 percentage similarities; Best obj: 0.15888
+2026-10-06 07:20:47.482 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 23 ; 36 percentage similarities; Best obj: 0.15887
+2026-10-06 07:20:47.482 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:20:47.500 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : tib_ant_r 
+2026-10-06 07:20:47.722 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.1036
+2026-10-06 07:20:47.887 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.1036
+2026-10-06 07:20:48.038 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.1036
+2026-10-06 07:20:48.191 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.1036
+2026-10-06 07:20:48.363 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.1036
+2026-10-06 07:20:48.525 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.09838
+2026-10-06 07:20:48.697 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.09592
+2026-10-06 07:20:48.851 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.0892
+2026-10-06 07:20:49.011 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 1 percentage similarities; Best obj: 0.087
+2026-10-06 07:20:49.165 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.08657
+2026-10-06 07:20:49.321 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 1 percentage similarities; Best obj: 0.08647
+2026-10-06 07:20:49.467 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 1 percentage similarities; Best obj: 0.08644
+2026-10-06 07:20:49.618 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 2 percentage similarities; Best obj: 0.08604
+2026-10-06 07:20:49.780 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 2 percentage similarities; Best obj: 0.08583
+2026-10-06 07:20:49.941 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 4 percentage similarities; Best obj: 0.08301
+2026-10-06 07:20:50.090 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 1 percentage similarities; Best obj: 0.08243
+2026-10-06 07:20:50.245 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 1 percentage similarities; Best obj: 0.0823
+2026-10-06 07:20:50.394 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 1 percentage similarities; Best obj: 0.08227
+2026-10-06 07:20:50.544 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 18 ; 1 percentage similarities; Best obj: 0.08226
+2026-10-06 07:20:50.693 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 19 ; 2 percentage similarities; Best obj: 0.08219
+2026-10-06 07:20:50.841 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 20 ; 2 percentage similarities; Best obj: 0.08206
+2026-10-06 07:20:50.991 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 21 ; 2 percentage similarities; Best obj: 0.08201
+2026-10-06 07:20:51.149 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 22 ; 2 percentage similarities; Best obj: 0.08169
+2026-10-06 07:20:51.298 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 23 ; 2 percentage similarities; Best obj: 0.0813
+2026-10-06 07:20:51.449 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 24 ; 2 percentage similarities; Best obj: 0.08117
+2026-10-06 07:20:51.598 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 25 ; 4 percentage similarities; Best obj: 0.08073
+2026-10-06 07:20:51.749 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 26 ; 4 percentage similarities; Best obj: 0.08067
+2026-10-06 07:20:51.909 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 27 ; 4 percentage similarities; Best obj: 0.08066
+2026-10-06 07:20:52.066 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 28 ; 8 percentage similarities; Best obj: 0.08065
+2026-10-06 07:20:52.218 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 29 ; 9 percentage similarities; Best obj: 0.08065
+2026-10-06 07:20:52.379 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 30 ; 10 percentage similarities; Best obj: 0.0806
+2026-10-06 07:20:52.545 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 31 ; 18 percentage similarities; Best obj: 0.0806
+2026-10-06 07:20:52.707 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 32 ; 29 percentage similarities; Best obj: 0.08059
+2026-10-06 07:20:52.884 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 33 ; 39 percentage similarities; Best obj: 0.08059
+2026-10-06 07:20:53.046 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 34 ; 45 percentage similarities; Best obj: 0.08059
+2026-10-06 07:20:53.046 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:20:53.066 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : hamstrings_l 
+2026-10-06 07:20:53.360 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.1479
+2026-10-06 07:20:53.609 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.1479
+2026-10-06 07:20:53.876 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.14483
+2026-10-06 07:20:54.129 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.14071
+2026-10-06 07:20:54.381 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.13886
+2026-10-06 07:20:54.631 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 2 percentage similarities; Best obj: 0.13819
+2026-10-06 07:20:54.894 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 2 percentage similarities; Best obj: 0.13152
+2026-10-06 07:20:55.146 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.1303
+2026-10-06 07:20:55.448 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 1 percentage similarities; Best obj: 0.13003
+2026-10-06 07:20:55.684 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.12996
+2026-10-06 07:20:55.918 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 2 percentage similarities; Best obj: 0.1291
+2026-10-06 07:20:56.159 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 2 percentage similarities; Best obj: 0.12876
+2026-10-06 07:20:56.384 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 4 percentage similarities; Best obj: 0.12433
+2026-10-06 07:20:56.604 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 1 percentage similarities; Best obj: 0.12268
+2026-10-06 07:20:56.827 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 2 percentage similarities; Best obj: 0.12084
+2026-10-06 07:20:57.050 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 2 percentage similarities; Best obj: 0.12039
+2026-10-06 07:20:57.264 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 4 percentage similarities; Best obj: 0.11944
+2026-10-06 07:20:57.476 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 6 percentage similarities; Best obj: 0.11918
+2026-10-06 07:20:57.693 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 18 ; 6 percentage similarities; Best obj: 0.11906
+2026-10-06 07:20:57.945 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 19 ; 8 percentage similarities; Best obj: 0.11891
+2026-10-06 07:20:58.171 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 20 ; 15 percentage similarities; Best obj: 0.11866
+2026-10-06 07:20:58.386 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 21 ; 15 percentage similarities; Best obj: 0.11861
+2026-10-06 07:20:58.609 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 22 ; 15 percentage similarities; Best obj: 0.11843
+2026-10-06 07:20:58.821 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 23 ; 18 percentage similarities; Best obj: 0.11834
+2026-10-06 07:20:59.050 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 24 ; 18 percentage similarities; Best obj: 0.11825
+2026-10-06 07:20:59.296 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 25 ; 25 percentage similarities; Best obj: 0.11819
+2026-10-06 07:20:59.524 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 26 ; 31 percentage similarities; Best obj: 0.11814
+2026-10-06 07:20:59.743 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 27 ; 38 percentage similarities; Best obj: 0.11806
+2026-10-06 07:20:59.744 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:20:59.762 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : bifemsh_l 
+2026-10-06 07:21:00.021 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.07655
+2026-10-06 07:21:00.220 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.07655
+2026-10-06 07:21:00.418 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.05145
+2026-10-06 07:21:00.626 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.03746
+2026-10-06 07:21:00.829 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.03518
+2026-10-06 07:21:01.034 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.03469
+2026-10-06 07:21:01.230 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.03457
+2026-10-06 07:21:01.433 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.03454
+2026-10-06 07:21:01.632 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 1 percentage similarities; Best obj: 0.03453
+2026-10-06 07:21:01.832 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.03453
+2026-10-06 07:21:02.031 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 1 percentage similarities; Best obj: 0.03095
+2026-10-06 07:21:02.243 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 1 percentage similarities; Best obj: 0.02906
+2026-10-06 07:21:02.437 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 2 percentage similarities; Best obj: 0.02797
+2026-10-06 07:21:02.637 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 1 percentage similarities; Best obj: 0.02683
+2026-10-06 07:21:02.838 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 1 percentage similarities; Best obj: 0.02641
+2026-10-06 07:21:03.049 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 2 percentage similarities; Best obj: 0.02552
+2026-10-06 07:21:03.244 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 1 percentage similarities; Best obj: 0.02532
+2026-10-06 07:21:03.462 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 1 percentage similarities; Best obj: 0.02489
+2026-10-06 07:21:03.685 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 18 ; 2 percentage similarities; Best obj: 0.02471
+2026-10-06 07:21:03.889 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 19 ; 8 percentage similarities; Best obj: 0.02434
+2026-10-06 07:21:04.108 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 20 ; 8 percentage similarities; Best obj: 0.02426
+2026-10-06 07:21:04.318 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 21 ; 10 percentage similarities; Best obj: 0.02424
+2026-10-06 07:21:04.518 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 22 ; 10 percentage similarities; Best obj: 0.02417
+2026-10-06 07:21:04.718 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 23 ; 12 percentage similarities; Best obj: 0.02415
+2026-10-06 07:21:04.933 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 24 ; 25 percentage similarities; Best obj: 0.02415
+2026-10-06 07:21:05.141 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 25 ; 29 percentage similarities; Best obj: 0.02415
+2026-10-06 07:21:05.350 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 26 ; 31 percentage similarities; Best obj: 0.02415
+2026-10-06 07:21:05.552 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 27 ; 31 percentage similarities; Best obj: 0.02415
+2026-10-06 07:21:05.742 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 28 ; 31 percentage similarities; Best obj: 0.02414
+2026-10-06 07:21:05.953 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 29 ; 34 percentage similarities; Best obj: 0.02413
+2026-10-06 07:21:05.953 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:21:05.971 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : glut_max_l 
+2026-10-06 07:21:06.204 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.19078
+2026-10-06 07:21:06.385 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.18059
+2026-10-06 07:21:06.573 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.17583
+2026-10-06 07:21:06.770 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.17515
+2026-10-06 07:21:06.959 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.17502
+2026-10-06 07:21:07.143 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.17499
+2026-10-06 07:21:07.330 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.1696
+2026-10-06 07:21:07.555 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.16883
+2026-10-06 07:21:07.773 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 1 percentage similarities; Best obj: 0.16883
+2026-10-06 07:21:07.972 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.16883
+2026-10-06 07:21:08.160 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 1 percentage similarities; Best obj: 0.16883
+2026-10-06 07:21:08.376 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 1 percentage similarities; Best obj: 0.16883
+2026-10-06 07:21:08.580 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 2 percentage similarities; Best obj: 0.16883
+2026-10-06 07:21:08.768 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 2 percentage similarities; Best obj: 0.16883
+2026-10-06 07:21:08.965 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 2 percentage similarities; Best obj: 0.16883
+2026-10-06 07:21:09.160 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 2 percentage similarities; Best obj: 0.16883
+2026-10-06 07:21:09.443 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 2 percentage similarities; Best obj: 0.16883
+2026-10-06 07:21:09.638 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 5 percentage similarities; Best obj: 0.16883
+2026-10-06 07:21:09.842 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 18 ; 5 percentage similarities; Best obj: 0.1688
+2026-10-06 07:21:10.040 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 19 ; 9 percentage similarities; Best obj: 0.16875
+2026-10-06 07:21:10.232 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 20 ; 10 percentage similarities; Best obj: 0.16852
+2026-10-06 07:21:10.429 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 21 ; 15 percentage similarities; Best obj: 0.1684
+2026-10-06 07:21:10.642 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 22 ; 22 percentage similarities; Best obj: 0.16834
+2026-10-06 07:21:10.834 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 23 ; 31 percentage similarities; Best obj: 0.16832
+2026-10-06 07:21:11.037 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 24 ; 35 percentage similarities; Best obj: 0.16821
+2026-10-06 07:21:11.272 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 25 ; 49 percentage similarities; Best obj: 0.16819
+2026-10-06 07:21:11.273 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:21:11.297 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : iliopsoas_l 
+2026-10-06 07:21:11.569 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.0919
+2026-10-06 07:21:11.756 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.07983
+2026-10-06 07:21:11.937 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.07983
+2026-10-06 07:21:12.118 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.07983
+2026-10-06 07:21:12.292 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.07983
+2026-10-06 07:21:12.468 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.06837
+2026-10-06 07:21:12.650 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.06118
+2026-10-06 07:21:12.839 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.05854
+2026-10-06 07:21:13.061 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 1 percentage similarities; Best obj: 0.05655
+2026-10-06 07:21:13.291 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.04706
+2026-10-06 07:21:13.501 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 1 percentage similarities; Best obj: 0.04525
+2026-10-06 07:21:13.718 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 1 percentage similarities; Best obj: 0.04485
+2026-10-06 07:21:13.907 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 1 percentage similarities; Best obj: 0.04243
+2026-10-06 07:21:14.128 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 1 percentage similarities; Best obj: 0.04173
+2026-10-06 07:21:14.339 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 4 percentage similarities; Best obj: 0.04129
+2026-10-06 07:21:14.546 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 5 percentage similarities; Best obj: 0.03985
+2026-10-06 07:21:14.754 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 1 percentage similarities; Best obj: 0.03952
+2026-10-06 07:21:14.955 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 5 percentage similarities; Best obj: 0.03915
+2026-10-06 07:21:15.143 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 18 ; 9 percentage similarities; Best obj: 0.03876
+2026-10-06 07:21:15.357 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 19 ; 9 percentage similarities; Best obj: 0.03866
+2026-10-06 07:21:15.616 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 20 ; 16 percentage similarities; Best obj: 0.03864
+2026-10-06 07:21:15.837 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 21 ; 18 percentage similarities; Best obj: 0.03856
+2026-10-06 07:21:16.039 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 22 ; 22 percentage similarities; Best obj: 0.03854
+2026-10-06 07:21:16.242 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 23 ; 30 percentage similarities; Best obj: 0.03852
+2026-10-06 07:21:16.432 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 24 ; 42 percentage similarities; Best obj: 0.0385
+2026-10-06 07:21:16.432 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:21:16.452 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : rect_fem_l 
+2026-10-06 07:21:16.750 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.28577
+2026-10-06 07:21:17.006 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.27613
+2026-10-06 07:21:17.272 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.27613
+2026-10-06 07:21:17.531 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.27613
+2026-10-06 07:21:17.766 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.27613
+2026-10-06 07:21:18.014 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.27613
+2026-10-06 07:21:18.260 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.27613
+2026-10-06 07:21:18.522 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.27613
+2026-10-06 07:21:18.759 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 2 percentage similarities; Best obj: 0.27613
+2026-10-06 07:21:19.041 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 2 percentage similarities; Best obj: 0.27613
+2026-10-06 07:21:19.283 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 4 percentage similarities; Best obj: 0.27613
+2026-10-06 07:21:19.531 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 8 percentage similarities; Best obj: 0.27613
+2026-10-06 07:21:19.798 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 11 percentage similarities; Best obj: 0.27613
+2026-10-06 07:21:19.799 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:212 -         Break the optimization, since global obj maintained the same value for certain iterations
+2026-10-06 07:21:19.819 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : vasti_l 
+2026-10-06 07:21:20.118 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.13674
+2026-10-06 07:21:20.448 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 2 percentage similarities; Best obj: 0.11688
+2026-10-06 07:21:20.773 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.07551
+2026-10-06 07:21:21.093 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.06718
+2026-10-06 07:21:21.422 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.06009
+2026-10-06 07:21:21.729 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.05616
+2026-10-06 07:21:22.082 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.04894
+2026-10-06 07:21:22.488 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.04602
+2026-10-06 07:21:22.870 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 1 percentage similarities; Best obj: 0.03856
+2026-10-06 07:21:23.219 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.03681
+2026-10-06 07:21:23.619 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 1 percentage similarities; Best obj: 0.03642
+2026-10-06 07:21:23.939 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 2 percentage similarities; Best obj: 0.0356
+2026-10-06 07:21:24.205 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 2 percentage similarities; Best obj: 0.03451
+2026-10-06 07:21:24.443 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 2 percentage similarities; Best obj: 0.03265
+2026-10-06 07:21:24.685 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 2 percentage similarities; Best obj: 0.03228
+2026-10-06 07:21:24.896 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 2 percentage similarities; Best obj: 0.03221
+2026-10-06 07:21:25.117 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 2 percentage similarities; Best obj: 0.03219
+2026-10-06 07:21:25.328 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 6 percentage similarities; Best obj: 0.03206
+2026-10-06 07:21:25.530 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 18 ; 12 percentage similarities; Best obj: 0.03201
+2026-10-06 07:21:25.760 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 19 ; 15 percentage similarities; Best obj: 0.03197
+2026-10-06 07:21:25.959 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 20 ; 15 percentage similarities; Best obj: 0.03185
+2026-10-06 07:21:26.157 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 21 ; 18 percentage similarities; Best obj: 0.03181
+2026-10-06 07:21:26.355 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 22 ; 20 percentage similarities; Best obj: 0.0318
+2026-10-06 07:21:26.553 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 23 ; 35 percentage similarities; Best obj: 0.03178
+2026-10-06 07:21:26.745 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 24 ; 38 percentage similarities; Best obj: 0.03176
+2026-10-06 07:21:26.975 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 25 ; 50 percentage similarities; Best obj: 0.03174
+2026-10-06 07:21:26.975 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:21:26.995 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : gastroc_l 
+2026-10-06 07:21:27.290 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.22082
+2026-10-06 07:21:27.540 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.1959
+2026-10-06 07:21:27.764 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.16821
+2026-10-06 07:21:28.046 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.16038
+2026-10-06 07:21:28.281 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.15858
+2026-10-06 07:21:28.509 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.15814
+2026-10-06 07:21:28.741 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.15803
+2026-10-06 07:21:28.986 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.158
+2026-10-06 07:21:29.216 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 1 percentage similarities; Best obj: 0.15799
+2026-10-06 07:21:29.457 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.15799
+2026-10-06 07:21:29.692 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 1 percentage similarities; Best obj: 0.15799
+2026-10-06 07:21:29.950 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 1 percentage similarities; Best obj: 0.15799
+2026-10-06 07:21:30.241 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 1 percentage similarities; Best obj: 0.15799
+2026-10-06 07:21:30.485 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 1 percentage similarities; Best obj: 0.15799
+2026-10-06 07:21:30.791 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 2 percentage similarities; Best obj: 0.15747
+2026-10-06 07:21:31.072 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 2 percentage similarities; Best obj: 0.15737
+2026-10-06 07:21:31.331 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 2 percentage similarities; Best obj: 0.15725
+2026-10-06 07:21:31.583 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 2 percentage similarities; Best obj: 0.15719
+2026-10-06 07:21:31.834 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 18 ; 2 percentage similarities; Best obj: 0.15717
+2026-10-06 07:21:32.069 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 19 ; 2 percentage similarities; Best obj: 0.15709
+2026-10-06 07:21:32.320 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 20 ; 2 percentage similarities; Best obj: 0.15707
+2026-10-06 07:21:32.582 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 21 ; 2 percentage similarities; Best obj: 0.15707
+2026-10-06 07:21:32.838 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 22 ; 4 percentage similarities; Best obj: 0.15707
+2026-10-06 07:21:33.102 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 23 ; 6 percentage similarities; Best obj: 0.15707
+2026-10-06 07:21:33.415 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 24 ; 8 percentage similarities; Best obj: 0.15706
+2026-10-06 07:21:33.675 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 25 ; 14 percentage similarities; Best obj: 0.15706
+2026-10-06 07:21:33.922 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 26 ; 16 percentage similarities; Best obj: 0.15706
+2026-10-06 07:21:34.156 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 27 ; 20 percentage similarities; Best obj: 0.15706
+2026-10-06 07:21:34.386 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 28 ; 28 percentage similarities; Best obj: 0.15706
+2026-10-06 07:21:34.621 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 29 ; 40 percentage similarities; Best obj: 0.15706
+2026-10-06 07:21:34.869 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 30 ; 49 percentage similarities; Best obj: 0.15706
+2026-10-06 07:21:34.869 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:21:34.888 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : soleus_l 
+2026-10-06 07:21:35.111 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.1431
+2026-10-06 07:21:35.271 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.13391
+2026-10-06 07:21:35.457 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.13391
+2026-10-06 07:21:35.630 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.13391
+2026-10-06 07:21:35.798 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.13391
+2026-10-06 07:21:35.966 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.13391
+2026-10-06 07:21:36.138 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.13391
+2026-10-06 07:21:36.344 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.13391
+2026-10-06 07:21:36.565 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 1 percentage similarities; Best obj: 0.13391
+2026-10-06 07:21:36.743 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.13391
+2026-10-06 07:21:36.896 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 1 percentage similarities; Best obj: 0.13391
+2026-10-06 07:21:37.063 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 1 percentage similarities; Best obj: 0.13391
+2026-10-06 07:21:37.222 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 1 percentage similarities; Best obj: 0.13391
+2026-10-06 07:21:37.222 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:212 -         Break the optimization, since global obj maintained the same value for certain iterations
+2026-10-06 07:21:37.248 | INFO     | myoconverter.conversion_steps.O2MStep3:optMuscleForce:273 - Muscle : tib_ant_l 
+2026-10-06 07:21:37.476 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 0 ; 0 percentage similarities; Best obj: 0.11247
+2026-10-06 07:21:37.736 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 1 ; 1 percentage similarities; Best obj: 0.11247
+2026-10-06 07:21:38.004 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 2 ; 1 percentage similarities; Best obj: 0.11247
+2026-10-06 07:21:38.245 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 3 ; 1 percentage similarities; Best obj: 0.11247
+2026-10-06 07:21:38.476 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 4 ; 1 percentage similarities; Best obj: 0.07056
+2026-10-06 07:21:38.717 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 5 ; 1 percentage similarities; Best obj: 0.06409
+2026-10-06 07:21:38.908 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 6 ; 1 percentage similarities; Best obj: 0.06168
+2026-10-06 07:21:39.142 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 7 ; 1 percentage similarities; Best obj: 0.05965
+2026-10-06 07:21:39.384 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 8 ; 2 percentage similarities; Best obj: 0.05714
+2026-10-06 07:21:39.622 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 9 ; 1 percentage similarities; Best obj: 0.05649
+2026-10-06 07:21:39.794 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 10 ; 1 percentage similarities; Best obj: 0.05172
+2026-10-06 07:21:40.009 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 11 ; 1 percentage similarities; Best obj: 0.05072
+2026-10-06 07:21:40.241 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 12 ; 1 percentage similarities; Best obj: 0.0505
+2026-10-06 07:21:40.456 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 13 ; 1 percentage similarities; Best obj: 0.05035
+2026-10-06 07:21:40.664 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 14 ; 5 percentage similarities; Best obj: 0.04965
+2026-10-06 07:21:40.895 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 15 ; 5 percentage similarities; Best obj: 0.04698
+2026-10-06 07:21:41.144 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 16 ; 1 percentage similarities; Best obj: 0.04639
+2026-10-06 07:21:41.383 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 17 ; 1 percentage similarities; Best obj: 0.04625
+2026-10-06 07:21:41.630 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 18 ; 1 percentage similarities; Best obj: 0.04622
+2026-10-06 07:21:41.867 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 19 ; 1 percentage similarities; Best obj: 0.04462
+2026-10-06 07:21:42.132 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 20 ; 1 percentage similarities; Best obj: 0.04427
+2026-10-06 07:21:42.386 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 21 ; 1 percentage similarities; Best obj: 0.0442
+2026-10-06 07:21:42.643 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 22 ; 1 percentage similarities; Best obj: 0.04419
+2026-10-06 07:21:42.879 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 23 ; 2 percentage similarities; Best obj: 0.04392
+2026-10-06 07:21:43.121 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 24 ; 2 percentage similarities; Best obj: 0.04379
+2026-10-06 07:21:43.374 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 25 ; 2 percentage similarities; Best obj: 0.04376
+2026-10-06 07:21:43.638 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 26 ; 4 percentage similarities; Best obj: 0.04356
+2026-10-06 07:21:43.858 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 27 ; 2 percentage similarities; Best obj: 0.04351
+2026-10-06 07:21:44.117 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 28 ; 4 percentage similarities; Best obj: 0.0435
+2026-10-06 07:21:44.337 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 29 ; 4 percentage similarities; Best obj: 0.04343
+2026-10-06 07:21:44.569 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 30 ; 6 percentage similarities; Best obj: 0.04342
+2026-10-06 07:21:44.797 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 31 ; 6 percentage similarities; Best obj: 0.04342
+2026-10-06 07:21:45.030 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 32 ; 9 percentage similarities; Best obj: 0.04341
+2026-10-06 07:21:45.254 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 33 ; 9 percentage similarities; Best obj: 0.04341
+2026-10-06 07:21:45.464 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 34 ; 10 percentage similarities; Best obj: 0.04341
+2026-10-06 07:21:45.705 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 35 ; 10 percentage similarities; Best obj: 0.04341
+2026-10-06 07:21:45.944 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 36 ; 11 percentage similarities; Best obj: 0.04341
+2026-10-06 07:21:46.183 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 37 ; 12 percentage similarities; Best obj: 0.04341
+2026-10-06 07:21:46.444 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 38 ; 15 percentage similarities; Best obj: 0.0434
+2026-10-06 07:21:46.729 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 39 ; 16 percentage similarities; Best obj: 0.04339
+2026-10-06 07:21:46.981 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 40 ; 28 percentage similarities; Best obj: 0.04339
+2026-10-06 07:21:47.234 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:192 -         PSO iteration: 41 ; 42 percentage similarities; Best obj: 0.04339
+2026-10-06 07:21:47.235 | INFO     | myoconverter.optimization.utils.UtilsForceOpt:fmOptPSO_cust:200 -         Break the optimization, since certain number of similar particles reached
+2026-10-06 07:21:47.254 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:262 - Finished step 3 conversion - cvt3.
+2026-10-06 07:21:47.254 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:268 - Started step 3 validation - val3.
+2026-10-06 07:21:49.947 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:270 - Finished step 3 validation - val3.
+2026-10-06 07:21:49.947 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:281 - Generating pdf report based on the validation results.
+2026-10-06 07:21:49.947 | INFO     | myoconverter.conversion_steps.O2MSteps:PipelineExecution:282 -    This may take a while, suggest to do this after all validation steps...
+2026-10-06 07:21:49.955 | INFO     | myoconverter.utils.generate_pdf:add_step1_plots:155 -    Adding vlt1 results.
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+2026-10-06 07:21:56.298 | INFO     | myoconverter.utils.generate_pdf:add_step2_plots:236 -    Adding vlt2 results.
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+"transform" defined on <image> is currently not supported (contributions are welcome to add support for it)
+"transform" defined on <image> is currently not supported (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+2026-10-06 07:22:01.544 | INFO     | myoconverter.utils.generate_pdf:add_step3_plots:279 -    Adding vlt3 results.
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
+Ignoring unsupported SVG tag: <metadata> (contributions are welcome to add support for it)
