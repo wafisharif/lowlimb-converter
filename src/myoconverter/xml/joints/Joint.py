@@ -1,3 +1,5 @@
+# Modified by lowlimb-converter (2026-10-06), from MyoConverter @ cadf380: every MuJoCo joint now gets pos = the
+# joint's child-frame offset, so hinges rotate about the joint centre as in OpenSim (Station 2, change 2.1).
 """ Contains a higher level `Joint` parser.
 
 @author: Aleksi Ikkala
@@ -9,6 +11,7 @@ from typing import final
 from myoconverter.xml.parsers import IParser
 from myoconverter.xml import config as cfg
 from myoconverter.xml.joints.utils import lock_joint
+from myoconverter.xml.utils import str2vec, vec2str
 
 
 class Joint(IParser):
@@ -42,6 +45,13 @@ class Joint(IParser):
 
     # Do joint specific parsing
     m_joints, params = self._parse(xml, socket_parent_frame, socket_child_frame, pointer)
+
+    # OpenSim rotates the child about the joint's child frame M, whose origin is p_BM in the body frame. MuJoCo
+    # rotates about the joint's pos (body frame, default 0), so set it. Slide joints are unaffected by pos.
+    child_position = str2vec(socket_child_frame.find("translation").text)
+    if any(child_position != 0):
+      for j in m_joints:
+        j.attrib["pos"] = vec2str(child_position)
 
     # Create an equality constraint if the joint (or any of the subjoints) is locked
     for p in params:

@@ -1,3 +1,5 @@
+# Modified by lowlimb-converter (2026-10-06), from MyoConverter @ cadf380: body placement now composes the joint's
+# parent and child frames as OpenSim does (Station 2, change 2.1; see station2/FINDINGS.md).
 """ Contains the `Body` parser.
 
 @author: Aleksi Ikkala
@@ -31,12 +33,17 @@ class Body(IParser):
     parent_position = str2vec(socket_parent_frame.find("translation").text)
     parent_orientation = str2vec(socket_parent_frame.find("orientation").text)
 
-    # Translate/rotate body position if needed
+    # Place the body so that, with all joint values zero, its frame B sits where OpenSim puts it:
+    # X_PB = X_PF * inv(X_BM), where F is the joint's parent frame (in P) and M its child frame (in B).
+    # Rotation: R_PB = R_PF * R_BM^T. Position: p_PB = p_PF - R_PB * p_BM.
+    # (lowlimb-converter: upstream used R_BM^T * R_PF and p_PF - p_BM, which is only right when R_PF and R_BM
+    # commute and R_PB is the identity. The joints' rotation centre p_BM is set in joints/Joint.py.)
     child_position = str2vec(socket_child_frame.find("translation").text)
-    parent_position -= child_position
     child_orientation = str2vec(socket_child_frame.find("orientation").text)
     child_rotation = Rotation.from_euler("XYZ", child_orientation)
-    parent_orientation = (child_rotation.inv() * Rotation.from_euler("XYZ", parent_orientation)).as_euler("XYZ")
+    body_rotation = Rotation.from_euler("XYZ", parent_orientation) * child_rotation.inv()
+    parent_position = parent_position - body_rotation.apply(child_position)
+    parent_orientation = body_rotation.as_euler("XYZ")
 
     if root_body:
       # Does this apply to all models? Looks like it. Need to rotate by 90 degrees along x axis
