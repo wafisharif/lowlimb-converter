@@ -2,7 +2,9 @@
 # Replaces upstream docker/Dockerfile, which no longer builds:
 # Debian 11 security repos were retired at EOL (Aug 31, 2026).
 # conda_env.yml (the actual runtime dependencies) is unchanged from upstream.
-FROM --platform=linux/amd64 condaforge/miniforge3:latest
+# Base image pinned by digest (2026-10-06) to the exact image the Station 0 baseline was built from
+# on 2026-10-05 (see baseline/env/base_image_digest.txt); ':latest' would drift.
+FROM --platform=linux/amd64 condaforge/miniforge3@sha256:f752860f77bd417aa4db35be3d2e906fdb740fb80f40755ed651fff9e8873aad
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
       libgl1 libegl1 libosmesa6 libglib2.0-0 libxrender1 libxext6 libsm6 libxt6 \

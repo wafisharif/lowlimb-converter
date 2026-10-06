@@ -1,0 +1,20 @@
+# Clean-machine rebuild of the Station 0 environment from the exact lockfile exported from the
+# baseline container: baseline/env/baseline_env.yml (295 packages, exact build strings, linux-64).
+# Build context: the upstream MyoConverter clone @ cadf380, with baseline_env.yml copied into it
+# (the CI workflow does this).
+FROM --platform=linux/amd64 condaforge/miniforge3@sha256:f752860f77bd417aa4db35be3d2e906fdb740fb80f40755ed651fff9e8873aad
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      libgl1 libegl1 libosmesa6 libglib2.0-0 libxrender1 libxext6 libsm6 libxt6 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY baseline_env.yml .
+RUN sed -i '/^prefix:/d' baseline_env.yml && mamba env create -f baseline_env.yml && mamba clean -afy
+
+COPY myoconverter myoconverter
+COPY models models
+COPY examples examples
+
+ENV PYTHONPATH=/app
+CMD ["bash"]

@@ -1,0 +1,53 @@
+name: station0-clean-machine
+
+# Station 0 gate: the baseline environment rebuilds from the lockfile on a clean machine and
+# reproduces the gait10dof18musc baseline (structural gates + reproducibility gates R1-R3).
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "baseline/**"
+      - "docker/**"
+      - ".github/workflows/station0-baseline.yml"
+
+jobs:
+  clean-machine-rebuild:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clone upstream MyoConverter at the pinned commit
+        run: |
+          git clone --quiet https://github.com/MyoHub/myoconverter.git upstream
+          git -C upstream checkout --quiet cadf38059367a51239e6dc28c9fbe8b8fbd5149f
+          git -C upstream log -1 --format='upstream %H'
+
+      - name: Build image from the lockfile
+        run: |
+          cp baseline/env/baseline_env.yml upstream/
+          docker build -f docker/Dockerfile.locked -t myoconverter:locked-cadf380 upstream
+
+      - name: Convert gait10dof18musc from scratch and run all gates
+        run: |
+          mkdir -p ci_data/env
+          cp baseline/run_baseline.py baseline/check_counts.py baseline/extract_metrics.py \
+             baseline/compare_to_upstream.py baseline/ci_check.sh ci_data/
+          cp -r baseline/upstream_shipped ci_data/
+          docker run --rm --mount type=bind,src="$PWD/ci_data",target=/app/data \
+            myoconverter:locked-cadf380 bash /app/data/ci_check.sh
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: station0-clean-machine-results
+          path: |
+            ci_data/env
+            ci_data/gait10dof18musc/*.txt
+            ci_data/gait10dof18musc/*.json
+            ci_data/gait10dof18musc/*.csv
+            ci_data/gait10dof18musc/*.log
+            ci_data/gait10dof18musc/*.xml
+          if-no-files-found: warn
