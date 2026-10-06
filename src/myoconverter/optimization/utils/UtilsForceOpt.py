@@ -1,3 +1,6 @@
+# Modified by lowlimb-converter (2026-10-06), from MyoConverter @ cadf380, for NumPy 2: obj_g_old starts
+# as None instead of []. Comparing a float to [] gave an empty array, which NumPy 1.x treated as False
+# (deprecated) and NumPy 2 rejects; the new check is False on the first iteration, as before.
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -134,7 +137,7 @@ def fmOptPSO_cust(mjc_model_path, muscle, joints, jnt_arr, act_arr,\
     p = x  # assign the particle values
 
     obj_g = []  # initilize an empty global cost function value
-    obj_g_old = []  # old cost function value
+    obj_g_old = None  # old cost function value (None until the first iteration)
     obj_g_iter = 0 # number of iterations that contain the same obj_g
 
     itera = 0  # interation starts
@@ -198,7 +201,7 @@ def fmOptPSO_cust(mjc_model_path, muscle, joints, jnt_arr, act_arr,\
                 break
 
             # break if the obj_g is the same value for more than 10 iterations
-            if obj_g == obj_g_old:
+            if obj_g_old is not None and obj_g == obj_g_old:
                 obj_g_iter = obj_g_iter + 1
             else:
                 obj_g_iter = 0
