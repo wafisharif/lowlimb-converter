@@ -9,10 +9,10 @@ separate commit, each checked against the old behaviour.
 
 | # | Commit | Problem on the modern stack | Fix | How we know behaviour is unchanged |
 | --- | --- | --- | --- | --- |
-| 1 | c7bcfa7 | `networkx` missing (trimesh mesh repair needs it; not imported directly) | Added to `env/requirements.in` | Environment only |
-| 2 | 4241e6d | `<option collision="predefined"/>` was removed in MuJoCo 3.0.0 | MuJoCo's documented migration: delete it, default geom `contype=0 conaffinity=0`, remove the one explicit `contype/conaffinity` | Compiled models: no geom can collide automatically, and the explicit contact pairs are identical (19 per model) |
-| 3 | bc90a68 | `mjModel.eq_active` renamed `eq_active0`; `actuator_moment` became sparse | Rename (2 places); rebuild the dense matrix with `mju_sparse2dense` | `station1/tests/test_actuator_moment.py`: matches MuJoCo 2.3.7 to 3.5e-17 |
-| 4 | a9f8693 | Particle-swarm stall check compared a float to `[]`, which NumPy 2 rejects | Start `obj_g_old` as `None` (Step 2 and Step 3 optimisers) | Same decisions as NumPy 1.x on every iteration of a test sequence |
+| 1 | 3567f1f | `networkx` missing (trimesh mesh repair needs it; not imported directly) | Added to `env/requirements.in` | Environment only |
+| 2 | c451216 | `<option collision="predefined"/>` was removed in MuJoCo 3.0.0 | MuJoCo's documented migration: delete it, default geom `contype=0 conaffinity=0`, remove the one explicit `contype/conaffinity` | Compiled models: no geom can collide automatically, and the explicit contact pairs are identical (19 per model) |
+| 3 | 74853ef | `mjModel.eq_active` renamed `eq_active0`; `actuator_moment` became sparse | Rename (2 places); rebuild the dense matrix with `mju_sparse2dense` | `station1/tests/test_actuator_moment.py`: matches MuJoCo 2.3.7 to 3.5e-17 |
+| 4 | 5a6408b | Particle-swarm stall check compared a float to `[]`, which NumPy 2 rejects | Start `obj_g_old` as `None` (Step 2 and Step 3 optimisers) | Same decisions as NumPy 1.x on every iteration of a test sequence |
 
 Fix 3 was found by checking every MuJoCo name the code uses against MuJoCo 3.15, not only the line
 that crashed. That audit also confirmed no removed NumPy aliases are used and that numbers are written
