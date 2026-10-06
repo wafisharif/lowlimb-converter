@@ -1,0 +1,60 @@
+name: station2-kinematics
+
+# Station 2: kinematic check (station2/GATES.md) on a clean Linux machine, plus its self-tests.
+# Gait models must pass K0-K2. Rajagopal2016 runs too but doesn't fail the job: it is known to fail K2 at the
+# patella (station2/FINDINGS.md); its result is in the uploaded artifacts.
+# Also checks that the full pipeline still runs and passes the structural gates (Station 1a P1-P2) on gait10dof18musc.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "env/**"
+      - "station1/**"
+      - "station2/**"
+      - ".github/workflows/station2-kinematics.yml"
+
+jobs:
+  linux:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: System libraries for VTK (mesh conversion)
+        run: sudo apt-get update && sudo apt-get install -y libgl1 libxrender1 libxext6
+      - name: Install the locked environment
+        run: python -m pip install --require-hashes -r env/requirements.lock
+      - name: Clone upstream MyoConverter at the pinned commit (gait models)
+        run: |
+          git clone --quiet https://github.com/MyoHub/myoconverter.git upstream
+          git -C upstream checkout --quiet cadf38059367a51239e6dc28c9fbe8b8fbd5149f
+      - name: Clone opensim-models at the pinned commit (Rajagopal2016 and its meshes only)
+        run: |
+          git clone --quiet --filter=blob:none --no-checkout https://github.com/opensim-org/opensim-models.git ../opensim-models
+          git -C ../opensim-models sparse-checkout set Geometry Models/Rajagopal
+          git -C ../opensim-models checkout --quiet d9b05d470b1a481c222372c85b75772faf8f7792
+      - name: Harness self-tests (mutations must fail, independent cross-check must agree)
+        run: |
+          python station2/tests/test_harness.py upstream/models/osim/Gait10dof18musc/gait10dof18musc.osim ../s2_scratch/harness ../opensim-models/Models/Rajagopal/Rajagopal2016.osim
+          python station2/tests/test_frame_offsets.py src upstream/models/osim/Gait10dof18musc/gait10dof18musc.osim upstream/models/osim/Gait10dof18musc/Geometry ../s2_scratch/offsets
+      - name: Station 2 gates, gait models
+        run: MODELS="gait10dof18musc gait2354" bash station2/run_station2.sh ci upstream - ../s2_work python
+      - name: Station 2, Rajagopal2016 (reported, known K2 failure)
+        continue-on-error: true
+        run: MODELS="Rajagopal2016" bash station2/run_station2.sh ci upstream ../opensim-models ../s2_work python
+      - name: Full pipeline still runs, structural gates P1-P2 (gait10dof18musc)
+        run: STRUCTURAL_ONLY=1 bash station1/run_station1.sh gait10dof18musc upstream ci_station1/gait10dof18musc python
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: station2-linux-results
+          path: |
+            station2/*/ci.json
+            ci_station1/gait10dof18musc/*.txt
+            ci_station1/gait10dof18musc/*.log
+          if-no-files-found: warn

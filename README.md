@@ -3,14 +3,15 @@
 OpenSim → MuJoCo conversion for lower-limb gait models, with a validation report for every
 converted model. It's a specialised fork of [MyoConverter](https://github.com/MyoHub/myoconverter).
 
-> **Status: Station 1b done (port to a modern stack + element-support report).** MyoConverter's pipeline now runs on
-> Python 3.12, OpenSim 4.6, MuJoCo 3.15 and NumPy 2 with no Docker. Verified on Linux; the lockfile includes the Apple
-> Silicon wheels, but the native macOS run is not verified yet. For both gait models it reproduces the Station 0
-> baseline to floating-point precision ([`station1/FINDINGS.md`](station1/FINDINGS.md)). A support report now says,
-> before converting, what will be converted, approximated or dropped, and whether conversion will fail.
-> No accuracy improvements yet; those start in Station 2.
+> **Status: Station 2 (kinematic check) done for both gait models; Rajagopal 2016 still fails one gate.** The
+> pipeline runs on Python 3.12, OpenSim 4.6, MuJoCo 3.15 and NumPy 2 with no Docker (verified on Linux; the lockfile
+> includes Apple Silicon wheels, but the native macOS run is not verified yet). Three converter fixes put every body
+> of both gait models within 0.22 mm of OpenSim in every tested pose (MyoConverter: 0.89 mm), and fixed a 15.6 mm
+> knee error in Rajagopal 2016, whose patella is still 0.64° off, over the 0.5° gate
+> ([`station2/FINDINGS.md`](station2/FINDINGS.md)). Muscle paths and forces are next (Stations 3–4).
 > Plan: [project pipeline doc](https://claude.ai/code/artifact/41e46ee4-a7c3-42bc-82d8-dd94af3ef801) ·
-> log: [`EXPERIMENTS.md`](EXPERIMENTS.md) · gates: [`baseline/GATES.md`](baseline/GATES.md), [`station1/GATES.md`](station1/GATES.md)
+> log: [`EXPERIMENTS.md`](EXPERIMENTS.md) · gates: [`baseline/GATES.md`](baseline/GATES.md), [`station1/GATES.md`](station1/GATES.md),
+> [`station2/GATES.md`](station2/GATES.md)
 
 ## What this will be
 
@@ -33,6 +34,12 @@ converted model. It's a specialised fork of [MyoConverter](https://github.com/My
 - Porting to MuJoCo 3 / NumPy 2 took four small fixes (one silent-risk API change: `actuator_moment` became sparse).
   Compiled models match the baseline except for documented, physics-neutral differences, plus a 0.015–0.020%
   total-mass difference on massless virtual bodies, which comes from MuJoCo 2.3.7's XML writer dropping `boundmass`.
+- MyoConverter never checked body kinematics for these models. Checked now: its gait conversions are within
+  0.89 mm and 0.01°, limited by a quartic fit placed over the wrong knee range and by numbers written with
+  4 significant figures. Both fixed (0.22 mm). Rajagopal 2016's knee was 15.6 mm off, because joints with an
+  offset child frame rotated about the wrong point. Fixed too.
+- No quartic can follow Rajagopal 2016's patella spline within 0.5° (best possible: 0.64°), and MuJoCo couples
+  joints with quartics only.
 - Gravity is not converted: OpenSim models use 9.80665 m/s², converted models get MuJoCo's default 9.81.
 - Rajagopal 2016's torque actuators (lumbar, arms) convert 10× too weak: the converter drops `optimal_force`.
 - RajagopalLaiUhlrich2023 can't be converted yet: its knees use a `PolynomialFunction`, which the converter rejects.
@@ -48,7 +55,21 @@ python3.12 -m venv .venv && .venv/bin/pip install --require-hashes -r env/requir
 bash station1/run_station1.sh gait10dof18musc upstream station1/gait10dof18musc .venv/bin/python
 ```
 
-The script converts the model, then checks gates P1–P5 and exits non-zero if any fails.
+The script converts the model, then checks gates P1–P5 and exits non-zero if any fails. P3–P5 check that the results
+match the Station 0 baseline, which only holds for the port itself (tag `station1a`): from Station 2 on, the converter
+is changed on purpose. On later commits, run it with `STRUCTURAL_ONLY=1` to check P1–P2.
+
+## Kinematic check (Station 2)
+
+```bash
+git clone --filter=blob:none https://github.com/opensim-org/opensim-models.git ../opensim-models   # Rajagopal 2016
+git -C ../opensim-models checkout d9b05d470b1a481c222372c85b75772faf8f7792
+bash station2/run_station2.sh myrun upstream ../opensim-models ../station2_work .venv/bin/python
+```
+
+It reruns the XML step for each model, poses OpenSim and MuJoCo identically (1000 random poses plus a sweep of every
+coordinate) and compares every body. Results go to `station2/<model>/myrun.json`. The work folder must be outside the
+repo, because the converted Rajagopal model isn't ours to redistribute. `MODELS="gait10dof18musc"` runs one model.
 
 ## Checking a model before converting it (Station 1b)
 
@@ -87,11 +108,12 @@ reached end of life. Upstream's `conda_env.yml`, which holds the actual dependen
 | `env/` | Modern-stack requirements and the universal hashed lockfile |
 | `station1/` | Station 1a/1b: gates, run script, results per model, tests, findings |
 | `station1/support/` | Support reports for four models, S3 results, model provenance |
+| `station2/` | Station 2: gates, OpenSim and MuJoCo sides of the kinematic check, run script, tests, findings, results per model and run |
 | `baseline/` | Station 0: run scripts, gates, extracted metrics, outputs for each model |
 | `baseline/upstream_shipped/` | Metrics extracted from the outputs MyoConverter ships, for the reproducibility check |
 | `station0/elastic_tendon/` | Whether MuJoCo supports elastic tendons: test and findings |
 | `docker/` | Baseline image definitions (Station 0) |
-| `.github/workflows/` | Clean-machine checks: Station 0 (Docker, lockfile) and Station 1a (Linux on push; macOS on manual run) |
+| `.github/workflows/` | Clean-machine checks: Station 0 (Docker, lockfile), Station 2 + P1–P2 (Linux, on push), Station 1a (manual) |
 | `EXPERIMENTS.md` | Every run: intended vs actual vs deviation |
 
 ## Credit and license

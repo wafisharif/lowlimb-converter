@@ -2,18 +2,13 @@ name: station1-modern-stack
 
 # Station 1a: the ported pipeline runs on the modern stack (env/requirements.lock: Python 3.12,
 # OpenSim 4.6, MuJoCo 3.15.0) on a clean machine and passes gates P1-P5 (station1/GATES.md)
-# for gait10dof18musc. Linux runs on every relevant push; macOS (Apple Silicon, native) runs on
-# manual dispatch only, because macOS minutes cost 10x on private repos.
+# for gait10dof18musc.
+# Manual dispatch only, since Station 2: P3-P5 check that results match the Station 0 baseline, which held for
+# the port, but Station 2 changes the converter on purpose. To re-verify the port, run this workflow on the
+# tag station1a (the commit where Station 1a was done). On main, station2-kinematics.yml checks P1-P2.
+# macOS (Apple Silicon, native) runs only here, because macOS minutes cost 10x on private repos.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - "src/**"
-      - "env/**"
-      - "baseline/**"
-      - "station1/**"
-      - ".github/workflows/station1-modern-stack.yml"
 
 jobs:
   linux:
@@ -48,7 +43,6 @@ jobs:
           if-no-files-found: warn
 
   macos:
-    if: github.event_name == 'workflow_dispatch'
     runs-on: macos-15
     timeout-minutes: 45
     steps:

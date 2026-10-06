@@ -6,3 +6,5 @@ baseline/*/Geometry/
 station1/*/Geometry/
 .DS_Store
 __pycache__/
+# opensim-org/opensim-models clone (pinned at d9b05d4; Rajagopal models for Stations 1b and 2). Not redistributed.
+opensim-models/

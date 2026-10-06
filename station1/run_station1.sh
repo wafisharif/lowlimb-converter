@@ -4,6 +4,8 @@
 # Usage: station1/run_station1.sh <gait10dof18musc|gait2354> <upstream_clone_dir> <output_dir> [python]
 #   upstream_clone_dir: MyoConverter clone at cadf380 (source of the OpenSim models)
 #   python: interpreter with env/requirements.lock installed (default: python)
+#   STRUCTURAL_ONLY=1: check only P1-P2. P3-P5 (results match the Station 0 baseline) held for the port itself;
+#   Station 2 and later change the converter on purpose, so from then on they are expected to differ.
 set -uo pipefail
 MODEL=$1; UP=$(cd "$2" && pwd); OUT=$3; PY=${4:-python}
 REPO=$(cd "$(dirname "$0")/.." && pwd)
@@ -30,6 +32,10 @@ echo "== P2 STRUCTURAL (OpenSim + current MuJoCo):"
 grep -E "GATE" "$OUT/gates.txt"
 [ "$(grep -c 'GATE: *PASS' "$OUT/gates.txt")" -eq 3 ] || fail=1
 $PY "$REPO/baseline/extract_metrics.py" "$OUT" > /dev/null || { echo "metric extraction failed"; exit 1; }
+if [ "${STRUCTURAL_ONLY:-0}" = 1 ]; then
+  [ $fail -eq 0 ] && echo "STATION 1a (P1-P2 only): PASS for $MODEL" || echo "STATION 1a (P1-P2 only): GATE FAILURE for $MODEL"
+  exit $fail
+fi
 echo "== P3-P5 vs Station 0 baseline:"
 $PY "$REPO/station1/compare_to_baseline.py" "$OUT" "$REPO/baseline/$MODEL" > "$OUT/vs_baseline.txt"; rc=$?
 cut -c1-160 "$OUT/vs_baseline.txt"; [ $rc -eq 0 ] || fail=1
