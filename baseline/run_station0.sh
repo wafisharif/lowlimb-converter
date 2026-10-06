@@ -1,10 +1,14 @@
 #!/bin/bash
 # Station 0 baseline. Runs inside myoconverter:baseline-cadf380.
-# Calls the env's python directly (interactive shells auto-activate conda 'base').
+# Activates the env properly: conda's mujoco package needs variables set by its activate.d
+# scripts (calling the env's python directly fails with MUJOCO install dir = None).
 # gait10dof18musc was already converted on 2026-10-05; this converts gait2354 (skipped if done),
 # then runs structural gates, metric extraction and the reproducibility check on both models.
-set -uo pipefail
-PY=/opt/conda/envs/myoconverter/bin/python
+source /opt/conda/etc/profile.d/conda.sh
+conda activate myoconverter || { echo "conda activate failed"; exit 1; }
+set -uo pipefail   # after activation: conda's activate scripts reference unset variables
+PY=python
+$PY -c "import mujoco, opensim" || { echo "env check failed: cannot import mujoco/opensim"; exit 1; }
 D=/app/data
 cd /app
 $PY -c "import mujoco, opensim; print('mujoco', mujoco.__version__); print('opensim', opensim.GetVersionAndDate())" > $D/env/versions_container.txt
