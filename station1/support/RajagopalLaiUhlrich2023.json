@@ -871,7 +871,7 @@
    "kind": "TransformAxis",
    "name": "translation1",
    "status": "approximated",
-   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial (fitted over the independent coordinate's range, Station 2 change 2.3) + joint equality",
    "rule": "axis_spline",
    "path": "patellofemoral_r/translation1",
    "order": 80
@@ -881,7 +881,7 @@
    "kind": "TransformAxis",
    "name": "translation2",
    "status": "approximated",
-   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial (fitted over the independent coordinate's range, Station 2 change 2.3) + joint equality",
    "rule": "axis_spline",
    "path": "patellofemoral_r/translation2",
    "order": 81
@@ -901,7 +901,7 @@
    "kind": "TransformAxis",
    "name": "rotation1",
    "status": "approximated",
-   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial (fitted over the independent coordinate's range, Station 2 change 2.3) + joint equality",
    "rule": "axis_spline",
    "path": "patellofemoral_r/rotation1",
    "order": 83
@@ -1486,7 +1486,7 @@
    "kind": "TransformAxis",
    "name": "translation1",
    "status": "approximated",
-   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial (fitted over the independent coordinate's range, Station 2 change 2.3) + joint equality",
    "rule": "axis_spline",
    "path": "patellofemoral_l/translation1",
    "order": 137
@@ -1496,7 +1496,7 @@
    "kind": "TransformAxis",
    "name": "translation2",
    "status": "approximated",
-   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial (fitted over the independent coordinate's range, Station 2 change 2.3) + joint equality",
    "rule": "axis_spline",
    "path": "patellofemoral_l/translation2",
    "order": 138
@@ -1516,7 +1516,7 @@
    "kind": "TransformAxis",
    "name": "rotation1",
    "status": "approximated",
-   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial (fitted over the independent coordinate's range, Station 2 change 2.3) + joint equality",
    "rule": "axis_spline",
    "path": "patellofemoral_l/rotation1",
    "order": 140

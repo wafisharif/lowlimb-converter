@@ -65,7 +65,8 @@ RULES = {
     "axis_constant": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
     "axis_linear": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
     "axis_linear_bad": "joints/CustomJoint.py: LinearFunction with other coefficients -> RuntimeError",
-    "axis_spline": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+    "axis_spline": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial (fitted over the "
+                   "independent coordinate's range, Station 2 change 2.3) + joint equality",
     "axis_unknown": "joints/CustomJoint.py: other function types -> RuntimeError",
     "axis_multi_dep": "joints/CustomJoint.py: spline axis whose coordinate depends on >1 coordinate, or on a "
                       "non-identity LinearFunction coupling -> NotImplementedError",

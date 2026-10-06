@@ -1,3 +1,5 @@
+# Modified by lowlimb-converter (2026-10-06), from MyoConverter @ cadf380: spline-driven joints are fitted with
+# fit_spline_on_range() over the independent coordinate's range (Station 2, change 2.3; see station2/FINDINGS.md).
 """ Contains the `CustomJoint` parser.
 
 @author: Aleksi Ikkala
@@ -12,8 +14,32 @@ from loguru import logger
 
 from myoconverter.xml.joints.Joint import Joint
 from myoconverter.xml.joints.utils import parse_coordinates, estimate_axis, plot_and_save_figure
-from myoconverter.xml.utils import str2bool, str2vec, val2str, vec2str, filter_keys, fit_spline, is_linear
+from myoconverter.xml.utils import str2bool, str2vec, val2str, vec2str, filter_keys, fit_spline, is_linear, \
+  fit_spline_on_range
 from myoconverter.xml import config as cfg
+
+
+def _fit_domain(coordinate_name, x_values):
+  """ lowlimb-converter (change 2.3): range over which a joint spline of `coordinate_name` is used.
+
+  That is the range of the independent coordinate: the coordinate itself, or, if an enforced coupler constraint makes
+  it follow another coordinate, that one's (the converter only accepts identity couplers, checked further down).
+  Falls back to the knots' span if the range is missing or effectively unbounded (wider than 100 rad or m).
+  """
+  name = coordinate_name
+  mapping = cfg.OPENSIM.xpath(f"ConstraintSet//dependent_coordinate_name[text()='{coordinate_name}']")
+  if len(mapping) == 1:
+    constraint = mapping[0].getparent()
+    enforced = constraint.find("isEnforced")
+    if enforced is None or str2bool(enforced.text):
+      name = constraint.find("independent_coordinate_names").text.strip()
+  ranges = cfg.OPENSIM.xpath(f".//Coordinate[@name='{name}']/range")
+  if len(ranges) == 1:
+    r = str2vec(ranges[0].text)
+    if len(r) == 2 and np.all(np.isfinite(r)) and r[0] < r[1] and r[1] - r[0] <= 100:
+      return r
+  logger.warning(f"Fitting the spline of {coordinate_name} over its knots' span: no usable range for {name}")
+  return np.array([np.min(x_values), np.max(x_values)])
 
 
 class CustomJoint(Joint):
@@ -138,9 +164,11 @@ class CustomJoint(Joint):
 
         # Get spline values
         if t.find("SimmSpline") is not None:
+          spline_kind = "SimmSpline"
           x_values = t.find("SimmSpline/x")
           y_values = t.find("SimmSpline/y")
         elif t.find("NaturalCubicSpline") is not None:
+          spline_kind = "NaturalCubicSpline"
           x_values = t.find("NaturalCubicSpline/x")
           y_values = t.find("NaturalCubicSpline/y")
         else:
@@ -152,7 +180,11 @@ class CustomJoint(Joint):
         x_values = str2vec(x_values.text)
         y_values = scale*str2vec(y_values.text)
 
-        fit, polycoef, joint_range = fit_spline(x_values, y_values)
+        # lowlimb-converter (change 2.3): fit OpenSim's spline over the range the coordinate actually covers
+        domain = _fit_domain(coordinate.text, x_values)
+        fit, polycoef, joint_range, fit_error = fit_spline_on_range(spline_kind, x_values, y_values, domain)
+        logger.info(f"{params['name']}: quartic fit to {spline_kind} over [{domain[0]:.6g}, {domain[1]:.6g}], "
+                    f"max error {fit_error:.3g}")
 
         # Get the name of the independent coordinate
         independent_coordinate = coordinate.text

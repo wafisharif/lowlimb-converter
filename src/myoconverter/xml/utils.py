@@ -1,5 +1,6 @@
 # Modified by lowlimb-converter (2026-10-06), from MyoConverter @ cadf380: vec2str writes every number at full
-# precision (shortest round-trip repr) instead of 4 significant figures (Station 2, change 2.2).
+# precision (shortest round-trip repr) instead of 4 significant figures (Station 2, change 2.2); new
+# fit_spline_on_range() fits joint splines where the coordinate actually moves (Station 2, change 2.3).
 """ This module contains a collection of utility functions useful for parsing and converting the OpenSim model.
 
 @author: Aleksi Ikkala
@@ -174,6 +175,55 @@ def fit_spline(x_values, y_values):
     range[0] -= 1e-6
 
   return fit, polycoef, range
+
+def fit_spline_on_range(kind, x_values, y_values, x_range, n_samples=2001, iterations=300):
+  """ lowlimb-converter (Station 2, change 2.3): quartic approximation of an OpenSim spline, fitted where it is used.
+
+  MuJoCo couples joints with a quartic polynomial, so a spline has to be approximated. Upstream (`fit_spline`) fits
+  a least-squares quartic to the spline's knots over the knots' whole span. Here the target is OpenSim's own spline
+  function (evaluated with OpenSim) over the independent coordinate's range, and the fit minimises the largest
+  error there (Lawson's iteratively reweighted least squares), which is what a per-pose kinematic check measures.
+  The upstream fit is kept as a candidate, so the largest error on that range is never worse than upstream's.
+
+  :param kind: "SimmSpline" or "NaturalCubicSpline"
+  :param x_values: spline knot x values
+  :param y_values: spline knot y values (already scaled)
+  :param x_range: [min, max] of the independent coordinate
+  :return: fit (callable polynomial), polycoef (5 power-basis coefficients), range (joint range), max error on range
+  """
+  import opensim  # only needed here; the rest of the XML step doesn't use OpenSim
+
+  spline = getattr(opensim, kind)()
+  for x, y in zip(x_values, y_values):
+    spline.addPoint(float(x), float(y))
+  xs = np.linspace(float(x_range[0]), float(x_range[1]), n_samples)
+  ys = np.array([spline.calcValue(opensim.Vector(1, float(x))) for x in xs])
+  degree = min(4, len(x_values) - 1)
+
+  candidates = [Polynomial.fit(x_values, y_values, degree).convert()]   # upstream fit
+  w = np.full(n_samples, 1.0 / n_samples)
+  for _ in range(iterations):
+    p = Polynomial.fit(xs, ys, degree, w=np.sqrt(w)).convert()
+    candidates.append(p)
+    e = np.abs(p(xs) - ys)
+    if e.max() == 0:
+      break
+    w = w * e
+    w /= w.sum()
+  errors = [np.max(np.abs(p(xs) - ys)) for p in candidates]
+  fit = candidates[int(np.argmin(errors))]
+
+  polycoef = np.zeros((5,))
+  polycoef[:fit.coef.shape[0]] = fit.coef
+
+  # Joint range: never narrower than upstream's (the knots' y span), and covering every value the fit takes on the
+  # coordinate's range, so the joint limit can't fight the coupling
+  y_fit = fit(xs)
+  joint_range = np.array([min(np.min(y_values), np.min(y_fit)), max(np.max(y_values), np.max(y_fit))])
+  if np.isclose(joint_range[0], joint_range[1]):
+    joint_range[0] -= 1e-6
+
+  return fit, polycoef, joint_range, float(min(errors))
 
 def create_transformation_matrix(pos=None, quat=None, rotation_matrix=None, euler=None):
   """ Create a 4x4 transformation matrix.

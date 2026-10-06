@@ -357,7 +357,7 @@
    "kind": "TransformAxis",
    "name": "translation1",
    "status": "approximated",
-   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial (fitted over the independent coordinate's range, Station 2 change 2.3) + joint equality",
    "rule": "axis_spline",
    "path": "knee_r/translation1",
    "order": 34
@@ -367,7 +367,7 @@
    "kind": "TransformAxis",
    "name": "translation2",
    "status": "approximated",
-   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial (fitted over the independent coordinate's range, Station 2 change 2.3) + joint equality",
    "rule": "axis_spline",
    "path": "knee_r/translation2",
    "order": 35
@@ -887,7 +887,7 @@
    "kind": "TransformAxis",
    "name": "translation1",
    "status": "approximated",
-   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial (fitted over the independent coordinate's range, Station 2 change 2.3) + joint equality",
    "rule": "axis_spline",
    "path": "knee_l/translation1",
    "order": 87
@@ -897,7 +897,7 @@
    "kind": "TransformAxis",
    "name": "translation2",
    "status": "approximated",
-   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial (fitted over the independent coordinate's range, Station 2 change 2.3) + joint equality",
    "rule": "axis_spline",
    "path": "knee_l/translation2",
    "order": 88
