@@ -1,0 +1,12 @@
+[info] Loaded model 3DGaitModel2354 from file models/osim/Gait2354Simbody/gait2354.osim
+OpenSim  bodies 12 joints 12 coords 23 muscles 54
+MuJoCo   bodies 27 joints 61 dofs 61 actuators 54 equality 38
+joint-follower constraints 38
+OpenSim coords      23 ['ankle_angle_l', 'ankle_angle_r', 'hip_adduction_l', 'hip_adduction_r', 'hip_flexion_l', 'hip_flexion_r', 'hip_rotation_l', 'hip_rotation_r', 'knee_angle_l', 'knee_angle_r', 'lumbar_bending', 'lumbar_extension', 'lumbar_rotation', 'mtp_angle_l', 'mtp_angle_r', 'pelvis_list', 'pelvis_rotation', 'pelvis_tilt', 'pelvis_tx', 'pelvis_ty', 'pelvis_tz', 'subtalar_angle_l', 'subtalar_angle_r']
+MuJoCo independent  23 ['ankle_angle_l', 'ankle_angle_r', 'hip_adduction_l', 'hip_adduction_r', 'hip_flexion_l', 'hip_flexion_r', 'hip_rotation_l', 'hip_rotation_r', 'knee_angle_l', 'knee_angle_r', 'lumbar_bending', 'lumbar_extension', 'lumbar_rotation', 'mtp_angle_l', 'mtp_angle_r', 'pelvis_list', 'pelvis_rotation', 'pelvis_tilt', 'pelvis_tx', 'pelvis_ty', 'pelvis_tz', 'subtalar_angle_l', 'subtalar_angle_r']
+missing in MuJoCo   []
+extra in MuJoCo     []
+JOINT GATE:    PASS
+MUSCLE GATE:   PASS
+KEYFRAME GATE: PASS (max |eq violation| = 0)
+Loaded OK: /app/data/gait2354/gait2354_cvt3.xml

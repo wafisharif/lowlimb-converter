@@ -1,0 +1,3 @@
+R1_structure: PASS  {'joints_equal': True, 'actuators_equal': True, 'neq_ours': 38, 'neq_shipped': 38}
+R2_moment_arms: PASS  {'same_groups': True, 'n_groups': 58, 'max_abs_diff_m': 2.004963953710527e-08, 'worst': 'tib_ant_l|ankle_angle_l+subtalar_angle_l', 'missing_in_ours': [], 'extra_in_ours': []}
+R3_forces: PASS  {'same_muscles': True, 'n': 54, 'mean_ours': 0.20438483252557885, 'mean_shipped': 0.20438483252557885, 'mean_rel_diff': 0.0, 'max_abs_muscle_diff': 0.0, 'worst_muscle': 'add_mag2_l'}

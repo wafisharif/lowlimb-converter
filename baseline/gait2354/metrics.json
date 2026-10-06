@@ -1,0 +1,62 @@
+{
+  "step1_endpoint_L1_m": {
+    "mean": NaN,
+    "std": NaN
+  },
+  "step2_moment_arm_rms_m": {
+    "org": {
+      "n": 58,
+      "mean": 0.002936099183434835,
+      "std": 0.005219998525325849,
+      "median": 1.5066805342477879e-05,
+      "max": 0.02160690569530339
+    },
+    "opt": {
+      "n": 58,
+      "mean": 0.002936099183434835,
+      "std": 0.005219998525325849,
+      "median": 1.5066805342477879e-05,
+      "max": 0.02160690569530339
+    },
+    "opt_rel_pct": {
+      "n": 58,
+      "mean": 8.90559032066278,
+      "std": 18.147803324606166,
+      "median": 0.021144303789772844,
+      "max": 66.09861981071126
+    },
+    "worst_opt": {
+      "muscle": "rect_fem_l",
+      "joints": "hip_adduction_l+hip_flexion_l+hip_rotation_l+knee_angle_l",
+      "rms_org_m": 0.02160690569530339,
+      "rms_opt_m": 0.02160690569530339,
+      "peak_abs_ma_osim_m": 0.05474196704157673,
+      "rel_opt_pct": 39.47045907008213,
+      "optimised": false
+    },
+    "groups_optimised": 0,
+    "groups_total": 58
+  },
+  "step3_force_rms_frac_fmax": {
+    "org": {
+      "n": 54,
+      "mean": 0.38754575006100755,
+      "std": 0.6902107189776419,
+      "median": 0.10761191016565938,
+      "max": 2.83347639884693
+    },
+    "opt": {
+      "n": 54,
+      "mean": 0.20438483252557885,
+      "std": 0.3942753233067394,
+      "median": 0.057682617338638956,
+      "max": 1.7313320941990364
+    },
+    "worst_opt": {
+      "muscle": "quad_fem_l",
+      "fmax_N": 381.0,
+      "rms_org_frac_fmax": 2.83347639884693,
+      "rms_opt_frac_fmax": 1.7313320941990364
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "R1_structure": {
+    "joints_equal": true,
+    "actuators_equal": true,
+    "neq_ours": 28,
+    "neq_shipped": 28,
+    "pass": true
+  },
+  "R2_moment_arms": {
+    "same_groups": true,
+    "n_groups": 18,
+    "max_abs_diff_m": 3.082014081879497e-17,
+    "worst": "tib_ant_r|ankle_angle_r",
+    "missing_in_ours": [],
+    "extra_in_ours": [],
+    "pass": true
+  },
+  "R3_forces": {
+    "same_muscles": true,
+    "n": 18,
+    "mean_ours": 0.11123722161089852,
+    "mean_shipped": 0.11123722161089852,
+    "mean_rel_diff": 0.0,
+    "max_abs_muscle_diff": 0.0,
+    "worst_muscle": "bifemsh_l",
+    "per_muscle_diff_ours_minus_shipped": {
+      "bifemsh_l": 0.0,
+      "bifemsh_r": 0.0,
+      "gastroc_l": 0.0,
+      "gastroc_r": 0.0,
+      "glut_max_l": 0.0,
+      "glut_max_r": 0.0,
+      "hamstrings_l": 0.0,
+      "hamstrings_r": 0.0,
+      "iliopsoas_l": 0.0,
+      "iliopsoas_r": 0.0,
+      "rect_fem_l": 0.0,
+      "rect_fem_r": 0.0,
+      "soleus_l": 0.0,
+      "soleus_r": 0.0,
+      "tib_ant_l": 0.0,
+      "tib_ant_r": 0.0,
+      "vasti_l": 0.0,
+      "vasti_r": 0.0
+    },
+    "pass": true
+  }
+}
