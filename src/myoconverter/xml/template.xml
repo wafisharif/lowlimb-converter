@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Modified by lowlimb-converter (2026-10-06), from MyoConverter @ cadf380: removed <option collision="predefined"/>
+     (removed in MuJoCo 3.0.0) and set default geom contype="0" conaffinity="0", per MuJoCo's official
+     migration for "predefined". Only explicit <contact><pair> elements generate contacts, as before. -->
 <mujoco model="template">
   <!-- Note: inertiagrouprange="0 1" means that groups 0-1 will be used to infer masses/inertias, and groups 2-5 are
   only for visualisation (e.g. wrapping objects) !-->
@@ -6,13 +9,12 @@
             inertiagrouprange="0 1">
     <lengthrange inttotal="50" useexisting="true"/>
   </compiler>
-  <option collision="predefined"/>
   <visual>
     <scale framelength="0.5" framewidth="0.01"/>
   </visual>
   <default>
     <joint limited="true" damping="0.05" armature="0.00001" stiffness="0"/>
-    <geom rgba="0.8 0.6 .4 1" margin="0.001"/>
+    <geom rgba="0.8 0.6 .4 1" margin="0.001" contype="0" conaffinity="0"/>
     <site size="0.001"/>
     <tendon width="0.005" rgba=".95 .3 .3 1" limited="false"/>
     <default class="muscle">

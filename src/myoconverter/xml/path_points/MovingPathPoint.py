@@ -1,3 +1,5 @@
+# Modified by lowlimb-converter (2026-10-06), from MyoConverter @ cadf380: removed contype="2" conaffinity="2"
+# from the invisible geom, following MuJoCo 3's migration for <option collision="predefined"/> (see xml/template.xml).
 """ Contains the `MovingPathPoint` parser.
 
 @author: Aleksi Ikkala
@@ -71,11 +73,9 @@ class MovingPathPoint(IParser):
     new_body = etree.SubElement(body, "body", name=f"{force_name}_{xml.attrib['name']}")
 
     # Add an invisible geom with no collision properties; required so that mass/inertial properties are saved when xml
-    # file is saved in later optimisation stages. Set contype=2 and conaffinity=2 so that these won't collide
-    # with other geoms. Note! They can still collide with each other. But the position of the imaginary bodies are
-    # controlled by equality constraints so shouldn't be a problem? Also, the bodies are likely to be far enough from
-    # each other.
-    etree.SubElement(new_body, "geom", size="0.0005 0.0005 0.0005", rgba="0.0 0.0 1.0 0.0", contype="2", conaffinity="2")
+    # file is saved in later optimisation stages. No contype/conaffinity here: the template's default geom has
+    # contype=0 conaffinity=0, so this geom never collides (lowlimb-converter change, see file header).
+    etree.SubElement(new_body, "geom", size="0.0005 0.0005 0.0005", rgba="0.0 0.0 1.0 0.0")
 
     # Add joints and respective joint constraints -- unless the range is very small (less than 1 mm), in which case just
     # modify the position of the new body
