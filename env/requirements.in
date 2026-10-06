@@ -9,6 +9,7 @@ lxml
 loguru
 fpdf2
 trimesh
+networkx            # needed indirectly: trimesh.repair.fill_holes (used in xml/bodies/utils.py)
 scikit-learn
 seaborn
 pyvista
