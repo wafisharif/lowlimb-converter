@@ -1,0 +1,78 @@
+name: station1-modern-stack
+
+# Station 1a: the ported pipeline runs on the modern stack (env/requirements.lock: Python 3.12,
+# OpenSim 4.6, MuJoCo 3.15.0) on a clean machine and passes gates P1-P5 (station1/GATES.md)
+# for gait10dof18musc. Linux runs on every relevant push; macOS (Apple Silicon, native) runs on
+# manual dispatch only, because macOS minutes cost 10x on private repos.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "env/**"
+      - "baseline/**"
+      - "station1/**"
+      - ".github/workflows/station1-modern-stack.yml"
+
+jobs:
+  linux:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: System libraries for VTK (mesh conversion)
+        run: sudo apt-get update && sudo apt-get install -y libgl1 libxrender1 libxext6
+      - name: Install the locked environment
+        run: python -m pip install --require-hashes -r env/requirements.lock
+      - name: Clone upstream MyoConverter at the pinned commit (OpenSim models)
+        run: |
+          git clone --quiet https://github.com/MyoHub/myoconverter.git upstream
+          git -C upstream checkout --quiet cadf38059367a51239e6dc28c9fbe8b8fbd5149f
+      - name: Convert gait10dof18musc and check gates P1-P5
+        run: bash station1/run_station1.sh gait10dof18musc upstream ci_station1/gait10dof18musc python
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: station1-linux-results
+          path: |
+            ci_station1/gait10dof18musc/*.txt
+            ci_station1/gait10dof18musc/*.json
+            ci_station1/gait10dof18musc/*.csv
+            ci_station1/gait10dof18musc/*.log
+            ci_station1/gait10dof18musc/*.xml
+          if-no-files-found: warn
+
+  macos:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install the locked environment
+        run: python -m pip install --require-hashes -r env/requirements.lock
+      - name: Clone upstream MyoConverter at the pinned commit (OpenSim models)
+        run: |
+          git clone --quiet https://github.com/MyoHub/myoconverter.git upstream
+          git -C upstream checkout --quiet cadf38059367a51239e6dc28c9fbe8b8fbd5149f
+      - name: Convert gait10dof18musc and check gates P1-P5
+        run: bash station1/run_station1.sh gait10dof18musc upstream ci_station1/gait10dof18musc python
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: station1-macos-results
+          path: |
+            ci_station1/gait10dof18musc/*.txt
+            ci_station1/gait10dof18musc/*.json
+            ci_station1/gait10dof18musc/*.csv
+            ci_station1/gait10dof18musc/*.log
+            ci_station1/gait10dof18musc/*.xml
+          if-no-files-found: warn
