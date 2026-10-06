@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it and the MyoConverter papers it builds on."
+title: "lowlimb-converter: validated OpenSim-to-MuJoCo conversion for lower-limb gait models"
+authors:
+  - family-names: Sharif
+    given-names: Wafi
+license: Apache-2.0
+repository-code: "https://github.com/wafisharif/lowlimb-converter"
+references:
+  - type: conference-paper
+    title: "MyoSim: Fast and physiologically realistic MuJoCo models for musculoskeletal and exoskeletal studies"
+    authors:
+      - {family-names: Wang, given-names: Huawei}
+      - {family-names: Caggiano, given-names: Vittorio}
+      - {family-names: Durandau, given-names: Guillaume}
+      - {family-names: Sartori, given-names: Massimo}
+      - {family-names: Kumar, given-names: Vikash}
+    collection-title: "2022 International Conference on Robotics and Automation (ICRA)"
+    year: 2022
+    start: 8104
+    end: 8111
+  - type: conference-paper
+    title: "Converting biomechanical models from OpenSim to MuJoCo"
+    authors:
+      - {family-names: Ikkala, given-names: Aleksi}
+      - {family-names: Hämäläinen, given-names: Perttu}
+    collection-title: "Converging Clinical and Engineering Research on Neurorehabilitation IV (ICNR 2020)"
+    year: 2022
+    start: 277
+    end: 281

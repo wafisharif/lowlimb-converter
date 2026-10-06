@@ -1,0 +1,16 @@
+lowlimb-converter
+Copyright 2026 Wafi Sharif
+
+This project builds on MyoConverter (https://github.com/MyoHub/myoconverter),
+Copyright the MyoConverter authors (Aleksi Ikkala, Huawei Wang, and contributors),
+licensed under the Apache License, Version 2.0. MyoConverter itself builds on
+O2MConverter (https://github.com/aikkala/O2MConverter).
+
+The baseline in this repository runs MyoConverter unmodified at commit
+cadf38059367a51239e6dc28c9fbe8b8fbd5149f. When MyoConverter source files are
+brought into this repository and modified, each modified file will carry a
+notice stating that it was changed, as section 4(b) of the Apache License requires.
+
+Converted models carry the licenses and credits of their original OpenSim models.
+gait10dof18musc and gait2354 are distributed by OpenSim under CC BY 3.0;
+see each model's notes.txt in MyoConverter's models/osim/ folder.
