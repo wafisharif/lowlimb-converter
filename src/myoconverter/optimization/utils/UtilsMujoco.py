@@ -1,3 +1,6 @@
+# Modified by lowlimb-converter (2026-10-06), from MyoConverter @ cadf380, for MuJoCo 3:
+# mjModel.eq_active -> eq_active0 (renamed in MuJoCo 3.0.0); actuator_moment rebuilt dense from its
+# sparse MuJoCo-3 layout via _actuator_moment_dense().
 
 import mujoco
 import numpy as np
@@ -6,6 +9,23 @@ import copy
 import itertools
 from myoconverter.optimization.utils.UtilsRotation import spherical2cartesian,\
      quaternionRotaion, cylindarical2cartesian
+
+
+def _actuator_moment_dense(mjc_model, mjc_data):
+    """Dense (nu x nv) actuator moment matrix.
+
+    lowlimb-converter: MuJoCo 3 stores mjData.actuator_moment in sparse row format
+    (moment_rownnz / moment_rowadr / moment_colind); MuJoCo 2.3.7 stored it dense (nu x nv).
+    Rebuilding the dense matrix keeps the original [actuator, dof] indexing; values match
+    2.3.7 to ~1e-17 (station1/tests/test_actuator_moment.py).
+    """
+    if mjc_data.actuator_moment.ndim == 2:  # older MuJoCo: already dense
+        return mjc_data.actuator_moment
+    dense = np.zeros((mjc_model.nu, mjc_model.nv))
+    mujoco.mju_sparse2dense(dense, mjc_data.actuator_moment, mjc_data.moment_rownnz,
+                            mjc_data.moment_rowadr, mjc_data.moment_colind)
+    return dense
+
 
 # get all independed joint coordinate range
 def getCoordinateRange_mjc(mjc_model):
@@ -104,7 +124,7 @@ def calculateEndPoints_mjc(mjc_model_path, end_points, n_eval):
 def dependencyJointAng(mjc_model, free_jnt_id_array, jnt_ang_array):
     
     couplingJnt = mjc_model.eq_type == 2
-    activeEqu = mjc_model.eq_active == 1
+    activeEqu = mjc_model.eq_active0 == 1  # MuJoCo 3: mjModel.eq_active renamed eq_active0
     
     dependencyJntAngs = []
     dependencyJnts = []
@@ -157,7 +177,7 @@ def lockedJointAng(mjc_model):
     """
 
     # find locked constraints that satisfy all three conditions
-    lockedCons = np.logical_and(np.logical_and(mjc_model.eq_type == 2, mjc_model.eq_active == 1), mjc_model.eq_obj2id == -1)
+    lockedCons = np.logical_and(np.logical_and(mjc_model.eq_type == 2, mjc_model.eq_active0 == 1), mjc_model.eq_obj2id == -1)
 
     lockedJnts = []
     lockedJntAngs = []
@@ -384,7 +404,7 @@ def computeMomentArmMuscleJoints(mjc_model, muscle, joints, ang_ranges, evalN):
 
         mujoco.mj_step(mjc_model, mjc_data)
             
-        mom_arm_sub = mjc_data.actuator_moment[muscles_idx, joints_idx].copy()
+        mom_arm_sub = _actuator_moment_dense(mjc_model, mjc_data)[muscles_idx, joints_idx].copy()
         
         # if dependencyJnts: 
         #     # if there are dependency joint, then calculate moment arm using
