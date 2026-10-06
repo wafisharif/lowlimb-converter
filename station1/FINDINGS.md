@@ -65,3 +65,58 @@ bash station1/run_station1.sh gait10dof18musc upstream station1/gait10dof18musc 
 `upstream` is the MyoConverter clone at cadf380, which supplies the OpenSim models. Verified on Linux. On macOS it
 should run natively on Apple Silicon with no Docker (the lockfile includes those wheels; OpenSim's wheel needs macOS 15
 or newer), but that is **not verified yet**. The `macos` job in `.github/workflows/station1-modern-stack.yml` checks it.
+
+---
+
+# Station 1b: element-support report
+
+**Result: `lowlimb_converter/support.py` lists every element of an OpenSim model with one status and predicts the
+XML conversion step correctly on all four models tried.** Gates S1–S3 (`station1/GATES.md`) all pass. Reports and
+provenance are in `station1/support/`.
+
+| Model | Elements | Converted | Approximated | Skipped | Ignored | Unsupported | Predicted | Actual XML step |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| gait10dof18musc | 154 | 115 | 35 | 0 | 4 | 0 | converts | converts (Station 1a) |
+| gait2354 | 363 | 284 | 75 | 0 | 4 | 0 | converts | converts (Station 1a) |
+| Rajagopal2016 | 766 | 652 | 112 | 0 | 2 | 0 | converts | converts |
+| RajagopalLaiUhlrich2023 | 770 | 652 | 104 | 0 | 12 | 2 | fails at `walker_knee_r/translation1` | fails at `walker_knee_r/translation1` |
+
+- **S1 complete:** for all four models, every category count matches an independent whole-file XPath count
+  (bodies, joints, coordinates, transform axes, constraints, forces, path points, path wraps, markers, wrap objects,
+  geometry, other sets, gravity), with no duplicates and 0 unclassified.
+- **S2 matches the converter:** for both gait models, every body, coordinate, muscle (+ tendon), mesh, path point,
+  moving/conditional point, spline axis and wrap lands in cvt1 under the predicted name, and nothing listed as
+  skipped/ignored does. Both no-anchor ConditionalPathPoint warnings are in the log, and no others.
+- **S3 predicts new models:** checked against the converter's stack frames at the moment of failure, not just the
+  error text. A third, deliberate case (Rajagopal2016 with only its model folder for meshes) was predicted to fail at
+  mesh `talus_r/talus_r_geom_1`, and did.
+- Deliberately corrupted reports (a path point removed, a body mislabelled, the outcome flipped) all fail S1/S2,
+  so the checks can fail.
+
+## What the reports found
+
+- **Gravity is never converted.** All four models specify 9.80665 m/s²; the converted models use MuJoCo's default
+  9.81 m/s² (0.034% higher).
+- **Rajagopal's 17 torque actuators (lumbar and arms) are 10× too weak.** OpenSim's `optimal_force` is 10 N·m per unit
+  control; the converter reads it but drops it (an upstream TODO), so the MuJoCo motors give 1 N·m per unit. Confirmed
+  in the compiled model. This must be fixed before Rajagopal is validated.
+- **RajagopalLaiUhlrich2023 is blocked only by its knees.** Both `walker_knee` joints use a `PolynomialFunction`, which
+  the converter does not handle. MuJoCo joint couplings are quartic polynomials, so a polynomial of degree ≤ 4
+  could be converted exactly. This is a candidate improvement for model 4.
+- **Silent losses to watch for in other models:** attached geometry other than meshes (e.g. contact spheres),
+  `prescribed` coordinates, ligament forces (only the resting length survives, so they exert no force), and any
+  top-level ContactGeometrySet / ControllerSet / ComponentSet / ProbeSet contents.
+
+## How the tool was corrected along the way
+
+The first runs exposed bugs in the report tool, not in the gates. Each was fixed, and the checks rerun:
+
+1. It looked for joint functions under a `<function>` wrapper; OpenSim 4 files put them directly under the axis.
+   gait10 was wrongly predicted to fail. Found before S2 ran.
+2. It expected coordinates inside an `<objects>` wrapper. Also found before S2 ran.
+3. The first S3 run failed for both Rajagopal models. The tool had missed that CustomJoint axes are processed as
+   translations first, and that each coordinate's first axis must pass `_designate_dof` (only `SimmSpline` or
+   `LinearFunction`). It also didn't check that mesh files exist. All three were added.
+4. S3's matching rule was made **stricter** after that first run. It had required the axis name to appear in the
+   error text, which `_designate_dof`'s error never contains. It now requires the converter's stack frames at the
+   moment of failure to be on exactly the predicted element.

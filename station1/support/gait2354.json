@@ -1,0 +1,3641 @@
+{
+ "model": "3DGaitModel2354",
+ "file": "gait2354.osim",
+ "geometry_checked": true,
+ "outcome": "converts",
+ "first_failure": null,
+ "counts": {
+  "converted": 284,
+  "approximated": 75,
+  "skipped": 0,
+  "ignored": 4,
+  "unsupported": 0
+ },
+ "items": [
+  {
+   "section": "BodySet",
+   "kind": "Body",
+   "name": "pelvis",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: body with mass, mass_center, fullinertia (inertia dropped if not positive definite)",
+   "rule": "body",
+   "path": "pelvis",
+   "order": 0
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "pelvis_geom_1",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "pelvis/pelvis_geom_1",
+   "order": 1
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "pelvis_geom_2",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "pelvis/pelvis_geom_2",
+   "order": 2
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "pelvis_geom_3",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "pelvis/pelvis_geom_3",
+   "order": 3
+  },
+  {
+   "section": "JointSet",
+   "kind": "CustomJoint",
+   "name": "ground_pelvis",
+   "status": "converted",
+   "reason": "joints/<type>.py via parsers.JointParser",
+   "rule": "joint",
+   "path": "ground_pelvis",
+   "order": 4
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "pelvis_tilt",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "ground_pelvis/pelvis_tilt",
+   "order": 5
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "pelvis_list",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "ground_pelvis/pelvis_list",
+   "order": 6
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "pelvis_rotation",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "ground_pelvis/pelvis_rotation",
+   "order": 7
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "pelvis_tx",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "ground_pelvis/pelvis_tx",
+   "order": 8
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "pelvis_ty",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "ground_pelvis/pelvis_ty",
+   "order": 9
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "pelvis_tz",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "ground_pelvis/pelvis_tz",
+   "order": 10
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "ground_pelvis/translation1",
+   "order": 11
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "ground_pelvis/translation2",
+   "order": 12
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "ground_pelvis/translation3",
+   "order": 13
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "ground_pelvis/rotation1",
+   "order": 14
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "ground_pelvis/rotation2",
+   "order": 15
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "ground_pelvis/rotation3",
+   "order": 16
+  },
+  {
+   "section": "BodySet",
+   "kind": "Body",
+   "name": "femur_r",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: body with mass, mass_center, fullinertia (inertia dropped if not positive definite)",
+   "rule": "body",
+   "path": "femur_r",
+   "order": 17
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "femur_r_geom_1",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "femur_r/femur_r_geom_1",
+   "order": 18
+  },
+  {
+   "section": "JointSet",
+   "kind": "CustomJoint",
+   "name": "hip_r",
+   "status": "converted",
+   "reason": "joints/<type>.py via parsers.JointParser",
+   "rule": "joint",
+   "path": "hip_r",
+   "order": 19
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "hip_flexion_r",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "hip_r/hip_flexion_r",
+   "order": 20
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "hip_adduction_r",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "hip_r/hip_adduction_r",
+   "order": 21
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "hip_rotation_r",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "hip_r/hip_rotation_r",
+   "order": 22
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "hip_r/translation1",
+   "order": 23
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "hip_r/translation2",
+   "order": 24
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "hip_r/translation3",
+   "order": 25
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "hip_r/rotation1",
+   "order": 26
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "hip_r/rotation2",
+   "order": 27
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "hip_r/rotation3",
+   "order": 28
+  },
+  {
+   "section": "BodySet",
+   "kind": "Body",
+   "name": "tibia_r",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: body with mass, mass_center, fullinertia (inertia dropped if not positive definite)",
+   "rule": "body",
+   "path": "tibia_r",
+   "order": 29
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "tibia_r_geom_1",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "tibia_r/tibia_r_geom_1",
+   "order": 30
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "tibia_r_geom_2",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "tibia_r/tibia_r_geom_2",
+   "order": 31
+  },
+  {
+   "section": "JointSet",
+   "kind": "CustomJoint",
+   "name": "knee_r",
+   "status": "converted",
+   "reason": "joints/<type>.py via parsers.JointParser",
+   "rule": "joint",
+   "path": "knee_r",
+   "order": 32
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "knee_angle_r",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "knee_r/knee_angle_r",
+   "order": 33
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation1",
+   "status": "approximated",
+   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+   "rule": "axis_spline",
+   "path": "knee_r/translation1",
+   "order": 34
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation2",
+   "status": "approximated",
+   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+   "rule": "axis_spline",
+   "path": "knee_r/translation2",
+   "order": 35
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "knee_r/translation3",
+   "order": 36
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "knee_r/rotation1",
+   "order": 37
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "knee_r/rotation2",
+   "order": 38
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "knee_r/rotation3",
+   "order": 39
+  },
+  {
+   "section": "BodySet",
+   "kind": "Body",
+   "name": "talus_r",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: body with mass, mass_center, fullinertia (inertia dropped if not positive definite)",
+   "rule": "body",
+   "path": "talus_r",
+   "order": 40
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "talus_r_geom_1",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "talus_r/talus_r_geom_1",
+   "order": 41
+  },
+  {
+   "section": "JointSet",
+   "kind": "CustomJoint",
+   "name": "ankle_r",
+   "status": "converted",
+   "reason": "joints/<type>.py via parsers.JointParser",
+   "rule": "joint",
+   "path": "ankle_r",
+   "order": 42
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "ankle_angle_r",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "ankle_r/ankle_angle_r",
+   "order": 43
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "ankle_r/translation1",
+   "order": 44
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "ankle_r/translation2",
+   "order": 45
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "ankle_r/translation3",
+   "order": 46
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "ankle_r/rotation1",
+   "order": 47
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "ankle_r/rotation2",
+   "order": 48
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "ankle_r/rotation3",
+   "order": 49
+  },
+  {
+   "section": "BodySet",
+   "kind": "Body",
+   "name": "calcn_r",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: body with mass, mass_center, fullinertia (inertia dropped if not positive definite)",
+   "rule": "body",
+   "path": "calcn_r",
+   "order": 50
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "calcn_r_geom_1",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "calcn_r/calcn_r_geom_1",
+   "order": 51
+  },
+  {
+   "section": "JointSet",
+   "kind": "CustomJoint",
+   "name": "subtalar_r",
+   "status": "converted",
+   "reason": "joints/<type>.py via parsers.JointParser",
+   "rule": "joint",
+   "path": "subtalar_r",
+   "order": 52
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "subtalar_angle_r",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "subtalar_r/subtalar_angle_r",
+   "order": 53
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "subtalar_r/translation1",
+   "order": 54
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "subtalar_r/translation2",
+   "order": 55
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "subtalar_r/translation3",
+   "order": 56
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "subtalar_r/rotation1",
+   "order": 57
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "subtalar_r/rotation2",
+   "order": 58
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "subtalar_r/rotation3",
+   "order": 59
+  },
+  {
+   "section": "BodySet",
+   "kind": "Body",
+   "name": "toes_r",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: body with mass, mass_center, fullinertia (inertia dropped if not positive definite)",
+   "rule": "body",
+   "path": "toes_r",
+   "order": 60
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "toes_r_geom_1",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "toes_r/toes_r_geom_1",
+   "order": 61
+  },
+  {
+   "section": "JointSet",
+   "kind": "CustomJoint",
+   "name": "mtp_r",
+   "status": "converted",
+   "reason": "joints/<type>.py via parsers.JointParser",
+   "rule": "joint",
+   "path": "mtp_r",
+   "order": 62
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "mtp_angle_r",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "mtp_r/mtp_angle_r",
+   "order": 63
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "mtp_r/translation1",
+   "order": 64
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "mtp_r/translation2",
+   "order": 65
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "mtp_r/translation3",
+   "order": 66
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "mtp_r/rotation1",
+   "order": 67
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "mtp_r/rotation2",
+   "order": 68
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "mtp_r/rotation3",
+   "order": 69
+  },
+  {
+   "section": "BodySet",
+   "kind": "Body",
+   "name": "femur_l",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: body with mass, mass_center, fullinertia (inertia dropped if not positive definite)",
+   "rule": "body",
+   "path": "femur_l",
+   "order": 70
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "femur_l_geom_1",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "femur_l/femur_l_geom_1",
+   "order": 71
+  },
+  {
+   "section": "JointSet",
+   "kind": "CustomJoint",
+   "name": "hip_l",
+   "status": "converted",
+   "reason": "joints/<type>.py via parsers.JointParser",
+   "rule": "joint",
+   "path": "hip_l",
+   "order": 72
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "hip_flexion_l",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "hip_l/hip_flexion_l",
+   "order": 73
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "hip_adduction_l",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "hip_l/hip_adduction_l",
+   "order": 74
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "hip_rotation_l",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "hip_l/hip_rotation_l",
+   "order": 75
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "hip_l/translation1",
+   "order": 76
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "hip_l/translation2",
+   "order": 77
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "hip_l/translation3",
+   "order": 78
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "hip_l/rotation1",
+   "order": 79
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "hip_l/rotation2",
+   "order": 80
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "hip_l/rotation3",
+   "order": 81
+  },
+  {
+   "section": "BodySet",
+   "kind": "Body",
+   "name": "tibia_l",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: body with mass, mass_center, fullinertia (inertia dropped if not positive definite)",
+   "rule": "body",
+   "path": "tibia_l",
+   "order": 82
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "tibia_l_geom_1",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "tibia_l/tibia_l_geom_1",
+   "order": 83
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "tibia_l_geom_2",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "tibia_l/tibia_l_geom_2",
+   "order": 84
+  },
+  {
+   "section": "JointSet",
+   "kind": "CustomJoint",
+   "name": "knee_l",
+   "status": "converted",
+   "reason": "joints/<type>.py via parsers.JointParser",
+   "rule": "joint",
+   "path": "knee_l",
+   "order": 85
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "knee_angle_l",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "knee_l/knee_angle_l",
+   "order": 86
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation1",
+   "status": "approximated",
+   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+   "rule": "axis_spline",
+   "path": "knee_l/translation1",
+   "order": 87
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation2",
+   "status": "approximated",
+   "reason": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial + joint equality",
+   "rule": "axis_spline",
+   "path": "knee_l/translation2",
+   "order": 88
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "knee_l/translation3",
+   "order": 89
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "knee_l/rotation1",
+   "order": 90
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "knee_l/rotation2",
+   "order": 91
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "knee_l/rotation3",
+   "order": 92
+  },
+  {
+   "section": "BodySet",
+   "kind": "Body",
+   "name": "talus_l",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: body with mass, mass_center, fullinertia (inertia dropped if not positive definite)",
+   "rule": "body",
+   "path": "talus_l",
+   "order": 93
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "talus_l_geom_1",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "talus_l/talus_l_geom_1",
+   "order": 94
+  },
+  {
+   "section": "JointSet",
+   "kind": "CustomJoint",
+   "name": "ankle_l",
+   "status": "converted",
+   "reason": "joints/<type>.py via parsers.JointParser",
+   "rule": "joint",
+   "path": "ankle_l",
+   "order": 95
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "ankle_angle_l",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "ankle_l/ankle_angle_l",
+   "order": 96
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "ankle_l/translation1",
+   "order": 97
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "ankle_l/translation2",
+   "order": 98
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "ankle_l/translation3",
+   "order": 99
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "ankle_l/rotation1",
+   "order": 100
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "ankle_l/rotation2",
+   "order": 101
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "ankle_l/rotation3",
+   "order": 102
+  },
+  {
+   "section": "BodySet",
+   "kind": "Body",
+   "name": "calcn_l",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: body with mass, mass_center, fullinertia (inertia dropped if not positive definite)",
+   "rule": "body",
+   "path": "calcn_l",
+   "order": 103
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "calcn_l_geom_1",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "calcn_l/calcn_l_geom_1",
+   "order": 104
+  },
+  {
+   "section": "JointSet",
+   "kind": "CustomJoint",
+   "name": "subtalar_l",
+   "status": "converted",
+   "reason": "joints/<type>.py via parsers.JointParser",
+   "rule": "joint",
+   "path": "subtalar_l",
+   "order": 105
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "subtalar_angle_l",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "subtalar_l/subtalar_angle_l",
+   "order": 106
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "subtalar_l/translation1",
+   "order": 107
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "subtalar_l/translation2",
+   "order": 108
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "subtalar_l/translation3",
+   "order": 109
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "subtalar_l/rotation1",
+   "order": 110
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "subtalar_l/rotation2",
+   "order": 111
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "subtalar_l/rotation3",
+   "order": 112
+  },
+  {
+   "section": "BodySet",
+   "kind": "Body",
+   "name": "toes_l",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: body with mass, mass_center, fullinertia (inertia dropped if not positive definite)",
+   "rule": "body",
+   "path": "toes_l",
+   "order": 113
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "toes_l_geom_1",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "toes_l/toes_l_geom_1",
+   "order": 114
+  },
+  {
+   "section": "JointSet",
+   "kind": "CustomJoint",
+   "name": "mtp_l",
+   "status": "converted",
+   "reason": "joints/<type>.py via parsers.JointParser",
+   "rule": "joint",
+   "path": "mtp_l",
+   "order": 115
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "mtp_angle_l",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "mtp_l/mtp_angle_l",
+   "order": 116
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "mtp_l/translation1",
+   "order": 117
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "mtp_l/translation2",
+   "order": 118
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "mtp_l/translation3",
+   "order": 119
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "mtp_l/rotation1",
+   "order": 120
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "mtp_l/rotation2",
+   "order": 121
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "mtp_l/rotation3",
+   "order": 122
+  },
+  {
+   "section": "BodySet",
+   "kind": "Body",
+   "name": "torso",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: body with mass, mass_center, fullinertia (inertia dropped if not positive definite)",
+   "rule": "body",
+   "path": "torso",
+   "order": 123
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "torso_geom_1",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "torso/torso_geom_1",
+   "order": 124
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "torso_geom_2",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "torso/torso_geom_2",
+   "order": 125
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "torso_geom_3",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "torso/torso_geom_3",
+   "order": 126
+  },
+  {
+   "section": "BodySet",
+   "kind": "Mesh",
+   "name": "torso_geom_4",
+   "status": "converted",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "rule": "mesh",
+   "path": "torso/torso_geom_4",
+   "order": 127
+  },
+  {
+   "section": "JointSet",
+   "kind": "CustomJoint",
+   "name": "back",
+   "status": "converted",
+   "reason": "joints/<type>.py via parsers.JointParser",
+   "rule": "joint",
+   "path": "back",
+   "order": 128
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "lumbar_extension",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "back/lumbar_extension",
+   "order": 129
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "lumbar_bending",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "back/lumbar_bending",
+   "order": 130
+  },
+  {
+   "section": "JointSet",
+   "kind": "Coordinate",
+   "name": "lumbar_rotation",
+   "status": "converted",
+   "reason": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
+   "rule": "coordinate",
+   "path": "back/lumbar_rotation",
+   "order": 131
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "back/translation1",
+   "order": 132
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "back/translation2",
+   "order": 133
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "translation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
+   "rule": "axis_constant",
+   "path": "back/translation3",
+   "order": 134
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation1",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "back/rotation1",
+   "order": 135
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation2",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "back/rotation2",
+   "order": 136
+  },
+  {
+   "section": "JointSet",
+   "kind": "TransformAxis",
+   "name": "rotation3",
+   "status": "converted",
+   "reason": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
+   "rule": "axis_linear",
+   "path": "back/rotation3",
+   "order": 137
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "glut_med1_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "glut_med1_r",
+   "order": 138
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_med1_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_med1_r/glut_med1_r-P1",
+   "order": 139
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_med1_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_med1_r/glut_med1_r-P2",
+   "order": 140
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "glut_med2_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "glut_med2_r",
+   "order": 141
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_med2_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_med2_r/glut_med2_r-P1",
+   "order": 142
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_med2_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_med2_r/glut_med2_r-P2",
+   "order": 143
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "glut_med3_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "glut_med3_r",
+   "order": 144
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_med3_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_med3_r/glut_med3_r-P1",
+   "order": 145
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_med3_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_med3_r/glut_med3_r-P2",
+   "order": 146
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "bifemlh_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "bifemlh_r",
+   "order": 147
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "bifemlh_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "bifemlh_r/bifemlh_r-P1",
+   "order": 148
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "bifemlh_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "bifemlh_r/bifemlh_r-P2",
+   "order": 149
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "bifemlh_r-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "bifemlh_r/bifemlh_r-P3",
+   "order": 150
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "bifemsh_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "bifemsh_r",
+   "order": 151
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "bifemsh_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "bifemsh_r/bifemsh_r-P1",
+   "order": 152
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "bifemsh_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "bifemsh_r/bifemsh_r-P2",
+   "order": 153
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "bifemsh_r-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "bifemsh_r/bifemsh_r-P3",
+   "order": 154
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "sar_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "sar_r",
+   "order": 155
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "sar_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "sar_r/sar_r-P1",
+   "order": 156
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "sar_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "sar_r/sar_r-P2",
+   "order": 157
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "sar_r-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "sar_r/sar_r-P3",
+   "order": 158
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "sar_r-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "sar_r/sar_r-P4",
+   "order": 159
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "sar_r-P5",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "sar_r/sar_r-P5",
+   "order": 160
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "add_mag2_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "add_mag2_r",
+   "order": 161
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "add_mag2_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "add_mag2_r/add_mag2_r-P1",
+   "order": 162
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "add_mag2_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "add_mag2_r/add_mag2_r-P2",
+   "order": 163
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "tfl_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "tfl_r",
+   "order": 164
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tfl_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tfl_r/tfl_r-P1",
+   "order": 165
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tfl_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tfl_r/tfl_r-P2",
+   "order": 166
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tfl_r-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tfl_r/tfl_r-P3",
+   "order": 167
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tfl_r-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tfl_r/tfl_r-P4",
+   "order": 168
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "pect_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "pect_r",
+   "order": 169
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "pect_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "pect_r/pect_r-P1",
+   "order": 170
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "pect_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "pect_r/pect_r-P2",
+   "order": 171
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "grac_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "grac_r",
+   "order": 172
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "grac_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "grac_r/grac_r-P1",
+   "order": 173
+  },
+  {
+   "section": "ForceSet",
+   "kind": "ConditionalPathPoint",
+   "name": "grac_r-P2",
+   "status": "approximated",
+   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "rule": "cpp",
+   "path": "grac_r/grac_r-P2",
+   "order": 174
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "grac_r-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "grac_r/grac_r-P3",
+   "order": 175
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "grac_r-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "grac_r/grac_r-P4",
+   "order": 176
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "glut_max1_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "glut_max1_r",
+   "order": 177
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max1_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max1_r/glut_max1_r-P1",
+   "order": 178
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max1_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max1_r/glut_max1_r-P2",
+   "order": 179
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max1_r-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max1_r/glut_max1_r-P3",
+   "order": 180
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max1_r-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max1_r/glut_max1_r-P4",
+   "order": 181
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "glut_max2_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "glut_max2_r",
+   "order": 182
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max2_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max2_r/glut_max2_r-P1",
+   "order": 183
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max2_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max2_r/glut_max2_r-P2",
+   "order": 184
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max2_r-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max2_r/glut_max2_r-P3",
+   "order": 185
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max2_r-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max2_r/glut_max2_r-P4",
+   "order": 186
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "glut_max3_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "glut_max3_r",
+   "order": 187
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max3_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max3_r/glut_max3_r-P1",
+   "order": 188
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max3_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max3_r/glut_max3_r-P2",
+   "order": 189
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max3_r-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max3_r/glut_max3_r-P3",
+   "order": 190
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max3_r-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max3_r/glut_max3_r-P4",
+   "order": 191
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "iliacus_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "iliacus_r",
+   "order": 192
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "iliacus_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "iliacus_r/iliacus_r-P1",
+   "order": 193
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "iliacus_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "iliacus_r/iliacus_r-P2",
+   "order": 194
+  },
+  {
+   "section": "ForceSet",
+   "kind": "ConditionalPathPoint",
+   "name": "iliacus_r-P3",
+   "status": "approximated",
+   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "rule": "cpp",
+   "path": "iliacus_r/iliacus_r-P3",
+   "order": 195
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "iliacus_r-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "iliacus_r/iliacus_r-P4",
+   "order": 196
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "iliacus_r-P5",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "iliacus_r/iliacus_r-P5",
+   "order": 197
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "psoas_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "psoas_r",
+   "order": 198
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "psoas_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "psoas_r/psoas_r-P1",
+   "order": 199
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "psoas_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "psoas_r/psoas_r-P2",
+   "order": 200
+  },
+  {
+   "section": "ForceSet",
+   "kind": "ConditionalPathPoint",
+   "name": "psoas_r-P3",
+   "status": "approximated",
+   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "rule": "cpp",
+   "path": "psoas_r/psoas_r-P3",
+   "order": 201
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "psoas_r-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "psoas_r/psoas_r-P4",
+   "order": 202
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "psoas_r-P5",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "psoas_r/psoas_r-P5",
+   "order": 203
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "quad_fem_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "quad_fem_r",
+   "order": 204
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "quad_fem_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "quad_fem_r/quad_fem_r-P1",
+   "order": 205
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "quad_fem_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "quad_fem_r/quad_fem_r-P2",
+   "order": 206
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "gem_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "gem_r",
+   "order": 207
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "gem_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "gem_r/gem_r-P1",
+   "order": 208
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "gem_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "gem_r/gem_r-P2",
+   "order": 209
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "peri_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "peri_r",
+   "order": 210
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "peri_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "peri_r/peri_r-P1",
+   "order": 211
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "peri_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "peri_r/peri_r-P2",
+   "order": 212
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "peri_r-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "peri_r/peri_r-P3",
+   "order": 213
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "rect_fem_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "rect_fem_r",
+   "order": 214
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "rect_fem_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "rect_fem_r/rect_fem_r-P1",
+   "order": 215
+  },
+  {
+   "section": "ForceSet",
+   "kind": "ConditionalPathPoint",
+   "name": "rect_fem_r-P2",
+   "status": "approximated",
+   "reason": "path_points/ConditionalPathPoint.py: no anchor PathPoint on the same body -> warning, treated as a normal fixed PathPoint (conditional behaviour lost)",
+   "rule": "cpp_no_anchor",
+   "path": "rect_fem_r/rect_fem_r-P2",
+   "order": 216
+  },
+  {
+   "section": "ForceSet",
+   "kind": "MovingPathPoint",
+   "name": "rect_fem_r-P3",
+   "status": "approximated",
+   "reason": "path_points/MovingPathPoint.py: child body with slide joints; each axis fitted with a quartic polynomial of its coordinate (path_points/utils.get_moving_path_point_dependency)",
+   "rule": "mpp",
+   "path": "rect_fem_r/rect_fem_r-P3",
+   "order": 217
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "vas_int_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "vas_int_r",
+   "order": 218
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "vas_int_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "vas_int_r/vas_int_r-P1",
+   "order": 219
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "vas_int_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "vas_int_r/vas_int_r-P2",
+   "order": 220
+  },
+  {
+   "section": "ForceSet",
+   "kind": "ConditionalPathPoint",
+   "name": "vas_int_r-P3",
+   "status": "approximated",
+   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "rule": "cpp",
+   "path": "vas_int_r/vas_int_r-P3",
+   "order": 221
+  },
+  {
+   "section": "ForceSet",
+   "kind": "MovingPathPoint",
+   "name": "vas_int_r-P4",
+   "status": "approximated",
+   "reason": "path_points/MovingPathPoint.py: child body with slide joints; each axis fitted with a quartic polynomial of its coordinate (path_points/utils.get_moving_path_point_dependency)",
+   "rule": "mpp",
+   "path": "vas_int_r/vas_int_r-P4",
+   "order": 222
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "med_gas_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "med_gas_r",
+   "order": 223
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "med_gas_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "med_gas_r/med_gas_r-P1",
+   "order": 224
+  },
+  {
+   "section": "ForceSet",
+   "kind": "ConditionalPathPoint",
+   "name": "med_gas_r-P2",
+   "status": "approximated",
+   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "rule": "cpp",
+   "path": "med_gas_r/med_gas_r-P2",
+   "order": 225
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "med_gas_r-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "med_gas_r/med_gas_r-P3",
+   "order": 226
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "soleus_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "soleus_r",
+   "order": 227
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "soleus_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "soleus_r/soleus_r-P1",
+   "order": 228
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "soleus_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "soleus_r/soleus_r-P2",
+   "order": 229
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "tib_post_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "tib_post_r",
+   "order": 230
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tib_post_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tib_post_r/tib_post_r-P1",
+   "order": 231
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tib_post_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tib_post_r/tib_post_r-P2",
+   "order": 232
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tib_post_r-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tib_post_r/tib_post_r-P3",
+   "order": 233
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tib_post_r-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tib_post_r/tib_post_r-P4",
+   "order": 234
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "tib_ant_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "tib_ant_r",
+   "order": 235
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tib_ant_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tib_ant_r/tib_ant_r-P1",
+   "order": 236
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tib_ant_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tib_ant_r/tib_ant_r-P2",
+   "order": 237
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tib_ant_r-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tib_ant_r/tib_ant_r-P3",
+   "order": 238
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "glut_med1_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "glut_med1_l",
+   "order": 239
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_med1_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_med1_l/glut_med1_l-P1",
+   "order": 240
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_med1_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_med1_l/glut_med1_l-P2",
+   "order": 241
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "glut_med2_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "glut_med2_l",
+   "order": 242
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_med2_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_med2_l/glut_med2_l-P1",
+   "order": 243
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_med2_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_med2_l/glut_med2_l-P2",
+   "order": 244
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "glut_med3_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "glut_med3_l",
+   "order": 245
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_med3_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_med3_l/glut_med3_l-P1",
+   "order": 246
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_med3_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_med3_l/glut_med3_l-P2",
+   "order": 247
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "bifemlh_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "bifemlh_l",
+   "order": 248
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "bifemlh_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "bifemlh_l/bifemlh_l-P1",
+   "order": 249
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "bifemlh_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "bifemlh_l/bifemlh_l-P2",
+   "order": 250
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "bifemlh_l-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "bifemlh_l/bifemlh_l-P3",
+   "order": 251
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "bifemsh_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "bifemsh_l",
+   "order": 252
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "bifemsh_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "bifemsh_l/bifemsh_l-P1",
+   "order": 253
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "bifemsh_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "bifemsh_l/bifemsh_l-P2",
+   "order": 254
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "bifemsh_l-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "bifemsh_l/bifemsh_l-P3",
+   "order": 255
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "sar_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "sar_l",
+   "order": 256
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "sar_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "sar_l/sar_l-P1",
+   "order": 257
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "sar_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "sar_l/sar_l-P2",
+   "order": 258
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "sar_l-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "sar_l/sar_l-P3",
+   "order": 259
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "sar_l-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "sar_l/sar_l-P4",
+   "order": 260
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "sar_l-P5",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "sar_l/sar_l-P5",
+   "order": 261
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "add_mag2_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "add_mag2_l",
+   "order": 262
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "add_mag2_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "add_mag2_l/add_mag2_l-P1",
+   "order": 263
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "add_mag2_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "add_mag2_l/add_mag2_l-P2",
+   "order": 264
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "tfl_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "tfl_l",
+   "order": 265
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tfl_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tfl_l/tfl_l-P1",
+   "order": 266
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tfl_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tfl_l/tfl_l-P2",
+   "order": 267
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tfl_l-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tfl_l/tfl_l-P3",
+   "order": 268
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tfl_l-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tfl_l/tfl_l-P4",
+   "order": 269
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "pect_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "pect_l",
+   "order": 270
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "pect_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "pect_l/pect_l-P1",
+   "order": 271
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "pect_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "pect_l/pect_l-P2",
+   "order": 272
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "grac_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "grac_l",
+   "order": 273
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "grac_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "grac_l/grac_l-P1",
+   "order": 274
+  },
+  {
+   "section": "ForceSet",
+   "kind": "ConditionalPathPoint",
+   "name": "grac_l-P2",
+   "status": "approximated",
+   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "rule": "cpp",
+   "path": "grac_l/grac_l-P2",
+   "order": 275
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "grac_l-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "grac_l/grac_l-P3",
+   "order": 276
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "grac_l-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "grac_l/grac_l-P4",
+   "order": 277
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "glut_max1_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "glut_max1_l",
+   "order": 278
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max1_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max1_l/glut_max1_l-P1",
+   "order": 279
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max1_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max1_l/glut_max1_l-P2",
+   "order": 280
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max1_l-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max1_l/glut_max1_l-P3",
+   "order": 281
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max1_l-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max1_l/glut_max1_l-P4",
+   "order": 282
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "glut_max2_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "glut_max2_l",
+   "order": 283
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max2_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max2_l/glut_max2_l-P1",
+   "order": 284
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max2_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max2_l/glut_max2_l-P2",
+   "order": 285
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max2_l-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max2_l/glut_max2_l-P3",
+   "order": 286
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max2_l-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max2_l/glut_max2_l-P4",
+   "order": 287
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "glut_max3_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "glut_max3_l",
+   "order": 288
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max3_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max3_l/glut_max3_l-P1",
+   "order": 289
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max3_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max3_l/glut_max3_l-P2",
+   "order": 290
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max3_l-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max3_l/glut_max3_l-P3",
+   "order": 291
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "glut_max3_l-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "glut_max3_l/glut_max3_l-P4",
+   "order": 292
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "iliacus_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "iliacus_l",
+   "order": 293
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "iliacus_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "iliacus_l/iliacus_l-P1",
+   "order": 294
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "iliacus_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "iliacus_l/iliacus_l-P2",
+   "order": 295
+  },
+  {
+   "section": "ForceSet",
+   "kind": "ConditionalPathPoint",
+   "name": "iliacus_l-P3",
+   "status": "approximated",
+   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "rule": "cpp",
+   "path": "iliacus_l/iliacus_l-P3",
+   "order": 296
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "iliacus_l-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "iliacus_l/iliacus_l-P4",
+   "order": 297
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "iliacus_l-P5",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "iliacus_l/iliacus_l-P5",
+   "order": 298
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "psoas_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "psoas_l",
+   "order": 299
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "psoas_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "psoas_l/psoas_l-P1",
+   "order": 300
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "psoas_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "psoas_l/psoas_l-P2",
+   "order": 301
+  },
+  {
+   "section": "ForceSet",
+   "kind": "ConditionalPathPoint",
+   "name": "psoas_l-P3",
+   "status": "approximated",
+   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "rule": "cpp",
+   "path": "psoas_l/psoas_l-P3",
+   "order": 302
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "psoas_l-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "psoas_l/psoas_l-P4",
+   "order": 303
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "psoas_l-P5",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "psoas_l/psoas_l-P5",
+   "order": 304
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "quad_fem_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "quad_fem_l",
+   "order": 305
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "quad_fem_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "quad_fem_l/quad_fem_l-P1",
+   "order": 306
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "quad_fem_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "quad_fem_l/quad_fem_l-P2",
+   "order": 307
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "gem_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "gem_l",
+   "order": 308
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "gem_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "gem_l/gem_l-P1",
+   "order": 309
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "gem_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "gem_l/gem_l-P2",
+   "order": 310
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "peri_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "peri_l",
+   "order": 311
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "peri_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "peri_l/peri_l-P1",
+   "order": 312
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "peri_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "peri_l/peri_l-P2",
+   "order": 313
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "peri_l-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "peri_l/peri_l-P3",
+   "order": 314
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "rect_fem_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "rect_fem_l",
+   "order": 315
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "rect_fem_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "rect_fem_l/rect_fem_l-P1",
+   "order": 316
+  },
+  {
+   "section": "ForceSet",
+   "kind": "ConditionalPathPoint",
+   "name": "rect_fem_l-P2",
+   "status": "approximated",
+   "reason": "path_points/ConditionalPathPoint.py: no anchor PathPoint on the same body -> warning, treated as a normal fixed PathPoint (conditional behaviour lost)",
+   "rule": "cpp_no_anchor",
+   "path": "rect_fem_l/rect_fem_l-P2",
+   "order": 317
+  },
+  {
+   "section": "ForceSet",
+   "kind": "MovingPathPoint",
+   "name": "rect_fem_l-P3",
+   "status": "approximated",
+   "reason": "path_points/MovingPathPoint.py: child body with slide joints; each axis fitted with a quartic polynomial of its coordinate (path_points/utils.get_moving_path_point_dependency)",
+   "rule": "mpp",
+   "path": "rect_fem_l/rect_fem_l-P3",
+   "order": 318
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "vas_int_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "vas_int_l",
+   "order": 319
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "vas_int_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "vas_int_l/vas_int_l-P1",
+   "order": 320
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "vas_int_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "vas_int_l/vas_int_l-P2",
+   "order": 321
+  },
+  {
+   "section": "ForceSet",
+   "kind": "ConditionalPathPoint",
+   "name": "vas_int_l-P3",
+   "status": "approximated",
+   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "rule": "cpp",
+   "path": "vas_int_l/vas_int_l-P3",
+   "order": 322
+  },
+  {
+   "section": "ForceSet",
+   "kind": "MovingPathPoint",
+   "name": "vas_int_l-P4",
+   "status": "approximated",
+   "reason": "path_points/MovingPathPoint.py: child body with slide joints; each axis fitted with a quartic polynomial of its coordinate (path_points/utils.get_moving_path_point_dependency)",
+   "rule": "mpp",
+   "path": "vas_int_l/vas_int_l-P4",
+   "order": 323
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "med_gas_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "med_gas_l",
+   "order": 324
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "med_gas_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "med_gas_l/med_gas_l-P1",
+   "order": 325
+  },
+  {
+   "section": "ForceSet",
+   "kind": "ConditionalPathPoint",
+   "name": "med_gas_l-P2",
+   "status": "approximated",
+   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "rule": "cpp",
+   "path": "med_gas_l/med_gas_l-P2",
+   "order": 326
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "med_gas_l-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "med_gas_l/med_gas_l-P3",
+   "order": 327
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "soleus_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "soleus_l",
+   "order": 328
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "soleus_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "soleus_l/soleus_l-P1",
+   "order": 329
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "soleus_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "soleus_l/soleus_l-P2",
+   "order": 330
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "tib_post_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "tib_post_l",
+   "order": 331
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tib_post_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tib_post_l/tib_post_l-P1",
+   "order": 332
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tib_post_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tib_post_l/tib_post_l-P2",
+   "order": 333
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tib_post_l-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tib_post_l/tib_post_l-P3",
+   "order": 334
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tib_post_l-P4",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tib_post_l/tib_post_l-P4",
+   "order": 335
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "tib_ant_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "tib_ant_l",
+   "order": 336
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tib_ant_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tib_ant_l/tib_ant_l-P1",
+   "order": 337
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tib_ant_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tib_ant_l/tib_ant_l-P2",
+   "order": 338
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "tib_ant_l-P3",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "tib_ant_l/tib_ant_l-P3",
+   "order": 339
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "ercspn_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "ercspn_r",
+   "order": 340
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "ercspn_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "ercspn_r/ercspn_r-P1",
+   "order": 341
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "ercspn_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "ercspn_r/ercspn_r-P2",
+   "order": 342
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "ercspn_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "ercspn_l",
+   "order": 343
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "ercspn_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "ercspn_l/ercspn_l-P1",
+   "order": 344
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "ercspn_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "ercspn_l/ercspn_l-P2",
+   "order": 345
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "intobl_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "intobl_r",
+   "order": 346
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "intobl_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "intobl_r/intobl_r-P1",
+   "order": 347
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "intobl_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "intobl_r/intobl_r-P2",
+   "order": 348
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "intobl_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "intobl_l",
+   "order": 349
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "intobl_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "intobl_l/intobl_l-P1",
+   "order": 350
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "intobl_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "intobl_l/intobl_l-P2",
+   "order": 351
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "extobl_r",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "extobl_r",
+   "order": 352
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "extobl_r-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "extobl_r/extobl_r-P1",
+   "order": 353
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "extobl_r-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "extobl_r/extobl_r-P2",
+   "order": 354
+  },
+  {
+   "section": "ForceSet",
+   "kind": "Thelen2003Muscle",
+   "name": "extobl_l",
+   "status": "approximated",
+   "reason": "forces/Muscle.py: rigid-tendon MuJoCo muscle; F-L params fitted in Step 3; activation time constants kept; tendon compliance, fiber damping and F-V parameters not converted",
+   "rule": "muscle",
+   "path": "extobl_l",
+   "order": 355
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "extobl_l-P1",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "extobl_l/extobl_l-P1",
+   "order": 356
+  },
+  {
+   "section": "ForceSet",
+   "kind": "PathPoint",
+   "name": "extobl_l-P2",
+   "status": "converted",
+   "reason": "path_points/PathPoint.py: site on the parent body",
+   "rule": "path_point",
+   "path": "extobl_l/extobl_l-P2",
+   "order": 357
+  },
+  {
+   "section": "Model",
+   "kind": "ControllerSet",
+   "name": "ControllerSet",
+   "status": "ignored",
+   "reason": "converter.convert: this top-level set/component is never read (empty)",
+   "rule": "top_ignored",
+   "path": "ControllerSet"
+  },
+  {
+   "section": "Model",
+   "kind": "ContactGeometrySet",
+   "name": "ContactGeometrySet",
+   "status": "ignored",
+   "reason": "converter.convert: this top-level set/component is never read (empty)",
+   "rule": "top_ignored",
+   "path": "ContactGeometrySet"
+  },
+  {
+   "section": "Model",
+   "kind": "ProbeSet",
+   "name": "ProbeSet",
+   "status": "ignored",
+   "reason": "converter.convert: this top-level set/component is never read (empty)",
+   "rule": "top_ignored",
+   "path": "ProbeSet"
+  },
+  {
+   "section": "Model",
+   "kind": "ComponentSet",
+   "name": "ComponentSet",
+   "status": "ignored",
+   "reason": "converter.convert: this top-level set/component is never read (empty)",
+   "rule": "top_ignored",
+   "path": "ComponentSet"
+  },
+  {
+   "section": "Model",
+   "kind": "gravity",
+   "name": "gravity",
+   "status": "approximated",
+   "reason": "OpenSim gravity (0 -9.8066499999999994 0) not converted; MuJoCo default (0 0 -9.81) used",
+   "rule": "gravity",
+   "path": "gravity"
+  }
+ ]
+}

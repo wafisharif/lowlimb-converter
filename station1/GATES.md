@@ -35,3 +35,37 @@ errors, run time.
 
 If a gate fails, thresholds are not loosened. We find the cause, log it, fix it in a separate commit, and
 rerun the full pipeline.
+
+# Station 1b gates: element-support report
+
+Written 2026-10-06, before the report tool existed or had been run on any model. A copy was posted to the plan doc
+(version history timestamps it) before any run.
+
+**What the tool does:** reads an OpenSim .osim file and lists every element the converter could act on, each with
+exactly one status:
+
+- `converted`: converted with no known approximation
+- `approximated`: converted, but with a documented approximation (named in the report)
+- `skipped`: the converter knowingly skips it and logs a warning
+- `ignored`: the converter never looks at it (no warning)
+- `unsupported`: the converter would stop with an error here
+
+The model's predicted outcome is `fails` if any element is `unsupported`, otherwise `converts`. Every status rule
+cites the vendored source line it comes from.
+
+## Gates
+
+- **S1 COMPLETE (every model):** every element in BodySet (incl. each body's attached geometry and wrap objects),
+  JointSet (incl. coordinates and each CustomJoint transform axis), ConstraintSet, ForceSet (incl. every path point
+  and path wrap), MarkerSet, the ground's geometry and wrap objects, every other top-level set or component, and
+  the model's gravity, appears exactly once with exactly one status. 0 unclassified. Element counts are checked
+  against an independent XPath count of the .osim file.
+- **S2 MATCHES THE CONVERTER (gait10dof18musc, gait2354; models we have converted):** every body, coordinate,
+  muscle and marker reported `converted`/`approximated` exists under its expected name in our Station 1a cvt1
+  output; every `skipped`/`ignored` element does not; every `skipped` element's warning text is in the conversion
+  log; predicted outcome `converts`.
+- **S3 PREDICTS NEW MODELS (Rajagopal2016, RajagopalLaiUhlrich2023 from opensim-org/opensim-models):** the predicted
+  outcome (`converts`, or `fails` with the first `unsupported` element in converter traversal order) matches what
+  the ported pipeline's XML conversion step actually does. Checked by running that step.
+
+If a gate fails we fix the report tool (separate change, logged), not the gate.

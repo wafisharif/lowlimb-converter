@@ -3,10 +3,12 @@
 OpenSim → MuJoCo conversion for lower-limb gait models, with a validation report for every
 converted model. It's a specialised fork of [MyoConverter](https://github.com/MyoHub/myoconverter).
 
-> **Status: Station 1a done (port to a modern stack).** MyoConverter's pipeline now runs on Python 3.12,
-> OpenSim 4.6, MuJoCo 3.15 and NumPy 2 with no Docker. Verified on Linux; the lockfile includes the Apple Silicon
-> wheels, but the native macOS run is not verified yet. For both gait models it reproduces the Station 0 baseline to
-> floating-point precision ([`station1/FINDINGS.md`](station1/FINDINGS.md)). No accuracy improvements yet; those start in Station 2.
+> **Status: Station 1b done (port to a modern stack + element-support report).** MyoConverter's pipeline now runs on
+> Python 3.12, OpenSim 4.6, MuJoCo 3.15 and NumPy 2 with no Docker. Verified on Linux; the lockfile includes the Apple
+> Silicon wheels, but the native macOS run is not verified yet. For both gait models it reproduces the Station 0
+> baseline to floating-point precision ([`station1/FINDINGS.md`](station1/FINDINGS.md)). A support report now says,
+> before converting, what will be converted, approximated or dropped, and whether conversion will fail.
+> No accuracy improvements yet; those start in Station 2.
 > Plan: [project pipeline doc](https://claude.ai/code/artifact/41e46ee4-a7c3-42bc-82d8-dd94af3ef801) ·
 > log: [`EXPERIMENTS.md`](EXPERIMENTS.md) · gates: [`baseline/GATES.md`](baseline/GATES.md), [`station1/GATES.md`](station1/GATES.md)
 
@@ -31,6 +33,9 @@ converted model. It's a specialised fork of [MyoConverter](https://github.com/My
 - Porting to MuJoCo 3 / NumPy 2 took four small fixes (one silent-risk API change: `actuator_moment` became sparse).
   Compiled models match the baseline except for documented, physics-neutral differences, plus a 0.015–0.020%
   total-mass difference on massless virtual bodies, which comes from MuJoCo 2.3.7's XML writer dropping `boundmass`.
+- Gravity is not converted: OpenSim models use 9.80665 m/s², converted models get MuJoCo's default 9.81.
+- Rajagopal 2016's torque actuators (lumbar, arms) convert 10× too weak: the converter drops `optimal_force`.
+- RajagopalLaiUhlrich2023 can't be converted yet: its knees use a `PolynomialFunction`, which the converter rejects.
 
 ## Running the ported pipeline (Station 1a)
 
@@ -44,6 +49,18 @@ bash station1/run_station1.sh gait10dof18musc upstream station1/gait10dof18musc 
 ```
 
 The script converts the model, then checks gates P1–P5 and exits non-zero if any fails.
+
+## Checking a model before converting it (Station 1b)
+
+```bash
+.venv/bin/python -m lowlimb_converter.support path/to/model.osim --geometry path/to/Geometry \
+    --md report.md --json report.json
+```
+
+Every element gets one status: converted, approximated, skipped, ignored or unsupported, with the reason and the
+converter source it comes from. Exit code 0 means the XML step is predicted to convert, 1 that it will fail
+(the report names the first element it fails on), 2 an error reading the file. Without `--geometry`, mesh files
+aren't checked for existence. Reports for four models are in [`station1/support/`](station1/support/).
 
 ## Reproducing the Station 0 baseline
 
@@ -66,8 +83,10 @@ reached end of life. Upstream's `conda_env.yml`, which holds the actual dependen
 | Path | What |
 | --- | --- |
 | `src/myoconverter/` | Vendored MyoConverter @ cadf380 with our port fixes (each modified file says what changed; see `VENDORED.md`) |
+| `lowlimb_converter/` | Our own code: `support.py`, the element-support report (Station 1b) |
 | `env/` | Modern-stack requirements and the universal hashed lockfile |
-| `station1/` | Station 1a: gates, run script, results per model, equivalence tests, findings |
+| `station1/` | Station 1a/1b: gates, run script, results per model, tests, findings |
+| `station1/support/` | Support reports for four models, S3 results, model provenance |
 | `baseline/` | Station 0: run scripts, gates, extracted metrics, outputs for each model |
 | `baseline/upstream_shipped/` | Metrics extracted from the outputs MyoConverter ships, for the reproducibility check |
 | `station0/elastic_tendon/` | Whether MuJoCo supports elastic tendons: test and findings |
