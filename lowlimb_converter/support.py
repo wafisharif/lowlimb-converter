@@ -97,15 +97,20 @@ RULES = {
     "force_unknown": "parsers.BaseParser.parse: no parser for this tag -> NotImplementedError",
     "path_point": "path_points/PathPoint.py: site on the parent body",
     "mpp": "path_points/MovingPathPoint.py: child body with slide joints; each axis fitted with a quartic "
-           "polynomial of its coordinate (path_points/utils.get_moving_path_point_dependency)",
+           "polynomial of its coordinate over the coordinate's range (path_points/utils."
+           "get_moving_path_point_dependency, Station 3 change 3.2); an axis moving < 1 mm is fixed mid-range (3.3)",
     "mpp_bad": "path_points/utils.get_moving_path_point_dependency: an axis without an <x>/<y> function "
                "(e.g. Constant) -> AttributeError/RuntimeError",
     "mpp_untested": "path_points/utils.get_moving_path_point_dependency: function type outside "
                     "SimmSpline/NaturalCubicSpline/PiecewiseLinearFunction is logged as critical but still fitted",
-    "cpp": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain "
-           "PathPoint on the same body (step change approximated by a polynomial)",
-    "cpp_no_anchor": "path_points/ConditionalPathPoint.py: no anchor PathPoint on the same body -> warning, "
-                     "treated as a normal fixed PathPoint (conditional behaviour lost)",
+    "cpp": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted "
+           "to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off "
+           "switch itself can't be reproduced, so it is approximated",
+    "cpp_upstream": "path_points/ConditionalPathPoint.py: change 3.1 doesn't apply (force isn't a Muscle, point "
+                    "is first or last, or its coordinate is locked or coupled) -> warning, upstream model: moving "
+                    "point anchored to a plain PathPoint on the same body (step approximated by a polynomial)",
+    "cpp_no_anchor": "path_points/ConditionalPathPoint.py: change 3.1 doesn't apply and no anchor PathPoint on the "
+                     "same body -> warnings, treated as a normal fixed PathPoint (conditional behaviour lost)",
     "path_point_unknown": "parsers.BaseParser.parse: no parser for this tag -> NotImplementedError",
     "path_wrap": "path_wraps/PathWrapSet.py: MuJoCo tendon wrap over the referenced wrap object",
     "marker": "markers/Marker.py: site '<name>_marker' on the parent body",
@@ -428,6 +433,23 @@ def _mpp_status(pp):
     return APPROX, "mpp", None
 
 
+def _cpp_fit_applies(force, pp, index, n_points):
+    """Mirrors conditional_path_point_dependencies' early returns: a Muscle, not the first or last point, and a
+    condition coordinate that is unlocked and is not the dependent of an enforced coupler (so it is a MuJoCo joint)."""
+    if not force.tag.endswith("Muscle") or index == 0 or index == n_points - 1:
+        return False
+    cname = (_txt(pp, "socket_coordinate") or "").split("/")[-1]
+    root = force.getroottree().getroot()
+    coord = root.xpath(f"//Coordinate[@name='{cname}']")
+    if len(coord) != 1 or (_txt(coord[0], "locked") or "").strip() == "true":
+        return False
+    for cc in root.xpath("//ConstraintSet/objects/CoordinateCouplerConstraint"):
+        enforced = (_txt(cc, "isEnforced") or "true").strip() == "true"
+        if enforced and (_txt(cc, "dependent_coordinate_name") or "").strip() == cname:
+            return False
+    return True
+
+
 def _path(rep, force):
     fname = force.get("name")
     pps = force.find("GeometryPath/PathPointSet/objects")
@@ -442,8 +464,10 @@ def _path(rep, force):
         elif pp.tag == "ConditionalPathPoint":
             frame = _txt(pp, "socket_parent_frame")
             anchors = [c for c in children if c.tag == "PathPoint" and _txt(c, "socket_parent_frame") == frame]
-            if anchors:
+            if _cpp_fit_applies(force, pp, i, len(children)):
                 rep.add("ForceSet", "ConditionalPathPoint", pp.get("name"), APPROX, "cpp", path=path)
+            elif anchors:
+                rep.add("ForceSet", "ConditionalPathPoint", pp.get("name"), APPROX, "cpp_upstream", path=path)
             else:
                 rep.add("ForceSet", "ConditionalPathPoint", pp.get("name"), APPROX, "cpp_no_anchor", path=path)
         else:

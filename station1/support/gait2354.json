@@ -1757,7 +1757,7 @@
    "kind": "ConditionalPathPoint",
    "name": "grac_r-P2",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "grac_r/grac_r-P2",
    "order": 174
@@ -1967,7 +1967,7 @@
    "kind": "ConditionalPathPoint",
    "name": "iliacus_r-P3",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "iliacus_r/iliacus_r-P3",
    "order": 195
@@ -2027,7 +2027,7 @@
    "kind": "ConditionalPathPoint",
    "name": "psoas_r-P3",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "psoas_r/psoas_r-P3",
    "order": 201
@@ -2177,8 +2177,8 @@
    "kind": "ConditionalPathPoint",
    "name": "rect_fem_r-P2",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py: no anchor PathPoint on the same body -> warning, treated as a normal fixed PathPoint (conditional behaviour lost)",
-   "rule": "cpp_no_anchor",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
+   "rule": "cpp",
    "path": "rect_fem_r/rect_fem_r-P2",
    "order": 216
   },
@@ -2187,7 +2187,7 @@
    "kind": "MovingPathPoint",
    "name": "rect_fem_r-P3",
    "status": "approximated",
-   "reason": "path_points/MovingPathPoint.py: child body with slide joints; each axis fitted with a quartic polynomial of its coordinate (path_points/utils.get_moving_path_point_dependency)",
+   "reason": "path_points/MovingPathPoint.py: child body with slide joints; each axis fitted with a quartic polynomial of its coordinate over the coordinate's range (path_points/utils.get_moving_path_point_dependency, Station 3 change 3.2); an axis moving < 1 mm is fixed mid-range (3.3)",
    "rule": "mpp",
    "path": "rect_fem_r/rect_fem_r-P3",
    "order": 217
@@ -2227,7 +2227,7 @@
    "kind": "ConditionalPathPoint",
    "name": "vas_int_r-P3",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "vas_int_r/vas_int_r-P3",
    "order": 221
@@ -2237,7 +2237,7 @@
    "kind": "MovingPathPoint",
    "name": "vas_int_r-P4",
    "status": "approximated",
-   "reason": "path_points/MovingPathPoint.py: child body with slide joints; each axis fitted with a quartic polynomial of its coordinate (path_points/utils.get_moving_path_point_dependency)",
+   "reason": "path_points/MovingPathPoint.py: child body with slide joints; each axis fitted with a quartic polynomial of its coordinate over the coordinate's range (path_points/utils.get_moving_path_point_dependency, Station 3 change 3.2); an axis moving < 1 mm is fixed mid-range (3.3)",
    "rule": "mpp",
    "path": "vas_int_r/vas_int_r-P4",
    "order": 222
@@ -2267,7 +2267,7 @@
    "kind": "ConditionalPathPoint",
    "name": "med_gas_r-P2",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "med_gas_r/med_gas_r-P2",
    "order": 225
@@ -2767,7 +2767,7 @@
    "kind": "ConditionalPathPoint",
    "name": "grac_l-P2",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "grac_l/grac_l-P2",
    "order": 275
@@ -2977,7 +2977,7 @@
    "kind": "ConditionalPathPoint",
    "name": "iliacus_l-P3",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "iliacus_l/iliacus_l-P3",
    "order": 296
@@ -3037,7 +3037,7 @@
    "kind": "ConditionalPathPoint",
    "name": "psoas_l-P3",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "psoas_l/psoas_l-P3",
    "order": 302
@@ -3187,8 +3187,8 @@
    "kind": "ConditionalPathPoint",
    "name": "rect_fem_l-P2",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py: no anchor PathPoint on the same body -> warning, treated as a normal fixed PathPoint (conditional behaviour lost)",
-   "rule": "cpp_no_anchor",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
+   "rule": "cpp",
    "path": "rect_fem_l/rect_fem_l-P2",
    "order": 317
   },
@@ -3197,7 +3197,7 @@
    "kind": "MovingPathPoint",
    "name": "rect_fem_l-P3",
    "status": "approximated",
-   "reason": "path_points/MovingPathPoint.py: child body with slide joints; each axis fitted with a quartic polynomial of its coordinate (path_points/utils.get_moving_path_point_dependency)",
+   "reason": "path_points/MovingPathPoint.py: child body with slide joints; each axis fitted with a quartic polynomial of its coordinate over the coordinate's range (path_points/utils.get_moving_path_point_dependency, Station 3 change 3.2); an axis moving < 1 mm is fixed mid-range (3.3)",
    "rule": "mpp",
    "path": "rect_fem_l/rect_fem_l-P3",
    "order": 318
@@ -3237,7 +3237,7 @@
    "kind": "ConditionalPathPoint",
    "name": "vas_int_l-P3",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "vas_int_l/vas_int_l-P3",
    "order": 322
@@ -3247,7 +3247,7 @@
    "kind": "MovingPathPoint",
    "name": "vas_int_l-P4",
    "status": "approximated",
-   "reason": "path_points/MovingPathPoint.py: child body with slide joints; each axis fitted with a quartic polynomial of its coordinate (path_points/utils.get_moving_path_point_dependency)",
+   "reason": "path_points/MovingPathPoint.py: child body with slide joints; each axis fitted with a quartic polynomial of its coordinate over the coordinate's range (path_points/utils.get_moving_path_point_dependency, Station 3 change 3.2); an axis moving < 1 mm is fixed mid-range (3.3)",
    "rule": "mpp",
    "path": "vas_int_l/vas_int_l-P4",
    "order": 323
@@ -3277,7 +3277,7 @@
    "kind": "ConditionalPathPoint",
    "name": "med_gas_l-P2",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py: modelled as a moving point anchored to the nearest plain PathPoint on the same body (step change approximated by a polynomial)",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "med_gas_l/med_gas_l-P2",
    "order": 326

@@ -1,8 +1,10 @@
 """Station 1b gates S1 (complete) and S2 (matches the converter) for lowlimb_converter.support.
 
 S1 recounts elements with whole-file XPath queries written independently of the report's traversal.
-S2 compares the report with our Station 1a conversion outputs (cvt1 XML + conversion log).
-Usage: python station1/tests/test_support_report.py <upstream_clone_dir> [extra .osim files for S1 only ...]
+S2 compares the report with a fresh XML conversion by the current converter (cvt1 XML + conversion log), made in
+scratch_dir. (Until Station 3 it compared with the committed Station 1a outputs; the report now describes the
+converter as changed since, see EXPERIMENTS.md.)
+Usage: python station1/tests/test_support_report.py <upstream_clone_dir> <scratch_dir> [extra .osim files for S1 only ...]
 Exit code 0 only if every check passes.
 """
 import os, sys, collections
@@ -112,17 +114,30 @@ def s2(osim, cvt1, log):
           f"all {len(cpp_warn)} no-anchor ConditionalPathPoint warnings are in the log")
     check(logtxt.count("Suitable 'anchor' PathPoint was not found") == len(cpp_warn),
           "no other no-anchor warnings in the log")
+    fallback = [i for i in r["items"] if i["rule"] in ("cpp_upstream", "cpp_no_anchor")]
+    fitted = [i for i in r["items"] if i["rule"] == "cpp"]
+    check(logtxt.count("could not be evaluated with OpenSim, using the upstream method") == len(fallback),
+          f"{len(fallback)} ConditionalPathPoints predicted to fall back to upstream's model, as in the log")
+    check(all(f"ConditionalPathPoint {i['name']} of {i['path'].split('/')[0]}: using" in logtxt for i in fitted),
+          f"all {len(fitted)} ConditionalPathPoints predicted to be fitted (change 3.1) are fitted in the log")
     opt = x.find("option")
     check(opt is None or opt.get("gravity") is None, "cvt1 sets no gravity (report: MuJoCo default used)")
 
 up = sys.argv[1]
 models = {"gait10dof18musc": f"{up}/models/osim/Gait10dof18musc/gait10dof18musc.osim",
           "gait2354": f"{up}/models/osim/Gait2354Simbody/gait2354.osim"}
+scratch = os.path.abspath(sys.argv[2])
 for name, osim in models.items():
     s1(osim)
-    d = os.path.join(REPO, "station1", name)
+    d = os.path.join(scratch, name)
+    if os.path.exists(d):
+        sys.exit(f"{d} already exists; use an empty scratch folder")
+    import subprocess
+    rc = subprocess.run([sys.executable, os.path.join(REPO, "station2", "convert_xml_step.py"), osim,
+                         os.path.join(os.path.dirname(osim), "Geometry"), d], capture_output=True).returncode
+    check(rc == 0, f"current converter's XML step runs on {name}")
     s2(osim, os.path.join(d, f"{name}_cvt1.xml"), os.path.join(d, f"{name}_conversion.log"))
-for extra in sys.argv[2:]:
+for extra in sys.argv[3:]:
     s1(extra)
 print("ALL CHECKS PASS" if not fails else f"{len(fails)} CHECK(S) FAILED")
 sys.exit(1 if fails else 0)
