@@ -57,6 +57,8 @@ Other differences, none affecting physics:
 
 ## How to reproduce
 
+On the commit tagged `station1a` (later commits change the converter on purpose):
+
 ```bash
 python3.12 -m venv .venv && .venv/bin/pip install --require-hashes -r env/requirements.lock
 bash station1/run_station1.sh gait10dof18musc upstream station1/gait10dof18musc .venv/bin/python
