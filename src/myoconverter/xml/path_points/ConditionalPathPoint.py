@@ -1,3 +1,5 @@
+# Modified by lowlimb-converter (2026-10-10), from MyoConverter @ cadf380: conditional path points are fitted to
+# OpenSim's path by conditional_path_point_dependencies(), with upstream's model as one candidate (Station 3, change 3.1).
 """ Contains the `ConditionalPathPoint` parser.
 
 @author: Aleksi Ikkala
@@ -14,6 +16,7 @@ from myoconverter.xml.parsers import IParser
 from myoconverter.xml.utils import str2vec
 from myoconverter.xml.path_points.PathPoint import PathPoint
 from myoconverter.xml.path_points.MovingPathPoint import MovingPathPoint
+from myoconverter.xml.path_points.utils import conditional_path_point_dependencies
 from myoconverter.xml import config as cfg
 
 matplotlib.use("agg")
@@ -56,6 +59,36 @@ class ConditionalPathPoint(IParser):
       self.pathpoint.parse(xml, tendon, force_name, **kwargs)
       return
 
+    # lowlimb-converter (change 3.1): fit the point to OpenSim's path; upstream's model is one of the candidates
+    upstream = self._upstream_dependencies(xml)
+    modelled = conditional_path_point_dependencies(xml, force_name, upstream=upstream)
+    if modelled is not None:
+      dependencies, report = modelled
+      scores = ", ".join(f"{k} {v:.3f} mm" for k, v in report["training_rms_mm"].items())
+      logger.info(f"ConditionalPathPoint {xml.attrib['name']} of {force_name}: using '{report['chosen']}' "
+                  f"(training RMS residual: {scores}; {report['training_poses']} poses, "
+                  f"coordinates {report['coordinates']})")
+      self.moving_pathpoint.parse(xml, tendon, force_name, dependencies=dependencies, **kwargs)
+      return
+    logger.warning(f"ConditionalPathPoint {xml.attrib['name']} of {force_name}: could not be evaluated with OpenSim, "
+                   "using the upstream method")
+    self._upstream_parse(xml, tendon, force_name, upstream, **kwargs)
+
+  def _upstream_parse(self, xml, tendon, force_name, dependencies, **kwargs):
+    """ lowlimb-converter: upstream's handling, given its dependencies (None: no anchor, keep as a normal point). """
+    if dependencies is None:
+      logger.warning(f"Suitable 'anchor' PathPoint was not found for ConditionalPathPoint {xml.attrib['name']}, "
+                     "treating this as a normal PathPoint.")
+      self.pathpoint.parse(xml, tendon, force_name, **kwargs)
+    else:
+      self.moving_pathpoint.parse(xml, tendon, force_name, dependencies=dependencies, **kwargs)
+
+  def _upstream_dependencies(self, xml):
+    """ Upstream's model of this point (lowlimb-converter: split out of parse(), otherwise unchanged).
+
+    :return: dependencies dict for MovingPathPoint.parse, or None if no anchor point exists
+    """
+
     # Get socket parent frame
     socket_parent_frame = xml.find("socket_parent_frame").text
 
@@ -75,11 +108,7 @@ class ConditionalPathPoint(IParser):
 
     # Check again if a suitable anchor was found (idx >= 0)
     if idx == -1:
-
-      logger.warning(f"Suitable 'anchor' PathPoint was not found for ConditionalPathPoint {xml.attrib['name']}, "
-                     "treating this as a normal PathPoint.")
-      self.pathpoint.parse(xml, tendon, force_name, **kwargs)
-      return
+      return None
 
     else:
 
@@ -157,8 +186,7 @@ class ConditionalPathPoint(IParser):
         # Save the dependency
         dependencies[name] = (independent_coordinate, polycoef, dependent_joint_range)
 
-      # Treat as a MovingPathPoint
-      self.moving_pathpoint.parse(xml, tendon, force_name, dependencies=dependencies, **kwargs)
+      return dependencies
 
   def _find_previous(self, children, idx, socket_parent_frame):
     """ Find previous PathPoint.

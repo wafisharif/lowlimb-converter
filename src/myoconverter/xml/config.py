@@ -1,3 +1,5 @@
+# Modified by lowlimb-converter (2026-10-10), from MyoConverter @ cadf380: keeps the OpenSim file path (OSIM_FILE)
+# so path points can be evaluated with OpenSim kinematics (Station 3, change 3.1).
 """ Contains definitions for global variables that are used in the conversion process.
 
 @author: Aleksi Ikkala
@@ -25,6 +27,7 @@ ADD_GROUND_GEOM = None
 TREAT_AS_NORMAL_PATH_POINT = None
 
 # Variables for parsed OpenSim XML
+OSIM_FILE = None  # lowlimb-converter: path of the OpenSim model file being converted
 OPENSIM = None
 O_GROUND = None
 O_BODYSET = None
@@ -105,7 +108,8 @@ def initialise(xml_file, output_folder, **kwargs):
   TREAT_AS_NORMAL_PATH_POINT = kwargs.get("treat_as_normal_path_point", False)
 
   # Read and parse OpenSim model
-  global OPENSIM, O_GROUND, O_BODYSET, O_JOINTSET, O_FORCESET, O_CONSTRAINTSET, O_MARKERSET
+  global OPENSIM, O_GROUND, O_BODYSET, O_JOINTSET, O_FORCESET, O_CONSTRAINTSET, O_MARKERSET, OSIM_FILE
+  OSIM_FILE = os.path.abspath(xml_file)
   OPENSIM = etree.parse(xml_file, parser).getroot().find("Model")
   O_GROUND = OPENSIM.find("Ground")
   O_BODYSET = OPENSIM.find("BodySet/objects")
