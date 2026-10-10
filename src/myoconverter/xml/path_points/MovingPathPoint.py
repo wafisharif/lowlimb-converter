@@ -1,5 +1,7 @@
 # Modified by lowlimb-converter (2026-10-06), from MyoConverter @ cadf380: removed contype="2" conaffinity="2"
 # from the invisible geom, following MuJoCo 3's migration for <option collision="predefined"/> (see xml/template.xml).
+# Modified by lowlimb-converter (2026-10-10): an axis that moves less than 1 mm is fixed at the middle of its range,
+# not its minimum, halving the largest error (Station 3, change 3.3).
 """ Contains the `MovingPathPoint` parser.
 
 @author: Aleksi Ikkala
@@ -83,19 +85,19 @@ class MovingPathPoint(IParser):
 
     # x
     if self._small_range(range_x):
-      pos[0] = range_x[0]
+      pos[0] = np.mean(range_x)  # lowlimb-converter (change 3.3): middle of the range, was its minimum
     else:
       self._add_joint(new_body, f"{force_name}_{xml.attrib['name']}_x", joint_x, polycoef_x, range_x, "1 0 0")
 
     # y
     if self._small_range(range_y):
-      pos[1] = range_y[0]
+      pos[1] = np.mean(range_y)  # lowlimb-converter (change 3.3): middle of the range, was its minimum
     else:
       self._add_joint(new_body, f"{force_name}_{xml.attrib['name']}_y", joint_y, polycoef_y, range_y, "0 1 0")
 
     # z
     if self._small_range(range_z):
-      pos[2] = range_z[0]
+      pos[2] = np.mean(range_z)  # lowlimb-converter (change 3.3): middle of the range, was its minimum
     else:
       self._add_joint(new_body, f"{force_name}_{xml.attrib['name']}_z", joint_z, polycoef_z, range_z, "0 0 1")
 
