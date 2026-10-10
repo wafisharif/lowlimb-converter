@@ -80,7 +80,7 @@ def joint_plan(m, coord_names):
     return from_coord, driven, problems
 
 
-def set_pose(m, d, from_coord, driven, values):
+def solve_qpos(m, from_coord, driven, values):
     """qpos for one pose: coordinates first, then dependent joints in dependency order."""
     qpos = m.qpos0.copy()
     for j, n in from_coord.items():
@@ -99,7 +99,12 @@ def set_pose(m, d, from_coord, driven, values):
             progressed = True
         if not progressed:
             raise RuntimeError("joint equalities form a cycle")
-    d.qpos[:] = qpos
+    return qpos
+
+
+def set_pose(m, d, from_coord, driven, values):
+    """Put the model in one pose and run the full forward pass (constraint residuals are then available)."""
+    d.qpos[:] = solve_qpos(m, from_coord, driven, values)
     mujoco.mj_forward(m, d)
 
 

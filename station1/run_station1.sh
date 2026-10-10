@@ -14,6 +14,9 @@ case $MODEL in
   gait2354)        OSIM=models/osim/Gait2354Simbody/gait2354.osim ;;
   *) echo "unknown model $MODEL"; exit 2 ;;
 esac
+# The pipeline resumes Steps 2-3 from any cvt2/cvt3 already in its output folder (O2MSteps.py), so a reused folder
+# would silently give an older model: insist on an empty one.
+if [ -n "$(ls -A "$OUT" 2>/dev/null)" ]; then echo "output_dir $OUT is not empty; use a new folder"; exit 2; fi
 mkdir -p "$OUT"; OUT=$(cd "$OUT" && pwd)
 $PY -c "import opensim, mujoco, numpy; print('opensim', opensim.GetVersionAndDate()); print('mujoco', mujoco.__version__); print('numpy', numpy.__version__)" | tee "$OUT/versions.txt" || exit 1
 fail=0

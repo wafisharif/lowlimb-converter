@@ -1,0 +1,368 @@
+{
+ "model": "gait10dof18musc_cvt3.xml",
+ "mujoco_version": "2.3.7",
+ "numpy_version": "1.26.4",
+ "opensim_version": "4.6",
+ "poses": 1410,
+ "muscles": 18,
+ "pairs_total": 24,
+ "pairs_scored": 24,
+ "mesh_geoms_removed": 19,
+ "max_equality_residual": 9.367506770274758e-17,
+ "m0_osim_fd_within_1e-5_frac": 1.0,
+ "m0_mujoco_h_vs_10h_within_1e-6_frac": 1.0,
+ "M0": "PASS",
+ "M0_problems": [],
+ "summary": {
+  "ma_rms_mm_median": 0.6662460379272411,
+  "ma_rms_mm_mean": 7.581161195536275,
+  "ma_rms_mm_worst": {
+   "muscle": "rect_fem_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 50.56554655102399,
+   "rms_mm": 69.60284285653246,
+   "max_mm": 100.98377184858697,
+   "rms_pct_peak": 137.648750194559,
+   "worst_pose": "random"
+  },
+  "pairs_within_5pct_peak": 16,
+  "pairs_within_2mm": 16,
+  "length_rms_mm_median": 0.19228264722709132,
+  "length_rms_mm_worst": "rect_fem_l"
+ },
+ "pairs": [
+  {
+   "muscle": "hamstrings_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 65.86595646754775,
+   "rms_mm": 0.06774125823900108,
+   "max_mm": 0.15360242716101757,
+   "rms_pct_peak": 0.10284714877309539,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "hamstrings_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 34.95367865241518,
+   "rms_mm": 0.5511974967425135,
+   "max_mm": 1.9431475275590895,
+   "rms_pct_peak": 1.5769370149096673,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "bifemsh_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 33.86451510024576,
+   "rms_mm": 0.7800645515456329,
+   "max_mm": 1.8936626507866336,
+   "rms_pct_peak": 2.3034865529197313,
+   "worst_pose": "sweep:knee_angle_r"
+  },
+  {
+   "muscle": "glut_max_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 58.31670218414893,
+   "rms_mm": 8.249201991371817e-08,
+   "max_mm": 4.870897574171806e-07,
+   "rms_pct_peak": 1.4145522093006888e-07,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "iliopsoas_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 43.69088795094143,
+   "rms_mm": 10.731926054160859,
+   "max_mm": 38.231020898695164,
+   "rms_pct_peak": 24.563304976111414,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "rect_fem_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 54.03875738687155,
+   "rms_mm": 1.6430472172924782,
+   "max_mm": 5.143908063214638,
+   "rms_pct_peak": 3.040497777418635,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "rect_fem_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 50.56554655102399,
+   "rms_mm": 69.0540963065198,
+   "max_mm": 100.96366475753119,
+   "rms_pct_peak": 136.56353192353933,
+   "worst_pose": "sweep:hip_flexion_r"
+  },
+  {
+   "muscle": "vasti_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 48.71874215593786,
+   "rms_mm": 5.562517421594627,
+   "max_mm": 21.67035092631067,
+   "rms_pct_peak": 11.417612966669472,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "gastroc_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 23.493638808783867,
+   "rms_mm": 2.0321537996135546,
+   "max_mm": 5.276279309161209,
+   "rms_pct_peak": 8.649804383873338,
+   "worst_pose": "sweep:knee_angle_r"
+  },
+  {
+   "muscle": "gastroc_r",
+   "coordinate": "ankle_angle_r",
+   "scored": true,
+   "peak_osim_mm": 49.883162856142604,
+   "rms_mm": 0.10709399198704575,
+   "max_mm": 0.2922983829462891,
+   "rms_pct_peak": 0.214689658504399,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "soleus_r",
+   "coordinate": "ankle_angle_r",
+   "scored": true,
+   "peak_osim_mm": 49.97735222504784,
+   "rms_mm": 9.585957473792948e-08,
+   "max_mm": 6.08736103191454e-07,
+   "rms_pct_peak": 1.9180602907147652e-07,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "tib_ant_r",
+   "coordinate": "ankle_angle_r",
+   "scored": true,
+   "peak_osim_mm": 47.767127096186385,
+   "rms_mm": 9.473028328883408e-08,
+   "max_mm": 6.202300305291342e-07,
+   "rms_pct_peak": 1.9831689500203815e-07,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "hamstrings_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 65.86595646754775,
+   "rms_mm": 0.06737275368695769,
+   "max_mm": 0.15185058735455934,
+   "rms_pct_peak": 0.10228767226685966,
+   "worst_pose": "sweep:hip_flexion_l"
+  },
+  {
+   "muscle": "hamstrings_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 34.94805074186989,
+   "rms_mm": 0.5528636117978885,
+   "max_mm": 1.96774589174422,
+   "rms_pct_peak": 1.5819583640913175,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "bifemsh_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 33.864525736639585,
+   "rms_mm": 0.7796284640565938,
+   "max_mm": 1.8936626507866336,
+   "rms_pct_peak": 2.3021980881104676,
+   "worst_pose": "sweep:knee_angle_l"
+  },
+  {
+   "muscle": "glut_max_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 58.31671467710681,
+   "rms_mm": 8.433100886352151e-08,
+   "max_mm": 4.750891208216146e-07,
+   "rms_pct_peak": 1.4460864150261716e-07,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "iliopsoas_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 43.690877696304184,
+   "rms_mm": 10.914772506161261,
+   "max_mm": 38.15633153208643,
+   "rms_pct_peak": 24.98181103623044,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "rect_fem_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 54.037881769431955,
+   "rms_mm": 1.6794645967696207,
+   "max_mm": 5.5215052204454915,
+   "rms_pct_peak": 3.1079393599022547,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "rect_fem_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 50.56554655102399,
+   "rms_mm": 69.60284285653246,
+   "max_mm": 100.98377184858697,
+   "rms_pct_peak": 137.648750194559,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "vasti_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 48.71874215593786,
+   "rms_mm": 5.6550190773919535,
+   "max_mm": 21.703560598613517,
+   "rms_pct_peak": 11.607481694193776,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "gastroc_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 23.493553221367133,
+   "rms_mm": 2.0553340139740066,
+   "max_mm": 5.276279281405634,
+   "rms_pct_peak": 8.748502172522386,
+   "worst_pose": "sweep:knee_angle_l"
+  },
+  {
+   "muscle": "gastroc_l",
+   "coordinate": "ankle_angle_l",
+   "scored": true,
+   "peak_osim_mm": 49.883366323785985,
+   "rms_mm": 0.11073217412024199,
+   "max_mm": 0.28887040124314645,
+   "rms_pct_peak": 0.22198216014832453,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "soleus_l",
+   "coordinate": "ankle_angle_l",
+   "scored": true,
+   "peak_osim_mm": 49.97736530617728,
+   "rms_mm": 8.839257206568174e-08,
+   "max_mm": 6.53024669061697e-07,
+   "rms_pct_peak": 1.7686520992885607e-07,
+   "worst_pose": "random"
+  },
+  {
+   "muscle": "tib_ant_l",
+   "coordinate": "ankle_angle_l",
+   "scored": true,
+   "peak_osim_mm": 47.76712714611587,
+   "rms_mm": 9.487862504993547e-08,
+   "max_mm": 7.459810269505596e-07,
+   "rms_pct_peak": 1.98627446778847e-07,
+   "worst_pose": "random"
+  }
+ ],
+ "per_muscle": {
+  "hamstrings_r": {
+   "length_rms_mm": 0.09312420024900037,
+   "length_max_mm": 0.33356948673046727,
+   "length_mean_signed_mm": -0.02410895645531254
+  },
+  "bifemsh_r": {
+   "length_rms_mm": 0.19156692898212446,
+   "length_max_mm": 0.30201947515337557,
+   "length_mean_signed_mm": -0.0828520331799394
+  },
+  "glut_max_r": {
+   "length_rms_mm": 1.2193066244575184e-13,
+   "length_max_mm": 9.992007221626409e-13,
+   "length_mean_signed_mm": 7.106214749817048e-15
+  },
+  "iliopsoas_r": {
+   "length_rms_mm": 3.6816484234238245,
+   "length_max_mm": 11.719433244341715,
+   "length_mean_signed_mm": 0.5223958635954191
+  },
+  "rect_fem_r": {
+   "length_rms_mm": 42.33069180341473,
+   "length_max_mm": 82.65766674492647,
+   "length_mean_signed_mm": 30.084694047979955
+  },
+  "vasti_r": {
+   "length_rms_mm": 1.0283940961675901,
+   "length_max_mm": 1.9066643053172183,
+   "length_mean_signed_mm": 0.12210554188117992
+  },
+  "gastroc_r": {
+   "length_rms_mm": 0.5183451267425677,
+   "length_max_mm": 0.863267973605808,
+   "length_mean_signed_mm": -0.03137689355500617
+  },
+  "soleus_r": {
+   "length_rms_mm": 1.7549965044514028e-13,
+   "length_max_mm": 9.43689570931383e-13,
+   "length_mean_signed_mm": 1.4743919245465288e-14
+  },
+  "tib_ant_r": {
+   "length_rms_mm": 2.0232034947310573e-13,
+   "length_max_mm": 1.7763568394002505e-12,
+   "length_mean_signed_mm": 2.5511507799897214e-14
+  },
+  "hamstrings_l": {
+   "length_rms_mm": 0.09495188715504795,
+   "length_max_mm": 0.33312567037696583,
+   "length_mean_signed_mm": -0.02588235326576924
+  },
+  "bifemsh_l": {
+   "length_rms_mm": 0.1929983654720582,
+   "length_max_mm": 0.30201382502023644,
+   "length_mean_signed_mm": -0.07833787620355527
+  },
+  "glut_max_l": {
+   "length_rms_mm": 1.189043231454142e-13,
+   "length_max_mm": 8.881784197001252e-13,
+   "length_mean_signed_mm": 1.564942029391843e-14
+  },
+  "iliopsoas_l": {
+   "length_rms_mm": 3.886978313045359,
+   "length_max_mm": 11.719433244341548,
+   "length_mean_signed_mm": 0.47831877284161156
+  },
+  "rect_fem_l": {
+   "length_rms_mm": 42.542517056411256,
+   "length_max_mm": 82.93131198818587,
+   "length_mean_signed_mm": 30.488340837787362
+  },
+  "vasti_l": {
+   "length_rms_mm": 1.0127834001608835,
+   "length_max_mm": 1.9070800675950739,
+   "length_mean_signed_mm": 0.09148901025712498
+  },
+  "gastroc_l": {
+   "length_rms_mm": 0.5169871349528518,
+   "length_max_mm": 0.8475106489103656,
+   "length_mean_signed_mm": -0.03448664385769702
+  },
+  "soleus_l": {
+   "length_rms_mm": 1.6945561571834995e-13,
+   "length_max_mm": 1.3877787807814457e-12,
+   "length_mean_signed_mm": 1.482265846706991e-14
+  },
+  "tib_ant_l": {
+   "length_rms_mm": 2.1324330818461998e-13,
+   "length_max_mm": 1.3877787807814457e-12,
+   "length_mean_signed_mm": 3.074766603660451e-14
+  }
+ }
+}
