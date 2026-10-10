@@ -1,5 +1,6 @@
 # Modified by lowlimb-converter (2026-10-10), from MyoConverter @ cadf380: adds conditional_path_point_dependencies()
-# (Station 3, change 3.1; see station3/FINDINGS.md).
+# (Station 3, change 3.1); moving path points are fitted over their coordinate's range (change 3.2). See
+# station3/FINDINGS.md.
 """ This module contains a collection of utility functions useful for parsing and converting the OpenSim `PathPointSet`
 
 @author: Aleksi Ikkala
@@ -14,7 +15,7 @@ import os
 
 from loguru import logger
 
-from myoconverter.xml.utils import str2vec, fit_spline
+from myoconverter.xml.utils import str2vec, fit_spline, fit_spline_on_range
 from numpy.polynomial.polynomial import Polynomial
 from myoconverter.xml import config as cfg
 
@@ -321,11 +322,19 @@ def get_moving_path_point_dependency(path_point, coordinate_name, socket_name, c
     logger.critical(f"Function type {function_type} not implemented (in {path_point.tag} {path_point.attrib['name']}). "
                     f"Behaviour of this type of function has not been tested.")
 
-  # Get polycoef
-  fit, polycoef, range = fit_spline(x_values, y_values)
-
   # Find the independent coordinate
   independent_coordinate = path_point.find(socket_name).text.split("/")[-1]
+
+  # Get polycoef. lowlimb-converter (change 3.2): like joint splines (change 2.3), fit OpenSim's own function over the
+  # range the coordinate covers, minimising the largest error; upstream fitted the knots over the knots' span.
+  if function_type in {"SimmSpline", "NaturalCubicSpline", "PiecewiseLinearFunction"}:
+    from myoconverter.xml.joints.CustomJoint import _fit_domain  # here, not at the top: avoids a circular import
+    domain = _fit_domain(independent_coordinate, x_values)
+    fit, polycoef, range, fit_error = fit_spline_on_range(function_type, x_values, y_values, domain)
+    logger.info(f"{path_point.attrib['name']} {coordinate_name}: quartic fit to {function_type} over "
+                f"[{domain[0]:.6g}, {domain[1]:.6g}], max error {fit_error:.3g}")
+  else:
+    fit, polycoef, range = fit_spline(x_values, y_values)
 
   # Make sure the coordinate has been designated as one of the MuJoCo model joints
   if cfg.M_WORLDBODY.find(f".//joint[@name='{independent_coordinate}']") is None:
