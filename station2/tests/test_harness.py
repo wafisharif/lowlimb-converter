@@ -12,11 +12,11 @@ import sys
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.dirname(HERE))
+sys.path.insert(0, os.path.dirname(os.path.dirname(HERE)))     # repo root
 import mujoco                                     # noqa: E402
 import opensim as osim                            # noqa: E402
-import mujoco_compare as mc                       # noqa: E402
-import osim_reference as orf                      # noqa: E402
+from lowlimb_converter.checks import mujoco_compare as mc   # noqa: E402
+from lowlimb_converter.checks import osim_reference as orf  # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(HERE))
 XML = os.path.join(REPO, "station1", "gait10dof18musc", "gait10dof18musc_cvt3.xml")

@@ -27,9 +27,9 @@ import numpy as np
 from lxml import etree
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.dirname(HERE))
-import mujoco_compare as mc                       # noqa: E402
-import osim_reference as orf                      # noqa: E402
+sys.path.insert(0, os.path.dirname(os.path.dirname(HERE)))     # repo root
+from lowlimb_converter.checks import mujoco_compare as mc   # noqa: E402
+from lowlimb_converter.checks import osim_reference as orf  # noqa: E402
 
 EDITS = {  # joint: (parent orientation, child translation, child orientation)
     "ankle_r": ("0.3 -0.2 0.5", "0.01 -0.02 0.015", "-0.4 0.6 0.1"),
