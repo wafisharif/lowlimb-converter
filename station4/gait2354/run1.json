@@ -1,0 +1,7 @@
+{
+ "model": "gait2354_cvt3.xml",
+ "F0": "FAIL",
+ "F0_problems": [
+  "soleus_l a=1.0: tendon/fiber equilibrium residual within tolerance on only 98.7% of poses"
+ ]
+}
