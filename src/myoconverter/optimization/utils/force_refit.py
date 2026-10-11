@@ -1,5 +1,7 @@
 # Added by lowlimb-converter (2026-10-10); not part of MyoConverter. Apache License 2.0.
 # Change 4.2 (same day): training samples without an OpenSim equilibrium are left out, as in Station 4's check.
+# Change 4.3 (2026-10-11): no longer started from Step 3's random result, and weakly pulled towards a rigid-tendon
+# estimate, so the result doesn't depend on the particle swarm and left/right copies of a muscle get the same values.
 """ Deterministic refit of MuJoCo muscle force parameters to OpenSim's static muscle forces (Station 4, change 4.1).
 
 MyoConverter's Step 3 fits four parameters of each MuJoCo muscle (lmin, lmax, fpmax, force scale) to OpenSim's force at
@@ -12,8 +14,17 @@ maps to MuJoCo's normalised length), lmin, lmax, fpmax and the peak force. The t
 force at activations 0, 0.25, 0.5 and 1 on training poses drawn here (seed 2; the coordinates that change the
 muscle's length sampled uniformly over their ranges, everything else at its default), leaving out samples where
 OpenSim has no equilibrium (fiber clamped at its minimum length while the tendon pulls). It uses scipy's least squares
-from several fixed starting points, so it is deterministic. Step 3's own result is one of the candidates and is
-kept if it scores better, so the refit is never worse on the training poses.
+from four fixed starting points. Step 3's own result is scored on the same data and kept if it is better, so the
+refit is never worse on the training poses (it hasn't happened on the gait models).
+
+Static force doesn't determine every parameter: in the poses a muscle can reach, several parameter sets give the same
+force (Station 4 FINDINGS). Change 4.3 therefore adds a weak penalty (REG_WEIGHT) pulling the parameters towards a
+rigid-tendon estimate: normalised length = (tendon length - tendon slack length) / (optimal fiber length x
+cos(pennation)), with MuJoCo's default lmin, lmax, fpmax (0.5, 1.6, 1.3) and peak force = max isometric force.
+Where the data determine a parameter the penalty changes little (mean static error within 0.06% of Fmax of the
+unpenalised fit on the gait models); where they don't, it picks the value closest to that estimate. Before 4.3 the
+first starting point was Step 3's result, which comes from an unseeded particle swarm whose result can change from
+run to run, so the refitted values could too.
 """
 import numpy as np
 from loguru import logger
@@ -22,6 +33,7 @@ from scipy.optimize import least_squares
 import mujoco
 
 ACTIVATIONS = (0.0, 0.25, 0.5, 1.0)
+REG_WEIGHT = 0.01   # change 4.3: a parameter 1 unit from the estimate costs as much as 1% of Fmax RMS force error
 
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -202,24 +214,31 @@ def refit_muscle(mjc_model, osim_model, muscle_name, n_train=400, seed=2):
     prm[4], prm[5], prm[7] = lmin, lmax, fpmax
     return prm
 
-  def residual(theta):
-    return residual_for(lr, unpack(theta))
-
-  L_old = normalised_length(lr, old_lr, old_prm[0:2])     # Step 3's mapping, expressed on our lengthrange
-  starts = [np.array([L_old.mean(), 0.5 * (L_old[1] - L_old[0]), old_prm[4], old_prm[5], old_prm[7],
-                      old_prm[2] / fmax])]
-  for c0, c1 in ((1.0, 0.3), (0.9, 0.5), (1.1, 0.2)):
-    starts.append(np.array([c0, c1, 0.5, 1.6, 1.3, 1.0]))
   lower = np.array([0.0, 1e-3, 0.0, 1.01, 0.0, 0.25])
   upper = np.array([3.0, 3.0, 0.99, 3.0, 10.0, 4.0])
+
+  # change 4.3: rigid-tendon estimate of the parameters, and a weak penalty towards it (see the module docstring)
+  osim_muscle = osim_model.getMuscles().get(muscle_name)
+  fiber = osim_muscle.getOptimalFiberLength() * np.cos(osim_muscle.getPennationAngleAtOptimalFiberLength())
+  estimate = np.array([(mid - osim_muscle.getTendonSlackLength()) / fiber, half / fiber, 0.5, 1.6, 1.3, 1.0])
+  estimate = np.clip(estimate, lower + 1e-3, upper - 1e-3)
+  scale = np.array([1.0, estimate[1], 1.0, 1.0, 1.0, 1.0])     # the range's slope counts relative to its estimate
+  penalty = REG_WEIGHT * np.sqrt(int(valid.sum())) / scale
+
+  def residual(theta):
+    return np.concatenate([residual_for(lr, unpack(theta)), penalty * (theta - estimate)])
+
+  starts = [estimate.copy()]
+  for c0, c1 in ((1.0, 0.3), (0.9, 0.5), (1.1, 0.2)):
+    starts.append(np.array([c0, c1, 0.5, 1.6, 1.3, 1.0]))
   best = None
   for s in starts:
     s = np.clip(s, lower + 1e-9, upper - 1e-9)
     sol = least_squares(residual, s, bounds=(lower, upper), method="trf", max_nfev=3000)
-    rms = float(np.sqrt(np.mean(sol.fun ** 2)))
-    if best is None or rms < best[0]:
-      best = (rms, sol.x)
-  new_rms, theta = best
+    if best is None or sol.cost < best[0]:
+      best = (sol.cost, sol.x)
+  theta = best[1]
+  new_rms = float(np.sqrt(np.mean(residual_for(lr, unpack(theta)) ** 2)))   # data only, comparable with Step 3's
 
   report = {"muscle": muscle_name, "coordinates": relevant, "samples": int(valid.sum()),
             "excluded_samples": int((~valid).sum()), "step3_rms_pct": 100 * old_rms, "refit_rms_pct": 100 * new_rms}
