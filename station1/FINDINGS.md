@@ -98,10 +98,13 @@ provenance are in `station1/support/`.
 ## What the reports found
 
 - **Gravity is never converted.** All four models specify 9.80665 m/s²; the converted models use MuJoCo's default
-  9.81 m/s² (0.034% higher).
+  9.81 m/s² (0.034% higher). *Fixed 2026-10-10 (change 1c.1, `src/myoconverter/xml/bodies/Ground.py`): the model's
+  gravity is converted, rotated into MuJoCo's world frame; tested with a non-default gravity in
+  `station1/tests/test_gravity_actuators.py`.*
 - **Rajagopal's 17 torque actuators (lumbar and arms) are 10× too weak.** OpenSim's `optimal_force` is 10 N·m per unit
   control; the converter reads it but drops it (an upstream TODO), so the MuJoCo motors give 1 N·m per unit. Confirmed
-  in the compiled model. This must be fixed before Rajagopal is validated.
+  in the compiled model. This must be fixed before Rajagopal is validated. *Fixed 2026-10-10 (change 1c.2,
+  `src/myoconverter/xml/forces/CoordinateActuator.py`): gear = optimal_force; all 17 now give 10 N·m at control 1.*
 - **RajagopalLaiUhlrich2023 is blocked only by its knees.** Both `walker_knee` joints use a `PolynomialFunction`, which
   the converter does not handle. MuJoCo joint couplings are quartic polynomials, so a polynomial of degree ≤ 4
   could be converted exactly. This is a candidate improvement for model 4.

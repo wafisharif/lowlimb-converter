@@ -5,8 +5,8 @@
  "outcome": "converts",
  "first_failure": null,
  "counts": {
-  "converted": 284,
-  "approximated": 75,
+  "converted": 285,
+  "approximated": 74,
   "skipped": 0,
   "ignored": 4,
   "unsupported": 0
@@ -3632,8 +3632,8 @@
    "section": "Model",
    "kind": "gravity",
    "name": "gravity",
-   "status": "approximated",
-   "reason": "OpenSim gravity (0 -9.8066499999999994 0) not converted; MuJoCo default (0 0 -9.81) used",
+   "status": "converted",
+   "reason": "OpenSim gravity (0 -9.8066499999999994 0) converted",
    "rule": "gravity",
    "path": "gravity"
   }

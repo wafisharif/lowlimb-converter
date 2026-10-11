@@ -121,7 +121,10 @@ def s2(osim, cvt1, log):
     check(all(f"ConditionalPathPoint {i['name']} of {i['path'].split('/')[0]}: using" in logtxt for i in fitted),
           f"all {len(fitted)} ConditionalPathPoints predicted to be fitted (change 3.1) are fitted in the log")
     opt = x.find("option")
-    check(opt is None or opt.get("gravity") is None, "cvt1 sets no gravity (report: MuJoCo default used)")
+    g_os = [float(v) for v in (etree.parse(osim).getroot().findtext(".//Model/gravity") or "0 -9.80665 0").split()]
+    g_mj = [float(v) for v in opt.get("gravity").split()] if opt is not None and opt.get("gravity") else None
+    check(g_mj is not None and abs(g_mj[0] - g_os[0]) < 1e-12 and abs(g_mj[1] + g_os[2]) < 1e-12
+          and abs(g_mj[2] - g_os[1]) < 1e-12, f"cvt1 gravity {g_mj} is OpenSim's {g_os} rotated into MuJoCo's world")
 
 up = sys.argv[1]
 models = {"gait10dof18musc": f"{up}/models/osim/Gait10dof18musc/gait10dof18musc.osim",

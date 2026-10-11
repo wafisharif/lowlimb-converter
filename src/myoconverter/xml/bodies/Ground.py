@@ -1,3 +1,5 @@
+# Modified by lowlimb-converter (2026-10-10), from MyoConverter @ cadf380: the model's gravity is converted, rotated
+# into MuJoCo's world frame with the ground (change 1c.1; upstream left MuJoCo's default 9.81 m/s^2).
 """ Contains the Ground parser.
 
 @author: Aleksi Ikkala
@@ -9,7 +11,7 @@ import os
 
 from myoconverter.xml.parsers import IParser
 from myoconverter.xml import config as cfg
-from myoconverter.xml.utils import vec2str
+from myoconverter.xml.utils import vec2str, str2vec
 from myoconverter.xml.bodies.utils import get_rgba, copy_mesh_file
 
 
@@ -30,6 +32,14 @@ class Ground(IParser):
     # We need to rotate the body by 90 degrees wrt x axis
     rotation = Rotation.from_euler("x", 90, degrees=True)
     cfg.M_GROUND.attrib["euler"] = vec2str(rotation.as_euler("XYZ"))
+
+    # lowlimb-converter (change 1c.1): OpenSim's gravity is given in ground coordinates; MuJoCo's in world coordinates,
+    # and the ground body is rotated by `rotation` relative to the world. OpenSim's default is (0, -9.80665, 0).
+    gravity = cfg.OPENSIM.find("gravity")
+    g = str2vec(gravity.text) if gravity is not None else str2vec("0 -9.80665 0")
+    g_world = rotation.apply(g)
+    g_world[abs(g_world) < 1e-12 * max(1.0, abs(g_world).max())] = 0.0   # drop round-off from the rotation
+    cfg.MUJOCO.find("option").attrib["gravity"] = vec2str(g_world)
 
     # Add a ground geom if so instructed
     if add_ground_geom:

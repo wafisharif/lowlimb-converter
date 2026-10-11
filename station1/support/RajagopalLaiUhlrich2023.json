@@ -14,8 +14,8 @@
   "order": 63
  },
  "counts": {
-  "converted": 652,
-  "approximated": 104,
+  "converted": 670,
+  "approximated": 86,
   "skipped": 0,
   "ignored": 12,
   "unsupported": 2
@@ -6855,8 +6855,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "lumbar_ext",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "lumbar_ext",
    "order": 674
@@ -6865,8 +6865,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "lumbar_bend",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "lumbar_bend",
    "order": 675
@@ -6875,8 +6875,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "lumbar_rot",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "lumbar_rot",
    "order": 676
@@ -6885,8 +6885,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "shoulder_flex_r",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "shoulder_flex_r",
    "order": 677
@@ -6895,8 +6895,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "shoulder_add_r",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "shoulder_add_r",
    "order": 678
@@ -6905,8 +6905,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "shoulder_rot_r",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "shoulder_rot_r",
    "order": 679
@@ -6915,8 +6915,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "elbow_flex_r",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "elbow_flex_r",
    "order": 680
@@ -6925,8 +6925,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "pro_sup_r",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "pro_sup_r",
    "order": 681
@@ -6935,8 +6935,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "wrist_flex_r",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "wrist_flex_r",
    "order": 682
@@ -6945,8 +6945,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "wrist_dev_r",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "wrist_dev_r",
    "order": 683
@@ -6955,8 +6955,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "shoulder_flex_l",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "shoulder_flex_l",
    "order": 684
@@ -6965,8 +6965,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "shoulder_add_l",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "shoulder_add_l",
    "order": 685
@@ -6975,8 +6975,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "shoulder_rot_l",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "shoulder_rot_l",
    "order": 686
@@ -6985,8 +6985,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "elbow_flex_l",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "elbow_flex_l",
    "order": 687
@@ -6995,8 +6995,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "pro_sup_l",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "pro_sup_l",
    "order": 688
@@ -7005,8 +7005,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "wrist_flex_l",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "wrist_flex_l",
    "order": 689
@@ -7015,8 +7015,8 @@
    "section": "ForceSet",
    "kind": "CoordinateActuator",
    "name": "wrist_dev_l",
-   "status": "approximated",
-   "reason": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped (upstream TODO), so torque scaling differs",
+   "status": "converted",
+   "reason": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), ctrlrange from min/max_control",
    "rule": "coord_actuator",
    "path": "wrist_dev_l",
    "order": 690
@@ -7703,8 +7703,8 @@
    "section": "Model",
    "kind": "gravity",
    "name": "gravity",
-   "status": "approximated",
-   "reason": "OpenSim gravity (0 -9.8066499999999994 0) not converted; MuJoCo default (0 0 -9.81) used",
+   "status": "converted",
+   "reason": "OpenSim gravity (0 -9.8066499999999994 0) converted",
    "rule": "gravity",
    "path": "gravity"
   }

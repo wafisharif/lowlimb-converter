@@ -44,8 +44,8 @@ converted model. It's a specialised fork of [MyoConverter](https://github.com/My
   offset child frame rotated about the wrong point. Fixed too.
 - No quartic can follow Rajagopal 2016's patella spline within 0.5° (best possible: 0.64°), and MuJoCo couples
   joints with quartics only.
-- Gravity is not converted: OpenSim models use 9.80665 m/s², converted models get MuJoCo's default 9.81.
-- Rajagopal 2016's torque actuators (lumbar, arms) convert 10× too weak: the converter drops `optimal_force`.
+- MyoConverter doesn't convert gravity (OpenSim's 9.80665 m/s² became MuJoCo's default 9.81) and drops torque
+  actuators' `optimal_force` (Rajagopal 2016's lumbar and arm actuators came out 10× too weak). Both fixed.
 - RajagopalLaiUhlrich2023 can't be converted yet: its knees use a `PolynomialFunction`, which the converter rejects.
 
 ## Running the ported pipeline (Station 1a)

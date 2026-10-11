@@ -92,8 +92,8 @@ RULES = {
     "stub": "forces/<type>.py: parse() logs 'not implemented, skipping'",
     "ligament": "forces/Ligament.py: spatial tendon with springlength=resting_length only; no stiffness, "
                 "pcsa_force and force-length curve dropped, so it exerts no force",
-    "coord_actuator": "forces/CoordinateActuator.py: motor on the joint; optimal_force read but dropped "
-                      "(upstream TODO), so torque scaling differs",
+    "coord_actuator": "forces/CoordinateActuator.py: motor on the joint with gear = optimal_force (change 1c.2), "
+                      "ctrlrange from min/max_control",
     "force_unknown": "parsers.BaseParser.parse: no parser for this tag -> NotImplementedError",
     "path_point": "path_points/PathPoint.py: site on the parent body",
     "mpp": "path_points/MovingPathPoint.py: child body with slide joints; each axis fitted with a quartic "
@@ -116,7 +116,8 @@ RULES = {
     "marker": "markers/Marker.py: site '<name>_marker' on the parent body",
     "marker_unknown": "parsers.BaseParser.parse: no parser for this tag -> NotImplementedError",
     "top_ignored": "converter.convert: this top-level set/component is never read",
-    "gravity": "no gravity handling anywhere in src/myoconverter: MuJoCo's default (0, 0, -9.81) is used",
+    "gravity": "bodies/Ground.py: the model's gravity, rotated into MuJoCo's world frame with the ground "
+               "(change 1c.1)",
 }
 
 
@@ -490,7 +491,7 @@ def _forces(rep, root):
             rep.add("ForceSet", f.tag, name, APPROX, "muscle" if f.tag in MUSCLE_TYPES else "ligament")
             _path(rep, f)
         elif f.tag == "CoordinateActuator":
-            rep.add("ForceSet", f.tag, name, APPROX, "coord_actuator")
+            rep.add("ForceSet", f.tag, name, CONVERTED, "coord_actuator")
         elif f.tag in STUB_FORCES:
             rep.add("ForceSet", f.tag, name, SKIPPED, "stub")
             _ignore_path(rep, f, "its force is skipped (stub parser)")
@@ -559,8 +560,8 @@ def build_report(osim_path, geometry=None):
             rep.add("Model", m.tag, m.get("name", m.tag), IGNORED, "top_ignored",
                     path=f"{child.tag}/{m.get('name', m.tag)}", traversed=False)
     gravity = _txt(root, "gravity", "0 -9.80665 0")
-    rep.add("Model", "gravity", "gravity", APPROX, "gravity", traversed=False,
-            reason=f"OpenSim gravity ({gravity}) not converted; MuJoCo default (0 0 -9.81) used")
+    rep.add("Model", "gravity", "gravity", CONVERTED, "gravity", traversed=False,
+            reason=f"OpenSim gravity ({gravity}) converted")
 
     counts = Counter(i["status"] for i in rep.items)
     unsupported = sorted((i for i in rep.items if i["status"] == UNSUPPORTED), key=lambda i: i.get("order", 1e9))

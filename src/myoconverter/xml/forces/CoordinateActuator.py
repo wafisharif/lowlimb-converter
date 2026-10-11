@@ -1,3 +1,5 @@
+# Modified by lowlimb-converter (2026-10-10), from MyoConverter @ cadf380: the motor's gear is the actuator's
+# optimal_force, so torque per unit control matches OpenSim (change 1c.2; upstream dropped it, giving gear 1).
 """ Contains the `CoordinateActuator` parser.
 
 @author: Aleksi Ikkala
@@ -47,8 +49,10 @@ class CoordinateActuator(IParser):
       logger.critical(f"Joint {params['joint']} was not found in the converted MuJoCo model, but it is needed for "
                       f"CoordinateActuator {xml.attrib['name']}")
 
-    # TODO how does optimal_force parameter relate to mujoco parameters? gear, gainprm, dynprm, biasprm?
-    params["_optimal_force"] = xml.find("optimal_force")
+    # lowlimb-converter (change 1c.2): OpenSim's CoordinateActuator applies optimal_force * control (N*m or N); a MuJoCo
+    # motor applies gear * control, so gear = optimal_force (OpenSim's default optimal_force is 1).
+    optimal_force = xml.find("optimal_force")
+    params["gear"] = "1" if optimal_force is None or optimal_force.text is None else optimal_force.text.strip()
 
     # Use default motor parameters (gain slightly higher)
     params["class"] = "motor"
