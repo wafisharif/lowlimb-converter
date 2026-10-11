@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# Modified by lowlimb-converter (2026-10-10), from MyoConverter @ cadf380: after the particle-swarm fit, every muscle's
+# static force parameters are refitted deterministically (optimization/utils/force_refit.py; Station 4, change 4.1).
 """
 Created on Fri Apr  1 13:51:09 2022
 
@@ -9,6 +11,7 @@ Created on Fri Apr  1 13:51:09 2022
 from myoconverter.optimization.model_states.OsimMuscleStates import OsimMuscleStates
 from myoconverter.optimization.utils.UtilsForceOpt import getMuscleForceDiff, fmOptPSO_cust
 from myoconverter.optimization.utils.UtilsMujoco import getMuscleForceLengthCurvesSim, getCoordinateRange_mjc
+from myoconverter.optimization.utils.force_refit import refit_muscle  # lowlimb-converter (change 4.1)
 import mujoco
 import opensim
 import os
@@ -345,6 +348,15 @@ class MuscleForceOpt:
             
             # copy the parameter from gainprm to biasprm
             muscle_inst.biasprm = muscle_inst.gainprm
+
+        # lowlimb-converter (change 4.1): deterministic refit of every muscle's static force parameters against
+        # OpenSim's equilibrium force at several activations; Step 3's result above is kept where it scores better
+        logger.info('Refitting static muscle force parameters (lowlimb-converter change 4.1)')
+        for muscle in self.muscle_list:
+            report = refit_muscle(self.mjc_model, self.osim_model, muscle)
+            logger.info(f"    {muscle}: training RMS error {report['step3_rms_pct']:.2f}% Fmax (Step 3) -> "
+                        f"{report['refit_rms_pct']:.2f}% (refit); kept {report['kept']} "
+                        f"({report['samples']} samples, {report['excluded_samples']} without OpenSim equilibrium)")
 
         # save the updated model
         cvt3_model_path = self.mjc_model_path[0:-8] + 'cvt3.xml'
