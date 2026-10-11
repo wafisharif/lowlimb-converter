@@ -3,16 +3,21 @@
 OpenSim → MuJoCo conversion for lower-limb gait models, with a validation report for every
 converted model. It's a specialised fork of [MyoConverter](https://github.com/MyoHub/myoconverter).
 
-> **Status: Station 3 (muscle paths) done for both gait models; Rajagopal 2016 is held at Station 2.** The pipeline
+> **Status: Station 4 (muscle forces) done for both gait models; Rajagopal 2016 is held at Station 2.** The pipeline
 > runs on Python 3.12, OpenSim 4.6, MuJoCo 3.15 and NumPy 2 with no Docker (verified on Linux; the lockfile includes
-> Apple Silicon wheels, but the native macOS run is not verified yet). For both gait models, every body is within
-> 0.22 mm of OpenSim in every tested pose (MyoConverter: 0.89 mm), and muscle moment arms are 5–8× closer to
-> OpenSim's than MyoConverter's on average (worst muscle 3.4–4.7 mm RMS, MyoConverter 70–78 mm)
-> ([`station2/FINDINGS.md`](station2/FINDINGS.md), [`station3/FINDINGS.md`](station3/FINDINGS.md)). Rajagopal 2016's
-> patella is still 0.64° off, over the 0.5° Station 2 gate. Muscle forces are next (Station 4).
+> Apple Silicon wheels, but the native macOS run is not verified yet). For both gait models, compared with
+> MyoConverter's conversions of the same models:
+> - every body is within 0.22 mm of OpenSim in every tested pose (MyoConverter: 0.89 mm);
+> - muscle moment arms are 5–8× closer to OpenSim's on average (worst muscle 3.4–4.7 mm RMS, MyoConverter 70–78 mm);
+> - static muscle forces are 3–5× closer at full activation and 5–11× closer when passive (mean 3.0–3.5% and
+>   1.2–2.9% of max isometric force; MyoConverter 10–16%).
+>
+> Details: [`station2/FINDINGS.md`](station2/FINDINGS.md), [`station3/FINDINGS.md`](station3/FINDINGS.md),
+> [`station4/FINDINGS.md`](station4/FINDINGS.md). Rajagopal 2016's patella is still 0.64° off, over the 0.5° Station 2
+> gate. Walking-level validation is next (Station 5).
 > Plan: [project pipeline doc](https://claude.ai/code/artifact/41e46ee4-a7c3-42bc-82d8-dd94af3ef801) ·
 > log: [`EXPERIMENTS.md`](EXPERIMENTS.md) · gates: [`baseline/GATES.md`](baseline/GATES.md), [`station1/GATES.md`](station1/GATES.md),
-> [`station2/GATES.md`](station2/GATES.md), [`station3/GATES.md`](station3/GATES.md)
+> [`station2/GATES.md`](station2/GATES.md), [`station3/GATES.md`](station3/GATES.md), [`station4/GATES.md`](station4/GATES.md)
 
 ## Quick start
 
@@ -66,6 +71,10 @@ The gait models in the examples come with MyoConverter (`models/osim/` in its re
   extension (69–78 mm RMS error), because its conditional path point was kept always active. Fixed by fitting
   conditional and moving path points to OpenSim's path (Station 3).
 - Rerunning MyoConverter's pipeline into a folder that already holds results silently resumes from the old cvt2/cvt3.
+- MyoConverter's muscle-force step (a particle swarm at full activation only) left mean errors of 10–16% of max
+  isometric force, and 59–121% for a few short-fibered muscles. A deterministic refit against OpenSim's force at four
+  activation levels brings the means to 1.2–3.5% (Station 4). Static force doesn't determine every MuJoCo muscle
+  parameter (e.g. optimal length, which also scales force–velocity), which Station 5 must check.
 - MuJoCo muscles have rigid tendons, and native elastic tendons are not available
   ([`station0/elastic_tendon/FINDINGS.md`](station0/elastic_tendon/FINDINGS.md)).
 - Porting to MuJoCo 3 / NumPy 2 took four small fixes (one silent-risk API change: `actuator_moment` became sparse).
@@ -131,6 +140,16 @@ joint it crosses, and its length, with OpenSim in the Station 2 poses. Results g
 and the comparison with MyoConverter (from `station3/<model>/baseline_myoconverter.json`) to `myrun_m1.json`.
 About 15 minutes on two cores.
 
+## Muscle-force check (Station 4)
+
+```bash
+bash station4/run_station4.sh myrun upstream ../station4_work .venv/bin/python
+```
+
+Runs the full pipeline on both gait models into a fresh folder, holds each muscle still in the Station 2 poses at
+activation 0, 0.25, 0.5 and 1, and compares its force with OpenSim's equilibrium force. Results go to
+`station4/<model>/myrun.json` and the comparison with MyoConverter to `myrun_f.json`. About 20 minutes on two cores.
+
 ## Reproducing the Station 0 baseline
 
 Requires Docker. On Apple Silicon, the image runs under amd64 emulation.
@@ -159,11 +178,12 @@ reached end of life. Upstream's `conda_env.yml`, which holds the actual dependen
 | `station1/support/` | Support reports for four models, S3 results, model provenance |
 | `station2/` | Station 2: gates, OpenSim and MuJoCo sides of the kinematic check, run script, tests, findings, results per model and run |
 | `station3/` | Station 3: gates, OpenSim and MuJoCo sides of the muscle-path check, M1 comparison, run script, tests, findings, results |
+| `station4/` | Station 4: gates, OpenSim and MuJoCo sides of the muscle-force check, F1–F2 comparison, run script, tests, findings, results |
 | `baseline/` | Station 0: run scripts, gates, extracted metrics, outputs for each model |
 | `baseline/upstream_shipped/` | Metrics extracted from the outputs MyoConverter ships, for the reproducibility check |
 | `station0/elastic_tendon/` | Whether MuJoCo supports elastic tendons: test and findings |
 | `docker/` | Baseline image definitions (Station 0) |
-| `.github/workflows/` | Clean-machine checks: Station 0 (Docker, lockfile), Station 2 + P1–P2 and Station 3 (Linux, on push), the tool (Linux and macOS, on push), Station 1a (manual) |
+| `.github/workflows/` | Clean-machine checks: Station 0 (Docker, lockfile), Station 2 + P1–P2, Station 3 and Station 4 (Linux, on push), the tool (Linux and macOS, on push), Station 1a (manual) |
 | `EXPERIMENTS.md` | Every run: intended vs actual vs deviation |
 
 ## Credit and license

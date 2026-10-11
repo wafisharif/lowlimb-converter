@@ -30,7 +30,7 @@ LEVELS = ("kinematics", "paths", "forces")
 REFERENCE_RESULTS = {
     "kinematics": "gait models: worst body 0.22 mm, 0.0000 deg",
     "paths": "gait models: mean moment-arm RMS 0.33-0.91 mm, worst pair 3.4-4.7 mm; mean length RMS 0.46-0.59 mm",
-    "forces": "gait models: mean RMS 1.2-2.8% Fmax passive, 2.9-3.5% at full activation",
+    "forces": "gait models: mean RMS 1.2-2.9% Fmax passive, 3.0-3.5% at full activation",
 }
 
 

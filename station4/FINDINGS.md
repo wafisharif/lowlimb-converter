@@ -1,0 +1,115 @@
+# Station 4: muscle forces
+
+**Result: both gait models pass F0, F1 and F2 (with the dated F0 amendment, below). Muscle forces are now 3–5×
+closer to OpenSim's than MyoConverter's at full activation and 5–11× closer when passive, and no muscle is worse.**
+Gates and method: `station4/GATES.md` (posted to the plan doc before any Station 4 code existed). Per-run results:
+`station4/<model>/<run>.json` and `<run>_f.json`.
+
+Each muscle was held still in the Station 2 poses (1410 / 1943) at activation 0, 0.25, 0.5 and 1, and its static force
+compared with OpenSim's equilibrium tendon force. Errors are RMS over the poses, as % of the muscle's max isometric
+force (Fmax).
+
+| Model | Converter | a = 1: mean / worst (% Fmax) | a = 0: mean / worst | Muscles within 5% (a = 1) | F1 / F2 |
+| --- | --- | --- | --- | --- | --- |
+| gait10dof18musc | MyoConverter (Station 0, MuJoCo 2.3.7) | 10.1 / 19.9 | 13.2 / 28.2 | 5 / 18 | — |
+| | run1: after Station 3 | 9.6 / 18.6 | 13.4 / 33.6 | 4 / 18 | fail / fail |
+| | run3: after changes 4.1–4.2 | 2.9 / 4.1 | 1.2 / 3.1 | 18 / 18 | pass / pass (16 better, 2 same) |
+| | **run4: after change 4.3** | **3.0 / 4.1** | **1.2 / 3.0** | **18 / 18** | **pass / pass** (16 better, 2 same) |
+| gait2354 | MyoConverter (Station 0, MuJoCo 2.3.7) | 16.1 / 120.9 | 15.7 / 102.3 | 28 / 54 | — |
+| | run1: after Station 3 | 15.4 / 117.2 | 16.3 / 109.9 | 29 / 54 | F0 fail (as gated); with the amendment fail / fail |
+| | run3: after changes 4.1–4.2 | 3.5 / 19.3 | 2.8 / 22.2 | 46 / 54 | pass / pass (52 / 46 better, rest same) |
+| | **run4: after change 4.3** | **3.5 / 19.3** | **2.9 / 22.2** | **46 / 54** | **pass / pass** (51 / 47 better, rest same) |
+
+"Same" means within 0.5% of Fmax of MyoConverter. Activations 0.25 and 0.5 are in the result files (mean 1.6–2.2%).
+run4 is the current converter.
+
+## What was wrong
+
+MyoConverter's Step 3 fits four parameters of each MuJoCo muscle (lmin, lmax, fpmax and a peak-force scale) with a
+particle swarm, at full activation only, after setting the muscle's operating range from a rough estimate (tendon at
+slack length, no pennation). Three problems:
+
+- **It is fragile.** Station 2's geometry changes moved some muscle lengths by tenths of a millimetre, and gluteus
+  maximus's passive force error went from 2% to 34% of Fmax (gait10, run1). Left and right copies of the same muscle
+  end up with different parameters (e.g. vasti_l 4.2% vs vasti_r 14.5% training error).
+- **It never looks at passive or sub-maximal force,** and the operating range it sets is never fitted. Passive errors
+  average 13–16% of Fmax.
+- **It can't fit muscles whose force shape MuJoCo can't follow:** quadratus femoris, gemelli and the internal obliques
+  in gait2354 are off by 59–121% of Fmax (RMS).
+
+## The changes
+
+- **4.1 Deterministic refit** (`optimization/utils/force_refit.py`, called at the end of Step 3 in
+  `conversion_steps/O2MStep3.py`). After the particle swarm, every muscle's static-force parameters (operating range,
+  lmin, lmax, fpmax, peak force) are refitted with least squares to OpenSim's equilibrium force at activations 0,
+  0.25, 0.5 and 1, on 400 training poses of the coordinates that change the muscle's length (seed 2, not the Station
+  2–4 poses), from four starting points (Step 3's result and three fixed ones; see 4.3). Step 3's result is scored on
+  the same objective and kept if better
+  (it never was: the refit won for all 18 + 54 muscles). The MuJoCo force formula used for fitting is a vectorised copy of
+  MuJoCo's own (`mju_muscleGain`/`mju_muscleBias`), checked equal to 3e-16 of Fmax. Adds 11–13 s (gait10dof18musc) and 70–83 s (gait2354) to a conversion (2 cores).
+- **4.2 Train only on valid equilibria.** Training samples where OpenSim has no equilibrium (the fiber clamped at its
+  minimum length while the tendon pulls, see the amendment) are left out, as in the check itself. Effect ≤ 0.03% Fmax.
+- **4.3 Results that don't depend on the particle swarm, and the same for left and right** (`force_refit.py`).
+  Converting gait10dof18musc with the new `lowlimb-convert` command (MyoConverter's validation plots off) gave
+  different muscle parameters from the station runs (plots on), with the same static errors (within 0.0005% of Fmax).
+  The cause: Step 3's particle swarm is unseeded, so its result can change from run to run (it did between two
+  tool runs, and between the tool and the station runs, although repeated station runs had matched), and the
+  refit's first starting point was that result; static force leaves some parameters free (below), so
+  different starts end in different, equally good, parameter sets. The same thing made left and right copies of a
+  muscle differ. The refit now starts only from fixed points, and a weak penalty (a parameter 1 unit from the
+  estimate costs as much as 1% of Fmax of RMS error) pulls it towards a rigid-tendon estimate: normalised length =
+  (tendon length − tendon slack length) / (optimal fiber length × cos pennation), MuJoCo's default lmin, lmax and
+  fpmax, peak force = Fmax. The weight was chosen on both models (no hold-out) from 0, 0.003, 0.01 and 0.03, as the
+  value that made every limb muscle's left and right copies identical without moving any mean error by more than
+  0.06% of Fmax (0.03 failed F1 on gait10dof18musc). Effect: means within 0.06% of Fmax of run3 (largest per-muscle
+  change: internal obliques, −2.6% at a = 1 and +1.1% at a = 0); left/right pairs with different parameters 4 → 0 of 9
+  (gait10dof18musc) and 15 → 3 of 27 (gait2354; see below).
+
+The work container was lost on 2026-10-11 before Station 4 was committed; runs 1–3 (and the amended run1) were redone
+from scratch in a new container from the same code and reproduced every number in this file and in the logs. Since
+change 4.3 the result no longer depends on the particle swarm: a tool conversion whose Step 3 result differed from
+run4's (e.g. hamstrings_r training error 10.61% vs 8.22% of Fmax) gave a cvt3 identical to run4's, apart from a
+`content_type` attribute MuJoCo's XML writer adds to mesh assets in one of the two.
+
+## Gate amendment
+
+run1 failed F0 on gait2354 for a reason outside both converters: at some extreme poses (1.3% for soleus_l at full
+activation) a muscle is shorter than its tendon slack length plus its minimum fiber length, OpenSim clamps the fiber,
+and it reports a tendon force that its fiber doesn't produce, so there is no static OpenSim force to compare with. A
+dated amendment (in `GATES.md`, the original text unchanged, posted to the plan doc) leaves those samples out of both
+columns. Its first wording also dropped clamped samples of slack muscles, where both forces are zero and valid
+(13.9% of gait10's samples); that was corrected the same day, before the amendment was used to gate anything.
+Final effect: 0 samples left out in gait10dof18musc, 288 of 419,688 (0.07%) in gait2354.
+
+## What is still off
+
+- **Muscles with very short fibers:** quadratus femoris (19–22% of Fmax at a = 0 and 1), gemelli (11–13%) and the
+  internal obliques (12–13%) in gait2354. Their OpenSim passive force rises far more steeply than MuJoCo's passive curve
+  (quadratic, then linear) can, so no parameter choice fits it. They were at 59–121% before.
+- **Rigid tendons:** MuJoCo force is linear in activation and OpenSim's isn't, so errors at a = 1 (3.0–3.5% mean) are
+  larger than at a = 0.25–0.5 (1.6–2.2%). An elastic-tendon muscle would need a custom MuJoCo plugin (Station 0).
+- **Static only:** force–velocity behaviour is not checked here; it comes in Station 5.
+- **Static force doesn't pin down every parameter.** In the poses a muscle can reach, many parameter sets give the
+  same static force. Before change 4.3, left and right copies of 4 of 9 muscles (gait10dof18musc) and 15 of 27
+  (gait2354) ended up with different parameters although their static errors agreed: e.g. glut_max1's optimal length
+  L0 (MuJoCo: lengthrange width / range width) was 0.86 m on the right and 0.24 m on the left. Change 4.3 resolves the
+  free directions towards a rigid-tendon estimate; the 3 pairs that still differ (erector spinae, internal and
+  external obliques) are trunk muscles whose training data really differ: both copies are moved by the same lumbar
+  coordinates, and the same random lumbar values bend the trunk towards one copy and away from the other. L0 matters
+  beyond static force: it also scales MuJoCo's force–velocity curve. L0 relative to OpenSim's optimal fiber length ×
+  cos(pennation) is now 1.12–1.73 (gait10dof18musc, median 1.24) and 1.41–2.35 (gait2354, median 1.66); before 4.3
+  1.06–6.10; MyoConverter 0.44–2.53. A ratio above 1 is expected with an elastic tendon (part of a length change goes
+  into the tendon), but these values aren't validated: Station 5 must check force–velocity behaviour.
+- Station 3's open item (hip-flexor lengths 0.3–0.5 mm worse than MyoConverter) doesn't show up in force: iliopsoas,
+  iliacus and psoas are within 3.1% of Fmax passive and 4% active.
+
+## The check itself was checked
+
+- **F0 on every run:** all OpenSim forces finite; equilibrium residual within 1e-6 Fmax on ≥ 99% of the samples that
+  have an equilibrium.
+- **Independent cross-check** (`station4/tests/test_forces_harness.py`): the harness's MuJoCo force equals MuJoCo's own
+  muscle functions at the actuator length exactly (difference 0), and the converter's vectorised copy agrees to
+  3e-16 Fmax. OpenSim's held activation (0.01 when asked for 0) is what MuJoCo gets.
+- **Mutations:** raising one muscle's peak force 10% changes only that muscle's errors (its signed error at a = 1
+  rises by 4.8% of Fmax); renaming a muscle fails F0.
+- Stations 2 and 3 are unaffected (the refit only touches force parameters).
