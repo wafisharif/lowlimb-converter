@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lowlimb-converter"
+version = "0.1.0.dev0"
+description = "OpenSim to MuJoCo conversion for lower-limb gait models, with validation reports (a fork of MyoConverter)"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+requires-python = ">=3.11,<3.14"   # OpenSim 4.6 has wheels for CPython 3.11-3.13
+authors = [{ name = "Wafi Sharif" }]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering",
+]
+# Same top-level requirements as env/requirements.in; exact, tested versions are in env/requirements.lock.
+dependencies = [
+    "opensim==4.6",
+    "mujoco==3.15.0",
+    "numpy>=2.1",
+    "scipy",
+    "matplotlib",
+    "lxml",
+    "loguru",
+    "fpdf2",
+    "trimesh",
+    "networkx",
+    "scikit-learn",
+    "seaborn",
+    "pyvista",
+]
+
+[project.urls]
+Repository = "https://github.com/wafisharif/lowlimb-converter"
+Upstream = "https://github.com/MyoHub/myoconverter"
+
+[project.scripts]
+lowlimb-convert = "lowlimb_converter.cli:main"
+
+[tool.setuptools.packages.find]
+where = [".", "src"]
+include = ["lowlimb_converter*", "myoconverter*"]
+
+[tool.setuptools.package-data]
+myoconverter = ["xml/template.xml"]

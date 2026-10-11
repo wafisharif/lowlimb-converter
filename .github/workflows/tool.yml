@@ -1,0 +1,66 @@
+name: tool
+
+# The installable tool on clean machines: install the package (exact versions from the lockfile), then run
+# tests/test_tool.py, which converts gait10dof18musc with the `lowlimb-convert` command and validates it.
+# Linux runs the full conversion with --validate; macOS (Apple Silicon) runs the quick part, to check that the
+# package installs and converts natively there.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "lowlimb_converter/**"
+      - "env/**"
+      - "pyproject.toml"
+      - "tests/**"
+      - ".github/workflows/tool.yml"
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            extra: --full
+          - os: macos-15
+            extra: ""
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: System libraries for VTK (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libgl1 libxrender1 libxext6
+      - name: Install the package with the locked dependencies
+        run: |
+          python -m pip install --require-hashes -r env/requirements.lock
+          python -m pip install --no-deps .
+          lowlimb-convert --version
+      - name: Clone upstream MyoConverter at the pinned commit (gait models)
+        run: |
+          git clone --quiet https://github.com/MyoHub/myoconverter.git upstream
+          git -C upstream checkout --quiet cadf38059367a51239e6dc28c9fbe8b8fbd5149f
+      - name: Tool tests (run outside the repo folder, so the installed package is what gets imported)
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/tool_run" && cp tests/test_tool.py "$RUNNER_TEMP/tool_run/"
+          cd "$RUNNER_TEMP/tool_run" && python test_tool.py "$GITHUB_WORKSPACE/upstream" scratch ${{ matrix.extra }}
+      - name: Collect the validation reports
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p tool_reports
+          cp "$RUNNER_TEMP"/tool_run/scratch/report_step1/report.md tool_reports/report_step1.md 2>/dev/null || true
+          cp "$RUNNER_TEMP"/tool_run/scratch/out_full/validation/report.* tool_reports/ 2>/dev/null || true
+      - name: Upload the validation reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tool-${{ matrix.os }}
+          path: tool_reports/
+          if-no-files-found: warn

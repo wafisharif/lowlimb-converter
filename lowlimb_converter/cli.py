@@ -1,0 +1,124 @@
+"""lowlimb-convert: convert OpenSim gait models to MuJoCo and report how closely the result matches.
+
+  lowlimb-convert check    MODEL.osim [--geometry DIR] [--md FILE] [--json FILE]
+  lowlimb-convert convert  MODEL.osim OUT_DIR [--geometry DIR] [--steps 1 2 3] [--validate] [...]
+  lowlimb-convert validate MODEL.osim CONVERTED.xml OUT_DIR [--levels kinematics paths forces]
+
+Exit codes: 0 success; 1 the model can't be converted / a check failed; 2 bad input.
+"""
+import argparse
+import os
+import sys
+
+from lowlimb_converter import __version__
+
+
+def _quiet_logging(verbose):
+    """Unless --verbose: warnings and errors only from the pipeline (loguru) and OpenSim; the pipeline still writes its
+    full log to <out_dir>/<model>_conversion.log."""
+    if verbose:
+        return
+    import warnings
+    warnings.filterwarnings("ignore", message="The default value of `algorithm`")   # PyVista, in mesh conversion
+    try:
+        from loguru import logger
+        logger.remove()
+        logger.add(sys.stderr, level="WARNING")
+    except ImportError:
+        pass
+    try:
+        import opensim
+        opensim.Logger.setLevelString("warn")
+    except (ImportError, AttributeError):
+        pass
+
+
+def _cmd_check(a):
+    from lowlimb_converter import support
+    argv = [a.osim] + (["--geometry", a.geometry] if a.geometry else []) + \
+        (["--md", a.md] if a.md else []) + (["--json", a.json] if a.json else [])
+    return support.main(argv)
+
+
+def _cmd_convert(a):
+    from lowlimb_converter import convert as cv
+    try:
+        out = cv.convert(a.osim, a.out_dir, geometry=a.geometry, steps=a.steps, speedy=a.speedy,
+                         myoconverter_validation=a.myoconverter_report, pdf=a.myoconverter_report,
+                         add_ground_geom=not a.no_ground)
+    except cv.ConversionError as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 1
+    except (ValueError, FileNotFoundError) as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 2
+    print(f"converted model: {out}")
+    if not a.validate:
+        return 0
+    from lowlimb_converter import validate as va
+    levels = ("kinematics",) if sorted(set(a.steps)) == [1] else va.LEVELS   # no muscles fitted after step 1 alone
+    report_dir = os.path.join(a.out_dir, "validation")
+    r = va.validate(a.osim, out, report_dir, levels=levels)
+    print(f"validation report: {os.path.join(report_dir, 'report.md')}")
+    return 0 if r["ok"] else 1
+
+
+def _cmd_validate(a):
+    from lowlimb_converter import validate as va
+    try:
+        r = va.validate(a.osim, a.xml, a.out_dir, levels=a.levels)
+    except (FileNotFoundError, ValueError) as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 2
+    print(f"validation report: {os.path.join(a.out_dir, 'report.md')}")
+    return 0 if r["ok"] else 1
+
+
+def build_parser():
+    ap = argparse.ArgumentParser(prog="lowlimb-convert", description=__doc__.split("\n\n")[0])
+    ap.add_argument("--version", action="version", version=f"lowlimb-converter {__version__}")
+    ap.add_argument("-v", "--verbose", action="store_true", help="show the pipeline's and OpenSim's full log")
+    sub = ap.add_subparsers(dest="command", required=True)
+
+    c = sub.add_parser("check", help="list every element of an OpenSim model and whether it converts (fast, "
+                                     "no conversion)")
+    c.add_argument("osim")
+    c.add_argument("--geometry", help="mesh folder; checks every mesh file exists")
+    c.add_argument("--md", help="write the report as Markdown")
+    c.add_argument("--json", help="write the report as JSON")
+    c.set_defaults(func=_cmd_check)
+
+    v = sub.add_parser("convert", help="convert an OpenSim model to MuJoCo")
+    v.add_argument("osim")
+    v.add_argument("out_dir", help="new or empty folder for the converted model")
+    v.add_argument("--geometry", help="mesh folder (default: the Geometry folder next to the model)")
+    v.add_argument("--steps", type=int, nargs="+", default=[1, 2, 3], choices=[1, 2, 3],
+                   help="1 = XML conversion only (seconds), 1 2 3 = also fit muscle paths and forces (minutes; "
+                        "default)")
+    v.add_argument("--validate", action="store_true",
+                   help="then write a validation report into OUT_DIR/validation (adds minutes)")
+    v.add_argument("--speedy", action="store_true", help="MyoConverter's faster, less thorough optimisation")
+    v.add_argument("--myoconverter-report", action="store_true",
+                   help="also run MyoConverter's own validation plots and PDF (slow)")
+    v.add_argument("--no-ground", action="store_true", help="don't add a ground plane geom")
+    v.set_defaults(func=_cmd_convert)
+
+    r = sub.add_parser("validate", help="compare a converted MuJoCo model with its OpenSim original")
+    r.add_argument("osim")
+    r.add_argument("xml", help="the converted MuJoCo model (the _cvt3.xml for paths and forces)")
+    r.add_argument("out_dir", help="folder for report.md, report.json and the detailed results")
+    r.add_argument("--levels", nargs="+", default=["kinematics", "paths", "forces"],
+                   choices=["kinematics", "paths", "forces"])
+    r.set_defaults(func=_cmd_validate)
+    return ap
+
+
+def main(argv=None):
+    a = build_parser().parse_args(argv)
+    if a.command != "check":
+        _quiet_logging(a.verbose)
+    return a.func(a)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

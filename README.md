@@ -14,6 +14,39 @@ converted model. It's a specialised fork of [MyoConverter](https://github.com/My
 > log: [`EXPERIMENTS.md`](EXPERIMENTS.md) · gates: [`baseline/GATES.md`](baseline/GATES.md), [`station1/GATES.md`](station1/GATES.md),
 > [`station2/GATES.md`](station2/GATES.md), [`station3/GATES.md`](station3/GATES.md)
 
+## Quick start
+
+Python 3.11–3.13 (tested on 3.12, which the lockfile is for). OpenSim publishes wheels for Linux x86-64, macOS 15 or
+newer and Windows; only Linux has been tested end to end so far (CI now also runs the quick test on macOS).
+
+```bash
+git clone https://github.com/wafisharif/lowlimb-converter.git && cd lowlimb-converter
+python3.12 -m venv .venv && source .venv/bin/activate
+pip install --require-hashes -r env/requirements.lock   # the exact, tested versions
+pip install --no-deps .                                   # adds the lowlimb-convert command
+```
+
+Then, for an OpenSim model with its `Geometry` folder next to it:
+
+```bash
+lowlimb-convert check    model.osim                         # what converts, and how (seconds)
+lowlimb-convert convert  model.osim out/ --validate         # convert, then compare with OpenSim (minutes)
+lowlimb-convert validate model.osim out/model_cvt3.xml report/   # the comparison alone, for any converted model
+```
+
+`convert` refuses a model it can't handle (and says why) before doing anything, and refuses an output folder that
+isn't empty: MyoConverter's pipeline would otherwise silently reuse old results found there. The converted model is
+`out/<model>_cvt3.xml`. `--steps 1` stops after the XML conversion (seconds; muscles not yet fitted).
+
+The validation report (`report.md`, with `report.json` and detailed results) compares the MuJoCo model with OpenSim
+in about 1000–2000 poses: every body's position and orientation, every muscle's length and moment arms, and every
+muscle's static force at four activation levels. These are the same checks used to develop the converter
+(Stations 2–4 below). It does not yet cover walking (replayed gait, joint moments), or how muscle force changes with
+speed.
+
+The gait models in the examples come with MyoConverter (`models/osim/` in its repo). Python API:
+`lowlimb_converter.convert.convert(...)` and `lowlimb_converter.validate.validate(...)`.
+
 ## What this will be
 
 - Supports a short list of standard gait models (gait10dof18musc as a test bed, gait2354, Rajagopal 2016),
@@ -119,7 +152,8 @@ reached end of life. Upstream's `conda_env.yml`, which holds the actual dependen
 | Path | What |
 | --- | --- |
 | `src/myoconverter/` | Vendored MyoConverter @ cadf380 with our port fixes (each modified file says what changed; see `VENDORED.md`) |
-| `lowlimb_converter/` | Our own code: `support.py`, the element-support report (Station 1b) |
+| `lowlimb_converter/` | Our own code: the `lowlimb-convert` command (`cli.py`), conversion wrapper (`convert.py`), validation report (`validate.py`), element-support report (`support.py`, Station 1b) and the checks behind Stations 2–4 (`checks/`) |
+| `tests/` | Tests of the installable tool |
 | `env/` | Modern-stack requirements and the universal hashed lockfile |
 | `station1/` | Station 1a/1b: gates, run script, results per model, tests, findings |
 | `station1/support/` | Support reports for four models, S3 results, model provenance |
@@ -129,7 +163,7 @@ reached end of life. Upstream's `conda_env.yml`, which holds the actual dependen
 | `baseline/upstream_shipped/` | Metrics extracted from the outputs MyoConverter ships, for the reproducibility check |
 | `station0/elastic_tendon/` | Whether MuJoCo supports elastic tendons: test and findings |
 | `docker/` | Baseline image definitions (Station 0) |
-| `.github/workflows/` | Clean-machine checks: Station 0 (Docker, lockfile), Station 2 + P1–P2 and Station 3 (Linux, on push), Station 1a (manual) |
+| `.github/workflows/` | Clean-machine checks: Station 0 (Docker, lockfile), Station 2 + P1–P2 and Station 3 (Linux, on push), the tool (Linux and macOS, on push), Station 1a (manual) |
 | `EXPERIMENTS.md` | Every run: intended vs actual vs deviation |
 
 ## Credit and license
