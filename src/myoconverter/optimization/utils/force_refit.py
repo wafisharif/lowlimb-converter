@@ -1,4 +1,5 @@
 # Added by lowlimb-converter (2026-10-10); not part of MyoConverter. Apache License 2.0.
+# Change 4.2 (same day): training samples without an OpenSim equilibrium are left out, as in Station 4's check.
 """ Deterministic refit of MuJoCo muscle force parameters to OpenSim's static muscle forces (Station 4, change 4.1).
 
 MyoConverter's Step 3 fits four parameters of each MuJoCo muscle (lmin, lmax, fpmax, force scale) to OpenSim's force at
@@ -9,7 +10,8 @@ sub-maximal and passive force.
 This module refits, per muscle, the MuJoCo parameters that shape static force: the operating range (how tendon length
 maps to MuJoCo's normalised length), lmin, lmax, fpmax and the peak force. The target is OpenSim's equilibrium tendon
 force at activations 0, 0.25, 0.5 and 1 on training poses drawn here (seed 2; the coordinates that change the
-muscle's length sampled uniformly over their ranges, everything else at its default). It uses scipy's least squares
+muscle's length sampled uniformly over their ranges, everything else at its default), leaving out samples where
+OpenSim has no equilibrium (fiber clamped at its minimum length while the tendon pulls). It uses scipy's least squares
 from several fixed starting points, so it is deterministic. Step 3's own result is one of the candidates and is
 kept if it scores better, so the refit is never worse on the training poses.
 """
@@ -134,6 +136,7 @@ def _opensim_samples(osim_model, muscle_name, n_train, seed):
   poses = [dict(defaults, **dict(zip(relevant, r))) for r in rng.uniform(lo, hi, size=(n_train, len(relevant)))]
   force = np.full((len(ACTIVATIONS), len(poses)), np.nan)
   held = np.full((len(ACTIVATIONS), len(poses)), np.nan)
+  fmax = muscle.getMaxIsometricForce()
   for p, pose in enumerate(poses):
     _set_coordinates(osim_model, state, pose)
     for k, a in enumerate(ACTIVATIONS):
@@ -143,6 +146,9 @@ def _opensim_samples(osim_model, muscle_name, n_train, seed):
         osim_model.equilibrateMuscles(state)
         osim_model.realizeDynamics(state)
       except Exception:
+        continue
+      # change 4.2: no OpenSim equilibrium (fiber clamped at its minimum length while the tendon pulls) -> no target
+      if abs(muscle.getTendonForce(state) - muscle.getFiberForceAlongTendon(state)) > 1e-6 * fmax:
         continue
       force[k, p] = muscle.getTendonForce(state)
       held[k, p] = muscle.getActivation(state)

@@ -79,7 +79,7 @@ def main(argv=None):
     print(f"{os.path.basename(a.osim)}: {len(r['labels'])} poses, {len(r['muscles'])} muscles "
           f"({', '.join(sorted(set(str(t) for t in r['muscle_types'])))}), activations {[float(x) for x in r['activations']]}, "
           f"finite forces {100 * finite:.2f}%, equilibrium failures {int(r['n_failures'])}, "
-          f"clamped fibers {100 * r['clamped'].mean():.2f}% of samples")
+          f"fibers at their minimum length {100 * r['clamped'].mean():.2f}% of samples (slack or clamped)")
     return 0
 
 
