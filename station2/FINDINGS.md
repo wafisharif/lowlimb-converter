@@ -1,8 +1,8 @@
 # Station 2: kinematic check
 
-**Result: both gait models pass K0–K2. Rajagopal2016 passes K0 and K1 but fails K2 at the patella (0.64° worst,
-gate 0.5°), so it stays at Station 2.** Gates and method: `station2/GATES.md` (posted to the plan doc before any
-run). Per-run results: `station2/<model>/<run>.json`.
+**Result: all three models pass K0–K2.** Rajagopal2016 failed K2 at the patella (0.64°, gate 0.5°) until change 2.4
+(2026-10-11) coupled the patella to the knee through two chained quartics; it is now 0.036° off at worst. Gates and
+method: `station2/GATES.md` (posted to the plan doc before any run). Per-run results: `station2/<model>/<run>.json`.
 
 Each model was posed 1000 times at random plus a 41-point sweep of every free coordinate (1410 / 1943 / 2189 poses),
 and every OpenSim body was compared (12 / 12 / 22 bodies).
@@ -17,15 +17,16 @@ and every OpenSim body was compared (12 / 12 / 22 bodies).
 | | run4: after changes 2.1–2.3 | **0.218** | **0.105** | 0.000 | pass | pass | pass |
 | Rajagopal2016 | run1: Station 1a port (unchanged) | 15.55 | 4.07 | 0.893 | pass | **fail** | **fail** |
 | | run4: after changes 2.1–2.3 | **0.152** | **0.034** | 0.639 | pass | pass | **fail** |
+| | run5: after change 2.4 | 0.152 | 0.034 | **0.036** | pass | pass | **pass** |
 
 MyoConverter's own output and our port give the same numbers (to 2e-12 mm), as Station 1a's equivalence check
 predicted. (run1 used the cvt1 file and the gated run the cvt3 file; they differ by 1.4e-4 mm at most, because
 MuJoCo re-saves cvt3 with normalised 6-digit axes.)
 
-## What was wrong, and the three changes
+## What was wrong, and the four changes
 
 Each change was made alone and all three models were rerun after it (`run2_frames`, `run3_precision`,
-`run4_splinefit`).
+`run4_splinefit`, `run5_chained`).
 
 | Change | What it fixes | gait10 / gait2354 worst | Rajagopal2016 worst |
 | --- | --- | --- | --- |
@@ -33,6 +34,7 @@ Each change was made alone and all three models were rerun after it (`run2_frame
 | 2.1 frames | Joints with an offset child frame rotated about the wrong point | no change (files byte-identical) | **0.204 mm**, 0.893° |
 | 2.2 precision | Every number was written with 4 significant figures | 0.879 mm / 0.879 mm, **0.000°** | 0.177 mm, 0.894° |
 | 2.3 spline fit | Quartic fit to the knee/patella splines was fitted in the wrong place | **0.218 mm** / **0.218 mm** | 0.152 mm, **0.639°** |
+| 2.4 chained coupling | No single quartic follows the patella's rotation spline | no change (files byte-identical) | 0.152 mm, **0.036°** |
 
 - **2.1 Joint frames** (`xml/bodies/Body.py`, `xml/joints/Joint.py`). OpenSim rotates a joint about its child frame;
   MuJoCo rotates about the joint's `pos`, which the converter never set, so it rotated about the body origin.
@@ -52,17 +54,21 @@ Each change was made alone and all three models were rerun after it (`run2_frame
   new fit targets OpenSim's own spline (evaluated with OpenSim) over the coordinate's range and minimises the
   largest error there; upstream's fit is kept as a candidate, so it is never worse on that range by that measure.
   Joint ranges now cover every value the fit takes, and are never narrower than upstream's.
-
-## What still fails: the Rajagopal patella
-
-- The patella's rotation is a spline of knee angle that is flat up to about 10° and then turns sharply (by 20° it is falling steadily). **No quartic can follow it within
-  0.5°: the best possible (minimax) quartic is off by 0.639° somewhere in the knee's range.** So K2 can't be
-  passed by fitting better; it needs a different structure.
-- Candidate fix (not done, needs a decision): chain two quartics through an extra massless helper joint, giving an
-  effectively higher-degree coupling. It adds a body and a joint to the converted model.
-- Trade-off of change 2.3 to know about: minimising the worst error raised the patella's average error
-  (orientation RMS 0.50° → 0.56°, position RMS 0.07 → 0.11 mm) while cutting its worst case (0.89° → 0.64°).
-  Station 3 (muscle paths over the patella) will show whether that matters.
+- **2.4 Chained couplings** (`xml/joints/CustomJoint.py`, `xml/utils.py` `fit_spline_chained`). The patella's
+  rotation is a spline of knee angle that is flat up to about 10° and then turns sharply. MuJoCo couples a joint to
+  another with a quartic, and the best possible quartic is 0.639° off. But a coupling can go through a helper
+  joint: helper = p1(knee), patella = p2(helper), two quartics in sequence, which can follow the bend. Both quartics
+  are fitted together to OpenSim's spline over the knee's range (largest error minimised, deterministic). The helper
+  joint sits on its own near-massless body under the world body (the template's minimum body mass, 0.001 kg, like
+  MyoConverter's virtual path-point bodies but attached to nothing that moves, so it adds no mass to the skeleton).
+  The converter only chains a coupling where one quartic is off by more than half of the Station 2 limits (0.25°,
+  0.5 mm) and the chain at least halves the error: in these three models that is the two patella rotations only
+  (gait-model knees: 0.2 mm, left as single quartics; the gait models' converted files are byte-identical).
+  - Static result: patella orientation worst 0.639° → 0.036°, RMS 0.56° → 0.031°; every other body unchanged.
+  - In motion (`station2/tests/test_chained_coupling.py`: MuJoCo simulation, gravity off, knee driven through
+    11–81° for 4 s): the patella follows OpenSim's spline of the simulated knee angle within 0.076° (single quartic:
+    0.697°). The helper adds no instability (equality residuals of the same size as before, simulation finite).
+  - The patella's position was not the problem (0.15 mm, within its quartic fits) and is unchanged.
 
 ## The check itself was checked
 

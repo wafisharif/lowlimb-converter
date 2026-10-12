@@ -1,8 +1,7 @@
 name: station2-kinematics
 
 # Station 2: kinematic check (station2/GATES.md) on a clean Linux machine, plus its self-tests.
-# Gait models must pass K0-K2. Rajagopal2016 runs too but doesn't fail the job: it is known to fail K2 at the
-# patella (station2/FINDINGS.md); its result is in the uploaded artifacts.
+# All three models must pass K0-K2 (Rajagopal2016 since change 2.4, the chained patella coupling).
 # Also checks that the full pipeline still runs and passes the structural gates (Station 1a P1-P2) on gait10dof18musc.
 on:
   workflow_dispatch:
@@ -41,11 +40,10 @@ jobs:
         run: |
           python station2/tests/test_harness.py upstream/models/osim/Gait10dof18musc/gait10dof18musc.osim ../s2_scratch/harness ../opensim-models/Models/Rajagopal/Rajagopal2016.osim
           python station2/tests/test_frame_offsets.py src upstream/models/osim/Gait10dof18musc/gait10dof18musc.osim upstream/models/osim/Gait10dof18musc/Geometry ../s2_scratch/offsets
-      - name: Station 2 gates, gait models
-        run: MODELS="gait10dof18musc gait2354" bash station2/run_station2.sh ci upstream - ../s2_work python
-      - name: Station 2, Rajagopal2016 (reported, known K2 failure)
-        continue-on-error: true
-        run: MODELS="Rajagopal2016" bash station2/run_station2.sh ci upstream ../opensim-models ../s2_work python
+      - name: Station 2 gates, all three models
+        run: bash station2/run_station2.sh ci upstream ../opensim-models ../s2_work python
+      - name: Chained patella coupling (change 2.4) holds in simulation
+        run: python station2/tests/test_chained_coupling.py src ../opensim-models/Models/Rajagopal/Rajagopal2016.osim ../s2_work/rajagopal_geometry ../s2_scratch/chained
       - name: Full pipeline still runs, structural gates P1-P2 (gait10dof18musc)
         run: STRUCTURAL_ONLY=1 bash station1/run_station1.sh gait10dof18musc upstream ci_station1/gait10dof18musc python
       - name: Upload results

@@ -1,5 +1,7 @@
 # Modified by lowlimb-converter (2026-10-06), from MyoConverter @ cadf380: spline-driven joints are fitted with
 # fit_spline_on_range() over the independent coordinate's range (Station 2, change 2.3; see station2/FINDINGS.md).
+# Modified by lowlimb-converter (2026-10-11): a spline no single quartic follows closely enough is coupled through a
+# helper joint with two quartics in sequence (fit_spline_chained; Station 2, change 2.4).
 """ Contains the `CustomJoint` parser.
 
 @author: Aleksi Ikkala
@@ -15,8 +17,12 @@ from loguru import logger
 from myoconverter.xml.joints.Joint import Joint
 from myoconverter.xml.joints.utils import parse_coordinates, estimate_axis, plot_and_save_figure
 from myoconverter.xml.utils import str2bool, str2vec, val2str, vec2str, filter_keys, fit_spline, is_linear, \
-  fit_spline_on_range
+  fit_spline_on_range, fit_spline_chained
 from myoconverter.xml import config as cfg
+
+# lowlimb-converter (change 2.4): a spline coupling is chained through a helper joint when the best single quartic is
+# off by more than half of Station 2's per-pose limits (1 mm, 0.5 deg), and only if the chain halves the error.
+CHAIN_ABOVE = {"hinge": np.radians(0.25), "slide": 0.0005}
 
 
 def _fit_domain(coordinate_name, x_values):
@@ -186,6 +192,20 @@ class CustomJoint(Joint):
         logger.info(f"{params['name']}: quartic fit to {spline_kind} over [{domain[0]:.6g}, {domain[1]:.6g}], "
                     f"max error {fit_error:.3g}")
 
+        # lowlimb-converter (change 2.4): two chained quartics where one isn't close enough
+        chain = None
+        if fit_error > CHAIN_ABOVE[params["type"]]:
+          p1, p2, helper_range, chain_error = fit_spline_chained(spline_kind, x_values, y_values, domain, fit)
+          if chain_error < 0.5 * fit_error:
+            chain = (p1, p2)
+            fit = lambda v, p1=p1, p2=p2: p2(p1(v))
+            xs = np.linspace(domain[0], domain[1], 2001)
+            joint_range = np.array([min(np.min(y_values), np.min(fit(xs))), max(np.max(y_values), np.max(fit(xs)))])
+            logger.info(f"{params['name']}: chained through helper joint {params['name']}_helper, max error "
+                        f"{chain_error:.3g} (single quartic {fit_error:.3g})")
+          else:
+            logger.info(f"{params['name']}: chained quartics no better (max error {chain_error:.3g}); single kept")
+
         # Get the name of the independent coordinate
         independent_coordinate = coordinate.text
 
@@ -245,9 +265,23 @@ class CustomJoint(Joint):
 
         # Add a joint constraint between this joint and the independent joint, which we assume to be named
         # t["coordinate"]
-        etree.SubElement(cfg.M_EQUALITY, "joint", joint1=params["name"], joint2=independent_coordinate,
-                         polycoef=vec2str(polycoef),
-                         solimp="0.9999 0.9999 0.001 0.5 2", active="true")
+        if chain is None:
+          etree.SubElement(cfg.M_EQUALITY, "joint", joint1=params["name"], joint2=independent_coordinate,
+                           polycoef=vec2str(polycoef),
+                           solimp="0.9999 0.9999 0.001 0.5 2", active="true")
+        else:
+          # lowlimb-converter (change 2.4): helper joint h = p1(independent), this joint = p2(h). The helper sits on
+          # its own near-massless body under the world body (like MovingPathPoint's virtual bodies, but attached to
+          # nothing that moves), so it adds no mass to the skeleton; it carries no geometry that collides
+          helper = f"{params['name']}_helper"
+          helper_body = etree.SubElement(cfg.M_WORLDBODY, "body", name=helper)
+          etree.SubElement(helper_body, "geom", size="0.0005 0.0005 0.0005", rgba="0.0 0.0 1.0 0.0")
+          etree.SubElement(helper_body, "joint", name=helper, type="hinge", axis="0 0 1", limited="false")
+          for joint1, joint2, poly in ((helper, independent_coordinate, chain[0]), (params["name"], helper, chain[1])):
+            coefs = np.zeros(5)
+            coefs[:len(poly.coef)] = poly.coef
+            etree.SubElement(cfg.M_EQUALITY, "joint", joint1=joint1, joint2=joint2, polycoef=vec2str(coefs),
+                             solimp="0.9999 0.9999 0.001 0.5 2", active="true")
 
         # Update motion type to dependent for posterity
         params["_motion_type"] = "dependent"

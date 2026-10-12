@@ -1,6 +1,8 @@
 # Modified by lowlimb-converter (2026-10-06), from MyoConverter @ cadf380: vec2str writes every number at full
 # precision (shortest round-trip repr) instead of 4 significant figures (Station 2, change 2.2); new
 # fit_spline_on_range() fits joint splines where the coordinate actually moves (Station 2, change 2.3).
+# Modified by lowlimb-converter (2026-10-11): new fit_spline_chained() approximates a spline no single quartic can
+# follow by two quartics in sequence, through a helper joint (Station 2, change 2.4).
 """ This module contains a collection of utility functions useful for parsing and converting the OpenSim model.
 
 @author: Aleksi Ikkala
@@ -224,6 +226,81 @@ def fit_spline_on_range(kind, x_values, y_values, x_range, n_samples=2001, itera
     joint_range[0] -= 1e-6
 
   return fit, polycoef, joint_range, float(min(errors))
+
+def _spline_samples(kind, x_values, y_values, x_range, n_samples):
+  import opensim
+  spline = getattr(opensim, kind)()
+  for x, y in zip(x_values, y_values):
+    spline.addPoint(float(x), float(y))
+  xs = np.linspace(float(x_range[0]), float(x_range[1]), n_samples)
+  return xs, np.array([spline.calcValue(opensim.Vector(1, float(x))) for x in xs])
+
+
+def fit_spline_chained(kind, x_values, y_values, x_range, single_fit, n_samples=2001, n_starts=30, seed=0):
+  """ lowlimb-converter (Station 2, change 2.4): approximate an OpenSim spline by two quartics in sequence.
+
+  MuJoCo couples a joint to another with a quartic, but a coupling can go through a helper joint: h = p1(x), then
+  y = p2(h), which can follow shapes no single quartic can (Rajagopal 2016's patella rotation is flat for the first
+  10 degrees of knee flexion and then turns: best single quartic 0.64 deg off, chained 0.04 deg). Both quartics are
+  fitted together to OpenSim's own spline over the independent coordinate's range, reducing the largest error
+  (least squares with Lawson-style reweighting, from the single quartic as one start and `n_starts` seeded random
+  starts, so the result is deterministic). The single quartic is the starting point, so the chain is never worse.
+
+  :param single_fit: the single-quartic fit (numpy Polynomial in x) from fit_spline_on_range
+  :return: p1 (Polynomial in x), p2 (Polynomial in h), helper range [min, max] of h on x_range, largest error
+  """
+  from numpy.polynomial import Chebyshev
+  from scipy.optimize import least_squares
+
+  lo, hi = float(x_range[0]), float(x_range[1])
+  xs, ys = _spline_samples(kind, x_values, y_values, x_range, n_samples)
+  u = (xs - 0.5 * (lo + hi)) / (0.5 * (hi - lo))          # x mapped to [-1, 1]
+
+  def split(theta):
+    return Chebyshev(theta[:5]), Polynomial(theta[5:])   # h = p1(u) (Chebyshev basis), y = p2(h)
+
+  def error(theta):
+    q1, q2 = split(theta)
+    return q2(q1(u)) - ys
+
+  # start 1: h = u, p2 = the single quartic expressed in u
+  identity = np.array([0.0, 1.0, 0.0, 0.0, 0.0])
+  single_in_u = Polynomial(single_fit.coef)(Polynomial([0.5 * (lo + hi), 0.5 * (hi - lo)]))
+  c2 = np.zeros(5)
+  c2[:len(single_in_u.coef)] = single_in_u.coef
+  starts = [np.concatenate([identity, c2])]
+  rng = np.random.default_rng(seed)
+  for _ in range(n_starts):
+    c1 = identity + rng.normal(0.0, 0.3, 5)
+    c1[1] = abs(c1[1]) + 0.2
+    h = Chebyshev(c1)(u)
+    c2 = Polynomial.fit(h, ys, 4).convert().coef
+    starts.append(np.concatenate([c1, np.pad(c2, (0, 5 - len(c2)))]))
+
+  best_err, best = float(np.max(np.abs(error(starts[0])))), starts[0]
+  for theta in starts:
+    w = np.ones(n_samples)
+    for _ in range(15):
+      sol = least_squares(lambda t: np.sqrt(w) * error(t), theta, method="lm", max_nfev=4000)
+      theta = sol.x
+      e = np.abs(error(theta))
+      if e.max() < best_err:
+        best_err, best = float(e.max()), theta.copy()
+      w = w * (e / e.mean() + 1e-3)
+      w /= w.mean()
+
+  q1, q2 = split(best)
+  # p1 in the coordinate's own units: compose the Chebyshev series with u(x)
+  p1 = Polynomial(q1.convert(kind=Polynomial).coef)(Polynomial([-0.5 * (lo + hi) / (0.5 * (hi - lo)),
+                                                                 1.0 / (0.5 * (hi - lo))]))
+  p2 = q2
+  h = p1(xs)
+  check = np.max(np.abs(p2(h) - ys))                       # same function, power basis: must agree
+  if not np.isclose(check, best_err, rtol=1e-6, atol=1e-12):
+    logger.critical(f"chained fit changed in conversion to power basis ({best_err} vs {check})")
+    raise RuntimeError
+  return p1, p2, np.array([np.min(h), np.max(h)]), float(check)
+
 
 def create_transformation_matrix(pos=None, quat=None, rotation_matrix=None, euler=None):
   """ Create a 4x4 transformation matrix.
