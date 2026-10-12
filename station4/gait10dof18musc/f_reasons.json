@@ -1,0 +1,3 @@
+{
+ "iliopsoas_l|a1": "All of the excess is in the 134 poses with hip flexion beyond -90 deg (outside any human range of motion), where OpenSim's conditional path point switches off and its path jumps by 19.5 mm; the converted path keeps the point on there (19-21 mm off) and the force refit leaves those poses out (change 5.4). Over the other 1276 poses ours is 2.29% vs MyoConverter 3.04% of Fmax (all poses 5.78% vs 3.70%). Shown by station4/tests/test_off_path_poses.py (numbers in station4/gait10dof18musc/off_path_split.json); see station5/FINDINGS.md."
+}

@@ -3,7 +3,7 @@ name: station4-forces
 # Station 4: muscle forces (station4/GATES.md) on a clean Linux machine, plus the harness self-test and the
 # gravity / torque-actuator test (changes 1c.1-1c.2). Runs the full pipeline on both gait models and checks gates
 # F0-F2 against the committed MyoConverter column (station4/<model>/baseline_myoconverter.json, computed once in
-# MuJoCo 2.3.7).
+# MuJoCo 2.3.7), with the test-backed reasons in station4/<model>/f_reasons.json, and reruns the test behind them.
 on:
   workflow_dispatch:
   push:
@@ -42,6 +42,12 @@ jobs:
           python station1/tests/test_gravity_actuators.py src $G/gait10dof18musc.osim $G/Geometry ../s1c_scratch
       - name: Station 4 gates, both gait models
         run: bash station4/run_station4.sh ci upstream ../s4_work python
+      - name: Hip flexor misses come only from poses where OpenSim's path jumps (reasons in station4/*/f_reasons.json)
+        run: |
+          python station4/tests/test_off_path_poses.py gait10dof18musc upstream/models/osim/Gait10dof18musc/gait10dof18musc.osim \
+            ../s4_work/ci/gait10dof18musc/forces_reference.npz ../s4_work/ci/gait10dof18musc/gait10dof18musc_cvt3.xml ../s4_scratch/off_path_gait10.json
+          python station4/tests/test_off_path_poses.py gait2354 upstream/models/osim/Gait2354Simbody/gait2354.osim \
+            ../s4_work/ci/gait2354/forces_reference.npz ../s4_work/ci/gait2354/gait2354_cvt3.xml ../s4_scratch/off_path_gait2354.json
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4

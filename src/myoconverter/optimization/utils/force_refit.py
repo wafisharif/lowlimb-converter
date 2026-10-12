@@ -2,6 +2,8 @@
 # Change 4.2 (same day): training samples without an OpenSim equilibrium are left out, as in Station 4's check.
 # Change 4.3 (2026-10-11): no longer started from Step 3's random result, and weakly pulled towards a rigid-tendon
 # estimate, so the result doesn't depend on the particle swarm and left/right copies of a muscle get the same values.
+# Change 5.4 (2026-10-12): training poses where the converted muscle path is more than 5 mm from OpenSim's are left
+# out, because force parameters can't fix a path error and fitting them there distorts the force everywhere else.
 """ Deterministic refit of MuJoCo muscle force parameters to OpenSim's static muscle forces (Station 4, change 4.1).
 
 MyoConverter's Step 3 fits four parameters of each MuJoCo muscle (lmin, lmax, fpmax, force scale) to OpenSim's force at
@@ -25,6 +27,14 @@ Where the data determine a parameter the penalty changes little (mean static err
 unpenalised fit on the gait models); where they don't, it picks the value closest to that estimate. Before 4.3 the
 first starting point was Step 3's result, which comes from an unseeded particle swarm whose result can change from
 run to run, so the refitted values could too.
+
+Change 5.4 (Station 5) leaves out training poses where the converted muscle's length differs from OpenSim's by more
+than PATH_TOL (5 mm): there the converted path itself is wrong, and no force parameters can make up for it, but the
+least squares tried, distorting the force-length curve in every other pose. On the gait models this only happens for
+the hip flexors (iliopsoas, iliacus, psoas) with the hip extended beyond -90 degrees, where OpenSim's conditional path
+point switches off and its path jumps by about 20 mm (Station 5 FINDINGS): iliopsoas's force error over the poses
+with the hip at -90 degrees or more fell from 3.6% to 2.3% of Fmax (a = 1) and from 2.7% to 0.6% (a = 0). If more
+than half of a muscle's poses were off, nothing is left out (its path is the problem, not a few poses).
 """
 import numpy as np
 from loguru import logger
@@ -34,6 +44,7 @@ import mujoco
 
 ACTIVATIONS = (0.0, 0.25, 0.5, 1.0)
 REG_WEIGHT = 0.01   # change 4.3: a parameter 1 unit from the estimate costs as much as 1% of Fmax RMS force error
+PATH_TOL = 0.005    # change 5.4: training poses with the converted path further than this from OpenSim's are left out
 
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -122,7 +133,8 @@ def _solve_qpos(m, driven, values):
 def _opensim_samples(osim_model, muscle_name, n_train, seed):
   """ Training poses for one muscle and OpenSim's equilibrium tendon force at each activation level.
 
-  :return: list of coordinate-value dicts, forces (A x P, NaN where equilibrium failed), held activations (A x P)
+  :return: list of coordinate-value dicts, forces (A x P, NaN where equilibrium failed), held activations (A x P),
+    the coordinates sampled, and OpenSim's muscle-tendon length at each pose (change 5.4)
   """
   import opensim
   from myoconverter.xml.path_points.utils import _set_coordinates
@@ -148,9 +160,11 @@ def _opensim_samples(osim_model, muscle_name, n_train, seed):
   poses = [dict(defaults, **dict(zip(relevant, r))) for r in rng.uniform(lo, hi, size=(n_train, len(relevant)))]
   force = np.full((len(ACTIVATIONS), len(poses)), np.nan)
   held = np.full((len(ACTIVATIONS), len(poses)), np.nan)
+  path_length = np.full(len(poses), np.nan)
   fmax = muscle.getMaxIsometricForce()
   for p, pose in enumerate(poses):
     _set_coordinates(osim_model, state, pose)
+    path_length[p] = muscle.getLength(state)
     for k, a in enumerate(ACTIVATIONS):
       for i in range(muscles.getSize()):
         muscles.get(i).setActivation(state, a)
@@ -165,7 +179,7 @@ def _opensim_samples(osim_model, muscle_name, n_train, seed):
       force[k, p] = muscle.getTendonForce(state)
       held[k, p] = muscle.getActivation(state)
   _set_coordinates(osim_model, state, defaults)
-  return poses, force, held, relevant
+  return poses, force, held, relevant, path_length
 
 
 def refit_muscle(mjc_model, osim_model, muscle_name, n_train=400, seed=2):
@@ -175,7 +189,7 @@ def refit_muscle(mjc_model, osim_model, muscle_name, n_train=400, seed=2):
   """
   aid = mujoco.mj_name2id(mjc_model, mujoco.mjtObj.mjOBJ_ACTUATOR, muscle_name)
   fmax = osim_model.getMuscles().get(muscle_name).getMaxIsometricForce()
-  poses, force, held, relevant = _opensim_samples(osim_model, muscle_name, n_train, seed)
+  poses, force, held, relevant, osim_length = _opensim_samples(osim_model, muscle_name, n_train, seed)
 
   # MuJoCo tendon length at each training pose
   driven = _joint_plan(mjc_model)
@@ -187,6 +201,16 @@ def refit_muscle(mjc_model, osim_model, muscle_name, n_train=400, seed=2):
     length[p] = data.actuator_length[aid]
 
   valid = np.isfinite(force) & np.isfinite(held)
+  # change 5.4: leave out poses where the converted path is off (unless that is most of them)
+  off_path = ~(np.abs(length - osim_length) <= PATH_TOL)
+  if off_path.any() and off_path.mean() <= 0.5:
+    valid &= ~off_path[None, :]
+    worst = 1000 * np.nanmax(np.abs(length - osim_length))
+    logger.info(f"{muscle_name}: {int(off_path.sum())} of {len(poses)} training poses left out, converted path more "
+                f"than {1000 * PATH_TOL:g} mm from OpenSim's (worst {worst:.1f} mm)")
+  elif off_path.any():
+    logger.warning(f"{muscle_name}: converted path more than {1000 * PATH_TOL:g} mm from OpenSim's in "
+                   f"{int(off_path.sum())} of {len(poses)} training poses; all kept")
   act = np.where(valid, held, 0.0)
   target = np.where(valid, force, 0.0) / fmax
   lengths = np.broadcast_to(length, force.shape)
@@ -241,7 +265,8 @@ def refit_muscle(mjc_model, osim_model, muscle_name, n_train=400, seed=2):
   new_rms = float(np.sqrt(np.mean(residual_for(lr, unpack(theta)) ** 2)))   # data only, comparable with Step 3's
 
   report = {"muscle": muscle_name, "coordinates": relevant, "samples": int(valid.sum()),
-            "excluded_samples": int((~valid).sum()), "step3_rms_pct": 100 * old_rms, "refit_rms_pct": 100 * new_rms}
+            "excluded_samples": int((~valid).sum()), "off_path_poses": int(off_path.sum()),
+            "step3_rms_pct": 100 * old_rms, "refit_rms_pct": 100 * new_rms}
   if new_rms < old_rms:
     prm = unpack(theta)
     mjc_model.actuator_lengthrange[aid] = lr

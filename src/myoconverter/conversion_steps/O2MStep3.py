@@ -4,6 +4,7 @@
 # static force parameters are refitted deterministically (optimization/utils/force_refit.py; Station 4, change 4.1).
 # Modified by lowlimb-converter (2026-10-12): cvt3 is saved with the time step the model was loaded with; the force
 # functions set opt.timestep = 0.005 on the shared model, which leaked into the saved file (Station 5, change 5.2).
+# Modified by lowlimb-converter (2026-10-12): the refit log line counts the poses left out by change 5.4.
 """
 Created on Fri Apr  1 13:51:09 2022
 
@@ -359,7 +360,8 @@ class MuscleForceOpt:
             report = refit_muscle(self.mjc_model, self.osim_model, muscle)
             logger.info(f"    {muscle}: training RMS error {report['step3_rms_pct']:.2f}% Fmax (Step 3) -> "
                         f"{report['refit_rms_pct']:.2f}% (refit); kept {report['kept']} "
-                        f"({report['samples']} samples, {report['excluded_samples']} without OpenSim equilibrium)")
+                        f"({report['samples']} samples; {report['excluded_samples']} left out: without OpenSim "
+                        f"equilibrium, or in the {report['off_path_poses']} poses off OpenSim's path, change 5.4)")
 
         # save the updated model
         cvt3_model_path = self.mjc_model_path[0:-8] + 'cvt3.xml'

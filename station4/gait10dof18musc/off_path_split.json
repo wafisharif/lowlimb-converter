@@ -1,0 +1,68 @@
+{
+ "iliopsoas_l": {
+  "opensim_jump_mm": 19.462515322009043,
+  "poses_inside": 1276,
+  "poses_beyond": 134,
+  "path_error_inside_max_mm": 0.4263496017759272,
+  "path_error_inside_median_mm": 0.034297427705942685,
+  "path_within_1mm_inside_frac": 1.0,
+  "a1": {
+   "ours": {
+    "all": 5.783468509925155,
+    "hip_ge_-90": 2.2897131551114396,
+    "hip_lt_-90": 17.379135055455958
+   },
+   "myoconverter": {
+    "all": 3.7027211125572697,
+    "hip_ge_-90": 3.041097486100295,
+    "hip_lt_-90": 7.496519096114093
+   }
+  },
+  "a0": {
+   "ours": {
+    "all": 4.472967882306243,
+    "hip_ge_-90": 0.6512814576939077,
+    "hip_lt_-90": 14.369654745584088
+   },
+   "myoconverter": {
+    "all": 12.626901819444145,
+    "hip_ge_-90": 10.783989020776868,
+    "hip_lt_-90": 23.88042615952527
+   }
+  }
+ },
+ "iliopsoas_r": {
+  "opensim_jump_mm": 19.462515322009043,
+  "poses_inside": 1282,
+  "poses_beyond": 128,
+  "path_error_inside_max_mm": 0.4263842298404541,
+  "path_error_inside_median_mm": 0.03429742770591493,
+  "path_within_1mm_inside_frac": 1.0,
+  "a1": {
+   "ours": {
+    "all": 5.6851189517115435,
+    "hip_ge_-90": 2.391938138713757,
+    "hip_lt_-90": 17.28375782343948
+   },
+   "myoconverter": {
+    "all": 5.942816922194173,
+    "hip_ge_-90": 5.994045217000189,
+    "hip_lt_-90": 5.403005392963192
+   }
+  },
+  "a0": {
+   "ours": {
+    "all": 4.389102433498711,
+    "hip_ge_-90": 0.6072409457179042,
+    "hip_lt_-90": 14.44002244045472
+   },
+   "myoconverter": {
+    "all": 18.39523139779568,
+    "hip_ge_-90": 15.883171270348507,
+    "hip_lt_-90": 34.6529087298552
+   }
+  }
+ },
+ "mujoco_version": "3.15.0",
+ "myoconverter_column": "computed (MuJoCo 2.3.7)"
+}
