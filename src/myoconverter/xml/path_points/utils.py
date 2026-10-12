@@ -1,6 +1,8 @@
 # Modified by lowlimb-converter (2026-10-10), from MyoConverter @ cadf380: adds conditional_path_point_dependencies()
 # (Station 3, change 3.1); moving path points are fitted over their coordinate's range (change 3.2). See
 # station3/FINDINGS.md.
+# Modified by lowlimb-converter (2026-10-12): the conditional path point fit uses a robust loss, so OpenSim's
+# unreproducible on/off jump no longer pulls the fit away from OpenSim's path elsewhere (Station 5, change 5.1).
 """ This module contains a collection of utility functions useful for parsing and converting the OpenSim `PathPointSet`
 
 @author: Aleksi Ikkala
@@ -23,6 +25,7 @@ matplotlib.use("agg")
 pp.ioff()
 
 _OSIM_CACHE = None  # lowlimb-converter: (file, model, state), see _osim_model()
+ROBUST_SCALE = 0.001  # lowlimb-converter (change 5.1): residuals above ~1 mm count less than quadratically (soft L1)
 
 
 def _osim_model():
@@ -102,6 +105,13 @@ def conditional_path_point_dependencies(xml, force_name, upstream=None, n_train=
   uses training poses drawn here (seed 1: 300 random poses of those coordinates plus a sweep of q, everything else at
   its default), not the poses Station 3 evaluates on. Moment-arm samples whose finite difference crosses an on/off
   switch are left out (OpenSim's path jumps there).
+
+  Change 5.1 (Station 5): the fit minimises a robust (soft L1) loss with a 1 mm scale instead of the sum of squares.
+  OpenSim's path jumps where the point switches on or off, and no continuous point can follow that; with squared
+  residuals, the large residuals near the jump pulled the quartic away from OpenSim's path over the whole range (e.g.
+  1.2 mm of length error for iliopsoas in walking, where OpenSim's point is simply fixed). With the robust loss the
+  fit stays close to OpenSim's path wherever it can and concentrates the error near the jump. Candidates are
+  compared on the same robust objective.
 
   Starting point: per axis, the quartic closest to "C while active, the closest point of segment AB while not".
   Candidates compared on the same training objective: the fitted point, upstream's model (`upstream`: a linear or
@@ -203,15 +213,19 @@ def conditional_path_point_dependencies(xml, force_name, upstream=None, n_train=
   _set_coordinates(model, state, defaults)
   target = np.array(target)
   theta0 = np.concatenate([Polynomial.fit(xs, target[:, k], 4, domain=[lo_q, hi_q]).coef for k in range(3)])
-  solution = least_squares(lambda th: residuals(scaled(th)), theta0, method="trf", max_nfev=2000)
+  solution = least_squares(lambda th: residuals(scaled(th)), theta0, method="trf", max_nfev=3000, loss="soft_l1",
+                           f_scale=ROBUST_SCALE)
   fitted = [Polynomial(f.convert().coef) for f in scaled(solution.x)]
+
+  def robust_cost(r):     # scipy's soft_l1: rho(z) = 2 (sqrt(1 + z) - 1), z = (r / f_scale)^2
+    return float(np.sum(2.0 * (np.sqrt(1.0 + (r / ROBUST_SCALE) ** 2) - 1.0)))
 
   fixed = [Polynomial([base[2][k]]) for k in range(3)]
   candidates = [("path fit", fitted), ("fixed at its location (always active)", fixed)]
   if upstream is not None:
     candidates.append(("upstream anchor movement", [Polynomial(upstream[k][1]) for k in ["x", "y", "z"]]))
-  scores = [(float(np.sqrt(np.mean(residuals(c) ** 2))), label, c) for label, c in candidates]
-  score, label, chosen = min(scores, key=lambda x: x[0])
+  scores = [(robust_cost(residuals(c)), float(np.sqrt(np.mean(residuals(c) ** 2))), label, c) for label, c in candidates]
+  _, _, label, chosen = min(scores, key=lambda x: x[0])
 
   dependencies = {}
   for k, axis in enumerate(["x", "y", "z"]):
@@ -220,7 +234,8 @@ def conditional_path_point_dependencies(xml, force_name, upstream=None, n_train=
     polycoef[:len(coef)] = coef
     values = chosen[k](xs)
     dependencies[axis] = (cname, polycoef, np.array([values.min(), values.max()]))
-  report = {"chosen": label, "training_rms_mm": {lab: 1000 * sc for sc, lab, _ in scores},
+  report = {"chosen": label, "training_rms_mm": {lab: 1000 * rms for _, rms, lab, _ in scores},
+            "training_robust_cost": {lab: cost for cost, _, lab, _ in scores},
             "coordinates": relevant, "training_poses": len(rows)}
   return dependencies, report
 
