@@ -1,0 +1,100 @@
+{
+ "model": "gait2354_cvt3.xml",
+ "mujoco_version": "3.15.0",
+ "opensim_status": "completed",
+ "replay_start_s": 0.8300000000000001,
+ "replay_length_s": 0.3600000000000003,
+ "limit_deg": 5.0,
+ "as_converted": {
+  "timestep_s": 0.002,
+  "integrator": 0,
+  "mujoco_status": "completed",
+  "time_to_5deg_s": 0.017000000000000015,
+  "first_coordinate_over_5deg": "ankle_angle_r",
+  "compared_until_s": 0.3600000000000003,
+  "max_diff_deg_at": {
+   "0.05s": {
+    "hip_flexion_r": 1.461721348666753,
+    "hip_adduction_r": 0.6744971898614425,
+    "hip_rotation_r": 4.0637326701345975,
+    "knee_angle_r": 1.7588687726178855,
+    "ankle_angle_r": 45.62400515647248,
+    "hip_flexion_l": 3.9573489491446994,
+    "hip_adduction_l": 1.0415956202629066,
+    "hip_rotation_l": 4.3955304369368156,
+    "knee_angle_l": 4.29026985742497,
+    "ankle_angle_l": 4.611877205478706
+   },
+   "0.1s": {
+    "hip_flexion_r": 5.480511088176192,
+    "hip_adduction_r": 0.40405379074915637,
+    "hip_rotation_r": 12.807370627578926,
+    "knee_angle_r": 0.27141667717555507,
+    "ankle_angle_r": 70.04435134218168,
+    "hip_flexion_l": 3.142913040245538,
+    "hip_adduction_l": 3.100497679459631,
+    "hip_rotation_l": 11.604823066710214,
+    "knee_angle_l": 9.974056741444327,
+    "ankle_angle_l": 9.31363136681421
+   },
+   "0.2s": {
+    "hip_flexion_r": 35.216018712929824,
+    "hip_adduction_r": 11.69919237575041,
+    "hip_rotation_r": 4.20129025645193,
+    "knee_angle_r": 56.20378948766269,
+    "ankle_angle_r": 667.3087238051338,
+    "hip_flexion_l": 1.8715631020614538,
+    "hip_adduction_l": 7.906785784370888,
+    "hip_rotation_l": 16.713433076336283,
+    "knee_angle_l": 16.553441148157376,
+    "ankle_angle_l": 0.08083814659166419
+   }
+  }
+ },
+ "fine_integration": {
+  "timestep_s": 0.0005,
+  "integrator": 1,
+  "mujoco_status": "completed",
+  "time_to_5deg_s": 0.02100000000000002,
+  "first_coordinate_over_5deg": "ankle_angle_r",
+  "compared_until_s": 0.3600000000000003,
+  "max_diff_deg_at": {
+   "0.05s": {
+    "hip_flexion_r": 1.1640348126796658,
+    "hip_adduction_r": 0.5848001551919928,
+    "hip_rotation_r": 3.666386053896186,
+    "knee_angle_r": 1.077315596412598,
+    "ankle_angle_r": 45.922039064157104,
+    "hip_flexion_l": 3.670842972975536,
+    "hip_adduction_l": 0.8839967137494021,
+    "hip_rotation_l": 4.122659826691059,
+    "knee_angle_l": 4.264334827642669,
+    "ankle_angle_l": 4.871858621684012
+   },
+   "0.1s": {
+    "hip_flexion_r": 6.218095720087792,
+    "hip_adduction_r": 0.06874298678732368,
+    "hip_rotation_r": 12.113829044778553,
+    "knee_angle_r": 3.3365954549830152,
+    "ankle_angle_r": 73.90105694819566,
+    "hip_flexion_l": 2.8699866177124704,
+    "hip_adduction_l": 3.135599128176175,
+    "hip_rotation_l": 11.244126143543516,
+    "knee_angle_l": 10.018067097958708,
+    "ankle_angle_l": 9.890427375352981
+   },
+   "0.2s": {
+    "hip_flexion_r": 33.678805029412,
+    "hip_adduction_r": 10.031639051787314,
+    "hip_rotation_r": 3.81674723442618,
+    "knee_angle_r": 55.72430566658635,
+    "ankle_angle_r": 668.3452011581467,
+    "hip_flexion_l": 1.4365525707115323,
+    "hip_adduction_l": 8.07963571981258,
+    "hip_rotation_l": 15.278591558167944,
+    "knee_angle_l": 16.278208971220728,
+    "ankle_angle_l": 0.2821622781242093
+   }
+  }
+ }
+}

@@ -2,6 +2,8 @@
 # fit_spline_on_range() over the independent coordinate's range (Station 2, change 2.3; see station2/FINDINGS.md).
 # Modified by lowlimb-converter (2026-10-11): a spline no single quartic follows closely enough is coupled through a
 # helper joint with two quartics in sequence (fit_spline_chained; Station 2, change 2.4).
+# Modified by lowlimb-converter (2026-10-12): the helper joint is scaled so it adds no measurable inertia or damping
+# to the knee (scale_helper; Station 5, change 5.3).
 """ Contains the `CustomJoint` parser.
 
 @author: Aleksi Ikkala
@@ -17,7 +19,7 @@ from loguru import logger
 from myoconverter.xml.joints.Joint import Joint
 from myoconverter.xml.joints.utils import parse_coordinates, estimate_axis, plot_and_save_figure
 from myoconverter.xml.utils import str2bool, str2vec, val2str, vec2str, filter_keys, fit_spline, is_linear, \
-  fit_spline_on_range, fit_spline_chained
+  fit_spline_on_range, fit_spline_chained, scale_helper, add_helper_joint, add_joint_equality
 from myoconverter.xml import config as cfg
 
 # lowlimb-converter (change 2.4): a spline coupling is chained through a helper joint when the best single quartic is
@@ -197,6 +199,7 @@ class CustomJoint(Joint):
         if fit_error > CHAIN_ABOVE[params["type"]]:
           p1, p2, helper_range, chain_error = fit_spline_chained(spline_kind, x_values, y_values, domain, fit)
           if chain_error < 0.5 * fit_error:
+            p1, p2, _ = scale_helper(p1, p2, domain)   # change 5.3: same function, a helper that moves little
             chain = (p1, p2)
             fit = lambda v, p1=p1, p2=p2: p2(p1(v))
             xs = np.linspace(domain[0], domain[1], 2001)
@@ -270,18 +273,11 @@ class CustomJoint(Joint):
                            polycoef=vec2str(polycoef),
                            solimp="0.9999 0.9999 0.001 0.5 2", active="true")
         else:
-          # lowlimb-converter (change 2.4): helper joint h = p1(independent), this joint = p2(h). The helper sits on
-          # its own near-massless body under the world body (like MovingPathPoint's virtual bodies, but attached to
-          # nothing that moves), so it adds no mass to the skeleton; it carries no geometry that collides
+          # lowlimb-converter (change 2.4): helper joint h = p1(independent), this joint = p2(h), the helper on its own
+          # near-massless body under the world body (add_helper_joint, change 5.3)
           helper = f"{params['name']}_helper"
-          helper_body = etree.SubElement(cfg.M_WORLDBODY, "body", name=helper)
-          etree.SubElement(helper_body, "geom", size="0.0005 0.0005 0.0005", rgba="0.0 0.0 1.0 0.0")
-          etree.SubElement(helper_body, "joint", name=helper, type="hinge", axis="0 0 1", limited="false")
-          for joint1, joint2, poly in ((helper, independent_coordinate, chain[0]), (params["name"], helper, chain[1])):
-            coefs = np.zeros(5)
-            coefs[:len(poly.coef)] = poly.coef
-            etree.SubElement(cfg.M_EQUALITY, "joint", joint1=joint1, joint2=joint2, polycoef=vec2str(coefs),
-                             solimp="0.9999 0.9999 0.001 0.5 2", active="true")
+          add_helper_joint(cfg.M_WORLDBODY, cfg.M_EQUALITY, helper, independent_coordinate, chain[0])
+          add_joint_equality(cfg.M_EQUALITY, params["name"], helper, chain[1])
 
         # Update motion type to dependent for posterity
         params["_motion_type"] = "dependent"

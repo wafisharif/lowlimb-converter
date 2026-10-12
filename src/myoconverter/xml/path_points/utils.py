@@ -3,6 +3,8 @@
 # station3/FINDINGS.md.
 # Modified by lowlimb-converter (2026-10-12): the conditional path point fit uses a robust loss, so OpenSim's
 # unreproducible on/off jump no longer pulls the fit away from OpenSim's path elsewhere (Station 5, change 5.1).
+# Modified by lowlimb-converter (2026-10-12): poses where OpenSim's point is active weigh more in that fit, and a point
+# next to a plain path point on its body can switch toward it through a helper joint (Station 5, change 5.3).
 """ This module contains a collection of utility functions useful for parsing and converting the OpenSim `PathPointSet`
 
 @author: Aleksi Ikkala
@@ -17,7 +19,7 @@ import os
 
 from loguru import logger
 
-from myoconverter.xml.utils import str2vec, fit_spline, fit_spline_on_range
+from myoconverter.xml.utils import str2vec, fit_spline, fit_spline_on_range, scale_helper
 from numpy.polynomial.polynomial import Polynomial
 from myoconverter.xml import config as cfg
 
@@ -26,6 +28,8 @@ pp.ioff()
 
 _OSIM_CACHE = None  # lowlimb-converter: (file, model, state), see _osim_model()
 ROBUST_SCALE = 0.001  # lowlimb-converter (change 5.1): residuals above ~1 mm count less than quadratically (soft L1)
+ACTIVE_WEIGHT = 10.0  # lowlimb-converter (change 5.3): weight (squared terms) of samples where OpenSim's point is on
+SWITCH_RESTARTS = 3   # lowlimb-converter (change 5.3): seeded random starts of the switch fit, besides the plain one
 
 
 def _osim_model():
@@ -113,17 +117,32 @@ def conditional_path_point_dependencies(xml, force_name, upstream=None, n_train=
   fit stays close to OpenSim's path wherever it can and concentrates the error near the jump. Candidates are
   compared on the same robust objective.
 
+  Change 5.3 (Station 5): (1) samples where OpenSim's point is active weigh ACTIVE_WEIGHT times more (in the squared
+  terms): there OpenSim's path is a fixed point that a moving point can reproduce, while the inactive side ends in a
+  jump that no continuous point can follow. (2) If the point's neighbour in the path (the previous point, else the
+  next) is a plain PathPoint on the same body, at A, one more candidate moves the point along the line from C to A:
+  P(q) = C + (A - C) s(q). Where s = 1 the point sits on A and the local path is exactly OpenSim's straight segment
+  A-B, so s only has to switch between 0 (active) and 1 (inactive). A switch is too sharp for one quartic, so s is two
+  quartics in sequence through a helper joint (h = p1(q), s = p2(h), as Station 2's change 2.4 does for joint
+  splines), fitted on the same weighted robust objective from the quartic closest to OpenSim's on/off pattern and
+  SWITCH_RESTARTS seeded random starts. Each axis of P is then a quartic of the helper, and the helper is scaled so it
+  adds no measurable inertia or damping (xml.utils.scale_helper).
+
   Starting point: per axis, the quartic closest to "C while active, the closest point of segment AB while not".
   Candidates compared on the same training objective: the fitted point, upstream's model (`upstream`: a linear or
   quadratic movement from a neighbouring point on the same body, or the point fixed at C when there is no such
-  neighbour), and C fixed. The best one is used, so it is never worse than upstream on the training poses.
+  neighbour), C fixed, and the switch (change 5.3). The best one is used, so it is never worse than upstream on the
+  training poses.
 
   :param xml: OpenSim `ConditionalPathPoint` XML element
   :param force_name: Name of the force (muscle) this path point belongs to
   :param upstream: upstream's dependencies dict for this point, or None if upstream would keep it fixed at C
-  :return: (dependencies dict for MovingPathPoint.parse, report dict), or None if it can't be evaluated
+  :return: (dependencies dict for MovingPathPoint.parse, report dict), or None if it can't be evaluated. With the
+    switch, each axis depends on the helper joint, and dependencies["helper"] = (helper joint name, condition
+    coordinate, p1 as a numpy Polynomial) describes the helper for ConditionalPathPoint.parse to create.
   """
   import opensim
+  from numpy.polynomial import Chebyshev
   from scipy.optimize import least_squares
   model, state = _osim_model()
   muscle = opensim.Muscle.safeDownCast(model.getForceSet().get(force_name))
@@ -180,31 +199,36 @@ def conditional_path_point_dependencies(xml, force_name, upstream=None, n_train=
   def unpack(snaps):
     a = np.array([x[0] for x in snaps]); b = np.array([x[1] for x in snaps]); c = np.array([x[2] for x in snaps])
     act = np.array([x[3] for x in snaps]); q = np.array([x[4] for x in snaps])
-    return a, b, q, np.where(act, _local_length(a, b, c), _local_length(a, b, b))
-  a0, b0, q0, l0 = unpack([r[0] for r in rows])
-  fdsets = []
+    return a, b, q, np.where(act, _local_length(a, b, c), _local_length(a, b, b)), act
+  a0, b0, q0, l0, act0 = unpack([r[0] for r in rows])
+  fdsets, actives = [], [act0]
   for j in range(len(relevant)):
     ok = [k for k, r in enumerate(rows) if r[1][j] is not None]
     if ok:
-      ap, bp, qp, lp = unpack([rows[k][1][j][0] for k in ok])
-      am, bm, qm, lm = unpack([rows[k][1][j][1] for k in ok])
+      ap, bp, qp, lp, actp = unpack([rows[k][1][j][0] for k in ok])
+      am, bm, qm, lm, _ = unpack([rows[k][1][j][1] for k in ok])
       fdsets.append((ap, bp, qp, am, bm, qm, -(lp - lm) / (2 * h)))
+      actives.append(actp)
+  weights = np.sqrt(np.where(np.concatenate(actives), ACTIVE_WEIGHT, 1.0))   # change 5.3
 
-  def residuals(polys):
-    pos = lambda q: np.stack([f(q) for f in polys], axis=1)
+  def residuals(pos):     # pos: q (n,) -> point location (n, 3) in the point's body frame
     r = [_local_length(a0, b0, pos(q0)) - l0]
     for ap, bp, qp, am, bm, qm, ma in fdsets:
       r.append(-(_local_length(ap, bp, pos(qp)) - _local_length(am, bm, pos(qm))) / (2 * h) - ma)
     return np.concatenate(r)
+
+  def axes(polys):        # one polynomial of q per axis
+    return lambda q: np.stack([f(q) for f in polys], axis=1)
 
   def scaled(theta):   # three quartics in q mapped to [-1, 1] (better conditioned for the optimiser)
     return [Polynomial(theta[5 * i:5 * i + 5], domain=[lo_q, hi_q], window=[-1, 1]) for i in range(3)]
 
   # starting point: C while active, closest point of AB while not, on a sweep of q
   xs = np.linspace(lo_q, hi_q, 401)
-  target = []
+  target, on = [], []
   for q in xs:
     a, b, c, act, _ = local.snapshot({**defaults, cname: q}) or (None, None, None, True, None)
+    on.append(bool(act))
     if act or a is None:
       target.append(c if c is not None else base[2])
     else:
@@ -213,29 +237,73 @@ def conditional_path_point_dependencies(xml, force_name, upstream=None, n_train=
   _set_coordinates(model, state, defaults)
   target = np.array(target)
   theta0 = np.concatenate([Polynomial.fit(xs, target[:, k], 4, domain=[lo_q, hi_q]).coef for k in range(3)])
-  solution = least_squares(lambda th: residuals(scaled(th)), theta0, method="trf", max_nfev=3000, loss="soft_l1",
-                           f_scale=ROBUST_SCALE)
+  solution = least_squares(lambda th: weights * residuals(axes(scaled(th))), theta0, method="trf", max_nfev=3000,
+                           loss="soft_l1", f_scale=ROBUST_SCALE)
   fitted = [Polynomial(f.convert().coef) for f in scaled(solution.x)]
 
   def robust_cost(r):     # scipy's soft_l1: rho(z) = 2 (sqrt(1 + z) - 1), z = (r / f_scale)^2
     return float(np.sum(2.0 * (np.sqrt(1.0 + (r / ROBUST_SCALE) ** 2) - 1.0)))
 
   fixed = [Polynomial([base[2][k]]) for k in range(3)]
-  candidates = [("path fit", fitted), ("fixed at its location (always active)", fixed)]
+  candidates = [("path fit", axes(fitted), (fitted, None)),
+                ("fixed at its location (always active)", axes(fixed), (fixed, None))]
   if upstream is not None:
-    candidates.append(("upstream anchor movement", [Polynomial(upstream[k][1]) for k in ["x", "y", "z"]]))
-  scores = [(robust_cost(residuals(c)), float(np.sqrt(np.mean(residuals(c) ** 2))), label, c) for label, c in candidates]
-  _, _, label, chosen = min(scores, key=lambda x: x[0])
+    up = [Polynomial(upstream[k][1]) for k in ["x", "y", "z"]]
+    candidates.append(("upstream anchor movement", axes(up), (up, None)))
+
+  # change 5.3: the switch toward a neighbouring plain path point on the same body
+  neighbour = next((k for k in (index - 1, index + 1) if 0 <= k < points.getSize()
+                    and points.get(k).getConcreteClassName() == "PathPoint"
+                    and points.get(k).getParentFrame().findBaseFrame().getName() == local.frame.getName()), None)
+  helper_name = f"{force_name}_{xml.attrib['name']}_helper"
+  if neighbour is not None:
+    A, C = local._loc(neighbour), np.array(base[2])
+    mid, half = 0.5 * (lo_q + hi_q), 0.5 * (hi_q - lo_q)
+
+    def switch(theta):    # s = p2(p1(u)), u = q mapped to [-1, 1]; p1 in the Chebyshev basis, p2 in the power basis
+      p1, p2 = Chebyshev(theta[:5]), Polynomial(theta[5:])
+      return lambda q: C[None, :] + (A - C)[None, :] * p2(p1((q - mid) / half))[:, None]
+    s0 = Chebyshev.fit((xs - mid) / half, np.where(on, 0.0, 1.0), 4, domain=[-1, 1]).convert(kind=Polynomial).coef
+    identity = np.array([0.0, 1.0, 0.0, 0.0, 0.0])
+    starts = [np.concatenate([identity, np.pad(s0, (0, 5 - len(s0)))])]
+    rng_switch = np.random.default_rng(seed)
+    for _ in range(SWITCH_RESTARTS):
+      starts.append(np.concatenate([identity + rng_switch.normal(0.0, 0.5, 5), starts[0][5:]]))
+    best = None
+    for start in starts:
+      sol = least_squares(lambda th: weights * residuals(switch(th)), start, method="trf", max_nfev=3000,
+                          loss="soft_l1", f_scale=ROBUST_SCALE)
+      if best is None or sol.cost < best.cost:
+        best = sol
+    # in the coordinate's own units, then scaled so the helper barely moves; each axis a quartic of the helper
+    p1 = Polynomial(Chebyshev(best.x[:5]).convert(kind=Polynomial).coef)(Polynomial([-mid / half, 1.0 / half]))
+    p1, p2, _ = scale_helper(p1, Polynomial(best.x[5:]), [lo_q, hi_q])
+    per_axis = [p2 * (A[k] - C[k]) + C[k] for k in range(3)]
+    pos = lambda q, p1=p1, per_axis=per_axis: np.stack([f(p1(q)) for f in per_axis], axis=1)
+    fit_cost = 2.0 * best.cost / ROBUST_SCALE ** 2      # scipy's cost is half the sum, times f_scale^2
+    check = robust_cost(weights * residuals(pos))
+    if not np.isclose(check, fit_cost, rtol=1e-6, atol=1e-6):
+      logger.critical(f"{xml.attrib['name']} of {force_name}: switch changed in conversion ({fit_cost} vs {check})")
+      raise RuntimeError
+    candidates.append((f"switch toward {names[neighbour]}", pos, (per_axis, p1)))
+
+  scores = [(robust_cost(weights * residuals(pos)), float(np.sqrt(np.mean(residuals(pos) ** 2))), label, polys)
+            for label, pos, polys in candidates]
+  _, _, label, (chosen, helper_p1) = min(scores, key=lambda x: x[0])
 
   dependencies = {}
+  driver = cname if helper_p1 is None else helper_name
+  driver_values = xs if helper_p1 is None else helper_p1(xs)
   for k, axis in enumerate(["x", "y", "z"]):
     polycoef = np.zeros(5)
     coef = chosen[k].coef
     polycoef[:len(coef)] = coef
-    values = chosen[k](xs)
-    dependencies[axis] = (cname, polycoef, np.array([values.min(), values.max()]))
+    values = chosen[k](driver_values)
+    dependencies[axis] = (driver, polycoef, np.array([values.min(), values.max()]))
+  if helper_p1 is not None:
+    dependencies["helper"] = (helper_name, cname, helper_p1)
   report = {"chosen": label, "training_rms_mm": {lab: 1000 * rms for _, rms, lab, _ in scores},
-            "training_robust_cost": {lab: cost for cost, _, lab, _ in scores},
+            "training_weighted_robust_cost": {lab: cost for cost, _, lab, _ in scores},
             "coordinates": relevant, "training_poses": len(rows)}
   return dependencies, report
 

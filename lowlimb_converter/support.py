@@ -105,8 +105,9 @@ RULES = {
     "mpp_untested": "path_points/utils.get_moving_path_point_dependency: function type outside "
                     "SimmSpline/NaturalCubicSpline/PiecewiseLinearFunction is logged as critical but still fitted",
     "cpp": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted "
-           "to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off "
-           "switch itself can't be reproduced, so it is approximated",
+           "to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1, robust loss 5.1); "
+           "next to a plain PathPoint on the same body it may instead switch toward that point through a helper "
+           "joint (5.3); the on/off switch itself can't be reproduced, so it is approximated",
     "cpp_upstream": "path_points/ConditionalPathPoint.py: change 3.1 doesn't apply (force isn't a Muscle, point "
                     "is first or last, or its coordinate is locked or coupled) -> warning, upstream model: moving "
                     "point anchored to a plain PathPoint on the same body (step approximated by a polynomial)",

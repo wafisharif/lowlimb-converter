@@ -1,5 +1,7 @@
 # Modified by lowlimb-converter (2026-10-10), from MyoConverter @ cadf380: conditional path points are fitted to
 # OpenSim's path by conditional_path_point_dependencies(), with upstream's model as one candidate (Station 3, change 3.1).
+# Modified by lowlimb-converter (2026-10-12): a point fitted as a switch toward its neighbour moves with a helper joint,
+# created here (Station 5, change 5.3).
 """ Contains the `ConditionalPathPoint` parser.
 
 @author: Aleksi Ikkala
@@ -13,7 +15,7 @@ import matplotlib.pyplot as pp
 from loguru import logger
 
 from myoconverter.xml.parsers import IParser
-from myoconverter.xml.utils import str2vec
+from myoconverter.xml.utils import str2vec, add_helper_joint
 from myoconverter.xml.path_points.PathPoint import PathPoint
 from myoconverter.xml.path_points.MovingPathPoint import MovingPathPoint
 from myoconverter.xml.path_points.utils import conditional_path_point_dependencies
@@ -68,6 +70,11 @@ class ConditionalPathPoint(IParser):
       logger.info(f"ConditionalPathPoint {xml.attrib['name']} of {force_name}: using '{report['chosen']}' "
                   f"(training RMS residual: {scores}; {report['training_poses']} poses, "
                   f"coordinates {report['coordinates']})")
+      if "helper" in dependencies:   # change 5.3: the point's axes follow a helper joint driven by the coordinate
+        helper, coordinate, p1 = dependencies["helper"]
+        add_helper_joint(cfg.M_WORLDBODY, cfg.M_EQUALITY, helper, coordinate, p1)
+        logger.info(f"ConditionalPathPoint {xml.attrib['name']} of {force_name}: helper joint {helper} driven by "
+                    f"{coordinate}")
       self.moving_pathpoint.parse(xml, tendon, force_name, dependencies=dependencies, **kwargs)
       return
     logger.warning(f"ConditionalPathPoint {xml.attrib['name']} of {force_name}: could not be evaluated with OpenSim, "

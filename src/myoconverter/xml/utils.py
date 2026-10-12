@@ -3,6 +3,8 @@
 # fit_spline_on_range() fits joint splines where the coordinate actually moves (Station 2, change 2.3).
 # Modified by lowlimb-converter (2026-10-11): new fit_spline_chained() approximates a spline no single quartic can
 # follow by two quartics in sequence, through a helper joint (Station 2, change 2.4).
+# Modified by lowlimb-converter (2026-10-12): helper joints are scaled so they add no measurable inertia or damping
+# (scale_helper, add_helper_joint; Station 5, change 5.3).
 """ This module contains a collection of utility functions useful for parsing and converting the OpenSim model.
 
 @author: Aleksi Ikkala
@@ -300,6 +302,60 @@ def fit_spline_chained(kind, x_values, y_values, x_range, single_fit, n_samples=
     logger.critical(f"chained fit changed in conversion to power basis ({best_err} vs {check})")
     raise RuntimeError
   return p1, p2, np.array([np.min(h), np.max(h)]), float(check)
+
+
+HELPER_MAX_SLOPE = 0.1  # lowlimb-converter (change 5.3): largest |dh/dx| of a helper joint h driven by coordinate x
+
+
+def scale_helper(p1, p2, x_range, max_slope=HELPER_MAX_SLOPE, n_samples=2001):
+  """ lowlimb-converter (Station 5, change 5.3): rescale a helper joint so it moves little, without changing y(x).
+
+  A chained coupling h = p1(x), y = p2(h) is the same function of x for any scale k of the helper: h' = k p1(x),
+  y = p2(h' / k). The scale matters for dynamics only. The helper's body gets the template's minimum inertia
+  (compiler boundinertia, 0.001 kg m^2) and its joint the default damping and armature, and through its equality the
+  helper adds (dh/dx)^2 times each of them to coordinate x: the helper should move little. But a helper that is
+  much cheaper to move than the joint it drives lets MuJoCo's soft equality on that joint give way (the constraint
+  is resolved by moving the helper): with |dh/dx| <= 0.01, Rajagopal 2016's patella lagged its spline by 2.4 deg in
+  the chained-coupling motion test, against 0.10 deg with 0.1 and 0.08 deg unscaled. So the helper is scaled to
+  |dh/dx| <= max_slope = 0.1 over x_range: it adds at most 1e-5 kg m^2 of inertia and 5e-4 N m s/rad of damping to x
+  (1% of the template's own joint damping), and walking joint moments don't change measurably (Station 5).
+
+  :param p1: Polynomial h = p1(x)
+  :param p2: Polynomial y = p2(h)
+  :param x_range: [min, max] of the independent coordinate x
+  :return: scaled p1, scaled p2 (numpy Polynomials, power basis), scale k
+  """
+  xs = np.linspace(float(x_range[0]), float(x_range[1]), n_samples)
+  slope = float(np.max(np.abs(p1.deriv()(xs))))
+  if not np.isfinite(slope) or slope <= 0.0:
+    return p1, p2, 1.0
+  k = max_slope / slope
+  q1 = Polynomial(p1.coef * k)
+  q2 = p2(Polynomial([0.0, 1.0 / k]))
+  return q1, q2, k
+
+
+def add_helper_joint(M_WORLDBODY, M_EQUALITY, name, joint2, p1):
+  """ lowlimb-converter (changes 2.4, 5.3): a helper hinge joint `name` driven by joint `joint2` through quartic p1.
+
+  The helper sits on its own near-massless body under the world body (like MovingPathPoint's virtual bodies, but
+  attached to nothing that moves), so it adds no mass to the skeleton; it carries no geometry that collides.
+  """
+  helper_body = etree.SubElement(M_WORLDBODY, "body", name=name)
+  etree.SubElement(helper_body, "geom", size="0.0005 0.0005 0.0005", rgba="0.0 0.0 1.0 0.0")
+  etree.SubElement(helper_body, "joint", name=name, type="hinge", axis="0 0 1", limited="false")
+  add_joint_equality(M_EQUALITY, name, joint2, p1)
+
+
+def add_joint_equality(M_EQUALITY, joint1, joint2, poly):
+  """ lowlimb-converter: joint equality joint1 = poly(joint2), poly a numpy Polynomial of degree <= 4. """
+  coefs = np.zeros(5)
+  if len(poly.coef) > 5 and np.any(poly.coef[5:] != 0):
+    logger.critical(f"coupling {joint1} <- {joint2} is not a quartic")
+    raise RuntimeError
+  coefs[:min(5, len(poly.coef))] = poly.coef[:5]
+  etree.SubElement(M_EQUALITY, "joint", joint1=joint1, joint2=joint2, polycoef=vec2str(coefs),
+                   solimp="0.9999 0.9999 0.001 0.5 2", active="true")
 
 
 def create_transformation_matrix(pos=None, quat=None, rotation_matrix=None, euler=None):

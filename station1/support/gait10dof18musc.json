@@ -887,7 +887,7 @@
    "kind": "ConditionalPathPoint",
    "name": "psoas_r-P3",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1, robust loss 5.1); next to a plain PathPoint on the same body it may instead switch toward that point through a helper joint (5.3); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "iliopsoas_r/psoas_r-P3",
    "order": 87
@@ -937,7 +937,7 @@
    "kind": "ConditionalPathPoint",
    "name": "rect_fem_r-P2",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1, robust loss 5.1); next to a plain PathPoint on the same body it may instead switch toward that point through a helper joint (5.3); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "rect_fem_r/rect_fem_r-P2",
    "order": 92
@@ -987,7 +987,7 @@
    "kind": "ConditionalPathPoint",
    "name": "vas_int_r-P3",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1, robust loss 5.1); next to a plain PathPoint on the same body it may instead switch toward that point through a helper joint (5.3); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "vasti_r/vas_int_r-P3",
    "order": 97
@@ -1027,7 +1027,7 @@
    "kind": "ConditionalPathPoint",
    "name": "med_gas_r-P2",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1, robust loss 5.1); next to a plain PathPoint on the same body it may instead switch toward that point through a helper joint (5.3); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "gastroc_r/med_gas_r-P2",
    "order": 101
@@ -1277,7 +1277,7 @@
    "kind": "ConditionalPathPoint",
    "name": "psoas_l-P3",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1, robust loss 5.1); next to a plain PathPoint on the same body it may instead switch toward that point through a helper joint (5.3); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "iliopsoas_l/psoas_l-P3",
    "order": 126
@@ -1327,7 +1327,7 @@
    "kind": "ConditionalPathPoint",
    "name": "rect_fem_l-P2",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1, robust loss 5.1); next to a plain PathPoint on the same body it may instead switch toward that point through a helper joint (5.3); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "rect_fem_l/rect_fem_l-P2",
    "order": 131
@@ -1377,7 +1377,7 @@
    "kind": "ConditionalPathPoint",
    "name": "vas_int_l-P3",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1, robust loss 5.1); next to a plain PathPoint on the same body it may instead switch toward that point through a helper joint (5.3); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "vasti_l/vas_int_l-P3",
    "order": 136
@@ -1417,7 +1417,7 @@
    "kind": "ConditionalPathPoint",
    "name": "med_gas_l-P2",
    "status": "approximated",
-   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1); the on/off switch itself can't be reproduced, so it is approximated",
+   "reason": "path_points/ConditionalPathPoint.py + utils.conditional_path_point_dependencies: moving point fitted to OpenSim's path (on while active, straight segment while not; Station 3 change 3.1, robust loss 5.1); next to a plain PathPoint on the same body it may instead switch toward that point through a helper joint (5.3); the on/off switch itself can't be reproduced, so it is approximated",
    "rule": "cpp",
    "path": "gastroc_l/med_gas_l-P2",
    "order": 140

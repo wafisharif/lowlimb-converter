@@ -1,6 +1,8 @@
 # Modified by lowlimb-converter (2026-10-06), from MyoConverter @ cadf380, for MuJoCo 3:
 # mjModel.eq_active -> eq_active0 (renamed in MuJoCo 3.0.0); actuator_moment rebuilt dense from its
 # sparse MuJoCo-3 layout via _actuator_moment_dense().
+# Modified by lowlimb-converter (2026-10-12): dependencyJointAng() follows chained joint equalities (helper joints of
+# changes 2.4 and 5.3); unchanged for models without chains.
 
 import mujoco
 import numpy as np
@@ -139,36 +141,50 @@ def dependencyJointAng(mjc_model, free_jnt_id_array, jnt_ang_array):
     else:
         couplingJnt_sign = True
 
-    # if exist, then extract them
+    # if exist, then extract them. lowlimb-converter (change 5.3): a dependent joint may itself drive another
+    # (chained equalities through a helper joint, changes 2.4 and 5.3); equalities whose driving joint is not known
+    # yet are retried after the others, so chains are followed in any order. The first pass is upstream's loop, so
+    # models without chains give exactly upstream's result.
     if couplingJnt_sign:
-        for ind in range(len(couplingJnt)):
-            if all([couplingJnt[ind], activeEqu[ind]]):
-                
-                dependencyJnt = mjc_model.eq_obj1id[ind]
-                if dependencyJnt in dependencyJnts:
-                    raise RuntimeError("multiple equality constraints for the same dependency joint..\n")
-                
-                freeJnt = mjc_model.eq_obj2id[ind]
-                
-                if freeJnt in free_jnt_id_array:
-                    dependencyJnts.append(dependencyJnt)
-                    freeJnts.append(freeJnt)
-                else:
-                    continue
-                    
-                freeJntAng = jnt_ang_array[np.where(free_jnt_id_array == freeJnt)[0][0]]
-                
-                poly_gains = mjc_model.eq_data[ind]
-                
-                dependencyJntAng = 0
-                for idp, poly_gain in enumerate(poly_gains):
-                    if idp < 5:  # 'mjc_model.eq_data' provides 11 coefficients, while only first 5 are useful! 
-                        dependencyJntAng = dependencyJntAng + poly_gain*freeJntAng**idp
+        known_ids = list(free_jnt_id_array)
+        known_angs = list(jnt_ang_array)
+        pending = list(range(len(couplingJnt)))
+        while pending:
+            waiting = []
+            for ind in pending:
+                if all([couplingJnt[ind], activeEqu[ind]]):
+
+                    dependencyJnt = mjc_model.eq_obj1id[ind]
+                    if dependencyJnt in dependencyJnts:
+                        raise RuntimeError("multiple equality constraints for the same dependency joint..\n")
+
+                    freeJnt = mjc_model.eq_obj2id[ind]
+
+                    if freeJnt in known_ids:
+                        dependencyJnts.append(dependencyJnt)
+                        freeJnts.append(freeJnt)
                     else:
-                        break
-    
-                dependencyJntAngs.append(dependencyJntAng)
-            
+                        waiting.append(ind)
+                        continue
+
+                    freeJntAng = known_angs[np.where(np.array(known_ids) == freeJnt)[0][0]]
+
+                    poly_gains = mjc_model.eq_data[ind]
+
+                    dependencyJntAng = 0
+                    for idp, poly_gain in enumerate(poly_gains):
+                        if idp < 5:  # 'mjc_model.eq_data' provides 11 coefficients, while only first 5 are useful!
+                            dependencyJntAng = dependencyJntAng + poly_gain*freeJntAng**idp
+                        else:
+                            break
+
+                    dependencyJntAngs.append(dependencyJntAng)
+                    known_ids.append(dependencyJnt)
+                    known_angs.append(dependencyJntAng)
+            if len(waiting) == len(pending):   # nothing more can be resolved (driven by joints not given)
+                break
+            pending = waiting
+
     return dependencyJnts, dependencyJntAngs, freeJnts
 
 def lockedJointAng(mjc_model):

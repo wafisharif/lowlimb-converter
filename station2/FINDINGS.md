@@ -68,6 +68,10 @@ Each change was made alone and all three models were rerun after it (`run2_frame
   - In motion (`station2/tests/test_chained_coupling.py`: MuJoCo simulation, gravity off, knee driven through
     11–81° for 4 s): the patella follows OpenSim's spline of the simulated knee angle within 0.076° (single quartic:
     0.697°). The helper adds no instability (equality residuals of the same size as before, simulation finite).
+  - Since Station 5's change 5.3 the helper is rescaled so it adds almost no inertia or damping to the knee (its
+    slope |d helper / d knee| ≤ 0.1; the coupling is the same function): every body is unchanged (`run7_switch`) and
+    the patella follows within 0.099° in motion. A first try with slope ≤ 0.01 made it lag 2.4° (the helper became
+    too cheap to move for MuJoCo's soft equality on the patella; see station5/FINDINGS.md).
   - The patella's position was not the problem (0.15 mm, within its quartic fits) and is unchanged.
 
 ## The check itself was checked
