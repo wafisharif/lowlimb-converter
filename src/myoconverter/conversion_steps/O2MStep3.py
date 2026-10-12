@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 # Modified by lowlimb-converter (2026-10-10), from MyoConverter @ cadf380: after the particle-swarm fit, every muscle's
 # static force parameters are refitted deterministically (optimization/utils/force_refit.py; Station 4, change 4.1).
+# Modified by lowlimb-converter (2026-10-12): cvt3 is saved with the time step the model was loaded with; the force
+# functions set opt.timestep = 0.005 on the shared model, which leaked into the saved file (Station 5, change 5.2).
 """
 Created on Fri Apr  1 13:51:09 2022
 
@@ -59,6 +61,7 @@ class MuscleForceOpt:
         self.mjc_model_path = mjc_model_path
         
         self.mjc_model = mujoco.MjModel.from_xml_path(mjc_model_path)
+        self.timestep = float(self.mjc_model.opt.timestep)   # lowlimb-converter (change 5.2): restored when saving
         self.osim_model = opensim.Model(osim_model_path)
         
         # if muscle list is not provided, then explore all muscles that included
@@ -360,6 +363,7 @@ class MuscleForceOpt:
 
         # save the updated model
         cvt3_model_path = self.mjc_model_path[0:-8] + 'cvt3.xml'
+        self.mjc_model.opt.timestep = self.timestep   # lowlimb-converter (change 5.2)
         with open(cvt3_model_path, 'w+') as xml_file:
             mujoco.mj_saveLastXML(cvt3_model_path, self.mjc_model)
             

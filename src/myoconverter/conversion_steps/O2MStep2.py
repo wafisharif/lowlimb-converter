@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# Modified by lowlimb-converter (2026-10-12), from MyoConverter @ cadf380: cvt2 is saved with the time step the model
+# was loaded with; the moment-arm functions set opt.timestep = 0.001 on the shared model, which leaked into the
+# saved file (Station 5, change 5.2).
 """
 Created on Sat Mar  5 22:29:33 2022
 
@@ -60,6 +63,7 @@ class MomentArmOpt:
         # load mujoco model
         self.mjc_model_path = mjc_model_path
         self.mjc_model = mujoco.MjModel.from_xml_path(mjc_model_path)
+        self.timestep = float(self.mjc_model.opt.timestep)   # lowlimb-converter (change 5.2): restored when saving
         # load osim model
         self.osim_model = opensim.Model(osim_model_path)
 
@@ -417,6 +421,7 @@ class MomentArmOpt:
 
         # save the updated model
         cvt2_model_path = self.mjc_model_path[0:-8] + 'cvt2.xml'
+        self.mjc_model.opt.timestep = self.timestep   # lowlimb-converter (change 5.2)
         with open(cvt2_model_path, 'w+') as xml_file:
             mujoco.mj_saveLastXML(cvt2_model_path, self.mjc_model)
 
