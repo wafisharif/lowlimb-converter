@@ -1,7 +1,9 @@
 # Station 4: muscle forces
 
 **Result: both gait models pass F0, F1 and F2 (with the dated F0 amendment, below). Muscle forces are now 3–5×
-closer to OpenSim's than MyoConverter's at full activation and 5–11× closer when passive, and no muscle is worse.**
+closer to OpenSim's than MyoConverter's at full activation and 5–10× closer when passive. Since Station 5's change
+5.4, two hip-flexor misses are listed with a test-backed reason: each comes only from poses with the hip extended
+beyond −90°, where OpenSim's own muscle path jumps (below).**
 Gates and method: `station4/GATES.md` (posted to the plan doc before any Station 4 code existed). Per-run results:
 `station4/<model>/<run>.json` and `<run>_f.json`.
 
@@ -14,14 +16,37 @@ force (Fmax).
 | gait10dof18musc | MyoConverter (Station 0, MuJoCo 2.3.7) | 10.1 / 19.9 | 13.2 / 28.2 | 5 / 18 | — |
 | | run1: after Station 3 | 9.6 / 18.6 | 13.4 / 33.6 | 4 / 18 | fail / fail |
 | | run3: after changes 4.1–4.2 | 2.9 / 4.1 | 1.2 / 3.1 | 18 / 18 | pass / pass (16 better, 2 same) |
-| | **run4: after change 4.3** | **3.0 / 4.1** | **1.2 / 3.0** | **18 / 18** | **pass / pass** (16 better, 2 same) |
+| | run4: after change 4.3 | 3.0 / 4.1 | 1.2 / 3.0 | 18 / 18 | pass / pass (16 better, 2 same) |
+| | run5_robust: after Station 5 change 5.1 | 3.0 / 4.2 | 1.2 / 3.3 | 18 / 18 | fail (iliopsoas_l by 0.04%) / pass |
+| | run6_switch: after 5.3 | 3.0 / 4.6 | 1.2 / 3.5 | 18 / 18 | fail (iliopsoas_l) / pass |
+| | **run7_pathtol: after 5.4 (current)** | **3.2 / 5.8** | **1.3 / 4.5** | **16 / 18** | **pass with 1 listed miss / pass** |
 | gait2354 | MyoConverter (Station 0, MuJoCo 2.3.7) | 16.1 / 120.9 | 15.7 / 102.3 | 28 / 54 | — |
 | | run1: after Station 3 | 15.4 / 117.2 | 16.3 / 109.9 | 29 / 54 | F0 fail (as gated); with the amendment fail / fail |
 | | run3: after changes 4.1–4.2 | 3.5 / 19.3 | 2.8 / 22.2 | 46 / 54 | pass / pass (52 / 46 better, rest same) |
-| | **run4: after change 4.3** | **3.5 / 19.3** | **2.9 / 22.2** | **46 / 54** | **pass / pass** (51 / 47 better, rest same) |
+| | run4: after change 4.3 | 3.5 / 19.3 | 2.9 / 22.2 | 46 / 54 | pass / pass (51 / 47 better, rest same) |
+| | run5_robust / run6_switch: after 5.1 / 5.3 | 3.5 / 19.3 | 2.9 / 22.2 | 46 / 54 | pass / pass |
+| | **run7_pathtol: after 5.4 (current)** | **3.5 / 19.3** | **2.9 / 22.2** | **46 / 54** | **pass / pass with 1 listed miss** |
 
 "Same" means within 0.5% of Fmax of MyoConverter. Activations 0.25 and 0.5 are in the result files (mean 1.6–2.2%).
-run4 is the current converter.
+run7_pathtol is the current converter; the listed misses are scored in `run7_pathtol_listed_f.json`.
+
+## Station 5 changes: the hip flexors
+
+Station 5 refitted the conditional path points of the hip flexors (iliopsoas; iliacus and psoas) so that they follow
+OpenSim's path where the point is on, which includes all of walking (changes 5.1, 5.3; `station5/FINDINGS.md`). The
+cost is in hip extension beyond −90°, where OpenSim's point switches off and its path jumps by about 20 mm: the
+converted path keeps the point on there, about 20 mm off. That is 134 of the 1410 / 1943 Station 2 poses (the hip's
+range is ±120°), and it raised gait10's iliopsoas_l above MyoConverter's at full activation (F1). The refit of change
+4.1 trained on random poses over the same range and bent the force–length curve to make up for those poses, at the
+cost of all the others. Change 5.4 leaves training poses where the converted path is more than 5 mm off out of the
+refit (only the six hip flexors have any). Result, over the poses with hip flexion at −90° or more, every hip flexor
+is now better than MyoConverter at both activations (iliopsoas_l: 2.3% vs 3.0% of Fmax active, 0.6% vs 10.8%
+passive; was 3.6% and 2.7%), and worse beyond −90° (17% vs 7.5%). Over all poses two muscles miss the tolerance:
+gait10 iliopsoas_l active (5.78% vs 3.70%) and gait2354 iliacus_r passive (4.42% vs 3.20%). Both are listed in
+`station4/<model>/f_reasons.json` with the reason and the test that shows it, `station4/tests/test_off_path_poses.py`
+(OpenSim's path jumps at −90°; ours is more than 10 mm off in every pose beyond; within the tolerance, in fact better
+than MyoConverter, over all the other poses; the same test fails without change 5.4). This is a judgement that the
+gates allow; it is open for Wafi to reverse.
 
 ## What was wrong
 
@@ -88,7 +113,8 @@ Final effect: 0 samples left out in gait10dof18musc, 288 of 419,688 (0.07%) in g
   (quadratic, then linear) can, so no parameter choice fits it. They were at 59–121% before.
 - **Rigid tendons:** MuJoCo force is linear in activation and OpenSim's isn't, so errors at a = 1 (3.0–3.5% mean) are
   larger than at a = 0.25–0.5 (1.6–2.2%). An elastic-tendon muscle would need a custom MuJoCo plugin (Station 0).
-- **Static only:** force–velocity behaviour is not checked here; it comes in Station 5.
+- **Static only:** force–velocity behaviour is not checked here, and Station 5 couldn't check it either (its
+  open-loop replay parts from OpenSim within milliseconds for reasons that aren't force–velocity; station5/FINDINGS.md).
 - **Static force doesn't pin down every parameter.** In the poses a muscle can reach, many parameter sets give the
   same static force. Before change 4.3, left and right copies of 4 of 9 muscles (gait10dof18musc) and 15 of 27
   (gait2354) ended up with different parameters although their static errors agreed: e.g. glut_max1's optimal length
@@ -99,9 +125,8 @@ Final effect: 0 samples left out in gait10dof18musc, 288 of 419,688 (0.07%) in g
   beyond static force: it also scales MuJoCo's force–velocity curve. L0 relative to OpenSim's optimal fiber length ×
   cos(pennation) is now 1.12–1.73 (gait10dof18musc, median 1.24) and 1.41–2.35 (gait2354, median 1.66); before 4.3
   1.06–6.10; MyoConverter 0.44–2.53. A ratio above 1 is expected with an elastic tendon (part of a length change goes
-  into the tendon), but these values aren't validated: Station 5 must check force–velocity behaviour.
-- Station 3's open item (hip-flexor lengths 0.3–0.5 mm worse than MyoConverter) doesn't show up in force: iliopsoas,
-  iliacus and psoas are within 3.1% of Fmax passive and 4% active.
+  into the tendon), but these values aren't validated (still open after Station 5).
+- Station 3's open item (hip-flexor lengths 0.3–0.5 mm worse than MyoConverter) was closed by Station 5 (above).
 
 ## The check itself was checked
 

@@ -1,7 +1,7 @@
 # Station 3: muscle paths (moment arms and lengths)
 
 **Result: both gait models pass M0 and M1. Every scored muscle–coordinate pair is now as good as or better than
-MyoConverter, and the average moment-arm error is 8× (gait10dof18musc) and 5× (gait2354) smaller.** Gates and
+MyoConverter, and the average moment-arm error is 9× (gait10dof18musc) and 4× (gait2354) smaller.** Gates and
 method: `station3/GATES.md` (posted to the plan doc before any Station 3 code existed). Per-run results:
 `station3/<model>/<run>.json` and `<run>_m1.json`.
 
@@ -12,13 +12,26 @@ pair has a peak moment arm of at least 1 mm).
 | --- | --- | --- | --- | --- | --- | --- |
 | gait10dof18musc | MyoConverter (Station 0, MuJoCo 2.3.7) | 7.58 | 69.6, 138% (rect_fem / knee) | 16 / 24 | 5.34 | — |
 | | run1: after Station 2 | 7.64 | 69.2, 137% (rect_fem / knee) | 18 / 24 | 5.29 | fail (vasti 2 pairs) |
-| | **run4: after changes 3.1–3.3** | **0.91** | **3.4, 7%** (vasti / knee) | 18 / 24 | **0.59** | **pass** (14 better, 10 same) |
+| | run4: after changes 3.1–3.3 | 0.91 | 3.4, 7% (vasti / knee) | 18 / 24 | 0.59 | pass (14 better, 10 same) |
+| | run5_robust: after Station 5 change 5.1 | 0.81 | 3.4, 7% (vasti / knee) | 20 / 24 | 0.74 | pass (14 better, 10 same) |
+| | **run7_switch: after 5.3 (current)** | **0.86** | **3.5, 7%** (vasti / knee) | **20 / 24** | **0.82** | **pass** (14 better, 10 same) |
 | gait2354 | MyoConverter (Station 0, MuJoCo 2.3.7) | 1.54 | 78.4, 155% (rect_fem / knee) | 142 / 158 | 2.33 | — |
 | | run1: after Station 2 | 1.53 | 78.0, 154% (rect_fem / knee) | 144 / 158 | 2.29 | fail (vas_int, grac 4 pairs) |
-| | **run4: after changes 3.1–3.3** | **0.33** | **4.7, 10%** (iliacus / hip flexion) | 146 / 158 | **0.46** | **pass** (38 better, 120 same) |
+| | run4: after changes 3.1–3.3 | 0.33 | 4.7, 10% (iliacus / hip flexion) | 146 / 158 | 0.46 | pass (38 better, 120 same) |
+| | run5_robust: after Station 5 change 5.1 | 0.32 | 4.7, 10% (iliacus / hip flexion) | 146 / 158 | 0.46 | pass (39 better, 119 same) |
+| | **run7_switch: after 5.3 (current)** | **0.36** | **6.3, 14%** (iliacus / hip flexion) | **146 / 158** | **0.51** | **pass** (39 better, 119 same) |
 
 "Same" means within 0.1 mm of MyoConverter. run1 failed M1 because Station 2's (more accurate) knee kinematics made
 the old vasti and gracilis path approximations slightly worse; the Station 3 changes fixed that.
+
+**Station 5 changed the conditional path points again** (changes 5.1 and 5.3, `station5/FINDINGS.md`): Station 3's
+least-squares fit spread the error of OpenSim's on/off jumps over the whole hip range, including walking, where it
+was 1.2 mm off in length (Station 5 gate W1). The fit now follows OpenSim's path closely wherever the point is on
+(walking errors 0.04–0.07 mm) and concentrates the error beyond the jump, mostly in hip extension past −90° where no
+human hip goes and OpenSim's path jumps by about 20 mm. On Station 3's random poses, which cover the whole range, that
+shows as slightly higher means (lengths 0.59 → 0.82 mm and 0.46 → 0.51 mm, moment arms 0.91 → 0.86 and 0.33 →
+0.36 mm); M1 still passes with every pair as good as or better than MyoConverter. run6_switch is the first version of
+5.3 (helper scale 0.01; identical to run7 to 1e-8 mm).
 
 ## What was wrong
 
