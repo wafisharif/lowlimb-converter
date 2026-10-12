@@ -1,0 +1,356 @@
+{
+ "W1": {
+  "status": "FAIL",
+  "items": 18,
+  "worse": 2,
+  "misses_listed_with_reason": [],
+  "misses_unexplained": [
+   {
+    "item": "iliopsoas_r",
+    "ours_rms_mm": 1.2449191634331578,
+    "myoconverter_rms_mm": 0.22758427353051897,
+    "ok": false
+   },
+   {
+    "item": "iliopsoas_l",
+    "ours_rms_mm": 1.215254051080404,
+    "myoconverter_rms_mm": 0.19959105962390308,
+    "ok": false
+   }
+  ],
+  "detail": [
+   {
+    "item": "hamstrings_r",
+    "ours_rms_mm": 0.050880688098918846,
+    "myoconverter_rms_mm": 0.0822300134787138,
+    "ok": true
+   },
+   {
+    "item": "bifemsh_r",
+    "ours_rms_mm": 0.08387059634038176,
+    "myoconverter_rms_mm": 0.20353466056410527,
+    "ok": true
+   },
+   {
+    "item": "glut_max_r",
+    "ours_rms_mm": 7.26661146504077e-14,
+    "myoconverter_rms_mm": 1.0858297527915651e-13,
+    "ok": true
+   },
+   {
+    "item": "iliopsoas_r",
+    "ours_rms_mm": 1.2449191634331578,
+    "myoconverter_rms_mm": 0.22758427353051897,
+    "ok": false
+   },
+   {
+    "item": "rect_fem_r",
+    "ours_rms_mm": 0.39770261722443034,
+    "myoconverter_rms_mm": 43.13763218630822,
+    "ok": true
+   },
+   {
+    "item": "vasti_r",
+    "ours_rms_mm": 0.38749715733099704,
+    "myoconverter_rms_mm": 1.017105432058112,
+    "ok": true
+   },
+   {
+    "item": "gastroc_r",
+    "ours_rms_mm": 0.14126879785225482,
+    "myoconverter_rms_mm": 0.6099572984912779,
+    "ok": true
+   },
+   {
+    "item": "soleus_r",
+    "ours_rms_mm": 9.561604315968654e-14,
+    "myoconverter_rms_mm": 7.928063477477705e-14,
+    "ok": true
+   },
+   {
+    "item": "tib_ant_r",
+    "ours_rms_mm": 1.0448853774063126e-13,
+    "myoconverter_rms_mm": 8.511496737708543e-14,
+    "ok": true
+   },
+   {
+    "item": "hamstrings_l",
+    "ours_rms_mm": 0.047391366220307804,
+    "myoconverter_rms_mm": 0.07955905403250432,
+    "ok": true
+   },
+   {
+    "item": "bifemsh_l",
+    "ours_rms_mm": 0.07646835353330378,
+    "myoconverter_rms_mm": 0.21044737816801554,
+    "ok": true
+   },
+   {
+    "item": "glut_max_l",
+    "ours_rms_mm": 6.56972129994742e-14,
+    "myoconverter_rms_mm": 9.521502345668601e-14,
+    "ok": true
+   },
+   {
+    "item": "iliopsoas_l",
+    "ours_rms_mm": 1.215254051080404,
+    "myoconverter_rms_mm": 0.19959105962390308,
+    "ok": false
+   },
+   {
+    "item": "rect_fem_l",
+    "ours_rms_mm": 0.4111038273204397,
+    "myoconverter_rms_mm": 47.36503908339651,
+    "ok": true
+   },
+   {
+    "item": "vasti_l",
+    "ours_rms_mm": 0.3822546059476538,
+    "myoconverter_rms_mm": 1.0370010780945476,
+    "ok": true
+   },
+   {
+    "item": "gastroc_l",
+    "ours_rms_mm": 0.15125630368099002,
+    "myoconverter_rms_mm": 0.6201155109153552,
+    "ok": true
+   },
+   {
+    "item": "soleus_l",
+    "ours_rms_mm": 1.0963504719498791e-13,
+    "myoconverter_rms_mm": 8.193882076998122e-14,
+    "ok": true
+   },
+   {
+    "item": "tib_ant_l",
+    "ours_rms_mm": 1.0642367506034596e-13,
+    "myoconverter_rms_mm": 9.301964736820552e-14,
+    "ok": true
+   }
+  ]
+ },
+ "W2": {
+  "status": "FAIL",
+  "items": 24,
+  "worse": 2,
+  "misses_listed_with_reason": [],
+  "misses_unexplained": [
+   {
+    "item": "iliopsoas_r/hip_flexion_r",
+    "ours_rms_mm": 1.8475020305815315,
+    "myoconverter_rms_mm": 1.2243003782719013,
+    "ok": false
+   },
+   {
+    "item": "iliopsoas_l/hip_flexion_l",
+    "ours_rms_mm": 1.7730888842675294,
+    "myoconverter_rms_mm": 1.109186122929738,
+    "ok": false
+   }
+  ],
+  "detail": [
+   {
+    "item": "hamstrings_r/hip_flexion_r",
+    "ours_rms_mm": 0.015206167295987665,
+    "myoconverter_rms_mm": 0.06762978478798744,
+    "ok": true
+   },
+   {
+    "item": "hamstrings_r/knee_angle_r",
+    "ours_rms_mm": 0.3196065683638635,
+    "myoconverter_rms_mm": 0.41220084103357896,
+    "ok": true
+   },
+   {
+    "item": "bifemsh_r/knee_angle_r",
+    "ours_rms_mm": 0.584539477677628,
+    "myoconverter_rms_mm": 0.9935183427158992,
+    "ok": true
+   },
+   {
+    "item": "glut_max_r/hip_flexion_r",
+    "ours_rms_mm": 2.5329124297722847e-08,
+    "myoconverter_rms_mm": 2.5570763873401435e-08,
+    "ok": true
+   },
+   {
+    "item": "iliopsoas_r/hip_flexion_r",
+    "ours_rms_mm": 1.8475020305815315,
+    "myoconverter_rms_mm": 1.2243003782719013,
+    "ok": false
+   },
+   {
+    "item": "rect_fem_r/hip_flexion_r",
+    "ours_rms_mm": 0.11851693101402805,
+    "myoconverter_rms_mm": 1.6455708374159579,
+    "ok": true
+   },
+   {
+    "item": "rect_fem_r/knee_angle_r",
+    "ours_rms_mm": 1.8879826825228838,
+    "myoconverter_rms_mm": 79.33741596741548,
+    "ok": true
+   },
+   {
+    "item": "vasti_r/knee_angle_r",
+    "ours_rms_mm": 2.1521687415316317,
+    "myoconverter_rms_mm": 4.164047668891069,
+    "ok": true
+   },
+   {
+    "item": "gastroc_r/knee_angle_r",
+    "ours_rms_mm": 0.6700635905607312,
+    "myoconverter_rms_mm": 2.0467071833719834,
+    "ok": true
+   },
+   {
+    "item": "gastroc_r/ankle_angle_r",
+    "ours_rms_mm": 0.025043989215373264,
+    "myoconverter_rms_mm": 0.04683175772763722,
+    "ok": true
+   },
+   {
+    "item": "soleus_r/ankle_angle_r",
+    "ours_rms_mm": 2.0421830227561186e-08,
+    "myoconverter_rms_mm": 2.2088139967434575e-08,
+    "ok": true
+   },
+   {
+    "item": "tib_ant_r/ankle_angle_r",
+    "ours_rms_mm": 2.1087171271605714e-08,
+    "myoconverter_rms_mm": 1.9339424846033162e-08,
+    "ok": true
+   },
+   {
+    "item": "hamstrings_l/hip_flexion_l",
+    "ours_rms_mm": 0.012843322541101015,
+    "myoconverter_rms_mm": 0.06809179148037728,
+    "ok": true
+   },
+   {
+    "item": "hamstrings_l/knee_angle_l",
+    "ours_rms_mm": 0.3539749069676021,
+    "myoconverter_rms_mm": 0.46534907861070585,
+    "ok": true
+   },
+   {
+    "item": "bifemsh_l/knee_angle_l",
+    "ours_rms_mm": 0.6666472331530172,
+    "myoconverter_rms_mm": 1.036117781709711,
+    "ok": true
+   },
+   {
+    "item": "glut_max_l/hip_flexion_l",
+    "ours_rms_mm": 2.8836426024366045e-08,
+    "myoconverter_rms_mm": 2.74426487046513e-08,
+    "ok": true
+   },
+   {
+    "item": "iliopsoas_l/hip_flexion_l",
+    "ours_rms_mm": 1.7730888842675294,
+    "myoconverter_rms_mm": 1.109186122929738,
+    "ok": false
+   },
+   {
+    "item": "rect_fem_l/hip_flexion_l",
+    "ours_rms_mm": 0.11192542753922295,
+    "myoconverter_rms_mm": 1.726251415342553,
+    "ok": true
+   },
+   {
+    "item": "rect_fem_l/knee_angle_l",
+    "ours_rms_mm": 1.9181818047563288,
+    "myoconverter_rms_mm": 81.86091908970769,
+    "ok": true
+   },
+   {
+    "item": "vasti_l/knee_angle_l",
+    "ours_rms_mm": 2.19387799233756,
+    "myoconverter_rms_mm": 4.165390491467857,
+    "ok": true
+   },
+   {
+    "item": "gastroc_l/knee_angle_l",
+    "ours_rms_mm": 0.707583699739431,
+    "myoconverter_rms_mm": 2.1291321214655556,
+    "ok": true
+   },
+   {
+    "item": "gastroc_l/ankle_angle_l",
+    "ours_rms_mm": 0.0314655899312009,
+    "myoconverter_rms_mm": 0.03690375603477989,
+    "ok": true
+   },
+   {
+    "item": "soleus_l/ankle_angle_l",
+    "ours_rms_mm": 1.998788407475684e-08,
+    "myoconverter_rms_mm": 1.9767801776891166e-08,
+    "ok": true
+   },
+   {
+    "item": "tib_ant_l/ankle_angle_l",
+    "ours_rms_mm": 2.0150050227009324e-08,
+    "myoconverter_rms_mm": 2.1535712917462035e-08,
+    "ok": true
+   }
+  ]
+ },
+ "W3": {
+  "status": "PASS",
+  "items": 7,
+  "worse": 0,
+  "misses_listed_with_reason": [],
+  "misses_unexplained": [],
+  "detail": [
+   {
+    "item": "hip_flexion_r",
+    "ours_rms": 0.010102725172509985,
+    "myoconverter_rms": 0.012842217368286743,
+    "unit": "N*m/kg",
+    "ok": true
+   },
+   {
+    "item": "knee_angle_r",
+    "ours_rms": 0.004926878773607,
+    "myoconverter_rms": 0.00866570041936402,
+    "unit": "N*m/kg",
+    "ok": true
+   },
+   {
+    "item": "ankle_angle_r",
+    "ours_rms": 0.0012539396265248933,
+    "myoconverter_rms": 0.004297189463696173,
+    "unit": "N*m/kg",
+    "ok": true
+   },
+   {
+    "item": "hip_flexion_l",
+    "ours_rms": 0.010348589152149638,
+    "myoconverter_rms": 0.013061245925561278,
+    "unit": "N*m/kg",
+    "ok": true
+   },
+   {
+    "item": "knee_angle_l",
+    "ours_rms": 0.005399277678440581,
+    "myoconverter_rms": 0.008724735840846851,
+    "unit": "N*m/kg",
+    "ok": true
+   },
+   {
+    "item": "ankle_angle_l",
+    "ours_rms": 0.0010624867224414845,
+    "myoconverter_rms": 0.004401523552211214,
+    "unit": "N*m/kg",
+    "ok": true
+   },
+   {
+    "item": "lumbar_extension",
+    "ours_rms": 0.0001532074761371308,
+    "myoconverter_rms": 0.00018473231003952338,
+    "unit": "N*m/kg",
+    "ok": true
+   }
+  ]
+ }
+}
