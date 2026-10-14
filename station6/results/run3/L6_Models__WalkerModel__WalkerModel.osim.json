@@ -1,0 +1,61 @@
+{
+ "L6": "PASS",
+ "problems": [],
+ "poses": 1287,
+ "pairs": {
+  "LHipForce_PlatformContact_LHipContact": {
+   "force": "LHipForce",
+   "poses_near": 197,
+   "penetrating": 174,
+   "max_abs_error_m": 2.7755575615628914e-17,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 1.1379786002407855e-15
+  },
+  "RHipForce_PlatformContact_RHipContact": {
+   "force": "RHipForce",
+   "poses_near": 197,
+   "penetrating": 174,
+   "max_abs_error_m": 2.7755575615628914e-17,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 1.1379786002407855e-15
+  },
+  "LFootForce_PlatformContact_LFootContact": {
+   "force": "LFootForce",
+   "poses_near": 222,
+   "penetrating": 193,
+   "max_abs_error_m": 2.7755575615628914e-17,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 1.8596235662471372e-15
+  },
+  "LKneeForce_PlatformContact_LKneeContact": {
+   "force": "LKneeForce",
+   "poses_near": 197,
+   "penetrating": 174,
+   "max_abs_error_m": 2.7755575615628914e-17,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 1.7763568394002505e-15
+  },
+  "RFootForce_PlatformContact_RFootContact": {
+   "force": "RFootForce",
+   "poses_near": 350,
+   "penetrating": 312,
+   "max_abs_error_m": 2.7755575615628914e-17,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 1.6653345369377348e-15
+  },
+  "RKneeForce_PlatformContact_RKneeContact": {
+   "force": "RKneeForce",
+   "poses_near": 221,
+   "penetrating": 194,
+   "max_abs_error_m": 2.7755575615628914e-17,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 1.7763568394002505e-15
+  }
+ }
+}

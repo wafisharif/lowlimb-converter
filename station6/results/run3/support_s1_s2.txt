@@ -1,0 +1,1179 @@
+S1 gait10dof18musc.osim: 154 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 10 == independent XPath count 10
+  ok   axes: report 18 == independent XPath count 18
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 18 == independent XPath count 18
+  ok   path_points: report 60 == independent XPath count 60
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+  ok   current converter's XML step runs on gait10dof18musc
+S2 gait10dof18musc.osim vs gait10dof18musc_cvt1.xml
+  ok   predicted outcome is 'converts' (Station 1a converted it)
+  ok   every checkable item matches cvt1 (0 mismatches: [])
+  ok   all 0 no-anchor ConditionalPathPoint warnings are in the log
+  ok   no other no-anchor warnings in the log
+  ok   0 ConditionalPathPoints predicted to fall back to upstream's model, as in the log
+  ok   all 8 ConditionalPathPoints predicted to be fitted (change 3.1) are fitted in the log
+  ok   cvt1 gravity [0.0, 0.0, -9.80665] is OpenSim's [0.0, -9.80665, 0.0] rotated into MuJoCo's world
+S1 gait2354.osim: 363 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 23 == independent XPath count 23
+  ok   axes: report 72 == independent XPath count 72
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 54 == independent XPath count 54
+  ok   path_points: report 166 == independent XPath count 166
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+  ok   current converter's XML step runs on gait2354
+S2 gait2354.osim vs gait2354_cvt1.xml
+  ok   predicted outcome is 'converts' (Station 1a converted it)
+  ok   every checkable item matches cvt1 (0 mismatches: [])
+  ok   all 0 no-anchor ConditionalPathPoint warnings are in the log
+  ok   no other no-anchor warnings in the log
+  ok   0 ConditionalPathPoints predicted to fall back to upstream's model, as in the log
+  ok   all 12 ConditionalPathPoints predicted to be fitted (change 3.1) are fitted in the log
+  ok   cvt1 gravity [0.0, 0.0, -9.80665] is OpenSim's [0.0, -9.80665, 0.0] rotated into MuJoCo's world
+S1 arm26.osim: 113 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 3 == independent XPath count 3
+  ok   joints: report 3 == independent XPath count 3
+  ok   coordinates: report 2 == independent XPath count 2
+  ok   axes: report 12 == independent XPath count 12
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 6 == independent XPath count 6
+  ok   path_points: report 32 == independent XPath count 32
+  ok   path_wraps: report 7 == independent XPath count 7
+  ok   markers: report 3 == independent XPath count 3
+  ok   wrap_objects: report 4 == independent XPath count 4
+  ok   geometry: report 36 == independent XPath count 36
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 bouncing_block.osim: 29 items, outcome fails
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 3 == independent XPath count 3
+  ok   joints: report 3 == independent XPath count 3
+  ok   coordinates: report 8 == independent XPath count 8
+  ok   axes: report 0 == independent XPath count 0
+  ok   constraints: report 2 == independent XPath count 2
+  ok   forces: report 4 == independent XPath count 4
+  ok   path_points: report 0 == independent XPath count 0
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 3 == independent XPath count 3
+  ok   body_components: report 2 == independent XPath count 2
+  ok   top_other: report 3 == independent XPath count 3
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (2) is covered by its ignored component
+S1 bouncing_block_weak_spring.osim: 29 items, outcome fails
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 3 == independent XPath count 3
+  ok   joints: report 3 == independent XPath count 3
+  ok   coordinates: report 8 == independent XPath count 8
+  ok   axes: report 0 == independent XPath count 0
+  ok   constraints: report 2 == independent XPath count 2
+  ok   forces: report 4 == independent XPath count 4
+  ok   path_points: report 0 == independent XPath count 0
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 3 == independent XPath count 3
+  ok   body_components: report 2 == independent XPath count 2
+  ok   top_other: report 3 == independent XPath count 3
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (2) is covered by its ignored component
+S1 double_pendulum.osim: 15 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 2 == independent XPath count 2
+  ok   joints: report 2 == independent XPath count 2
+  ok   coordinates: report 2 == independent XPath count 2
+  ok   axes: report 0 == independent XPath count 0
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 2 == independent XPath count 2
+  ok   path_points: report 0 == independent XPath count 0
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 2 == independent XPath count 2
+  ok   body_components: report 2 == independent XPath count 2
+  ok   top_other: report 2 == independent XPath count 2
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (2) is covered by its ignored component
+S1 gait10dof18musc.osim: 154 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 10 == independent XPath count 10
+  ok   axes: report 18 == independent XPath count 18
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 18 == independent XPath count 18
+  ok   path_points: report 60 == independent XPath count 60
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01.osim: 193 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 10 == independent XPath count 10
+  ok   axes: report 18 == independent XPath count 18
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 18 == independent XPath count 18
+  ok   path_points: report 60 == independent XPath count 60
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_metabolics.osim: 193 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 10 == independent XPath count 10
+  ok   axes: report 18 == independent XPath count 18
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 18 == independent XPath count 18
+  ok   path_points: report 60 == independent XPath count 60
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_metabolics_path_actuator.osim: 196 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 10 == independent XPath count 10
+  ok   axes: report 18 == independent XPath count 18
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 19 == independent XPath count 19
+  ok   path_points: report 62 == independent XPath count 62
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_metabolics_path_spring.osim: 197 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 10 == independent XPath count 10
+  ok   axes: report 18 == independent XPath count 18
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 19 == independent XPath count 19
+  ok   path_points: report 63 == independent XPath count 63
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_metabolics_spring.osim: 194 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 10 == independent XPath count 10
+  ok   axes: report 18 == independent XPath count 18
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 19 == independent XPath count 19
+  ok   path_points: report 60 == independent XPath count 60
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 gait2354_simbody.osim: 363 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 23 == independent XPath count 23
+  ok   axes: report 72 == independent XPath count 72
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 54 == independent XPath count 54
+  ok   path_points: report 166 == independent XPath count 166
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_simbody.osim: 402 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 23 == independent XPath count 23
+  ok   axes: report 72 == independent XPath count 72
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 54 == independent XPath count 54
+  ok   path_points: report 166 == independent XPath count 166
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 gait2392_millard2012muscle.osim: 558 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 23 == independent XPath count 23
+  ok   axes: report 72 == independent XPath count 72
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 92 == independent XPath count 92
+  ok   path_points: report 322 == independent XPath count 322
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 20 == independent XPath count 20
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 gait2392_thelen2003muscle.osim: 558 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 23 == independent XPath count 23
+  ok   axes: report 72 == independent XPath count 72
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 92 == independent XPath count 92
+  ok   path_points: report 322 == independent XPath count 322
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 20 == independent XPath count 20
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01.osim: 597 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 23 == independent XPath count 23
+  ok   axes: report 72 == independent XPath count 72
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 92 == independent XPath count 92
+  ok   path_points: report 322 == independent XPath count 322
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 20 == independent XPath count 20
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_adjusted.osim: 597 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 23 == independent XPath count 23
+  ok   axes: report 72 == independent XPath count 72
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 92 == independent XPath count 92
+  ok   path_points: report 322 == independent XPath count 322
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 20 == independent XPath count 20
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_simbody_adjusted.osim: 597 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 23 == independent XPath count 23
+  ok   axes: report 72 == independent XPath count 72
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 92 == independent XPath count 92
+  ok   path_points: report 322 == independent XPath count 322
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 20 == independent XPath count 20
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 FullBodyModel_Hamner2010_v2_0.osim: 777 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 20 == independent XPath count 20
+  ok   joints: report 20 == independent XPath count 20
+  ok   coordinates: report 37 == independent XPath count 37
+  ok   axes: report 120 == independent XPath count 120
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 92 == independent XPath count 92
+  ok   path_points: report 322 == independent XPath count 322
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 83 == independent XPath count 83
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 79 == independent XPath count 79
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 2 == independent XPath count 2
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 1 == independent XPath count 1
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 DynamicJumperModel.osim: 412 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 14 == independent XPath count 14
+  ok   joints: report 14 == independent XPath count 14
+  ok   coordinates: report 31 == independent XPath count 31
+  ok   axes: report 84 == independent XPath count 84
+  ok   constraints: report 8 == independent XPath count 8
+  ok   forces: report 59 == independent XPath count 59
+  ok   path_points: report 166 == independent XPath count 166
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 22 == independent XPath count 22
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 12 == independent XPath count 12
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 1 == independent XPath count 1
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 leg39.osim: 141 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 7 == independent XPath count 7
+  ok   joints: report 7 == independent XPath count 7
+  ok   coordinates: report 14 == independent XPath count 14
+  ok   axes: report 42 == independent XPath count 42
+  ok   constraints: report 5 == independent XPath count 5
+  ok   forces: report 9 == independent XPath count 9
+  ok   path_points: report 30 == independent XPath count 30
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 12 == independent XPath count 12
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 10 == independent XPath count 10
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 leg6dof9musc.osim: 118 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 7 == independent XPath count 7
+  ok   joints: report 7 == independent XPath count 7
+  ok   coordinates: report 7 == independent XPath count 7
+  ok   axes: report 30 == independent XPath count 30
+  ok   constraints: report 1 == independent XPath count 1
+  ok   forces: report 9 == independent XPath count 9
+  ok   path_points: report 30 == independent XPath count 30
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 12 == independent XPath count 12
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 10 == independent XPath count 10
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 double_pendulum.osim: 16 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 2 == independent XPath count 2
+  ok   joints: report 2 == independent XPath count 2
+  ok   coordinates: report 2 == independent XPath count 2
+  ok   axes: report 0 == independent XPath count 0
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 2 == independent XPath count 2
+  ok   path_points: report 0 == independent XPath count 0
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 3 == independent XPath count 3
+  ok   body_components: report 2 == independent XPath count 2
+  ok   top_other: report 2 == independent XPath count 2
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (2) is covered by its ignored component
+S1 Rajagopal2016.osim: 767 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 22 == independent XPath count 22
+  ok   joints: report 22 == independent XPath count 22
+  ok   coordinates: report 39 == independent XPath count 39
+  ok   axes: report 60 == independent XPath count 60
+  ok   constraints: report 2 == independent XPath count 2
+  ok   forces: report 97 == independent XPath count 97
+  ok   path_points: report 288 == independent XPath count 288
+  ok   path_wraps: report 46 == independent XPath count 46
+  ok   markers: report 66 == independent XPath count 66
+  ok   wrap_objects: report 40 == independent XPath count 40
+  ok   geometry: report 81 == independent XPath count 81
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 2 == independent XPath count 2
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 1 == independent XPath count 1
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 RajagopalLaiUhlrich2023.osim: 770 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 22 == independent XPath count 22
+  ok   joints: report 22 == independent XPath count 22
+  ok   coordinates: report 39 == independent XPath count 39
+  ok   axes: report 60 == independent XPath count 60
+  ok   constraints: report 2 == independent XPath count 2
+  ok   forces: report 97 == independent XPath count 97
+  ok   path_points: report 288 == independent XPath count 288
+  ok   path_wraps: report 46 == independent XPath count 46
+  ok   markers: report 66 == independent XPath count 66
+  ok   wrap_objects: report 44 == independent XPath count 44
+  ok   geometry: report 81 == independent XPath count 81
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 2 == independent XPath count 2
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 Rajagopal2015_opensense.osim: 271 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 22 == independent XPath count 22
+  ok   joints: report 22 == independent XPath count 22
+  ok   coordinates: report 39 == independent XPath count 39
+  ok   axes: report 60 == independent XPath count 60
+  ok   constraints: report 2 == independent XPath count 2
+  ok   forces: report 0 == independent XPath count 0
+  ok   path_points: report 0 == independent XPath count 0
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 40 == independent XPath count 40
+  ok   geometry: report 81 == independent XPath count 81
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 SoccerKickingModel.osim: 236 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 25 == independent XPath count 25
+  ok   joints: report 25 == independent XPath count 25
+  ok   coordinates: report 11 == independent XPath count 11
+  ok   axes: report 24 == independent XPath count 24
+  ok   constraints: report 1 == independent XPath count 1
+  ok   forces: report 16 == independent XPath count 16
+  ok   path_points: report 30 == independent XPath count 30
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 83 == independent XPath count 83
+  ok   body_components: report 3 == independent XPath count 3
+  ok   top_other: report 17 == independent XPath count 17
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (3) is covered by its ignored component
+S1 ToyLandingModel.osim: 497 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 13 == independent XPath count 13
+  ok   joints: report 13 == independent XPath count 13
+  ok   coordinates: report 27 == independent XPath count 27
+  ok   axes: report 78 == independent XPath count 78
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 78 == independent XPath count 78
+  ok   path_points: report 258 == independent XPath count 258
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 10 == independent XPath count 10
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 ToyLandingModel_AFO.osim: 505 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 15 == independent XPath count 15
+  ok   joints: report 15 == independent XPath count 15
+  ok   coordinates: report 27 == independent XPath count 27
+  ok   axes: report 78 == independent XPath count 78
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 80 == independent XPath count 80
+  ok   path_points: report 258 == independent XPath count 258
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 20 == independent XPath count 20
+  ok   body_components: report 1 == independent XPath count 1
+  ok   top_other: report 10 == independent XPath count 10
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (1) is covered by its ignored component
+S1 ToyLandingModel_activeAFO.osim: 506 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 15 == independent XPath count 15
+  ok   joints: report 15 == independent XPath count 15
+  ok   coordinates: report 27 == independent XPath count 27
+  ok   axes: report 78 == independent XPath count 78
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 81 == independent XPath count 81
+  ok   path_points: report 258 == independent XPath count 258
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 20 == independent XPath count 20
+  ok   body_components: report 1 == independent XPath count 1
+  ok   top_other: report 10 == independent XPath count 10
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (1) is covered by its ignored component
+S1 Tug_of_War.osim: 18 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 1 == independent XPath count 1
+  ok   joints: report 1 == independent XPath count 1
+  ok   coordinates: report 1 == independent XPath count 1
+  ok   axes: report 0 == independent XPath count 0
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 2 == independent XPath count 2
+  ok   path_points: report 4 == independent XPath count 4
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 4 == independent XPath count 4
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 Tug_of_War_Millard.osim: 18 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 1 == independent XPath count 1
+  ok   joints: report 1 == independent XPath count 1
+  ok   coordinates: report 1 == independent XPath count 1
+  ok   axes: report 0 == independent XPath count 0
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 2 == independent XPath count 2
+  ok   path_points: report 4 == independent XPath count 4
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 4 == independent XPath count 4
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 WalkerModel.osim: 46 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 6 == independent XPath count 6
+  ok   joints: report 6 == independent XPath count 6
+  ok   coordinates: report 7 == independent XPath count 7
+  ok   axes: report 0 == independent XPath count 0
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 10 == independent XPath count 10
+  ok   path_points: report 0 == independent XPath count 0
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 5 == independent XPath count 5
+  ok   body_components: report 1 == independent XPath count 1
+  ok   top_other: report 10 == independent XPath count 10
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (1) is covered by its ignored component
+S1 WalkerModelTerrain.osim: 87 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 6 == independent XPath count 6
+  ok   joints: report 6 == independent XPath count 6
+  ok   coordinates: report 7 == independent XPath count 7
+  ok   axes: report 0 == independent XPath count 0
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 11 == independent XPath count 11
+  ok   path_points: report 0 == independent XPath count 0
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 5 == independent XPath count 5
+  ok   body_components: report 1 == independent XPath count 1
+  ok   top_other: report 50 == independent XPath count 50
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (1) is covered by its ignored component
+S1 wrist.osim: 410 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 28 == independent XPath count 28
+  ok   joints: report 28 == independent XPath count 28
+  ok   coordinates: report 14 == independent XPath count 14
+  ok   axes: report 66 == independent XPath count 66
+  ok   constraints: report 4 == independent XPath count 4
+  ok   forces: report 25 == independent XPath count 25
+  ok   path_points: report 210 == independent XPath count 210
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 30 == independent XPath count 30
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_metabolics.osim: 193 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 10 == independent XPath count 10
+  ok   axes: report 18 == independent XPath count 18
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 18 == independent XPath count 18
+  ok   path_points: report 60 == independent XPath count 60
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_metabolics_path_actuator.osim: 196 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 10 == independent XPath count 10
+  ok   axes: report 18 == independent XPath count 18
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 19 == independent XPath count 19
+  ok   path_points: report 62 == independent XPath count 62
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_metabolics_path_spring.osim: 197 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 10 == independent XPath count 10
+  ok   axes: report 18 == independent XPath count 18
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 19 == independent XPath count 19
+  ok   path_points: report 63 == independent XPath count 63
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_metabolics_spring.osim: 194 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 10 == independent XPath count 10
+  ok   axes: report 18 == independent XPath count 18
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 19 == independent XPath count 19
+  ok   path_points: report 60 == independent XPath count 60
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 gait10dof18musc.osim: 154 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 10 == independent XPath count 10
+  ok   axes: report 18 == independent XPath count 18
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 18 == independent XPath count 18
+  ok   path_points: report 60 == independent XPath count 60
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 0 == independent XPath count 0
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01.osim: 193 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 10 == independent XPath count 10
+  ok   axes: report 18 == independent XPath count 18
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 18 == independent XPath count 18
+  ok   path_points: report 60 == independent XPath count 60
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_scaledOnly.osim: 402 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 23 == independent XPath count 23
+  ok   axes: report 72 == independent XPath count 72
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 54 == independent XPath count 54
+  ok   path_points: report 166 == independent XPath count 166
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_simbody.osim: 402 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 23 == independent XPath count 23
+  ok   axes: report 72 == independent XPath count 72
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 54 == independent XPath count 54
+  ok   path_points: report 166 == independent XPath count 166
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_simbody_adjusted.osim: 402 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 23 == independent XPath count 23
+  ok   axes: report 72 == independent XPath count 72
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 54 == independent XPath count 54
+  ok   path_points: report 166 == independent XPath count 166
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_simbody.osim: 595 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 23 == independent XPath count 23
+  ok   axes: report 72 == independent XPath count 72
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 92 == independent XPath count 92
+  ok   path_points: report 322 == independent XPath count 322
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 20 == independent XPath count 20
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 2 == independent XPath count 2
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_simbody_adjusted.osim: 595 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 23 == independent XPath count 23
+  ok   axes: report 72 == independent XPath count 72
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 92 == independent XPath count 92
+  ok   path_points: report 322 == independent XPath count 322
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 20 == independent XPath count 20
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 2 == independent XPath count 2
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 FullBodyModel_Hamner2010_v2_0.osim: 777 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 20 == independent XPath count 20
+  ok   joints: report 20 == independent XPath count 20
+  ok   coordinates: report 37 == independent XPath count 37
+  ok   axes: report 120 == independent XPath count 120
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 92 == independent XPath count 92
+  ok   path_points: report 322 == independent XPath count 322
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 83 == independent XPath count 83
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 79 == independent XPath count 79
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 2 == independent XPath count 2
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 1 == independent XPath count 1
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject02_RRA_Adjusted.osim: 741 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 20 == independent XPath count 20
+  ok   joints: report 20 == independent XPath count 20
+  ok   coordinates: report 37 == independent XPath count 37
+  ok   axes: report 120 == independent XPath count 120
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 92 == independent XPath count 92
+  ok   path_points: report 322 == independent XPath count 322
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 46 == independent XPath count 46
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 79 == independent XPath count 79
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject02_registered.osim: 741 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 20 == independent XPath count 20
+  ok   joints: report 20 == independent XPath count 20
+  ok   coordinates: report 37 == independent XPath count 37
+  ok   axes: report 120 == independent XPath count 120
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 92 == independent XPath count 92
+  ok   path_points: report 322 == independent XPath count 322
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 46 == independent XPath count 46
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 79 == independent XPath count 79
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject02_scaled.osim: 778 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 20 == independent XPath count 20
+  ok   joints: report 20 == independent XPath count 20
+  ok   coordinates: report 37 == independent XPath count 37
+  ok   axes: report 120 == independent XPath count 120
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 92 == independent XPath count 92
+  ok   path_points: report 322 == independent XPath count 322
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 83 == independent XPath count 83
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 79 == independent XPath count 79
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 arm26.osim: 113 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 3 == independent XPath count 3
+  ok   joints: report 3 == independent XPath count 3
+  ok   coordinates: report 2 == independent XPath count 2
+  ok   axes: report 12 == independent XPath count 12
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 6 == independent XPath count 6
+  ok   path_points: report 32 == independent XPath count 32
+  ok   path_wraps: report 7 == independent XPath count 7
+  ok   markers: report 3 == independent XPath count 3
+  ok   wrap_objects: report 4 == independent XPath count 4
+  ok   geometry: report 36 == independent XPath count 36
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 arm26.osim: 113 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 3 == independent XPath count 3
+  ok   joints: report 3 == independent XPath count 3
+  ok   coordinates: report 2 == independent XPath count 2
+  ok   axes: report 12 == independent XPath count 12
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 6 == independent XPath count 6
+  ok   path_points: report 32 == independent XPath count 32
+  ok   path_wraps: report 7 == independent XPath count 7
+  ok   markers: report 3 == independent XPath count 3
+  ok   wrap_objects: report 4 == independent XPath count 4
+  ok   geometry: report 36 == independent XPath count 36
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 arm26_with_bucket.osim: 113 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 3 == independent XPath count 3
+  ok   joints: report 3 == independent XPath count 3
+  ok   coordinates: report 2 == independent XPath count 2
+  ok   axes: report 12 == independent XPath count 12
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 6 == independent XPath count 6
+  ok   path_points: report 32 == independent XPath count 32
+  ok   path_wraps: report 7 == independent XPath count 7
+  ok   markers: report 3 == independent XPath count 3
+  ok   wrap_objects: report 4 == independent XPath count 4
+  ok   geometry: report 36 == independent XPath count 36
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01_simbody_adjusted_StaticOp.osim: 596 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 23 == independent XPath count 23
+  ok   axes: report 72 == independent XPath count 72
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 92 == independent XPath count 92
+  ok   path_points: report 322 == independent XPath count 322
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 20 == independent XPath count 20
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 2 == independent XPath count 2
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 1 == independent XPath count 1
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 leg6dof9musc_RRA_adjusted.osim: 117 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 7 == independent XPath count 7
+  ok   joints: report 7 == independent XPath count 7
+  ok   coordinates: report 7 == independent XPath count 7
+  ok   axes: report 30 == independent XPath count 30
+  ok   constraints: report 1 == independent XPath count 1
+  ok   forces: report 9 == independent XPath count 9
+  ok   path_points: report 30 == independent XPath count 30
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 12 == independent XPath count 12
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 10 == independent XPath count 10
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 3 == independent XPath count 3
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 leg6dof9musc_added_mass.osim: 116 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 7 == independent XPath count 7
+  ok   joints: report 7 == independent XPath count 7
+  ok   coordinates: report 7 == independent XPath count 7
+  ok   axes: report 30 == independent XPath count 30
+  ok   constraints: report 1 == independent XPath count 1
+  ok   forces: report 9 == independent XPath count 9
+  ok   path_points: report 30 == independent XPath count 30
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 12 == independent XPath count 12
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 10 == independent XPath count 10
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 2 == independent XPath count 2
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+S1 subject01.osim: 193 items, outcome converts
+  ok   every item has one valid status and a reason
+  ok   no element listed twice (duplicates: [])
+  ok   0 unclassified items
+  ok   bodies: report 12 == independent XPath count 12
+  ok   joints: report 12 == independent XPath count 12
+  ok   coordinates: report 10 == independent XPath count 10
+  ok   axes: report 18 == independent XPath count 18
+  ok   constraints: report 0 == independent XPath count 0
+  ok   forces: report 18 == independent XPath count 18
+  ok   path_points: report 60 == independent XPath count 60
+  ok   path_wraps: report 0 == independent XPath count 0
+  ok   markers: report 39 == independent XPath count 39
+  ok   wrap_objects: report 0 == independent XPath count 0
+  ok   geometry: report 19 == independent XPath count 19
+  ok   body_components: report 0 == independent XPath count 0
+  ok   top_other: report 4 == independent XPath count 4
+  ok   gravity: report 1 == independent XPath count 1
+  ok   defaults: report 0 == independent XPath count 0
+  ok   geometry nested in body components (0) is covered by its ignored component
+ALL CHECKS PASS

@@ -1,0 +1,27 @@
+{
+ "L5": "PASS",
+ "problems": [],
+ "forces": {
+  "PlantarFlexAssist": {
+   "kind": "PathActuator",
+   "poses": 1410,
+   "length_rms_mm": 1.5723179629314748e-13,
+   "length_max_mm": 1.3322676295501878e-12,
+   "worst_length_pose": "random",
+   "generalized_force": {
+    "ankle_angle_r": {
+     "peak_opensim": 0.5632080959938612,
+     "rms_error": 9.31364079606792e-10,
+     "rms_pct_peak": 1.6536766538543216e-07,
+     "max_error": 5.278071812941931e-09
+    }
+   },
+   "pass": true
+  }
+ },
+ "limits": {
+  "length_rms_mm": 1.0,
+  "length_max_mm": 3.0,
+  "force_rms_pct_peak": 2.0
+ }
+}

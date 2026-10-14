@@ -1,0 +1,16 @@
+{
+ "vaslat_r|a1": {
+  "myoconverter": 1.450249568165576,
+  "myoconverter_mirror": 7.8688826589880945,
+  "ours": 1.9754938128320323,
+  "ours_mirror": 1.985404329130031,
+  "myoconverter_mean": 4.659566113576835
+ },
+ "soleus_l|a1": {
+  "myoconverter": 1.7965560711895008,
+  "myoconverter_mirror": 2.306866275446856,
+  "ours": 2.3005759210249397,
+  "ours_mirror": 2.3053867521617253,
+  "myoconverter_mean": 2.0517111733181785
+ }
+}

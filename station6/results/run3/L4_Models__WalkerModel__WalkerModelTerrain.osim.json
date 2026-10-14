@@ -1,0 +1,131 @@
+{
+ "L4": "PASS",
+ "problems": [],
+ "forces": {
+  "LKneeLimitTorque": {
+   "coordinate": "LKnee_rz",
+   "rotational": true,
+   "steps": 2001,
+   "range": [
+    -2.8797932657906435,
+    0.43633231299858233
+   ],
+   "tendons": 18,
+   "peak_opensim": 12.499999999999998,
+   "max_error": 0.021410515949062625,
+   "max_error_pct_peak": 0.17128412759250103,
+   "worst_at": 0.03839724354387508,
+   "rms_error": 0.0023649065807087154,
+   "myoconverter_max_error_pct_peak": 100.0,
+   "pass": true,
+   "damping_not_converted": {
+    "upper": {
+     "at": 0.17453292519943295,
+     "force_static": -5.0,
+     "extra_at_plus_1": -1.4323944878270582,
+     "extra_at_minus_1": 1.4323944878270582
+    },
+    "lower": {
+     "at": -2.617993877991494,
+     "force_static": 4.999999999999995,
+     "extra_at_plus_1": -1.4323944878270582,
+     "extra_at_minus_1": 1.4323944878270582
+    }
+   }
+  },
+  "RKneeLimitTorque": {
+   "coordinate": "RKnee_rz",
+   "rotational": true,
+   "steps": 2001,
+   "range": [
+    -2.8797932657906435,
+    0.43633231299858233
+   ],
+   "tendons": 18,
+   "peak_opensim": 12.499999999999998,
+   "max_error": 0.021410515949062625,
+   "max_error_pct_peak": 0.17128412759250103,
+   "worst_at": 0.03839724354387508,
+   "rms_error": 0.0023649065807087154,
+   "myoconverter_max_error_pct_peak": 100.0,
+   "pass": true,
+   "damping_not_converted": {
+    "upper": {
+     "at": 0.17453292519943295,
+     "force_static": -5.0,
+     "extra_at_plus_1": -1.4323944878270582,
+     "extra_at_minus_1": 1.4323944878270582
+    },
+    "lower": {
+     "at": -2.617993877991494,
+     "force_static": 4.999999999999995,
+     "extra_at_plus_1": -1.4323944878270582,
+     "extra_at_minus_1": 1.4323944878270582
+    }
+   }
+  },
+  "LHipLimitTorque": {
+   "coordinate": "LHip_rz",
+   "rotational": true,
+   "steps": 2001,
+   "range": [
+    -2.1816615649929116,
+    2.1816615649929116
+   ],
+   "tendons": 18,
+   "peak_opensim": 12.499999999999993,
+   "max_error": 0.020742209472655926,
+   "max_error_pct_peak": 0.1659376757812475,
+   "worst_at": -1.7824174985992087,
+   "rms_error": 0.0020600317392034965,
+   "myoconverter_max_error_pct_peak": 100.0,
+   "pass": true,
+   "damping_not_converted": {
+    "upper": {
+     "at": 1.9198621771937625,
+     "force_static": -5.000000000000001,
+     "extra_at_plus_1": -1.4323944878270582,
+     "extra_at_minus_1": 1.4323944878270582
+    },
+    "lower": {
+     "at": -1.9198621771937625,
+     "force_static": 5.000000000000001,
+     "extra_at_plus_1": -1.4323944878270582,
+     "extra_at_minus_1": 1.4323944878270582
+    }
+   }
+  },
+  "RHipLimitTorque": {
+   "coordinate": "RHip_rz",
+   "rotational": true,
+   "steps": 2001,
+   "range": [
+    -2.1816615649929116,
+    2.1816615649929116
+   ],
+   "tendons": 18,
+   "peak_opensim": 12.499999999999993,
+   "max_error": 0.020742209472655926,
+   "max_error_pct_peak": 0.1659376757812475,
+   "worst_at": -1.7824174985992087,
+   "rms_error": 0.0020600317392034965,
+   "myoconverter_max_error_pct_peak": 100.0,
+   "pass": true,
+   "damping_not_converted": {
+    "upper": {
+     "at": 1.9198621771937625,
+     "force_static": -5.000000000000001,
+     "extra_at_plus_1": -1.4323944878270582,
+     "extra_at_minus_1": 1.4323944878270582
+    },
+    "lower": {
+     "at": -1.9198621771937625,
+     "force_static": 5.000000000000001,
+     "extra_at_plus_1": -1.4323944878270582,
+     "extra_at_minus_1": 1.4323944878270582
+    }
+   }
+  }
+ },
+ "tolerance_pct_peak": 1.0
+}

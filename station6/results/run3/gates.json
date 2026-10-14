@@ -1,0 +1,1349 @@
+{
+ "L1": {
+  "converted": 54,
+  "files": 56,
+  "expected": 54,
+  "not_converted": [],
+  "gate": "PASS"
+ },
+ "L2": {
+  "files": {
+   "Models/Arm26/arm26.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 2.3714374201337735e-13,
+    "worst_deg": 3.500538495169367e-14,
+    "problems": []
+   },
+   "Models/DoublePendulum/double_pendulum.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 5.367999675064607e-13,
+    "worst_deg": 2.2699538682970823e-14,
+    "problems": []
+   },
+   "Models/Gait10dof18musc/gait10dof18musc.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.21748655281682416,
+    "worst_deg": 3.481900819713949e-14,
+    "problems": []
+   },
+   "Models/Gait10dof18musc/subject01.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356675,
+    "worst_deg": 3.481900819713949e-14,
+    "problems": []
+   },
+   "Models/Gait10dof18musc/subject01_metabolics.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356675,
+    "worst_deg": 3.481900819713949e-14,
+    "problems": []
+   },
+   "Models/Gait10dof18musc/subject01_metabolics_path_actuator.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356675,
+    "worst_deg": 3.481900819713949e-14,
+    "problems": []
+   },
+   "Models/Gait10dof18musc/subject01_metabolics_path_spring.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356675,
+    "worst_deg": 3.481900819713949e-14,
+    "problems": []
+   },
+   "Models/Gait10dof18musc/subject01_metabolics_spring.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356675,
+    "worst_deg": 3.481900819713949e-14,
+    "problems": []
+   },
+   "Models/Gait2354_Simbody/gait2354_simbody.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.21748655281682416,
+    "worst_deg": 5.661466608162926e-14,
+    "problems": []
+   },
+   "Models/Gait2354_Simbody/subject01_simbody.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356442,
+    "worst_deg": 5.661466608162926e-14,
+    "problems": []
+   },
+   "Models/Gait2392_Simbody/gait2392_millard2012muscle.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.21748655281682416,
+    "worst_deg": 5.661466608162926e-14,
+    "problems": []
+   },
+   "Models/Gait2392_Simbody/gait2392_thelen2003muscle.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.21748655281682416,
+    "worst_deg": 5.661466608162926e-14,
+    "problems": []
+   },
+   "Models/Gait2392_Simbody/subject01.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356442,
+    "worst_deg": 5.661466608162926e-14,
+    "problems": []
+   },
+   "Models/Gait2392_Simbody/subject01_adjusted.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356442,
+    "worst_deg": 5.661466608162926e-14,
+    "problems": []
+   },
+   "Models/Gait2392_Simbody/subject01_simbody_adjusted.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356442,
+    "worst_deg": 5.661466608162926e-14,
+    "problems": []
+   },
+   "Models/Hamner/FullBodyModel_Hamner2010_v2_0.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.21748655281682272,
+    "worst_deg": 5.870099095099492e-14,
+    "problems": []
+   },
+   "Models/Jumper/DynamicJumperModel.osim": {
+    "gated": false,
+    "result": "FAIL",
+    "K0": "PASS",
+    "worst_mm": 1.3781114574326785,
+    "worst_deg": 1.3876423510594316,
+    "problems": []
+   },
+   "Models/Leg39/leg39.osim": {
+    "gated": false,
+    "result": "FAIL",
+    "K0": "PASS",
+    "worst_mm": 1.5755678046915569,
+    "worst_deg": 1.3876112125350257,
+    "problems": []
+   },
+   "Models/Leg6Dof9Musc/leg6dof9musc.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.3995425517740036,
+    "worst_deg": 0.051501479977311804,
+    "problems": []
+   },
+   "Models/Pendulum/double_pendulum.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 5.367999675064607e-13,
+    "worst_deg": 2.2699538682970823e-14,
+    "problems": []
+   },
+   "Models/Rajagopal/Rajagopal2016.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.15170953422128372,
+    "worst_deg": 0.03612615933745145,
+    "problems": []
+   },
+   "Models/Rajagopal/RajagopalLaiUhlrich2023.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.4146234504640144,
+    "worst_deg": 0.0685556754228741,
+    "problems": []
+   },
+   "Models/Rajagopal_OpenSense/Rajagopal2015_opensense.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.15062307974211608,
+    "worst_deg": 0.03612614071207115,
+    "problems": []
+   },
+   "Models/SoccerKick/SoccerKickingModel.osim": {
+    "gated": true,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.3995425517739654,
+    "worst_deg": 0.05146052753627751,
+    "problems": []
+   },
+   "Models/ToyLanding/ToyLandingModel.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.21748655281677842,
+    "worst_deg": 6.380706926142868e-14,
+    "problems": []
+   },
+   "Models/ToyLanding/ToyLandingModel_AFO.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.21748655281677842,
+    "worst_deg": 6.380706926142868e-14,
+    "problems": []
+   },
+   "Models/ToyLanding/ToyLandingModel_activeAFO.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.21748655281677842,
+    "worst_deg": 6.380706926142868e-14,
+    "problems": []
+   },
+   "Models/Tug_of_War/Tug_of_War.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 3.6863709609129583e-14,
+    "worst_deg": 0.0,
+    "problems": []
+   },
+   "Models/Tug_of_War/Tug_of_War_Millard.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 3.6863709609129583e-14,
+    "worst_deg": 0.0,
+    "problems": []
+   },
+   "Models/WalkerModel/WalkerModel.osim": {
+    "gated": true,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 1.9862212611093494e-12,
+    "worst_deg": 3.0628131820988736e-14,
+    "problems": []
+   },
+   "Models/WalkerModel/WalkerModelTerrain.osim": {
+    "gated": true,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 1.9862212611093494e-12,
+    "worst_deg": 3.0628131820988736e-14,
+    "problems": []
+   },
+   "Models/WristModel/wrist.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 6.916653802134305e-13,
+    "worst_deg": 7.359507507231003e-14,
+    "problems": []
+   },
+   "Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356908,
+    "worst_deg": 3.481900819713949e-14,
+    "problems": []
+   },
+   "Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics_path_actuator.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356908,
+    "worst_deg": 3.481900819713949e-14,
+    "problems": []
+   },
+   "Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics_path_spring.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356908,
+    "worst_deg": 3.481900819713949e-14,
+    "problems": []
+   },
+   "Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics_spring.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356908,
+    "worst_deg": 3.481900819713949e-14,
+    "problems": []
+   },
+   "Pipelines/Gait10dof18musc/OutputReference/gait10dof18musc.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.21748655281682647,
+    "worst_deg": 3.481900819713949e-14,
+    "problems": []
+   },
+   "Pipelines/Gait10dof18musc/OutputReference/subject01.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356908,
+    "worst_deg": 3.481900819713949e-14,
+    "problems": []
+   },
+   "Pipelines/Gait2354_Simbody/OutputReference/subject01_scaledOnly.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356442,
+    "worst_deg": 5.661466608162926e-14,
+    "problems": []
+   },
+   "Pipelines/Gait2354_Simbody/OutputReference/subject01_simbody.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356442,
+    "worst_deg": 5.661466608162926e-14,
+    "problems": []
+   },
+   "Pipelines/Gait2354_Simbody/OutputReference/subject01_simbody_adjusted.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356442,
+    "worst_deg": 5.661466608162926e-14,
+    "problems": []
+   },
+   "Pipelines/Gait2392_Simbody/OutputReference/subject01_simbody.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356442,
+    "worst_deg": 5.661466608162926e-14,
+    "problems": []
+   },
+   "Pipelines/Gait2392_Simbody/OutputReference/subject01_simbody_adjusted.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356442,
+    "worst_deg": 5.661466608162926e-14,
+    "problems": []
+   },
+   "Pipelines/Hamner/FullBodyModel_Hamner2010_v2_0.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.21748655281682272,
+    "worst_deg": 5.870099095099492e-14,
+    "problems": []
+   },
+   "Pipelines/Hamner/outputReference/subject02_RRA_Adjusted.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.2299833384029539,
+    "worst_deg": 5.870099095099492e-14,
+    "problems": []
+   },
+   "Pipelines/Hamner/outputReference/subject02_registered.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.2299833384029539,
+    "worst_deg": 5.870099095099492e-14,
+    "problems": []
+   },
+   "Pipelines/Hamner/outputReference/subject02_scaled.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.2299833384029539,
+    "worst_deg": 5.870099095099492e-14,
+    "problems": []
+   },
+   "Tutorials/Computed_Muscle_Control/InverseKinematics/arm26.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 2.3714374201337735e-13,
+    "worst_deg": 3.500538495169367e-14,
+    "problems": []
+   },
+   "Tutorials/Computed_Muscle_Control/OutputReference/arm26.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 2.3714374201337735e-13,
+    "worst_deg": 3.500538495169367e-14,
+    "problems": []
+   },
+   "Tutorials/Computed_Muscle_Control/OutputReference/arm26_with_bucket.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 2.3714374201337735e-13,
+    "worst_deg": 3.500538495169367e-14,
+    "problems": []
+   },
+   "Tutorials/Estimating_Joint_Reaction_Loads/subject01_simbody_adjusted_StaticOp.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285363386,
+    "worst_deg": 5.661466608162926e-14,
+    "problems": []
+   },
+   "Tutorials/Strength_of_Simulation/Stance/Reference/RRA/leg6dof9musc_RRA_adjusted.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.3995425517740036,
+    "worst_deg": 0.051501479977311804,
+    "problems": []
+   },
+   "Tutorials/Strength_of_Simulation/Stance/Reference/leg6dof9musc_added_mass.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.3995425517740036,
+    "worst_deg": 0.051501479977311804,
+    "problems": []
+   },
+   "Tutorials/Working_with_Static_Optimization/subject01.osim": {
+    "gated": false,
+    "result": "PASS",
+    "K0": "PASS",
+    "worst_mm": 0.24950927285356908,
+    "worst_deg": 3.481900819713949e-14,
+    "problems": []
+   }
+  },
+  "synthetic_joint_models": "PASS",
+  "gate": "PASS"
+ },
+ "L3": {
+  "files": {
+   "Models/Arm26/arm26.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "base"
+    ],
+    "error": null,
+    "myoconverter": "PASS",
+    "myoconverter_failing": []
+   },
+   "Models/DoublePendulum/double_pendulum.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "rod1",
+     "rod2"
+    ],
+    "error": null,
+    "myoconverter": "ERROR",
+    "myoconverter_failing": null
+   },
+   "Models/Gait10dof18musc/gait10dof18musc.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Models/Gait10dof18musc/subject01.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Models/Gait10dof18musc/subject01_metabolics.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Models/Gait10dof18musc/subject01_metabolics_path_actuator.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null
+   },
+   "Models/Gait10dof18musc/subject01_metabolics_path_spring.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null
+   },
+   "Models/Gait10dof18musc/subject01_metabolics_spring.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Models/Gait2354_Simbody/gait2354_simbody.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Models/Gait2354_Simbody/subject01_simbody.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "talus_l",
+     "talus_r",
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Models/Gait2392_Simbody/gait2392_millard2012muscle.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Models/Gait2392_Simbody/gait2392_thelen2003muscle.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Models/Gait2392_Simbody/subject01.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Models/Gait2392_Simbody/subject01_adjusted.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Models/Gait2392_Simbody/subject01_simbody_adjusted.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "talus_l",
+     "talus_r",
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Models/Hamner/FullBodyModel_Hamner2010_v2_0.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "hand_l",
+     "hand_r",
+     "radius_l",
+     "radius_r",
+     "toes_l",
+     "toes_r",
+     "ulna_l",
+     "ulna_r"
+    ]
+   },
+   "Models/Jumper/DynamicJumperModel.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "toes_r",
+     "toes_l"
+    ],
+    "error": null
+   },
+   "Models/Leg39/leg39.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "toes_r"
+    ],
+    "error": null
+   },
+   "Models/Leg6Dof9Musc/leg6dof9musc.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "toes_r"
+    ],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "calcn_r"
+    ]
+   },
+   "Models/Pendulum/double_pendulum.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "rod1",
+     "rod2"
+    ],
+    "error": null
+   },
+   "Models/Rajagopal/Rajagopal2016.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "hand_l",
+     "hand_r",
+     "patella_l",
+     "patella_r",
+     "radius_l",
+     "radius_r",
+     "toes_l",
+     "toes_r",
+     "ulna_l",
+     "ulna_r"
+    ]
+   },
+   "Models/Rajagopal/RajagopalLaiUhlrich2023.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null
+   },
+   "Models/Rajagopal_OpenSense/Rajagopal2015_opensense.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "hand_l",
+     "hand_r",
+     "patella_l",
+     "patella_r",
+     "radius_l",
+     "radius_r",
+     "talus_l",
+     "talus_r",
+     "toes_l",
+     "toes_r",
+     "ulna_l",
+     "ulna_r"
+    ]
+   },
+   "Models/SoccerKick/SoccerKickingModel.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "swivel",
+     "toes_r",
+     "toes_l"
+    ],
+    "error": null
+   },
+   "Models/ToyLanding/ToyLandingModel.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null
+   },
+   "Models/ToyLanding/ToyLandingModel_AFO.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null
+   },
+   "Models/ToyLanding/ToyLandingModel_activeAFO.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null
+   },
+   "Models/Tug_of_War/Tug_of_War.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "PASS",
+    "myoconverter_failing": []
+   },
+   "Models/Tug_of_War/Tug_of_War_Millard.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "PASS",
+    "myoconverter_failing": []
+   },
+   "Models/WalkerModel/WalkerModel.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "Pelvis",
+     "LeftThigh",
+     "RightThigh",
+     "LeftShank",
+     "RightShank"
+    ],
+    "error": null
+   },
+   "Models/WalkerModel/WalkerModelTerrain.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "Pelvis",
+     "LeftThigh",
+     "RightThigh",
+     "LeftShank",
+     "RightShank"
+    ],
+    "error": null
+   },
+   "Models/WristModel/wrist.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "ulna",
+     "radius",
+     "rotaxis",
+     "auxprfem",
+     "auxprrud",
+     "auxdrfem",
+     "auxdrrud",
+     "scaphoid",
+     "lunate",
+     "trapezium",
+     "trapezoid",
+     "capitate",
+     "pisiform",
+     "triquetrum",
+     "hamate",
+     "carp_metacarp",
+     "metacarpal2",
+     "Iphalanx1",
+     "Iphalanx2",
+     "Iphalanx3",
+     "metacarpal3",
+     "midfinger",
+     "metacarpal4",
+     "ringfinger",
+     "metacarpal5",
+     "littlefinger",
+     "thumb",
+     "imagine"
+    ],
+    "error": null,
+    "myoconverter": "PASS",
+    "myoconverter_failing": []
+   },
+   "Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics_path_actuator.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null
+   },
+   "Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics_path_spring.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null
+   },
+   "Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics_spring.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Pipelines/Gait10dof18musc/OutputReference/gait10dof18musc.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Pipelines/Gait10dof18musc/OutputReference/subject01.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Pipelines/Gait2354_Simbody/OutputReference/subject01_scaledOnly.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "talus_l",
+     "talus_r",
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Pipelines/Gait2354_Simbody/OutputReference/subject01_simbody.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "talus_l",
+     "talus_r",
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Pipelines/Gait2354_Simbody/OutputReference/subject01_simbody_adjusted.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "talus_l",
+     "talus_r",
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Pipelines/Gait2392_Simbody/OutputReference/subject01_simbody.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Pipelines/Gait2392_Simbody/OutputReference/subject01_simbody_adjusted.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   },
+   "Pipelines/Hamner/FullBodyModel_Hamner2010_v2_0.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "hand_l",
+     "hand_r",
+     "radius_l",
+     "radius_r",
+     "toes_l",
+     "toes_r",
+     "ulna_l",
+     "ulna_r"
+    ]
+   },
+   "Pipelines/Hamner/outputReference/subject02_RRA_Adjusted.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "hand_l",
+     "hand_r",
+     "radius_l",
+     "radius_r",
+     "toes_l",
+     "toes_r",
+     "ulna_l",
+     "ulna_r"
+    ]
+   },
+   "Pipelines/Hamner/outputReference/subject02_registered.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "hand_l",
+     "hand_r",
+     "radius_l",
+     "radius_r",
+     "toes_l",
+     "toes_r",
+     "ulna_l",
+     "ulna_r"
+    ]
+   },
+   "Pipelines/Hamner/outputReference/subject02_scaled.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "hand_l",
+     "hand_r",
+     "radius_l",
+     "radius_r",
+     "toes_l",
+     "toes_r",
+     "ulna_l",
+     "ulna_r"
+    ]
+   },
+   "Tutorials/Computed_Muscle_Control/InverseKinematics/arm26.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "base"
+    ],
+    "error": null,
+    "myoconverter": "PASS",
+    "myoconverter_failing": []
+   },
+   "Tutorials/Computed_Muscle_Control/OutputReference/arm26.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "base"
+    ],
+    "error": null,
+    "myoconverter": "PASS",
+    "myoconverter_failing": []
+   },
+   "Tutorials/Computed_Muscle_Control/OutputReference/arm26_with_bucket.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "base"
+    ],
+    "error": null,
+    "myoconverter": "PASS",
+    "myoconverter_failing": []
+   },
+   "Tutorials/Estimating_Joint_Reaction_Loads/subject01_simbody_adjusted_StaticOp.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "toes_r",
+     "toes_l"
+    ],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "talus_l",
+     "talus_r"
+    ]
+   },
+   "Tutorials/Strength_of_Simulation/Stance/Reference/RRA/leg6dof9musc_RRA_adjusted.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "toes_r"
+    ],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "calcn_r"
+    ]
+   },
+   "Tutorials/Strength_of_Simulation/Stance/Reference/leg6dof9musc_added_mass.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [
+     "toes_r"
+    ],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "calcn_r"
+    ]
+   },
+   "Tutorials/Working_with_Static_Optimization/subject01.osim": {
+    "ours": "PASS",
+    "failing": [],
+    "invalid": [],
+    "error": null,
+    "myoconverter": "FAIL",
+    "myoconverter_failing": [
+     "toes_l",
+     "toes_r"
+    ]
+   }
+  },
+  "gate": "PASS",
+  "myoconverter_failing_files": [
+   "Models/Gait10dof18musc/gait10dof18musc.osim",
+   "Models/Gait10dof18musc/subject01.osim",
+   "Models/Gait10dof18musc/subject01_metabolics.osim",
+   "Models/Gait10dof18musc/subject01_metabolics_spring.osim",
+   "Models/Gait2354_Simbody/gait2354_simbody.osim",
+   "Models/Gait2354_Simbody/subject01_simbody.osim",
+   "Models/Gait2392_Simbody/gait2392_millard2012muscle.osim",
+   "Models/Gait2392_Simbody/gait2392_thelen2003muscle.osim",
+   "Models/Gait2392_Simbody/subject01.osim",
+   "Models/Gait2392_Simbody/subject01_adjusted.osim",
+   "Models/Gait2392_Simbody/subject01_simbody_adjusted.osim",
+   "Models/Hamner/FullBodyModel_Hamner2010_v2_0.osim",
+   "Models/Leg6Dof9Musc/leg6dof9musc.osim",
+   "Models/Rajagopal/Rajagopal2016.osim",
+   "Models/Rajagopal_OpenSense/Rajagopal2015_opensense.osim",
+   "Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics.osim",
+   "Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics_spring.osim",
+   "Pipelines/Gait10dof18musc/OutputReference/gait10dof18musc.osim",
+   "Pipelines/Gait10dof18musc/OutputReference/subject01.osim",
+   "Pipelines/Gait2354_Simbody/OutputReference/subject01_scaledOnly.osim",
+   "Pipelines/Gait2354_Simbody/OutputReference/subject01_simbody.osim",
+   "Pipelines/Gait2354_Simbody/OutputReference/subject01_simbody_adjusted.osim",
+   "Pipelines/Gait2392_Simbody/OutputReference/subject01_simbody.osim",
+   "Pipelines/Gait2392_Simbody/OutputReference/subject01_simbody_adjusted.osim",
+   "Pipelines/Hamner/FullBodyModel_Hamner2010_v2_0.osim",
+   "Pipelines/Hamner/outputReference/subject02_RRA_Adjusted.osim",
+   "Pipelines/Hamner/outputReference/subject02_registered.osim",
+   "Pipelines/Hamner/outputReference/subject02_scaled.osim",
+   "Tutorials/Estimating_Joint_Reaction_Loads/subject01_simbody_adjusted_StaticOp.osim",
+   "Tutorials/Strength_of_Simulation/Stance/Reference/RRA/leg6dof9musc_RRA_adjusted.osim",
+   "Tutorials/Strength_of_Simulation/Stance/Reference/leg6dof9musc_added_mass.osim",
+   "Tutorials/Working_with_Static_Optimization/subject01.osim"
+  ]
+ },
+ "L4": {
+  "files": {
+   "Models/Gait10dof18musc/subject01_metabolics_spring.osim": "PASS",
+   "Models/Jumper/DynamicJumperModel.osim": "PASS",
+   "Models/SoccerKick/SoccerKickingModel.osim": "PASS",
+   "Models/ToyLanding/ToyLandingModel.osim": "PASS",
+   "Models/ToyLanding/ToyLandingModel_AFO.osim": "PASS",
+   "Models/ToyLanding/ToyLandingModel_activeAFO.osim": "PASS",
+   "Models/WalkerModel/WalkerModel.osim": "PASS",
+   "Models/WalkerModel/WalkerModelTerrain.osim": "PASS",
+   "Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics_spring.osim": "PASS"
+  },
+  "gate": "PASS"
+ },
+ "L5": {
+  "files": {
+   "Models/Gait10dof18musc/subject01_metabolics_path_actuator.osim": "PASS",
+   "Models/Gait10dof18musc/subject01_metabolics_path_spring.osim": "PASS",
+   "Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics_path_actuator.osim": "PASS",
+   "Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics_path_spring.osim": "PASS"
+  },
+  "gate": "PASS"
+ },
+ "L6": {
+  "files": {
+   "Models/Jumper/DynamicJumperModel.osim": "PASS",
+   "Models/SoccerKick/SoccerKickingModel.osim": "PASS",
+   "Models/ToyLanding/ToyLandingModel.osim": "PASS",
+   "Models/ToyLanding/ToyLandingModel_AFO.osim": "PASS",
+   "Models/ToyLanding/ToyLandingModel_activeAFO.osim": "PASS",
+   "Models/WalkerModel/WalkerModel.osim": "PASS",
+   "Models/WalkerModel/WalkerModelTerrain.osim": "PASS"
+  },
+  "gate": "PASS"
+ },
+ "L7": {
+  "C1": "FAIL",
+  "C2": "FAIL",
+  "error": null,
+  "runs": {
+   "cal_h0.02": {
+    "group": "calibration",
+    "position_rms_mm": 2.5085625062942896,
+    "rotation_rms_deg": 0.21284491953635493,
+    "mujoco_default_position_rms_mm": 13.776643142231652,
+    "mujoco_default_rotation_rms_deg": 0.9779319998143235
+   },
+   "cal_h0.10": {
+    "group": "calibration",
+    "position_rms_mm": 3.0902787540246126,
+    "rotation_rms_deg": 0.1401948393892788,
+    "mujoco_default_position_rms_mm": 16.0532270580791,
+    "mujoco_default_rotation_rms_deg": 1.2913795635844207
+   },
+   "h0.05": {
+    "group": "held-out",
+    "position_rms_mm": 9.281025865695222,
+    "rotation_rms_deg": 0.6483672880164663,
+    "mujoco_default_position_rms_mm": 16.172858085218117,
+    "mujoco_default_rotation_rms_deg": 1.229903770439496
+   },
+   "h0.05_rot+0.15": {
+    "group": "held-out",
+    "position_rms_mm": 30.335558682935925,
+    "rotation_rms_deg": 1.5034257547111147,
+    "mujoco_default_position_rms_mm": 43.00022576423648,
+    "mujoco_default_rotation_rms_deg": 3.410479513648286
+   },
+   "h0.05_rot-0.15": {
+    "group": "held-out",
+    "position_rms_mm": 54.98060411875623,
+    "rotation_rms_deg": 5.994301740514901,
+    "mujoco_default_position_rms_mm": 13.577630798156582,
+    "mujoco_default_rotation_rms_deg": 1.3775993937773787
+   },
+   "h0.02_vx0.5": {
+    "group": "held-out",
+    "position_rms_mm": 51.09542154370102,
+    "rotation_rms_deg": 5.197420281147802,
+    "mujoco_default_position_rms_mm": 11.365018435606077,
+    "mujoco_default_rotation_rms_deg": 1.11874385520812
+   }
+  },
+  "unlocked_walker": {
+   "duration_s": 1.0,
+   "coordinates": {
+    "Pelvis_rx": {
+     "rms": 171.39074137176092,
+     "unit": "deg"
+    },
+    "Pelvis_tx": {
+     "rms": 336.07912691664404,
+     "unit": "mm"
+    },
+    "Pelvis_ty": {
+     "rms": 3531.6316232886747,
+     "unit": "mm"
+    },
+    "LHip_rz": {
+     "rms": 122.60025832162528,
+     "unit": "deg"
+    },
+    "RHip_rz": {
+     "rms": 40.240845512762206,
+     "unit": "deg"
+    },
+    "LKnee_rz": {
+     "rms": 16.947677107195382,
+     "unit": "deg"
+    },
+    "RKnee_rz": {
+     "rms": 73.92738915306668,
+     "unit": "deg"
+    }
+   },
+   "opensim_final": {
+    "Pelvis_rx": 1.3733823374633936,
+    "Pelvis_tx": -0.3212713031501132,
+    "Pelvis_ty": -0.8664187484593536,
+    "LHip_rz": 0.023417595421769504,
+    "RHip_rz": 0.8457636090657281,
+    "LKnee_rz": 0.020356024476641463,
+    "RKnee_rz": -1.7794290655314795
+   },
+   "mujoco_final": {
+    "Pelvis_rx": -4.493538249743472,
+    "Pelvis_tx": 0.22228337406034562,
+    "Pelvis_ty": 4.027200065815642,
+    "LHip_rz": -1.4140307541530008,
+    "RHip_rz": 1.3896067468821847,
+    "LKnee_rz": -0.2552806701466935,
+    "RKnee_rz": -0.04959692766275125
+   }
+  },
+  "calibrations": {
+   "Models/Jumper/DynamicJumperModel.osim": {
+    "root_position_rms_mm": 4.396506803845596,
+    "start_rms_mm": 6.105983563971797,
+    "groups": {
+     "foot_r": {
+      "timeconst": 0.05005017124502642,
+      "dampratio": 0.2153259244565933,
+      "friction": 0.8972445394954186
+     }
+    }
+   },
+   "Models/SoccerKick/SoccerKickingModel.osim": {
+    "root_position_rms_mm": 3.7674721156508717,
+    "start_rms_mm": 21.966053663807003,
+    "groups": {
+     "ball_ground": {
+      "timeconst": 0.14414191479273608,
+      "dampratio": 0.041910702458304624,
+      "friction": 0.5640478513609362
+     },
+     "ball_net": {
+      "timeconst": 0.03959599611629658,
+      "dampratio": 0.17150789596681348,
+      "friction": 0.39780819720105204
+     },
+     "foot_ball": {
+      "timeconst": 0.033511564030756724,
+      "dampratio": 0.21316861191071979,
+      "friction": 1.2085329188750495
+     },
+     "foot_ground": {
+      "timeconst": 0.006399741096682257,
+      "dampratio": 0.21125508245384042,
+      "friction": 0.18111761202181148
+     },
+     "goalie_ball": {
+      "timeconst": 0.013292441382974073,
+      "dampratio": 0.27982567733808544,
+      "friction": 0.5468510488878477
+     }
+    }
+   },
+   "Models/ToyLanding/ToyLandingModel.osim": {
+    "root_position_rms_mm": 16.766249847355343,
+    "start_rms_mm": 26.65032542751407,
+    "groups": {
+     "foot_r": {
+      "timeconst": 0.035792377543983185,
+      "dampratio": 0.3372938663640819,
+      "friction": 0.8712458465123761
+     }
+    }
+   },
+   "Models/ToyLanding/ToyLandingModel_AFO.osim": {
+    "root_position_rms_mm": 16.508841433390828,
+    "start_rms_mm": 30.673569145633184,
+    "groups": {
+     "foot_r": {
+      "timeconst": 0.052730857093932555,
+      "dampratio": 0.3466393002083555,
+      "friction": 0.8903487211881215
+     }
+    }
+   },
+   "Models/ToyLanding/ToyLandingModel_activeAFO.osim": {
+    "root_position_rms_mm": 16.508841433390828,
+    "start_rms_mm": 30.673569145633184,
+    "groups": {
+     "foot_r": {
+      "timeconst": 0.052730857093932555,
+      "dampratio": 0.3466393002083555,
+      "friction": 0.8903487211881215
+     }
+    }
+   },
+   "Models/WalkerModel/WalkerModel.osim": {
+    "root_position_rms_mm": 2.799420630135974,
+    "start_rms_mm": 4.80328232473248,
+    "groups": {
+     "LFootForce": {
+      "timeconst": 0.007328525793808427,
+      "dampratio": 0.31033198003453655,
+      "friction": 0.41239253050652547
+     }
+    }
+   },
+   "Models/WalkerModel/WalkerModelTerrain.osim": {
+    "root_position_rms_mm": 2.799420630135974,
+    "start_rms_mm": 4.80328232473248,
+    "groups": {
+     "LFootForce": {
+      "timeconst": 0.007328525793808427,
+      "dampratio": 0.31033198003453655,
+      "friction": 0.41239253050652547
+     }
+    }
+   }
+  },
+  "gate": "FAIL"
+ }
+}

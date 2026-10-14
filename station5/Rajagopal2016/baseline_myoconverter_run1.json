@@ -1,0 +1,8 @@
+{
+ "model": "Rajagopal2016_cvt3.xml",
+ "W0": "FAIL",
+ "W0_problems": [
+  "OpenSim coordinates without a MuJoCo joint: ['knee_angle_r_beta', 'knee_angle_l_beta']",
+  "OpenSim QErr 2.00e-09 > 1e-09"
+ ]
+}

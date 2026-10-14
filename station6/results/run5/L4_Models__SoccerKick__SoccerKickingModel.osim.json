@@ -1,0 +1,69 @@
+{
+ "L4": "PASS",
+ "problems": [],
+ "forces": {
+  "knee_stop_r": {
+   "coordinate": "knee_angle_r",
+   "rotational": true,
+   "steps": 2001,
+   "range": [
+    -2.373647782712288,
+    0.2792526803190927
+   ],
+   "tendons": 18,
+   "peak_opensim": 3200.0,
+   "max_error": 3.434627163957984,
+   "max_error_pct_peak": 0.107332098873687,
+   "worst_at": 0.015289084247470441,
+   "rms_error": 0.19560792838277372,
+   "myoconverter_max_error_pct_peak": 100.0,
+   "pass": true,
+   "damping_not_converted": {
+    "upper": {
+     "at": 0.06981317007977318,
+     "force_static": -800.0,
+     "extra_at_plus_1": -5.729577951308215,
+     "extra_at_minus_1": 5.729577951308215
+    },
+    "lower": {
+     "at": -2.1642082724729685,
+     "force_static": 200.00000000000028,
+     "extra_at_plus_1": -5.729577951308244,
+     "extra_at_minus_1": 5.729577951308244
+    }
+   }
+  },
+  "ankle_stop_r": {
+   "coordinate": "ankle_angle_r",
+   "rotational": true,
+   "steps": 2001,
+   "range": [
+    -1.064650843716541,
+    0.942477796076938
+   ],
+   "tendons": 18,
+   "peak_opensim": 1600.0000000000005,
+   "max_error": 1.7160518921468437,
+   "max_error_pct_peak": 0.1072532432591777,
+   "worst_at": -0.8007134275836985,
+   "rms_error": 0.15368629728186609,
+   "myoconverter_max_error_pct_peak": 100.0,
+   "pass": true,
+   "damping_not_converted": {
+    "upper": {
+     "at": 0.7330382858376184,
+     "force_static": -399.99999999999994,
+     "extra_at_plus_1": -2.8647889756541076,
+     "extra_at_minus_1": 2.8647889756541076
+    },
+    "lower": {
+     "at": -0.8552113334772214,
+     "force_static": 399.99999999999994,
+     "extra_at_plus_1": -2.8647889756541076,
+     "extra_at_minus_1": 2.8647889756541076
+    }
+   }
+  }
+ },
+ "tolerance_pct_peak": 1.0
+}

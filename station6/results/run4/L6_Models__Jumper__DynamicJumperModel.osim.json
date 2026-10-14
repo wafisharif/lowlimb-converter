@@ -1,0 +1,169 @@
+{
+ "L6": "PASS",
+ "problems": [],
+ "poses": 1779,
+ "pairs": {
+  "foot_r_platform_r_heel_lat": {
+   "force": "foot_r",
+   "poses_near": 975,
+   "penetrating": 835,
+   "max_abs_error_m": 1.1102230246251565e-15,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.0008161542360687335
+  },
+  "foot_r_platform_r_heel_med": {
+   "force": "foot_r",
+   "poses_near": 973,
+   "penetrating": 825,
+   "max_abs_error_m": 1.1102230246251565e-15,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.000816154236068789
+  },
+  "foot_r_platform_r_toe_lat": {
+   "force": "foot_r",
+   "poses_near": 976,
+   "penetrating": 849,
+   "max_abs_error_m": 1.1102230246251565e-15,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.0008624687278104698
+  },
+  "foot_r_platform_r_toe_med": {
+   "force": "foot_r",
+   "poses_near": 972,
+   "penetrating": 832,
+   "max_abs_error_m": 1.1102230246251565e-15,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.0008624687278104698
+  },
+  "foot_r_platform_r_toe": {
+   "force": "foot_r",
+   "poses_near": 975,
+   "penetrating": 839,
+   "max_abs_error_m": 1.3322676295501878e-15,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.0008624687278104386
+  },
+  "foot_l_platform_l_heel_lat": {
+   "force": "foot_l",
+   "poses_near": 997,
+   "penetrating": 842,
+   "max_abs_error_m": 1.1102230246251565e-15,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.0002028217082525735
+  },
+  "foot_l_platform_l_heel_med": {
+   "force": "foot_l",
+   "poses_near": 996,
+   "penetrating": 829,
+   "max_abs_error_m": 1.1102230246251565e-15,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.00020282170825259085
+  },
+  "foot_l_platform_l_toe_lat": {
+   "force": "foot_l",
+   "poses_near": 1002,
+   "penetrating": 860,
+   "max_abs_error_m": 1.1102230246251565e-15,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.00020321959313304716
+  },
+  "foot_l_platform_l_toe_med": {
+   "force": "foot_l",
+   "poses_near": 989,
+   "penetrating": 847,
+   "max_abs_error_m": 1.1102230246251565e-15,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.00020321959313303328
+  },
+  "foot_l_platform_l_toe": {
+   "force": "foot_l",
+   "poses_near": 993,
+   "penetrating": 854,
+   "max_abs_error_m": 1.1102230246251565e-15,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.00020372807749372002
+  },
+  "foot_r_r_heel_lat_r_toe": {
+   "force": "foot_r",
+   "poses_near": 0,
+   "penetrating": 0,
+   "max_abs_error_m": 0.0,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.0
+  },
+  "foot_r_r_heel_med_r_toe": {
+   "force": "foot_r",
+   "poses_near": 0,
+   "penetrating": 0,
+   "max_abs_error_m": 0.0,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.0
+  },
+  "foot_r_r_toe_lat_r_toe": {
+   "force": "foot_r",
+   "poses_near": 1779,
+   "penetrating": 0,
+   "max_abs_error_m": 0.0,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 8.881784197001252e-16
+  },
+  "foot_r_r_toe_med_r_toe": {
+   "force": "foot_r",
+   "poses_near": 1779,
+   "penetrating": 0,
+   "max_abs_error_m": 0.0,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 8.743006318923108e-16
+  },
+  "foot_l_l_heel_lat_l_toe": {
+   "force": "foot_l",
+   "poses_near": 0,
+   "penetrating": 0,
+   "max_abs_error_m": 0.0,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.0
+  },
+  "foot_l_l_heel_med_l_toe": {
+   "force": "foot_l",
+   "poses_near": 0,
+   "penetrating": 0,
+   "max_abs_error_m": 0.0,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.0
+  },
+  "foot_l_l_toe_lat_l_toe": {
+   "force": "foot_l",
+   "poses_near": 1779,
+   "penetrating": 0,
+   "max_abs_error_m": 0.0,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 9.020562075079397e-16
+  },
+  "foot_l_l_toe_med_l_toe": {
+   "force": "foot_l",
+   "poses_near": 1779,
+   "penetrating": 0,
+   "max_abs_error_m": 0.0,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 8.743006318923108e-16
+  }
+ }
+}

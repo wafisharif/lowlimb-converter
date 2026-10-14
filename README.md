@@ -3,27 +3,35 @@
 OpenSim → MuJoCo conversion for lower-limb gait models, with a validation report for every
 converted model. It's a specialised fork of [MyoConverter](https://github.com/MyoHub/myoconverter).
 
-> **Status: Station 5 (walking) done for both gait models; Rajagopal 2016 now passes Station 2 (kinematics) and is
-> next in line for Stations 3–5.** The pipeline runs on Python 3.12, OpenSim 4.6, MuJoCo 3.15 and NumPy 2 with no
-> Docker (verified on Linux; the lockfile includes Apple Silicon wheels, but the native macOS run is not verified
-> yet). For both gait models, compared with MyoConverter's conversions of the same models:
-> - every body is within 0.22 mm of OpenSim in every tested pose (MyoConverter: 0.89 mm);
-> - muscle moment arms are 4–9× closer to OpenSim's on average over random poses (worst muscle 3.5–6.3 mm RMS,
->   MyoConverter 70–78 mm);
-> - static muscle forces are 3–5× closer at full activation and 5–10× closer when passive (mean 3.2–3.5% and
->   1.3–2.9% of max isometric force; MyoConverter 10–16%);
-> - along OpenSim's own walking data, muscle lengths are 33–42× closer, moment arms 11–15× closer, and the joint
->   moments needed to walk 1.4–1.6× closer (0.0048 / 0.0027 N·m/kg mean, MyoConverter 0.0075 / 0.0039).
+> **Status: Stations 2–5 pass for both gait models and Rajagopal 2016 (RajagopalLaiUhlrich2023: Station 2), and Station
+> 6 takes the converter past MyoConverter's documented limitations on all 56 model files OpenSim distributes (gates
+> L0–L6 pass; L7, contact dynamics on unseen drops, fails and is an open item).** The pipeline runs on Python 3.12,
+> OpenSim 4.6, MuJoCo 3.15 and NumPy 2 with no Docker (verified on Linux; the lockfile includes Apple Silicon wheels,
+> but the native macOS run is not verified yet). Compared with MyoConverter's conversions of the same models:
+> - every body is within 0.22 mm of OpenSim in every tested pose for the gait models (MyoConverter: 0.89 mm) and
+>   0.15 mm for Rajagopal 2016 (MyoConverter: 15.6 mm at the knee);
+> - muscle moment arms are 4–9× closer to OpenSim's on average over random poses for the gait models and 3.6× for
+>   Rajagopal 2016 (0.46 vs 1.64 mm), whose wrapping paths now take the same side of each wrap object as OpenSim's;
+> - static muscle forces are 3–5× closer at full activation and 5–10× closer when passive for the gait models
+>   (Rajagopal 2016: 2.8× and 6.5×);
+> - along OpenSim's own walking data, muscle lengths are 33–42× closer (Rajagopal 2016: 39×), moment arms 11–15×
+>   closer (5.6×), and the joint moments needed to walk 1.4–1.6× closer (10×);
+> - 54 of OpenSim's 56 model files convert (MyoConverter: 40), with contact geometry, limit forces, path actuators
+>   and springs, four more joint types and exact mass properties, each checked against OpenSim (contact dynamics are
+>   calibrated but don't yet follow OpenSim on tilted or sliding drops).
 >
 > Details: [`station2/FINDINGS.md`](station2/FINDINGS.md), [`station3/FINDINGS.md`](station3/FINDINGS.md),
-> [`station4/FINDINGS.md`](station4/FINDINGS.md), [`station5/FINDINGS.md`](station5/FINDINGS.md). Two hip-flexor force
-> results miss the Station 4 tolerance only in hip extension beyond −90° (outside any human range, where OpenSim's own
-> path jumps); they are listed with a test-backed reason. Open-loop replay of muscle excitations (Station 5 level 3,
-> reported only) parts from OpenSim within milliseconds in every column, MyoConverter's included.
+> [`station4/FINDINGS.md`](station4/FINDINGS.md), [`station5/FINDINGS.md`](station5/FINDINGS.md),
+> [`station6/FINDINGS.md`](station6/FINDINGS.md), and where this fork stands on each of MyoConverter's documented
+> limitations: [`LIMITATIONS.md`](LIMITATIONS.md). Four muscle-force results miss the Station 4 tolerance against
+> MyoConverter; each is listed with a test-backed reason (two hip flexors only in hip extension beyond −90°, where
+> OpenSim's own path jumps; two Rajagopal muscles only against MyoConverter's luckier copy of a muscle whose mirror
+> image it got far worse). Open-loop replay of muscle excitations (Station 5 level 3, reported only) parts from OpenSim
+> within milliseconds in every column, MyoConverter's included.
 > Plan: [project pipeline doc](https://claude.ai/code/artifact/41e46ee4-a7c3-42bc-82d8-dd94af3ef801) ·
 > log: [`EXPERIMENTS.md`](EXPERIMENTS.md) · gates: [`baseline/GATES.md`](baseline/GATES.md), [`station1/GATES.md`](station1/GATES.md),
 > [`station2/GATES.md`](station2/GATES.md), [`station3/GATES.md`](station3/GATES.md), [`station4/GATES.md`](station4/GATES.md),
-> [`station5/GATES.md`](station5/GATES.md)
+> [`station5/GATES.md`](station5/GATES.md), [`station6/GATES.md`](station6/GATES.md)
 
 ## Quick start
 
@@ -43,25 +51,33 @@ Then, for an OpenSim model with its `Geometry` folder next to it:
 lowlimb-convert check    model.osim                         # what converts, and how (seconds)
 lowlimb-convert convert  model.osim out/ --validate         # convert, then compare with OpenSim (minutes)
 lowlimb-convert validate model.osim out/model_cvt3.xml report/   # the comparison alone, for any converted model
+lowlimb-convert validate model.osim out/model_cvt3.xml report/ --ik walk_ik.mot --grf walk_grf.xml
+                                                            # ... plus a walking trial of your own (OpenSim IK + GRF)
 ```
 
 `convert` refuses a model it can't handle (and says why) before doing anything, and refuses an output folder that
 isn't empty: MyoConverter's pipeline would otherwise silently reuse old results found there. The converted model is
 `out/<model>_cvt3.xml`. `--steps 1` stops after the XML conversion (seconds; muscles not yet fitted).
 
-The validation report (`report.md`, with `report.json` and detailed results) compares the MuJoCo model with OpenSim
-in about 1000–2000 poses: every body's position and orientation, every muscle's length and moment arms, and every
-muscle's static force at four activation levels. These are the same checks used to develop the converter
-(Stations 2–4 below). It does not yet include the walking check (Station 5, run separately below), or how muscle
-force changes with speed.
+The validation report (`report.md`, with `report.json` and detailed results) compares the MuJoCo model with OpenSim in
+about 1000–2000 poses: every body's position and orientation, every muscle's length and moment arms, and every muscle's
+static force at four activation levels; and, where the model has them, its mass properties, limit forces, path actuators
+and springs, and contact geometry and drops (level "elements"). These are the same checks used to develop the converter
+(Stations 2–4 and 6 below). Give it a walking trial (`--ik` with OpenSim's inverse-kinematics result, `--grf` with the
+ground reaction forces as an OpenSim ExternalLoads file; optionally `--start`/`--end`, and `--controls` with recorded
+muscle excitations for an open-loop replay) and it also runs Station 5's walking check: muscle lengths and moment arms
+along the trial, and the joint moments needed to walk with the measured forces. It does not check how muscle force
+changes with speed.
 
 The gait models in the examples come with MyoConverter (`models/osim/` in its repo). Python API:
 `lowlimb_converter.convert.convert(...)` and `lowlimb_converter.validate.validate(...)`.
 
 ## What this will be
 
-- Supports a short list of standard gait models (gait10dof18musc as a test bed, gait2354, Rajagopal 2016),
-  not every OpenSim model. Unsupported models are rejected with a clear error.
+- Validated end to end on a short list of standard gait models (gait10dof18musc as a test bed, gait2354, Rajagopal
+  2016, RajagopalLaiUhlrich2023). Since Station 6 it also converts, and checks element by element, almost every model
+  OpenSim distributes; anything it can't handle is rejected with a clear error before converting.
+- Where it stands on each of MyoConverter's own documented limitations: [`LIMITATIONS.md`](LIMITATIONS.md).
 - Every converted model ships with a report comparing it to OpenSim at three levels: body kinematics,
   muscle moment arms and forces, and replayed walking (muscle lengths, joint moments).
 - Every number is reported next to MyoConverter's number for the same model.
@@ -99,7 +115,20 @@ The gait models in the examples come with MyoConverter (`models/osim/` in its re
   joints with quartics only. Fixed by two quartics in sequence through a helper joint (0.036°).
 - MyoConverter doesn't convert gravity (OpenSim's 9.80665 m/s² became MuJoCo's default 9.81) and drops torque
   actuators' `optimal_force` (Rajagopal 2016's lumbar and arm actuators came out 10× too weak). Both fixed.
-- RajagopalLaiUhlrich2023 can't be converted yet: its knees use a `PolynomialFunction`, which the converter rejects.
+- Rajagopal 2016's wrapping paths: MyoConverter forced every wrap onto one side of its object, so the vasti went the
+  wrong way round the femoral condyles (127 mm too long in flexion) and iliacus and psoas sometimes the long way round
+  the pelvic brim (up to 180 mm). Unconstrained wraps now take the shorter side and a constrained wrap keeps its side
+  site only where that matches OpenSim's path better (Station 3).
+- A rigid-tendon MuJoCo muscle can't follow how a long, compliant tendon shifts the force–length curve with
+  activation; the force refit now guarantees both ends of the activation range (full and passive) and lets the middle
+  pay (Station 4).
+- MyoConverter can't read most of OpenSim's own example models (element names with `::`, ASCII STL and OBJ meshes,
+  omitted coordinate properties, and more), drops contact, limit forces and path actuators, and inflated small bodies'
+  inertia; all of these are converted and checked now (Station 6).
+- RajagopalLaiUhlrich2023 couldn't be converted at all: its knees use a `PolynomialFunction`. They now convert
+  exactly (degree ≤ 4 polynomials are MuJoCo's own coupling), and it passes Station 2.
+- MyoConverter never read an OpenSim model's `<defaults>` element (its documented limitation 3), although OpenSim
+  fills omitted properties from it. Now applied as OpenSim does.
 
 ## Running the ported pipeline (Station 1a)
 
@@ -176,6 +205,20 @@ measured ground forces (gates W0–W3), plus an open-loop replay of the recorded
 only). Results go to `station5/<model>/myrun.json`, `myrun_w.json` and `myrun_replay*.json`. About 35 minutes on two
 cores.
 
+## Past MyoConverter's limitations (Station 6)
+
+```bash
+git clone --filter=blob:none https://github.com/opensim-org/opensim-models.git ../opensim-models
+git -C ../opensim-models checkout d9b05d470b1a481c222372c85b75772faf8f7792
+bash station6/run_station6.sh myrun upstream ../opensim-models ../station6_work .venv/bin/python
+```
+
+Runs the support report and the XML step on every one of the 56 model files in opensim-models (and the Station 1a
+port, for MyoConverter's column), then gates L2–L7 on the converted files: kinematics, mass properties, limit forces,
+path actuators and springs, contact geometry, and contact dynamics on WalkerModel drops. Results go to
+`station6/results/myrun/`. Several hours on two cores (`SKIP_COVERAGE_MC=1` skips MyoConverter's column).
+`lowlimb-convert validate` runs the same element checks (level "elements") on any converted model.
+
 ## Reproducing the Station 0 baseline
 
 Requires Docker. On Apple Silicon, the image runs under amd64 emulation.
@@ -197,7 +240,7 @@ reached end of life. Upstream's `conda_env.yml`, which holds the actual dependen
 | Path | What |
 | --- | --- |
 | `src/myoconverter/` | Vendored MyoConverter @ cadf380 with our port fixes (each modified file says what changed; see `VENDORED.md`) |
-| `lowlimb_converter/` | Our own code: the `lowlimb-convert` command (`cli.py`), conversion wrapper (`convert.py`), validation report (`validate.py`), element-support report (`support.py`, Station 1b) and the checks behind Stations 2–5 (`checks/`) |
+| `lowlimb_converter/` | Our own code: the `lowlimb-convert` command (`cli.py`), conversion wrapper (`convert.py`), validation report (`validate.py`), element-support report (`support.py`, Station 1b) and the checks behind Stations 2–6 (`checks/`) |
 | `tests/` | Tests of the installable tool |
 | `env/` | Modern-stack requirements and the universal hashed lockfile |
 | `station1/` | Station 1a/1b: gates, run script, results per model, tests, findings |
@@ -206,6 +249,8 @@ reached end of life. Upstream's `conda_env.yml`, which holds the actual dependen
 | `station3/` | Station 3: gates, OpenSim and MuJoCo sides of the muscle-path check, M1 comparison, run script, tests, findings, results |
 | `station4/` | Station 4: gates, OpenSim and MuJoCo sides of the muscle-force check, F1–F2 comparison, run script, tests, findings, results |
 | `station5/` | Station 5: gates, OpenSim and MuJoCo sides of the walking check (paths, inverse dynamics, forward replay), W1–W3 comparison, run script, tests, findings, results |
+| `station6/` | Station 6: gates, coverage of OpenSim's 56 model files, gates L1–L7, run script, tests, findings, results per run |
+| `LIMITATIONS.md` | MyoConverter's ten documented limitations, and where this fork stands on each |
 | `baseline/` | Station 0: run scripts, gates, extracted metrics, outputs for each model |
 | `baseline/upstream_shipped/` | Metrics extracted from the outputs MyoConverter ships, for the reproducibility check |
 | `station0/elastic_tendon/` | Whether MuJoCo supports elastic tendons: test and findings |

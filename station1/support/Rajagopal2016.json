@@ -5,13 +5,22 @@
  "outcome": "converts",
  "first_failure": null,
  "counts": {
-  "converted": 670,
+  "converted": 671,
   "approximated": 94,
   "skipped": 0,
   "ignored": 2,
   "unsupported": 0
  },
  "items": [
+  {
+   "section": "Model",
+   "kind": "defaults",
+   "name": "defaults",
+   "status": "converted",
+   "reason": "xml/config.py apply_document_defaults: properties a component omits are taken from the file's <defaults> objects, as OpenSim does (change 1c.3; MyoConverter ignored <defaults>): 337 properties filled in",
+   "rule": "defaults",
+   "path": "defaults"
+  },
   {
    "section": "ConstraintSet",
    "kind": "CoordinateCouplerConstraint",
@@ -47,7 +56,7 @@
    "kind": "Mesh",
    "name": "pelvis_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "pelvis/pelvis_geom_1",
    "order": 3
@@ -57,7 +66,7 @@
    "kind": "Mesh",
    "name": "pelvis_geom_2",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "pelvis/pelvis_geom_2",
    "order": 4
@@ -67,7 +76,7 @@
    "kind": "Mesh",
    "name": "pelvis_geom_3",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "pelvis/pelvis_geom_3",
    "order": 5
@@ -317,7 +326,7 @@
    "kind": "Mesh",
    "name": "femur_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "femur_r/femur_r_geom_1",
    "order": 30
@@ -527,7 +536,7 @@
    "kind": "Mesh",
    "name": "tibia_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "tibia_r/tibia_r_geom_1",
    "order": 51
@@ -537,7 +546,7 @@
    "kind": "Mesh",
    "name": "tibia_r_geom_2",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "tibia_r/tibia_r_geom_2",
    "order": 52
@@ -697,7 +706,7 @@
    "kind": "Mesh",
    "name": "talus_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "talus_r/talus_r_geom_1",
    "order": 68
@@ -737,7 +746,7 @@
    "kind": "Mesh",
    "name": "calcn_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "calcn_r/calcn_r_geom_1",
    "order": 72
@@ -777,7 +786,7 @@
    "kind": "Mesh",
    "name": "toes_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "toes_r/toes_r_geom_1",
    "order": 76
@@ -817,7 +826,7 @@
    "kind": "Mesh",
    "name": "patella_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "patella_r/patella_r_geom_1",
    "order": 80
@@ -917,7 +926,7 @@
    "kind": "Mesh",
    "name": "femur_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "femur_l/femur_l_geom_1",
    "order": 90
@@ -1127,7 +1136,7 @@
    "kind": "Mesh",
    "name": "tibia_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "tibia_l/tibia_l_geom_1",
    "order": 111
@@ -1137,7 +1146,7 @@
    "kind": "Mesh",
    "name": "tibia_l_geom_2",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "tibia_l/tibia_l_geom_2",
    "order": 112
@@ -1297,7 +1306,7 @@
    "kind": "Mesh",
    "name": "talus_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "talus_l/talus_l_geom_1",
    "order": 128
@@ -1337,7 +1346,7 @@
    "kind": "Mesh",
    "name": "calcn_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "calcn_l/calcn_l_geom_1",
    "order": 132
@@ -1377,7 +1386,7 @@
    "kind": "Mesh",
    "name": "toes_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "toes_l/toes_l_geom_1",
    "order": 136
@@ -1417,7 +1426,7 @@
    "kind": "Mesh",
    "name": "patella_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "patella_l/patella_l_geom_1",
    "order": 140
@@ -1517,7 +1526,7 @@
    "kind": "Mesh",
    "name": "torso_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "torso/torso_geom_1",
    "order": 150
@@ -1527,7 +1536,7 @@
    "kind": "Mesh",
    "name": "torso_geom_2",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "torso/torso_geom_2",
    "order": 151
@@ -1537,7 +1546,7 @@
    "kind": "Mesh",
    "name": "torso_geom_3",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "torso/torso_geom_3",
    "order": 152
@@ -1547,7 +1556,7 @@
    "kind": "Mesh",
    "name": "torso_geom_4",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "torso/torso_geom_4",
    "order": 153
@@ -1667,7 +1676,7 @@
    "kind": "Mesh",
    "name": "humerus_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "humerus_r/humerus_r_geom_1",
    "order": 165
@@ -1787,7 +1796,7 @@
    "kind": "Mesh",
    "name": "ulna_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "ulna_r/ulna_r_geom_1",
    "order": 177
@@ -1827,7 +1836,7 @@
    "kind": "Mesh",
    "name": "radius_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "radius_r/radius_r_geom_1",
    "order": 181
@@ -1867,7 +1876,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_1",
    "order": 185
@@ -1877,7 +1886,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_2",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_2",
    "order": 186
@@ -1887,7 +1896,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_3",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_3",
    "order": 187
@@ -1897,7 +1906,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_4",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_4",
    "order": 188
@@ -1907,7 +1916,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_5",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_5",
    "order": 189
@@ -1917,7 +1926,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_6",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_6",
    "order": 190
@@ -1927,7 +1936,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_7",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_7",
    "order": 191
@@ -1937,7 +1946,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_8",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_8",
    "order": 192
@@ -1947,7 +1956,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_9",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_9",
    "order": 193
@@ -1957,7 +1966,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_10",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_10",
    "order": 194
@@ -1967,7 +1976,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_11",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_11",
    "order": 195
@@ -1977,7 +1986,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_12",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_12",
    "order": 196
@@ -1987,7 +1996,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_13",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_13",
    "order": 197
@@ -1997,7 +2006,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_14",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_14",
    "order": 198
@@ -2007,7 +2016,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_15",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_15",
    "order": 199
@@ -2017,7 +2026,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_16",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_16",
    "order": 200
@@ -2027,7 +2036,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_17",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_17",
    "order": 201
@@ -2037,7 +2046,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_18",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_18",
    "order": 202
@@ -2047,7 +2056,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_19",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_19",
    "order": 203
@@ -2057,7 +2066,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_20",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_20",
    "order": 204
@@ -2067,7 +2076,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_21",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_21",
    "order": 205
@@ -2077,7 +2086,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_22",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_22",
    "order": 206
@@ -2087,7 +2096,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_23",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_23",
    "order": 207
@@ -2097,7 +2106,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_24",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_24",
    "order": 208
@@ -2107,7 +2116,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_25",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_25",
    "order": 209
@@ -2117,7 +2126,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_26",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_26",
    "order": 210
@@ -2127,7 +2136,7 @@
    "kind": "Mesh",
    "name": "hand_r_geom_27",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_r/hand_r_geom_27",
    "order": 211
@@ -2177,7 +2186,7 @@
    "kind": "Mesh",
    "name": "humerus_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "humerus_l/humerus_l_geom_1",
    "order": 216
@@ -2297,7 +2306,7 @@
    "kind": "Mesh",
    "name": "ulna_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "ulna_l/ulna_l_geom_1",
    "order": 228
@@ -2337,7 +2346,7 @@
    "kind": "Mesh",
    "name": "radius_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "radius_l/radius_l_geom_1",
    "order": 232
@@ -2377,7 +2386,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_1",
    "order": 236
@@ -2387,7 +2396,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_2",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_2",
    "order": 237
@@ -2397,7 +2406,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_3",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_3",
    "order": 238
@@ -2407,7 +2416,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_4",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_4",
    "order": 239
@@ -2417,7 +2426,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_5",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_5",
    "order": 240
@@ -2427,7 +2436,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_6",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_6",
    "order": 241
@@ -2437,7 +2446,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_7",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_7",
    "order": 242
@@ -2447,7 +2456,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_8",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_8",
    "order": 243
@@ -2457,7 +2466,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_9",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_9",
    "order": 244
@@ -2467,7 +2476,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_10",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_10",
    "order": 245
@@ -2477,7 +2486,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_11",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_11",
    "order": 246
@@ -2487,7 +2496,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_12",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_12",
    "order": 247
@@ -2497,7 +2506,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_13",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_13",
    "order": 248
@@ -2507,7 +2516,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_14",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_14",
    "order": 249
@@ -2517,7 +2526,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_15",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_15",
    "order": 250
@@ -2527,7 +2536,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_16",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_16",
    "order": 251
@@ -2537,7 +2546,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_17",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_17",
    "order": 252
@@ -2547,7 +2556,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_18",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_18",
    "order": 253
@@ -2557,7 +2566,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_19",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_19",
    "order": 254
@@ -2567,7 +2576,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_20",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_20",
    "order": 255
@@ -2577,7 +2586,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_21",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_21",
    "order": 256
@@ -2587,7 +2596,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_22",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_22",
    "order": 257
@@ -2597,7 +2606,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_23",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_23",
    "order": 258
@@ -2607,7 +2616,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_24",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_24",
    "order": 259
@@ -2617,7 +2626,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_25",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_25",
    "order": 260
@@ -2627,7 +2636,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_26",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_26",
    "order": 261
@@ -2637,7 +2646,7 @@
    "kind": "Mesh",
    "name": "hand_l_geom_27",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "hand_l/hand_l_geom_27",
    "order": 262

@@ -1,0 +1,263 @@
+{
+ "C1": "FAIL",
+ "C2": "FAIL",
+ "root": "PelvisToPlatform",
+ "coordinates": [
+  "Pelvis_rx",
+  "Pelvis_tx",
+  "Pelvis_ty"
+ ],
+ "runs": {
+  "cal_h0.02": {
+   "group": "calibration",
+   "scenario": {
+    "h": 0.02
+   },
+   "position_rms_mm": 2.5085625062942896,
+   "rotation_rms_deg": 0.21284491953635493,
+   "mujoco_default_position_rms_mm": 13.776643142231652,
+   "mujoco_default_rotation_rms_deg": 0.9779319998143235,
+   "opensim_final": {
+    "Pelvis_rx": -0.7197655049954141,
+    "Pelvis_tx": 0.6641164867389419,
+    "Pelvis_ty": -0.20057792136230723
+   },
+   "mujoco_final": {
+    "Pelvis_rx": -0.6924769061181318,
+    "Pelvis_tx": 0.6703310409624242,
+    "Pelvis_ty": -0.19982783844738142
+   }
+  },
+  "cal_h0.10": {
+   "group": "calibration",
+   "scenario": {
+    "h": 0.1
+   },
+   "position_rms_mm": 3.0902787540246126,
+   "rotation_rms_deg": 0.1401948393892788,
+   "mujoco_default_position_rms_mm": 16.0532270580791,
+   "mujoco_default_rotation_rms_deg": 1.2913795635844207,
+   "opensim_final": {
+    "Pelvis_rx": -0.6795333027329883,
+    "Pelvis_tx": 0.6345063553548892,
+    "Pelvis_ty": -0.19218475941343624
+   },
+   "mujoco_final": {
+    "Pelvis_rx": -0.6723596772261469,
+    "Pelvis_tx": 0.6382722810743153,
+    "Pelvis_ty": -0.1888036999993223
+   }
+  },
+  "h0.05": {
+   "group": "held-out",
+   "scenario": {
+    "h": 0.05
+   },
+   "position_rms_mm": 9.281025865695222,
+   "rotation_rms_deg": 0.6483672880164663,
+   "mujoco_default_position_rms_mm": 16.172858085218117,
+   "mujoco_default_rotation_rms_deg": 1.229903770439496,
+   "opensim_final": {
+    "Pelvis_rx": -0.7095158169793163,
+    "Pelvis_tx": 0.6556723709741195,
+    "Pelvis_ty": -0.2085423681991122
+   },
+   "mujoco_final": {
+    "Pelvis_rx": -0.6923950494625504,
+    "Pelvis_tx": 0.6680092613940914,
+    "Pelvis_ty": -0.199555728853638
+   }
+  },
+  "h0.05_rot+0.15": {
+   "group": "held-out",
+   "scenario": {
+    "h": 0.05,
+    "rot": 0.15
+   },
+   "position_rms_mm": 30.335558682935925,
+   "rotation_rms_deg": 1.5034257547111147,
+   "mujoco_default_position_rms_mm": 43.00022576423648,
+   "mujoco_default_rotation_rms_deg": 3.410479513648286,
+   "opensim_final": {
+    "Pelvis_rx": 0.9669056164884179,
+    "Pelvis_tx": -0.5998291290741125,
+    "Pelvis_ty": -0.41692652483667025
+   },
+   "mujoco_final": {
+    "Pelvis_rx": 1.041399115860255,
+    "Pelvis_tx": -0.5079401416985495,
+    "Pelvis_ty": -0.4836679724055434
+   }
+  },
+  "h0.05_rot-0.15": {
+   "group": "held-out",
+   "scenario": {
+    "h": 0.05,
+    "rot": -0.15
+   },
+   "position_rms_mm": 54.98060411875623,
+   "rotation_rms_deg": 5.994301740514901,
+   "mujoco_default_position_rms_mm": 13.577630798156582,
+   "mujoco_default_rotation_rms_deg": 1.3775993937773787,
+   "opensim_final": {
+    "Pelvis_rx": -0.832270047306778,
+    "Pelvis_tx": 0.665763697298901,
+    "Pelvis_ty": -0.14951284651246396
+   },
+   "mujoco_final": {
+    "Pelvis_rx": -0.6684650513171507,
+    "Pelvis_tx": 0.8369622656862341,
+    "Pelvis_ty": -0.22152644508155692
+   }
+  },
+  "h0.02_vx0.5": {
+   "group": "held-out",
+   "scenario": {
+    "h": 0.02,
+    "vx": 0.5
+   },
+   "position_rms_mm": 51.09542154370102,
+   "rotation_rms_deg": 5.197420281147802,
+   "mujoco_default_position_rms_mm": 11.365018435606077,
+   "mujoco_default_rotation_rms_deg": 1.11874385520812,
+   "opensim_final": {
+    "Pelvis_rx": -0.8675370858721344,
+    "Pelvis_tx": 0.8867149908514275,
+    "Pelvis_ty": -0.177164684347722
+   },
+   "mujoco_final": {
+    "Pelvis_rx": -0.6948256408454817,
+    "Pelvis_tx": 1.0270744115874149,
+    "Pelvis_ty": -0.267634884985116
+   }
+  }
+ },
+ "pair_parameters": [
+  {
+   "name": "LHipForce_PlatformContact_LHipContact",
+   "solref": [
+    0.007328525793808427,
+    0.31033198003453655
+   ],
+   "solimp": [
+    0.9,
+    0.95,
+    0.001,
+    0.5,
+    2.0
+   ],
+   "friction": [
+    0.41239253050652547,
+    0.41239253050652547,
+    0.005,
+    0.0001,
+    0.0001
+   ]
+  },
+  {
+   "name": "RHipForce_PlatformContact_RHipContact",
+   "solref": [
+    0.007328525793808427,
+    0.31033198003453655
+   ],
+   "solimp": [
+    0.9,
+    0.95,
+    0.001,
+    0.5,
+    2.0
+   ],
+   "friction": [
+    0.41239253050652547,
+    0.41239253050652547,
+    0.005,
+    0.0001,
+    0.0001
+   ]
+  },
+  {
+   "name": "LFootForce_PlatformContact_LFootContact",
+   "solref": [
+    0.007328525793808427,
+    0.31033198003453655
+   ],
+   "solimp": [
+    0.9,
+    0.95,
+    0.001,
+    0.5,
+    2.0
+   ],
+   "friction": [
+    0.41239253050652547,
+    0.41239253050652547,
+    0.005,
+    0.0001,
+    0.0001
+   ]
+  },
+  {
+   "name": "LKneeForce_PlatformContact_LKneeContact",
+   "solref": [
+    0.007328525793808427,
+    0.31033198003453655
+   ],
+   "solimp": [
+    0.9,
+    0.95,
+    0.001,
+    0.5,
+    2.0
+   ],
+   "friction": [
+    0.41239253050652547,
+    0.41239253050652547,
+    0.005,
+    0.0001,
+    0.0001
+   ]
+  },
+  {
+   "name": "RFootForce_PlatformContact_RFootContact",
+   "solref": [
+    0.007328525793808427,
+    0.31033198003453655
+   ],
+   "solimp": [
+    0.9,
+    0.95,
+    0.001,
+    0.5,
+    2.0
+   ],
+   "friction": [
+    0.41239253050652547,
+    0.41239253050652547,
+    0.005,
+    0.0001,
+    0.0001
+   ]
+  },
+  {
+   "name": "RKneeForce_PlatformContact_RKneeContact",
+   "solref": [
+    0.007328525793808427,
+    0.31033198003453655
+   ],
+   "solimp": [
+    0.9,
+    0.95,
+    0.001,
+    0.5,
+    2.0
+   ],
+   "friction": [
+    0.41239253050652547,
+    0.41239253050652547,
+    0.005,
+    0.0001,
+    0.0001
+   ]
+  }
+ ]
+}

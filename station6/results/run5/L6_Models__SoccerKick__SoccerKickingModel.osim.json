@@ -1,0 +1,52 @@
+{
+ "L6": "PASS",
+ "problems": [],
+ "poses": 1410,
+ "pairs": {
+  "foot_ground_ground_ball_big_toe_r": {
+   "force": "foot_ground",
+   "poses_near": 115,
+   "penetrating": 44,
+   "max_abs_error_m": 1.3877787807814457e-16,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.00020832600049074113
+  },
+  "foot_ground_ground_tip_big_toe_r": {
+   "force": "foot_ground",
+   "poses_near": 141,
+   "penetrating": 78,
+   "max_abs_error_m": 1.6653345369377348e-16,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.00022230889517846353
+  },
+  "foot_ground_ground_small_toe_r": {
+   "force": "foot_ground",
+   "poses_near": 113,
+   "penetrating": 34,
+   "max_abs_error_m": 1.249000902703301e-16,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 0.00020832600049081051
+  },
+  "ball_ground_ground_ball": {
+   "force": "ball_ground",
+   "poses_near": 672,
+   "penetrating": 336,
+   "max_abs_error_m": 1.2212453270876722e-15,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 1.942890293094024e-15
+  },
+  "ball_net_back_stop_ball": {
+   "force": "ball_net",
+   "poses_near": 219,
+   "penetrating": 210,
+   "max_abs_error_m": 6.661338147750939e-16,
+   "sign_convention": true,
+   "pass": true,
+   "max_abs_error_mujoco_kinematics_m": 6.661338147750939e-16
+  }
+ }
+}

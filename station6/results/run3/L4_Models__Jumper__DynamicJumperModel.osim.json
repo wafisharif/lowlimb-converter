@@ -1,0 +1,100 @@
+{
+ "L4": "PASS",
+ "problems": [],
+ "forces": {
+  "LumbarExtensionLimit": {
+   "coordinate": "lumbar_extension",
+   "rotational": true,
+   "steps": 2001,
+   "range": [
+    -2.007128639793479,
+    1.1344640137963142
+   ],
+   "tendons": 18,
+   "peak_opensim": 800.0000000000001,
+   "max_error": 1.718235747722396,
+   "max_error_pct_peak": 0.21477946846529947,
+   "worst_at": -1.3850932943827,
+   "rms_error": 0.2748833044145103,
+   "myoconverter_max_error_pct_peak": 100.0,
+   "pass": true,
+   "damping_not_converted": {
+    "upper": {
+     "at": 0.7853981633974483,
+     "force_static": -400.0,
+     "extra_at_plus_1": -14.323944878270595,
+     "extra_at_minus_1": 14.323944878270595
+    },
+    "lower": {
+     "at": -1.6580627893946132,
+     "force_static": 400.00000000000006,
+     "extra_at_plus_1": -14.323944878270595,
+     "extra_at_minus_1": 14.323944878270595
+    }
+   }
+  },
+  "KneeLimit_r": {
+   "coordinate": "knee_angle_r",
+   "rotational": true,
+   "steps": 2001,
+   "range": [
+    -2.7925268031909267,
+    0.6981317007977318
+   ],
+   "tendons": 18,
+   "peak_opensim": 800.0,
+   "max_error": 1.7128412759250153,
+   "max_error_pct_peak": 0.21410515949062692,
+   "worst_at": -2.1711895894809454,
+   "rms_error": 0.26077751330821153,
+   "myoconverter_max_error_pct_peak": 100.0,
+   "pass": true,
+   "damping_not_converted": {
+    "upper": {
+     "at": 0.3490658503988659,
+     "force_static": -400.0,
+     "extra_at_plus_1": -14.323944878270595,
+     "extra_at_minus_1": 14.323944878270595
+    },
+    "lower": {
+     "at": -2.443460952792061,
+     "force_static": 400.00000000000006,
+     "extra_at_plus_1": -14.323944878270595,
+     "extra_at_minus_1": 14.323944878270595
+    }
+   }
+  },
+  "KneeLimit_l": {
+   "coordinate": "knee_angle_l",
+   "rotational": true,
+   "steps": 2001,
+   "range": [
+    -2.7925268031909267,
+    0.6981317007977318
+   ],
+   "tendons": 18,
+   "peak_opensim": 800.0,
+   "max_error": 1.7128412759250153,
+   "max_error_pct_peak": 0.21410515949062692,
+   "worst_at": -2.1711895894809454,
+   "rms_error": 0.26077751330821153,
+   "myoconverter_max_error_pct_peak": 100.0,
+   "pass": true,
+   "damping_not_converted": {
+    "upper": {
+     "at": 0.3490658503988659,
+     "force_static": -400.0,
+     "extra_at_plus_1": -14.323944878270595,
+     "extra_at_minus_1": 14.323944878270595
+    },
+    "lower": {
+     "at": -2.443460952792061,
+     "force_static": 400.00000000000006,
+     "extra_at_plus_1": -14.323944878270595,
+     "extra_at_minus_1": 14.323944878270595
+    }
+   }
+  }
+ },
+ "tolerance_pct_peak": 1.0
+}

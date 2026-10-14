@@ -107,7 +107,19 @@ provenance are in `station1/support/`.
   `src/myoconverter/xml/forces/CoordinateActuator.py`): gear = optimal_force; all 17 now give 10 N·m at control 1.*
 - **RajagopalLaiUhlrich2023 is blocked only by its knees.** Both `walker_knee` joints use a `PolynomialFunction`, which
   the converter does not handle. MuJoCo joint couplings are quartic polynomials, so a polynomial of degree ≤ 4
-  could be converted exactly. This is a candidate improvement for model 4.
+  could be converted exactly. This is a candidate improvement for model 4. *Fixed 2026-10-12 (change 2.5,
+  `src/myoconverter/xml/joints/CustomJoint.py`): PolynomialFunction axes up to degree 4 become the same polynomial as
+  a joint equality, and a coordinate whose first-processed axis isn't linear is designated by its first linear axis
+  instead of stopping the conversion. The report now predicts "converts" for RajagopalLaiUhlrich2023, and it does
+  (Station 2: its knees are exact, worst body the patella at 0.41 mm, 0.07°). Tested with a polynomial knee made from
+  gait10dof18musc in `station2/tests/test_polynomial_axes.py` (a degree-5 polynomial is refused, and predicted so).*
+- **The `<defaults>` element was never read** (MyoConverter's own documented limitation 3), although OpenSim fills
+  every property a component omits from it: in Rajagopal 2016, a CoordinateActuator without `optimal_force` would be
+  300 N·m in OpenSim and the converter's own fallback in MuJoCo. *Fixed 2026-10-12 (change 1c.3,
+  `src/myoconverter/xml/config.py` `apply_document_defaults`, mirrored in the report): omitted properties are copied
+  from `<defaults>` before anything is parsed. In the four models only Rajagopal 2016 has a `<defaults>` element, and
+  only its muscles' lowest control changes (now OpenSim's 0.01, written as the MuJoCo control range); the other three
+  convert byte-identically. Tested in `station1/tests/test_document_defaults.py`.*
 - **Silent losses to watch for in other models:** attached geometry other than meshes (e.g. contact spheres),
   `prescribed` coordinates, ligament forces (only the resting length survives, so they exert no force), and any
   top-level ContactGeometrySet / ControllerSet / ComponentSet / ProbeSet contents.

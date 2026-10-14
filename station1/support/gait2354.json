@@ -27,7 +27,7 @@
    "kind": "Mesh",
    "name": "pelvis_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "pelvis/pelvis_geom_1",
    "order": 1
@@ -37,7 +37,7 @@
    "kind": "Mesh",
    "name": "pelvis_geom_2",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "pelvis/pelvis_geom_2",
    "order": 2
@@ -47,7 +47,7 @@
    "kind": "Mesh",
    "name": "pelvis_geom_3",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "pelvis/pelvis_geom_3",
    "order": 3
@@ -197,7 +197,7 @@
    "kind": "Mesh",
    "name": "femur_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "femur_r/femur_r_geom_1",
    "order": 18
@@ -317,7 +317,7 @@
    "kind": "Mesh",
    "name": "tibia_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "tibia_r/tibia_r_geom_1",
    "order": 30
@@ -327,7 +327,7 @@
    "kind": "Mesh",
    "name": "tibia_r_geom_2",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "tibia_r/tibia_r_geom_2",
    "order": 31
@@ -427,7 +427,7 @@
    "kind": "Mesh",
    "name": "talus_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "talus_r/talus_r_geom_1",
    "order": 41
@@ -527,7 +527,7 @@
    "kind": "Mesh",
    "name": "calcn_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "calcn_r/calcn_r_geom_1",
    "order": 51
@@ -627,7 +627,7 @@
    "kind": "Mesh",
    "name": "toes_r_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "toes_r/toes_r_geom_1",
    "order": 61
@@ -727,7 +727,7 @@
    "kind": "Mesh",
    "name": "femur_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "femur_l/femur_l_geom_1",
    "order": 71
@@ -847,7 +847,7 @@
    "kind": "Mesh",
    "name": "tibia_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "tibia_l/tibia_l_geom_1",
    "order": 83
@@ -857,7 +857,7 @@
    "kind": "Mesh",
    "name": "tibia_l_geom_2",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "tibia_l/tibia_l_geom_2",
    "order": 84
@@ -957,7 +957,7 @@
    "kind": "Mesh",
    "name": "talus_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "talus_l/talus_l_geom_1",
    "order": 94
@@ -1057,7 +1057,7 @@
    "kind": "Mesh",
    "name": "calcn_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "calcn_l/calcn_l_geom_1",
    "order": 104
@@ -1157,7 +1157,7 @@
    "kind": "Mesh",
    "name": "toes_l_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "toes_l/toes_l_geom_1",
    "order": 114
@@ -1257,7 +1257,7 @@
    "kind": "Mesh",
    "name": "torso_geom_1",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "torso/torso_geom_1",
    "order": 124
@@ -1267,7 +1267,7 @@
    "kind": "Mesh",
    "name": "torso_geom_2",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "torso/torso_geom_2",
    "order": 125
@@ -1277,7 +1277,7 @@
    "kind": "Mesh",
    "name": "torso_geom_3",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "torso/torso_geom_3",
    "order": 126
@@ -1287,7 +1287,7 @@
    "kind": "Mesh",
    "name": "torso_geom_4",
    "status": "converted",
-   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+   "reason": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; ASCII stl->binary stl, obj copied, change 6.7)",
    "rule": "mesh",
    "path": "torso/torso_geom_4",
    "order": 127

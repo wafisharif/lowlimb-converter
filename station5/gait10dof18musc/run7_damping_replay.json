@@ -1,0 +1,92 @@
+{
+ "model": "gait10dof18musc_cvt3.xml",
+ "mujoco_version": "3.15.0",
+ "opensim_status": "completed",
+ "replay_start_s": 0.03,
+ "replay_length_s": 1.0000000000000009,
+ "limit_deg": 5.0,
+ "as_converted": {
+  "timestep_s": 0.002,
+  "integrator": 0,
+  "mujoco_status": "completed",
+  "time_to_5deg_s": 0.04600000000000004,
+  "first_coordinate_over_5deg": "hip_flexion_r",
+  "compared_until_s": 1.0000000000000009,
+  "max_diff_deg_at": {
+   "0.05s": {
+    "hip_flexion_r": 6.080534260082623,
+    "knee_angle_r": 3.4085303396141833,
+    "ankle_angle_r": 1.2468259109067465,
+    "hip_flexion_l": 4.165270310728215,
+    "knee_angle_l": 2.3316839687768414,
+    "ankle_angle_l": 5.578314560532065
+   },
+   "0.1s": {
+    "hip_flexion_r": 21.299936376626317,
+    "knee_angle_r": 12.60237409062777,
+    "ankle_angle_r": 7.077957047549842,
+    "hip_flexion_l": 11.923211931305868,
+    "knee_angle_l": 14.941614639638106,
+    "ankle_angle_l": 22.69527858520619
+   },
+   "0.2s": {
+    "hip_flexion_r": 47.0320571928422,
+    "knee_angle_r": 5.550248271631735,
+    "ankle_angle_r": 0.633409618736947,
+    "hip_flexion_l": 25.43212957479739,
+    "knee_angle_l": 61.48783425172,
+    "ankle_angle_l": 111.89493999029096
+   },
+   "0.5s": {
+    "hip_flexion_r": 155.85933710570782,
+    "knee_angle_r": 20.18009793208148,
+    "ankle_angle_r": 5.378377557198219,
+    "hip_flexion_l": 156.99427738706703,
+    "knee_angle_l": 227.72651075832263,
+    "ankle_angle_l": 7870.872846601783
+   }
+  }
+ },
+ "fine_integration": {
+  "timestep_s": 0.0005,
+  "integrator": 1,
+  "mujoco_status": "completed",
+  "time_to_5deg_s": 0.007000000000000006,
+  "first_coordinate_over_5deg": "ankle_angle_r",
+  "compared_until_s": 1.0000000000000009,
+  "max_diff_deg_at": {
+   "0.05s": {
+    "hip_flexion_r": 6.325079069383471,
+    "knee_angle_r": 4.37322883830062,
+    "ankle_angle_r": 7.785531140995397,
+    "hip_flexion_l": 4.189174169513354,
+    "knee_angle_l": 2.3290263281294794,
+    "ankle_angle_l": 6.110532276676182
+   },
+   "0.1s": {
+    "hip_flexion_r": 22.124019233136927,
+    "knee_angle_r": 15.071923433460565,
+    "ankle_angle_r": 13.219470503019808,
+    "hip_flexion_l": 12.31696559069316,
+    "knee_angle_l": 14.208045601360968,
+    "ankle_angle_l": 23.968941856184724
+   },
+   "0.2s": {
+    "hip_flexion_r": 48.267685563302,
+    "knee_angle_r": 7.488094693121959,
+    "ankle_angle_r": 2.8360092275921325,
+    "hip_flexion_l": 25.973379614691858,
+    "knee_angle_l": 59.19407992038668,
+    "ankle_angle_l": 110.90029270503446
+   },
+   "0.5s": {
+    "hip_flexion_r": 150.12076837788285,
+    "knee_angle_r": 20.44679975948007,
+    "ankle_angle_r": 3.29489446459211,
+    "hip_flexion_l": 158.82597253124936,
+    "knee_angle_l": 228.33564895446125,
+    "ankle_angle_l": 7875.196674080875
+   }
+  }
+ }
+}

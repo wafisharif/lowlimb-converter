@@ -1,0 +1,33 @@
+{
+ "L5": "PASS",
+ "problems": [],
+ "forces": {
+  "BiarticularSpringDamper": {
+   "kind": "PathSpring",
+   "poses": 1410,
+   "length_rms_mm": 0.1876818079570703,
+   "length_max_mm": 0.4845967581507682,
+   "worst_length_pose": "random",
+   "generalized_force": {
+    "knee_angle_r": {
+     "peak_opensim": 24.736123835743015,
+     "rms_error": 0.38796148692821336,
+     "rms_pct_peak": 1.568400487903524,
+     "max_error": 2.461742677578572
+    },
+    "ankle_angle_r": {
+     "peak_opensim": 32.46610392597381,
+     "rms_error": 0.060299509880455335,
+     "rms_pct_peak": 0.1857306624100775,
+     "max_error": 0.2569533688804171
+    }
+   },
+   "pass": true
+  }
+ },
+ "limits": {
+  "length_rms_mm": 1.0,
+  "length_max_mm": 3.0,
+  "force_rms_pct_peak": 2.0
+ }
+}

@@ -1,0 +1,57 @@
+Models/Arm26/arm26.osim: predicted converts | converted | ok
+Models/BouncingBlock/bouncing_block.osim: predicted error (XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 528, column 46 (bouncing_block.osim, line 528)) | failed: lxml.etree.XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 528, column 46 | ok
+Models/BouncingBlock/bouncing_block_weak_spring.osim: predicted error (XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 528, column 46 (bouncing_block_weak_spring.osim, line 528)) | failed: lxml.etree.XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 528, column 46 | ok
+Models/DoublePendulum/double_pendulum.osim: predicted converts | converted | ok
+Models/Gait10dof18musc/gait10dof18musc.osim: predicted converts | converted | ok
+Models/Gait10dof18musc/subject01.osim: predicted converts | converted | ok
+Models/Gait10dof18musc/subject01_metabolics.osim: predicted converts | converted | ok
+Models/Gait10dof18musc/subject01_metabolics_path_actuator.osim: predicted fails (PathActuator PlantarFlexAssist) | failed: NotImplementedError | ok
+Models/Gait10dof18musc/subject01_metabolics_path_spring.osim: predicted fails (PathSpring BiarticularSpringDamper) | failed: NotImplementedError | ok
+Models/Gait10dof18musc/subject01_metabolics_spring.osim: predicted converts | converted | ok
+Models/Gait2354_Simbody/gait2354_simbody.osim: predicted converts | converted | ok
+Models/Gait2354_Simbody/subject01_simbody.osim: predicted converts | converted | ok
+Models/Gait2392_Simbody/gait2392_millard2012muscle.osim: predicted converts | converted | ok
+Models/Gait2392_Simbody/gait2392_thelen2003muscle.osim: predicted converts | converted | ok
+Models/Gait2392_Simbody/subject01.osim: predicted converts | converted | ok
+Models/Gait2392_Simbody/subject01_adjusted.osim: predicted converts | converted | ok
+Models/Gait2392_Simbody/subject01_simbody_adjusted.osim: predicted converts | converted | ok
+Models/Hamner/FullBodyModel_Hamner2010_v2_0.osim: predicted converts | converted | ok
+Models/Jumper/DynamicJumperModel.osim: predicted error (XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 6824, column 46 (DynamicJumperModel.osim, line 6824)) | failed: lxml.etree.XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 6824, column 46 | ok
+Models/Leg39/leg39.osim: predicted fails (Mesh tibia_r/tibia_r_geom_2) | failed: FileNotFoundError: File (/tmp/claude-0/s6w4/coverage/geometry/27c69a463b81/fibula_R.vtp) not found | ok
+Models/Leg6Dof9Musc/leg6dof9musc.osim: predicted converts | converted | ok
+Models/Pendulum/double_pendulum.osim: predicted fails (Mesh ground/ground_geom_1) | failed: NotImplementedError | ok
+Models/Rajagopal/Rajagopal2016.osim: predicted converts | converted | ok
+Models/Rajagopal/RajagopalLaiUhlrich2023.osim: predicted fails (TransformAxis walker_knee_r/translation1) | failed: NotImplementedError | ok
+Models/Rajagopal_OpenSense/Rajagopal2015_opensense.osim: predicted converts | converted | ok
+Models/SoccerKick/SoccerKickingModel.osim: predicted error (XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 4313, column 46 (SoccerKickingModel.osim, line 4313)) | failed: lxml.etree.XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 4313, column 46 | ok
+Models/ToyLanding/ToyLandingModel.osim: predicted error (XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 8071, column 46 (ToyLandingModel.osim, line 8071)) | failed: lxml.etree.XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 8071, column 46 | ok
+Models/ToyLanding/ToyLandingModel_AFO.osim: predicted error (XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 8343, column 46 (ToyLandingModel_AFO.osim, line 8343)) | failed: lxml.etree.XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 8343, column 46 | ok
+Models/ToyLanding/ToyLandingModel_activeAFO.osim: predicted error (XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 8343, column 46 (ToyLandingModel_activeAFO.osim, line 8343)) | failed: lxml.etree.XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 8343, column 46 | ok
+Models/Tug_of_War/Tug_of_War.osim: predicted converts | converted | ok
+Models/Tug_of_War/Tug_of_War_Millard.osim: predicted converts | converted | ok
+Models/WalkerModel/WalkerModel.osim: predicted error (XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 640, column 46 (WalkerModel.osim, line 640)) | failed: lxml.etree.XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 640, column 46 | ok
+Models/WalkerModel/WalkerModelTerrain.osim: predicted error (XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 632, column 46 (WalkerModelTerrain.osim, line 632)) | failed: lxml.etree.XMLSyntaxError: Failed to parse QName 'HuntCrossleyForce::ContactParametersSet', line 632, column 46 | ok
+Models/WristModel/wrist.osim: predicted converts | converted | ok
+Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics.osim: predicted converts | converted | ok
+Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics_path_actuator.osim: predicted fails (PathActuator PlantarFlexAssist) | failed: NotImplementedError | ok
+Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics_path_spring.osim: predicted fails (PathSpring BiarticularSpringDamper) | failed: NotImplementedError | ok
+Pipelines/Gait10dof18musc/OutputReference/CMC/subject01_metabolics_spring.osim: predicted converts | converted | ok
+Pipelines/Gait10dof18musc/OutputReference/gait10dof18musc.osim: predicted converts | converted | ok
+Pipelines/Gait10dof18musc/OutputReference/subject01.osim: predicted converts | converted | ok
+Pipelines/Gait2354_Simbody/OutputReference/subject01_scaledOnly.osim: predicted converts | converted | ok
+Pipelines/Gait2354_Simbody/OutputReference/subject01_simbody.osim: predicted converts | converted | ok
+Pipelines/Gait2354_Simbody/OutputReference/subject01_simbody_adjusted.osim: predicted converts | converted | ok
+Pipelines/Gait2392_Simbody/OutputReference/subject01_simbody.osim: predicted converts | converted | ok
+Pipelines/Gait2392_Simbody/OutputReference/subject01_simbody_adjusted.osim: predicted converts | converted | ok
+Pipelines/Hamner/FullBodyModel_Hamner2010_v2_0.osim: predicted converts | converted | ok
+Pipelines/Hamner/outputReference/subject02_RRA_Adjusted.osim: predicted converts | converted | ok
+Pipelines/Hamner/outputReference/subject02_registered.osim: predicted converts | converted | ok
+Pipelines/Hamner/outputReference/subject02_scaled.osim: predicted converts | converted | ok
+Tutorials/Computed_Muscle_Control/InverseKinematics/arm26.osim: predicted converts | converted | ok
+Tutorials/Computed_Muscle_Control/OutputReference/arm26.osim: predicted converts | converted | ok
+Tutorials/Computed_Muscle_Control/OutputReference/arm26_with_bucket.osim: predicted converts | converted | ok
+Tutorials/Estimating_Joint_Reaction_Loads/subject01_simbody_adjusted_StaticOp.osim: predicted converts | converted | ok
+Tutorials/Strength_of_Simulation/Stance/Reference/RRA/leg6dof9musc_RRA_adjusted.osim: predicted converts | converted | ok
+Tutorials/Strength_of_Simulation/Stance/Reference/leg6dof9musc_added_mass.osim: predicted converts | converted | ok
+Tutorials/Working_with_Static_Optimization/subject01.osim: predicted converts | converted | ok
+myoconverter: 40/56 converted; predictions match 56/56

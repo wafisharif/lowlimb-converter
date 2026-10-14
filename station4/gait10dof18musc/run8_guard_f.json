@@ -1,0 +1,288 @@
+{
+ "F1": {
+  "status": "PASS",
+  "activation": "a1",
+  "muscles": 18,
+  "better": 15,
+  "same": 2,
+  "worse": 1,
+  "ours_mean_rms_pct": 3.070050951416386,
+  "myoconverter_mean_rms_pct": 10.12568623222371,
+  "misses_listed_with_reason": [
+   {
+    "muscle": "iliopsoas_l",
+    "detail": "ours 5.89% vs MyoConverter 3.70%",
+    "reason": "All of the excess is in the 134 poses with hip flexion beyond -90 deg (outside any human range of motion), where OpenSim's conditional path point switches off and its path jumps by 19.5 mm; the converted path keeps the point on there (19-21 mm off) and the force refit leaves those poses out (change 5.4). Over the other 1276 poses ours is 2.29% vs MyoConverter 3.04% of Fmax (all poses 5.78% vs 3.70%). Shown by station4/tests/test_off_path_poses.py (numbers in station4/gait10dof18musc/off_path_split.json); see station5/FINDINGS.md."
+   }
+  ],
+  "misses_unexplained": [],
+  "muscles_detail": [
+   {
+    "muscle": "hamstrings_r",
+    "ours_rms_pct": 3.099145310026625,
+    "myoconverter_rms_pct": 10.04041701313098,
+    "delta_pct": -6.941271703104356,
+    "ok": true
+   },
+   {
+    "muscle": "bifemsh_r",
+    "ours_rms_pct": 0.5114754160067436,
+    "myoconverter_rms_pct": 1.8883526997793207,
+    "delta_pct": -1.3768772837725771,
+    "ok": true
+   },
+   {
+    "muscle": "glut_max_r",
+    "ours_rms_pct": 2.327751270152967,
+    "myoconverter_rms_pct": 14.484110606974216,
+    "delta_pct": -12.15635933682125,
+    "ok": true
+   },
+   {
+    "muscle": "iliopsoas_r",
+    "ours_rms_pct": 5.785689659923204,
+    "myoconverter_rms_pct": 5.942816922194173,
+    "delta_pct": -0.1571272622709694,
+    "ok": true
+   },
+   {
+    "muscle": "rect_fem_r",
+    "ours_rms_pct": 3.9238480086002534,
+    "myoconverter_rms_pct": 18.788648470210564,
+    "delta_pct": -14.864800461610312,
+    "ok": true
+   },
+   {
+    "muscle": "vasti_r",
+    "ours_rms_pct": 3.675548451330138,
+    "myoconverter_rms_pct": 6.18755252130198,
+    "delta_pct": -2.5120040699718422,
+    "ok": true
+   },
+   {
+    "muscle": "gastroc_r",
+    "ours_rms_pct": 2.6500641268019147,
+    "myoconverter_rms_pct": 14.014591516537125,
+    "delta_pct": -11.36452738973521,
+    "ok": true
+   },
+   {
+    "muscle": "soleus_r",
+    "ours_rms_pct": 2.9168899807085413,
+    "myoconverter_rms_pct": 13.476852045067114,
+    "delta_pct": -10.559962064358572,
+    "ok": true
+   },
+   {
+    "muscle": "tib_ant_r",
+    "ours_rms_pct": 2.5359840043342157,
+    "myoconverter_rms_pct": 6.484169860987671,
+    "delta_pct": -3.9481858566534553,
+    "ok": true
+   },
+   {
+    "muscle": "hamstrings_l",
+    "ours_rms_pct": 3.2161854576208944,
+    "myoconverter_rms_pct": 13.287372336394263,
+    "delta_pct": -10.071186878773368,
+    "ok": true
+   },
+   {
+    "muscle": "bifemsh_l",
+    "ours_rms_pct": 0.5149564772862126,
+    "myoconverter_rms_pct": 2.0013544935135865,
+    "delta_pct": -1.486398016227374,
+    "ok": true
+   },
+   {
+    "muscle": "glut_max_l",
+    "ours_rms_pct": 2.4199047661658075,
+    "myoconverter_rms_pct": 18.381209962024393,
+    "delta_pct": -15.961305195858586,
+    "ok": true
+   },
+   {
+    "muscle": "iliopsoas_l",
+    "ours_rms_pct": 5.886159362674015,
+    "myoconverter_rms_pct": 3.7027211125572697,
+    "delta_pct": 2.1834382501167457,
+    "ok": false
+   },
+   {
+    "muscle": "rect_fem_l",
+    "ours_rms_pct": 3.8275814090800453,
+    "myoconverter_rms_pct": 19.88739095094281,
+    "delta_pct": -16.059809541862762,
+    "ok": true
+   },
+   {
+    "muscle": "vasti_l",
+    "ours_rms_pct": 3.719895162650652,
+    "myoconverter_rms_pct": 3.6290967376557464,
+    "delta_pct": 0.09079842499490542,
+    "ok": true
+   },
+   {
+    "muscle": "gastroc_l",
+    "ours_rms_pct": 2.670046291305451,
+    "myoconverter_rms_pct": 15.511923294589671,
+    "delta_pct": -12.841877003284221,
+    "ok": true
+   },
+   {
+    "muscle": "soleus_l",
+    "ours_rms_pct": 2.9453794634781514,
+    "myoconverter_rms_pct": 10.318319243438971,
+    "delta_pct": -7.37293977996082,
+    "ok": true
+   },
+   {
+    "muscle": "tib_ant_l",
+    "ours_rms_pct": 2.634412507349113,
+    "myoconverter_rms_pct": 4.235452392726929,
+    "delta_pct": -1.6010398853778156,
+    "ok": true
+   }
+  ]
+ },
+ "F2": {
+  "status": "PASS",
+  "activation": "a0",
+  "muscles": 18,
+  "better": 16,
+  "same": 2,
+  "worse": 0,
+  "ours_mean_rms_pct": 1.3163928785796868,
+  "myoconverter_mean_rms_pct": 13.161121619283058,
+  "misses_listed_with_reason": [],
+  "misses_unexplained": [],
+  "muscles_detail": [
+   {
+    "muscle": "hamstrings_r",
+    "ours_rms_pct": 1.2206824985910076,
+    "myoconverter_rms_pct": 8.153633129422735,
+    "delta_pct": -6.932950630831727,
+    "ok": true
+   },
+   {
+    "muscle": "bifemsh_r",
+    "ours_rms_pct": 0.014530336207073656,
+    "myoconverter_rms_pct": 19.370570022423596,
+    "delta_pct": -19.356039686216523,
+    "ok": true
+   },
+   {
+    "muscle": "glut_max_r",
+    "ours_rms_pct": 0.6128403790823277,
+    "myoconverter_rms_pct": 1.9841547930950125,
+    "delta_pct": -1.371314414012685,
+    "ok": true
+   },
+   {
+    "muscle": "iliopsoas_r",
+    "ours_rms_pct": 4.627516139980634,
+    "myoconverter_rms_pct": 18.39523139779568,
+    "delta_pct": -13.767715257815045,
+    "ok": true
+   },
+   {
+    "muscle": "rect_fem_r",
+    "ours_rms_pct": 1.324648553748842,
+    "myoconverter_rms_pct": 23.27989284892888,
+    "delta_pct": -21.95524429518004,
+    "ok": true
+   },
+   {
+    "muscle": "vasti_r",
+    "ours_rms_pct": 0.2987243191102897,
+    "myoconverter_rms_pct": 15.384609282734079,
+    "delta_pct": -15.085884963623789,
+    "ok": true
+   },
+   {
+    "muscle": "gastroc_r",
+    "ours_rms_pct": 2.1561851334788167,
+    "myoconverter_rms_pct": 9.335567394710562,
+    "delta_pct": -7.179382261231746,
+    "ok": true
+   },
+   {
+    "muscle": "soleus_r",
+    "ours_rms_pct": 1.304473143712725,
+    "myoconverter_rms_pct": 1.224943708539248,
+    "delta_pct": 0.07952943517347699,
+    "ok": true
+   },
+   {
+    "muscle": "tib_ant_r",
+    "ours_rms_pct": 0.2546708076248666,
+    "myoconverter_rms_pct": 22.290205267017527,
+    "delta_pct": -22.03553445939266,
+    "ok": true
+   },
+   {
+    "muscle": "hamstrings_l",
+    "ours_rms_pct": 1.1871289449893034,
+    "myoconverter_rms_pct": 13.610638783301399,
+    "delta_pct": -12.423509838312095,
+    "ok": true
+   },
+   {
+    "muscle": "bifemsh_l",
+    "ours_rms_pct": 0.014256320747023024,
+    "myoconverter_rms_pct": 28.225288647887496,
+    "delta_pct": -28.211032327140472,
+    "ok": true
+   },
+   {
+    "muscle": "glut_max_l",
+    "ours_rms_pct": 0.6430902069168192,
+    "myoconverter_rms_pct": 24.18148060870593,
+    "delta_pct": -23.53839040178911,
+    "ok": true
+   },
+   {
+    "muscle": "iliopsoas_l",
+    "ours_rms_pct": 4.710112105671613,
+    "myoconverter_rms_pct": 12.626901819444145,
+    "delta_pct": -7.916789713772531,
+    "ok": true
+   },
+   {
+    "muscle": "rect_fem_l",
+    "ours_rms_pct": 1.271470476926849,
+    "myoconverter_rms_pct": 12.154056820694596,
+    "delta_pct": -10.882586343767747,
+    "ok": true
+   },
+   {
+    "muscle": "vasti_l",
+    "ours_rms_pct": 0.2922575542555268,
+    "myoconverter_rms_pct": 1.3862749563596208,
+    "delta_pct": -1.094017402104094,
+    "ok": true
+   },
+   {
+    "muscle": "gastroc_l",
+    "ours_rms_pct": 2.2153126906748466,
+    "myoconverter_rms_pct": 9.955984674246931,
+    "delta_pct": -7.740671983572085,
+    "ok": true
+   },
+   {
+    "muscle": "soleus_l",
+    "ours_rms_pct": 1.2887037749942085,
+    "myoconverter_rms_pct": 14.826892496437571,
+    "delta_pct": -13.538188721443362,
+    "ok": true
+   },
+   {
+    "muscle": "tib_ant_l",
+    "ours_rms_pct": 0.2584684277215917,
+    "myoconverter_rms_pct": 0.5138624953500252,
+    "delta_pct": -0.2553940676284335,
+    "ok": true
+   }
+  ]
+ }
+}

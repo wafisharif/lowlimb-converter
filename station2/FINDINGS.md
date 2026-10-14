@@ -1,11 +1,13 @@
 # Station 2: kinematic check
 
-**Result: all three models pass K0–K2.** Rajagopal2016 failed K2 at the patella (0.64°, gate 0.5°) until change 2.4
-(2026-10-11) coupled the patella to the knee through two chained quartics; it is now 0.036° off at worst. Gates and
-method: `station2/GATES.md` (posted to the plan doc before any run). Per-run results: `station2/<model>/<run>.json`.
+**Result: all four models pass K0–K2.** Rajagopal2016 failed K2 at the patella (0.64°, gate 0.5°) until change 2.4
+(2026-10-11) coupled the patella to the knee through two chained quartics; it is now 0.036° off at worst.
+RajagopalLaiUhlrich2023 couldn't be converted until change 2.5 (2026-10-12, PolynomialFunction knee axes); it joined
+by a dated addendum to the gates and passes, its knees exact. Gates and method: `station2/GATES.md` (posted to the
+plan doc before any run, the addendum before its first result). Per-run results: `station2/<model>/<run>.json`.
 
-Each model was posed 1000 times at random plus a 41-point sweep of every free coordinate (1410 / 1943 / 2189 poses),
-and every OpenSim body was compared (12 / 12 / 22 bodies).
+Each model was posed 1000 times at random plus a 41-point sweep of every free coordinate (1410 / 1943 / 2189 / 2189
+poses), and every OpenSim body was compared (12 / 12 / 22 / 22 bodies).
 
 | Model | Converter | Worst position (mm) | RMS (mm) | Worst orientation (°) | K0 | K1 ≤ 1 mm | K2 ≤ 0.5° |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -18,15 +20,17 @@ and every OpenSim body was compared (12 / 12 / 22 bodies).
 | Rajagopal2016 | run1: Station 1a port (unchanged) | 15.55 | 4.07 | 0.893 | pass | **fail** | **fail** |
 | | run4: after changes 2.1–2.3 | **0.152** | **0.034** | 0.639 | pass | pass | **fail** |
 | | run5: after change 2.4 | 0.152 | 0.034 | **0.036** | pass | pass | **pass** |
+| RajagopalLaiUhlrich2023 | converter before change 2.5 | — | — | — | could not be converted | | |
+| | **run8: after change 2.5** | **0.415** | **0.109** | **0.069** | pass | pass | **pass** |
 
 MyoConverter's own output and our port give the same numbers (to 2e-12 mm), as Station 1a's equivalence check
 predicted. (run1 used the cvt1 file and the gated run the cvt3 file; they differ by 1.4e-4 mm at most, because
 MuJoCo re-saves cvt3 with normalised 6-digit axes.)
 
-## What was wrong, and the four changes
+## What was wrong, and the five changes
 
-Each change was made alone and all three models were rerun after it (`run2_frames`, `run3_precision`,
-`run4_splinefit`, `run5_chained`).
+Each change was made alone and all models were rerun after it (`run2_frames`, `run3_precision`,
+`run4_splinefit`, `run5_chained`, `run8_polynomial`; `run6_switch`/`run7_switch` are Station 5's change 5.3).
 
 | Change | What it fixes | gait10 / gait2354 worst | Rajagopal2016 worst |
 | --- | --- | --- | --- |
@@ -35,6 +39,7 @@ Each change was made alone and all three models were rerun after it (`run2_frame
 | 2.2 precision | Every number was written with 4 significant figures | 0.879 mm / 0.879 mm, **0.000°** | 0.177 mm, 0.894° |
 | 2.3 spline fit | Quartic fit to the knee/patella splines was fitted in the wrong place | **0.218 mm** / **0.218 mm** | 0.152 mm, **0.639°** |
 | 2.4 chained coupling | No single quartic follows the patella's rotation spline | no change (files byte-identical) | 0.152 mm, **0.036°** |
+| 2.5 polynomial axes | PolynomialFunction knee axes couldn't be converted (RajagopalLaiUhlrich2023) | no change (byte-identical) | no change (byte-identical) |
 
 - **2.1 Joint frames** (`xml/bodies/Body.py`, `xml/joints/Joint.py`). OpenSim rotates a joint about its child frame;
   MuJoCo rotates about the joint's `pos`, which the converter never set, so it rotated about the body origin.
@@ -73,6 +78,22 @@ Each change was made alone and all three models were rerun after it (`run2_frame
     the patella follows within 0.099° in motion. A first try with slope ≤ 0.01 made it lag 2.4° (the helper became
     too cheap to move for MuJoCo's soft equality on the patella; see station5/FINDINGS.md).
   - The patella's position was not the problem (0.15 mm, within its quartic fits) and is unchanged.
+- **2.5 Polynomial axes** (`xml/joints/CustomJoint.py`, 2026-10-12). RajagopalLaiUhlrich2023's walker knees give
+  their translations and two rotations as `PolynomialFunction`s of knee flexion (degree 3–4), which the converter
+  didn't handle, and it stopped even earlier: each coordinate is "designated" (made a MuJoCo joint) by the first axis
+  processed for it, translations first, and only a SimmSpline or LinearFunction could be designated. Now a
+  polynomial of degree ≤ 4 becomes exactly the same polynomial as MuJoCo's joint equality (degree 5 and above are
+  refused with NotImplementedError: MuJoCo couples joints with quartics), and an axis that can't be designated is
+  coupled like a non-linear spline, the coordinate being designated by its first linear axis (an error now names a
+  coordinate that has none). The other three models convert byte-identically (`run8_polynomial`).
+  - RajagopalLaiUhlrich2023: tibia and everything below within 1e-6 mm of OpenSim (exact knee); worst body the
+    patella, 0.41 mm and 0.07° (its SimmSplines, fitted as in 2.3–2.4).
+  - `station2/tests/test_polynomial_axes.py` builds a polynomial knee from gait10dof18musc: the converted polycoef
+    equals OpenSim's polynomial exactly, the shank and foot are within 1.8e-12 mm of OpenSim in all 1410 poses (the
+    spline knee is 0.22 mm off), a degree-5 polynomial is refused and the support report predicts it; the converter
+    before 2.5 fails the conversion.
+- **Change 1c.3** (Station 1; `<defaults>` applied as OpenSim does) changes no body: `run9_defaults` gives the same
+  numbers on all four models, and only Rajagopal 2016's cvt1 differs (its 80 muscles' control range).
 
 ## The check itself was checked
 

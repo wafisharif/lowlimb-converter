@@ -1,9 +1,11 @@
 # Station 4: muscle forces
 
-**Result: both gait models pass F0, F1 and F2 (with the dated F0 amendment, below). Muscle forces are now 3–5×
-closer to OpenSim's than MyoConverter's at full activation and 5–10× closer when passive. Since Station 5's change
-5.4, two hip-flexor misses are listed with a test-backed reason: each comes only from poses with the hip extended
-beyond −90°, where OpenSim's own muscle path jumps (below).**
+**Result: both gait models and Rajagopal 2016 pass F0, F1 and F2 (with the dated F0 amendment, below). Muscle
+forces are now 3–5× (gait models) and 2.8× (Rajagopal 2016) closer to OpenSim's than MyoConverter's at full
+activation, and 5–10× and 6.5× closer when passive. Two hip-flexor misses in the gait models are listed with a
+test-backed reason (each comes only from poses with the hip extended beyond −90°, where OpenSim's own muscle path
+jumps), and two in Rajagopal 2016 (each only against MyoConverter's luckier copy of a muscle whose mirror image it got
+far worse; section below).**
 Gates and method: `station4/GATES.md` (posted to the plan doc before any Station 4 code existed). Per-run results:
 `station4/<model>/<run>.json` and `<run>_f.json`.
 
@@ -19,16 +21,67 @@ force (Fmax).
 | | run4: after change 4.3 | 3.0 / 4.1 | 1.2 / 3.0 | 18 / 18 | pass / pass (16 better, 2 same) |
 | | run5_robust: after Station 5 change 5.1 | 3.0 / 4.2 | 1.2 / 3.3 | 18 / 18 | fail (iliopsoas_l by 0.04%) / pass |
 | | run6_switch: after 5.3 | 3.0 / 4.6 | 1.2 / 3.5 | 18 / 18 | fail (iliopsoas_l) / pass |
-| | **run7_pathtol: after 5.4 (current)** | **3.2 / 5.8** | **1.3 / 4.5** | **16 / 18** | **pass with 1 listed miss / pass** |
+| | run7_pathtol: after 5.4 | 3.2 / 5.8 | 1.3 / 4.5 | 16 / 18 | pass with 1 listed miss / pass |
+| | **run8_guard: after 4.4 (current)** | **3.1 / 5.9** | **1.3 / 4.7** | **16 / 18** | **pass with 1 listed miss / pass** |
 | gait2354 | MyoConverter (Station 0, MuJoCo 2.3.7) | 16.1 / 120.9 | 15.7 / 102.3 | 28 / 54 | — |
 | | run1: after Station 3 | 15.4 / 117.2 | 16.3 / 109.9 | 29 / 54 | F0 fail (as gated); with the amendment fail / fail |
 | | run3: after changes 4.1–4.2 | 3.5 / 19.3 | 2.8 / 22.2 | 46 / 54 | pass / pass (52 / 46 better, rest same) |
 | | run4: after change 4.3 | 3.5 / 19.3 | 2.9 / 22.2 | 46 / 54 | pass / pass (51 / 47 better, rest same) |
 | | run5_robust / run6_switch: after 5.1 / 5.3 | 3.5 / 19.3 | 2.9 / 22.2 | 46 / 54 | pass / pass |
-| | **run7_pathtol: after 5.4 (current)** | **3.5 / 19.3** | **2.9 / 22.2** | **46 / 54** | **pass / pass with 1 listed miss** |
+| | run7_pathtol: after 5.4 | 3.5 / 19.3 | 2.9 / 22.2 | 46 / 54 | pass / pass with 1 listed miss |
+| | **run8_guard: after 4.4 (current)** | **3.6 / 17.6** | **2.9 / 23.1** | **44 / 54** | **pass / pass with 1 listed miss** |
+| Rajagopal2016 | MyoConverter (Station 1a port, MuJoCo 3.15) | 6.9 / 37.6 | 6.9 / 35.9 | 37 / 80 | — |
+| | run1: before 4.4 | 3.1 / 6.8 | 1.4 / 11.3 | 71 / 80 | fail (11) / fail (2) |
+| | run2_guard: first version of 4.4 | 19.1 / 731.9 | 18.0 / 742.7 | 72 / 80 | fail (4) / fail (3) |
+| | run3_final: 4.4 with its safeguard | 2.5 / 7.1 | 1.1 / 4.6 | 74 / 80 | fail (2) / fail (1) |
+| | run4_final: Step 3 kept only if it dominates | 2.5 / 7.1 | 1.1 / 4.6 | 74 / 80 | pass with 2 listed misses / pass |
+| | **run5_damping: the final converter** | **2.5 / 7.1** | **1.1 / 4.6** | **74 / 80** | **pass with 2 listed misses / pass** |
 
-"Same" means within 0.5% of Fmax of MyoConverter. Activations 0.25 and 0.5 are in the result files (mean 1.6–2.2%).
-run7_pathtol is the current converter; the listed misses are scored in `run7_pathtol_listed_f.json`.
+"Same" means within 0.5% of Fmax of MyoConverter. Activations 0.25 and 0.5 are in the result files (gait models:
+mean 1.9–2.6%; Rajagopal 2016: 1.7 / 2.3%). run8_guard (gait models) and run4_final (Rajagopal 2016) are the current
+converter for the gait models (their final conversions differ from run8_guard's only in joint damping, change 6.10,
+which static force doesn't see) and run5_damping for Rajagopal 2016. Listed misses are in each run's `_f.json` (the
+run script reads `f_reasons.json`); for run4_final they were added after the run and scored in
+`Rajagopal2016/run4_final_listed_f.json`.
+
+## Rajagopal 2016, and change 4.4
+
+Checked under the addendum in `station4/GATES.md`: the MyoConverter column is the Station 1a port's own conversion.
+2189 poses, 80 Millard muscles.
+
+**What was wrong (run1).** F1 failed on 11 lower-leg muscles (soleus, tibialis posterior and anterior, the long toe
+extensors and flexors, peroneus longus) at full activation, by 0.5–1.4% of Fmax; F2 on iliacus (both sides). Rajagopal's
+lower-leg muscles have long, compliant tendons: as activation rises the tendon stretches and the fibre's
+force–length curve moves along the muscle–tendon length. A MuJoCo muscle has a rigid tendon, so one curve can't match
+OpenSim at every activation. The refit (changes 4.1–4.3) fitted all four activation levels with equal weight, which
+gave up some accuracy at full activation; MyoConverter's Step 3 fits full activation only. The iliacus misses were a
+path error (change 3.5, Station 3): in a few poses the converted path went the long way round the pelvic brim.
+
+**Change 4.4** (`src/myoconverter/optimization/utils/force_refit.py`): both ends of the activation range get a
+guarantee. The same least squares is also run on the full-activation samples alone and on the passive samples alone;
+while the combined fit is more than 0.25% of Fmax worse than that at either end (on the training poses), that end's
+residuals get twice the weight, up to 256×. A muscle that already meets both (bifemsh in both gait models; sartorius and
+vastus intermedius in gait2354) keeps exactly its old parameters. Two safeguards came from runs: the first version
+(run2_guard) gave gastrocnemius lateralis lmax at its lower bound, so its passive force exploded just outside the fitted
+lengths (600–700% of Fmax off; its 30% of training poses with the path a few mm off had been left out by change 5.4). A
+weighted fit is now kept only if its largest error over every training sample with an OpenSim force, including those
+left-out poses, is within 25% of Fmax of the equal-weight fit's; otherwise the equal-weight fit is used. And Step 3's
+particle-swarm result, which used to be kept when its plain sum over the levels was lower, is now kept only if it is at
+least as good at every level (run3_final kept it for extensor digitorum longus left, whose right side got the refit).
+Test: `station4/tests/test_level_guard.py`.
+
+On the gait models 4.4 trades sub-maximal accuracy for the ends: gait10dof18musc at full activation 3.2 → 3.1%, at
+0.25 and 0.5 1.7 → 1.9% and 2.0 → 2.2%; gait2354 3.5 → 3.6% at full activation (the mean moved with two short
+hip rotators, quadratus femoris and gemelli, whose rigid-tendon fit is 9–23% off at every level), 2.3 → 2.5% and
+2.3 → 2.6% in between. Both still pass F1 and F2.
+
+**The two listed misses** (run4_final and run5_damping, identical): vastus lateralis right (1.98% vs MyoConverter's
+1.45% of Fmax) and soleus left (2.30% vs 1.80%), at full activation. MyoConverter's Step 3 is unseeded, so its error for
+one muscle is a single draw: its mirror-image copies of these muscles, identical in OpenSim (same parameters, path
+points on the mirrored bodies at the mirrored locations), score 7.87% and 2.31% in the same conversion. Ours are
+deterministic and symmetric (1.98 / 1.99% and 2.30 / 2.31%) and within the tolerance of the mean of MyoConverter's two
+copies. `station4/tests/test_mirror_muscles.py` checks all of this (numbers in `Rajagopal2016/mirror_muscles.json`); the
+reasons are in `Rajagopal2016/f_reasons.json`.
 
 ## Station 5 changes: the hip flexors
 

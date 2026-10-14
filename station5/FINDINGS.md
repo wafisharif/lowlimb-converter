@@ -1,8 +1,9 @@
 # Station 5: walking
 
-**Result: both gait models pass W0–W3 (run5_pathtol, the current converter). Along OpenSim's own walking data,
-muscle lengths are 33–42× closer to OpenSim's than MyoConverter's, moment arms 11–15× closer, and the joint moments
-needed to walk 1.4–1.6× closer; no muscle, pair or joint is worse than MyoConverter beyond the gate tolerances.**
+**Result: both gait models (run7_damping, the current converter) and Rajagopal 2016 (run4_damping) pass W0–W3. Along
+OpenSim's own walking data, muscle lengths are 33–42× closer to OpenSim's than MyoConverter's (Rajagopal 2016: 39×),
+moment arms 11–15× closer (5.6×), and the joint moments needed to walk 1.4–1.6× closer (10×); no muscle, pair or joint
+is worse than MyoConverter beyond the gate tolerances.**
 Gates and method: `station5/GATES.md` (posted to the plan doc before any Station 5 code existed). Per-run results:
 `station5/<model>/<run>.json`, `<run>_w.json`, and level 3 in `<run>_replay.json` / `<run>_replay_nogrf.json`.
 
@@ -17,18 +18,56 @@ moment arms per scored muscle–coordinate pair in mm, joint moments per coordin
 | | run2_robust: after change 5.1 | 0.126 | 0.517 | 0.0047 | pass / pass / pass |
 | | run3_timestep: after 5.2 | 0.126 | 0.517 | 0.0047 | pass / pass / pass (identical to run2) |
 | | run4_switch: after 5.3 (first version) | 0.126 | 0.511 | 0.0048 | pass / pass / pass |
-| | **run5_pathtol: after 5.3 and 5.4** | **0.126** | **0.511** | **0.0048** | **pass / pass / pass** |
+| | run5_pathtol: after 5.3 and 5.4 | 0.126 | 0.511 | 0.0048 | pass / pass / pass |
+| | run6_final: after Station 6's changes | 0.126 | 0.511 | 0.0047 | pass / pass / pass |
+| | **run7_damping: the final converter** | **0.126** | **0.511** | **0.0047** | **pass / pass / pass** |
 | gait2354 | MyoConverter (Station 0, MuJoCo 2.3.7) | 1.64 | 1.20 | 0.0039 | — |
 | | run1: after Station 4 | 0.236 | 0.220 | 0.0027 | fail (4) / fail (14) / pass |
 | | run2_robust: after 5.1 | 0.130 | 0.167 | 0.0027 | fail (4) / fail (12) / pass |
 | | run3_timestep: after 5.2 | 0.130 | 0.167 | 0.0027 | fail (4) / fail (12) / pass (identical to run2) |
 | | run4_switch: after 5.3 (first version) | 0.050 | 0.109 | 0.0027 | pass / pass / pass |
-| | **run5_pathtol: after 5.3 and 5.4** | **0.050** | **0.109** | **0.0027** | **pass / pass / pass** |
+| | run5_pathtol: after 5.3 and 5.4 | 0.050 | 0.109 | 0.0027 | pass / pass / pass |
+| | run6_final: after Station 6's changes | 0.050 | 0.109 | 0.0027 | pass / pass / pass |
+| | **run7_damping: the final converter** | **0.050** | **0.109** | **0.0027** | **pass / pass / pass** |
+| Rajagopal2016 | MyoConverter (Station 1a port, MuJoCo 3.15) | 14.48 | 1.215 | 0.0112 | — |
+| | run1 | — | — | — | W0 fail (the check, below) |
+| | run2 | 0.368 | 0.217 | 0.0014 | not evaluated (MyoConverter column from run1's harness) |
+| | run3: before change 6.10 | 0.368 | 0.217 | 0.0014 | pass / pass / pass |
+| | **run4_damping: the final converter** | **0.368** | **0.217** | **0.0011** | **pass / pass / pass** |
 
 Worst items in run5: length rect_fem_l (gait10 0.48 mm, gait2354 0.41 mm); moment arm vasti_l / vas_int_l about the
 knee (2.2 mm RMS, 4.5% of its peak), the same in every run since Station 3 (the knee's moving path points); joint
 moment hip flexion (0.0103 / 0.0086 N·m/kg, 1.7% / 1.2% of OpenSim's peak), about 80% of MyoConverter's. W0 passed
 in every run, in both columns.
+
+run6_final differs from run5_pathtol only where Station 6's change 6.3 gave the toes their own OpenSim inertia
+(gait10dof18musc's joint moments 0.0048 → 0.0047 N·m/kg); paths are unchanged. run7_damping is the final converter
+(change 6.10 removed the template's joint damping on joints a coupling drives; the gait models' numbers don't move at
+this precision).
+
+## Rajagopal 2016
+
+Checked under the addendum and the two amendments in `station5/GATES.md`. The trial is opensim-models' Rajagopal
+pipeline, rebuilt by `station5/make_rajagopal_trial.py` (OpenSim's own scale factors and IK setup; 136 frames,
+0.45–1.8 s); the MyoConverter column is the Station 1a port's conversion.
+
+- **run1** failed W0 on the check itself: the patella couplers' coordinates (knee_angle_beta) have no MuJoCo joint
+  (the converter reproduces them through helper joints, change 2.4), and the IK file's column for them satisfies the
+  coupler only to 2e-9. The amendment of 2026-10-13 (written before any W1–W3 number) makes coupled coordinates
+  follow their constraint along the trial, as Stations 2 and 3 already did, and carries their inverse-dynamics force
+  to the knee by the coupler's derivative, which is what the MuJoCo side's projection does.
+- **run2**: ours passed W0, but the MyoConverter column was still the one run1 had stored with the old harness, so
+  W1–W3 weren't evaluated. **run3** recomputed it.
+- An earlier run of the amended check on an intermediate conversion (before the last change to the force refit,
+  which doesn't affect W0–W3) was stopped when the converter changed and is not used (its W0 passed).
+
+run4_damping (the final converter): lengths 0.37 mm mean RMS (MyoConverter 14.5 mm; its vasti wrap the wrong way
+round the femoral condyles, 237 mm off), moment arms 0.22 mm (1.22 mm), joint moments 0.0011 N·m/kg (0.0112; worst
+ours knee_angle_l 0.0027; MyoConverter's knee 0.058, carrying Station 2's 15.6 mm knee error). run3, before change
+6.10, had 0.0014 (worst 0.0045): the template's joint damping on the patella's coupled joints added torque that
+OpenSim doesn't have. The largest remaining errors are
+the gastrocnemii (8.5 mm length, 10.9 mm knee moment arm), whose path wraps over two cylinders in a row in OpenSim
+(Station 3 FINDINGS).
 
 ## What was wrong
 

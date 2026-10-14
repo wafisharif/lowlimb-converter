@@ -1,0 +1,17 @@
+PlanarJoint
+  ok   converts (3 coordinates)
+[info] Loaded model test_PlanarJoint from file /tmp/claude-0/s6w3/gates/joint_types/test_PlanarJoint.osim
+  ok   Station 2 K0 PASS: worst 5.6e-13 mm, 4.3e-14 deg in 1164 poses
+FreeJoint
+  ok   converts (6 coordinates)
+[info] Loaded model test_FreeJoint from file /tmp/claude-0/s6w3/gates/joint_types/test_FreeJoint.osim
+  ok   Station 2 K0 PASS: worst 7.0e-13 mm, 5.3e-14 deg in 1287 poses
+BallJoint
+  ok   converts (3 coordinates)
+[info] Loaded model test_BallJoint from file /tmp/claude-0/s6w3/gates/joint_types/test_BallJoint.osim
+  ok   Station 2 K0 PASS: worst 6.5e-13 mm, 6.6e-14 deg in 1164 poses
+GimbalJoint
+  ok   converts (3 coordinates)
+[info] Loaded model test_GimbalJoint from file /tmp/claude-0/s6w3/gates/joint_types/test_GimbalJoint.osim
+  ok   Station 2 K0 PASS: worst 6.5e-13 mm, 6.6e-14 deg in 1164 poses
+ALL CHECKS PASS

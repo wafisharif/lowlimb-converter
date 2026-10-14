@@ -1,7 +1,9 @@
 # Station 3: muscle paths (moment arms and lengths)
 
-**Result: both gait models pass M0 and M1. Every scored muscle–coordinate pair is now as good as or better than
-MyoConverter, and the average moment-arm error is 9× (gait10dof18musc) and 4× (gait2354) smaller.** Gates and
+**Result: both gait models and Rajagopal 2016 pass M0 and M1. Every scored muscle–coordinate pair is now as good as
+or better than MyoConverter, and the average moment-arm error is 9× (gait10dof18musc), 4× (gait2354) and 3.6×
+(Rajagopal 2016) smaller.** Rajagopal 2016 (80 muscles, 40 wrapping cylinders) needed two changes to how wraps choose
+their side (3.4, 3.5; section below). Gates and
 method: `station3/GATES.md` (posted to the plan doc before any Station 3 code existed). Per-run results:
 `station3/<model>/<run>.json` and `<run>_m1.json`.
 
@@ -32,6 +34,51 @@ human hip goes and OpenSim's path jumps by about 20 mm. On Station 3's random po
 shows as slightly higher means (lengths 0.59 → 0.82 mm and 0.46 → 0.51 mm, moment arms 0.91 → 0.86 and 0.33 →
 0.36 mm); M1 still passes with every pair as good as or better than MyoConverter. run6_switch is the first version of
 5.3 (helper scale 0.01; identical to run7 to 1e-8 mm).
+
+## Rajagopal 2016
+
+Checked under the addendum and amendment in `station3/GATES.md` (2026-10-12): the MyoConverter column is the Station 1a
+port's own full conversion (MyoConverter never shipped one), and OpenSim's moment arm is −dL/dq of its own length,
+because for paths that wrap over cylinders `computeMomentArm` isn't (up to 18 mm off). 2189 poses, 198 scored pairs.
+
+| Converter | Mean RMS moment-arm error (mm) | Worst pair (mm, % of its peak) | Pairs ≤ 2 mm | Mean RMS length error (mm) | M1 |
+| --- | --- | --- | --- | --- | --- |
+| MyoConverter (Station 1a port, MuJoCo 3.15) | 1.64 | 34.0, 76% (vasmed_r / knee) | 160 / 198 | 15.22 | — |
+| run1: before 3.4 | 1.09 | 41.1, 92% (vasmed_r / knee) | 173 / 198 | 14.22 | fail (quadriceps at the knee, 6 pairs) |
+| run2_unconstrained: change 3.4 | 0.56 | 13.0, 42% (gasmed_r / knee) | 178 / 198 | 0.81 | pass (62 better, 136 same) |
+| run3_sides: change 3.5 | 0.46 | 13.0, 42% (gasmed_r / knee) | 183 / 198 | 0.42 | pass (74 better, 124 same) |
+| run4_final, run5_final: later conversions | 0.46 | 13.0, 42% (gasmed_r / knee) | 183 / 198 | 0.42 | pass (74 better, 124 same) |
+| **run6_damping: the final converter** | **0.46** | **13.0, 42%** (gasmed_r / knee) | **183 / 198** | **0.42** | **pass** (74 better, 124 same) |
+
+run4_final, run5_final and run6_damping are the same check on conversions made after later changes to the force refit
+(4.4) and to joint damping (6.10), neither of which touches paths; the numbers are identical. The gait models were
+rechecked on the final converter (run8_final): identical to run7_switch (no wrapping objects, so 3.4 and 3.5 don't
+apply).
+
+**What was wrong.** OpenSim restricts a wrap object to one side with its `quadrant`; "all" means either side.
+MyoConverter gave every wrap a MuJoCo side site, which forces MuJoCo to wrap on that site's side whenever the straight
+segment crosses the object. For the vasti over the femoral condyles (quadrant "all") that meant wrapping the wrong way
+round in flexion: 127 mm too long. And for iliacus and psoas over the pelvic brim (quadrant "−y") MuJoCo sometimes
+went the long way round (more than 180°) where OpenSim, whose path is the shortest that respects the quadrant, doesn't:
+130–180 mm too long in 0.3% of the poses (hip extended and strongly abducted or adducted), with or without
+MyoConverter's Step 2, which moves those sites.
+
+**Change 3.4:** an unconstrained wrap object gets no side site (MuJoCo then takes the shorter side, as OpenSim does).
+Step 2 skips wraps without a side site. On the XML-step model: mean moment-arm error 3.91 → 1.55 mm, the vasti
+127 mm → 0.03 mm in length.
+
+**Change 3.5** (`src/myoconverter/optimization/utils/wrap_sides.py`): after Step 2, for every muscle with a side site,
+OpenSim's length is sampled in 400 poses (the coordinates that change it, seed 3) and each side site is dropped if the
+path without it is closer to OpenSim's. Iliacus and psoas drop theirs (8.8–15.7 → 0.002 mm RMS on those poses; within
+0.03 mm of OpenSim in all 2189 Station 3 poses); gluteus maximus 1 keeps its own (without it, 40–50 mm off). Test:
+`station3/tests/test_wrap_sides.py`.
+
+**Still off:** the gastrocnemii. In OpenSim their single path segment wraps over two cylinders in a row (the shank,
+then the condyles); a MuJoCo spatial tendon needs a site between two wrapping geoms, so the converter keeps one
+(upstream behaviour). Lengths are about 6 mm short, the knee moment arm 13 mm RMS off (MyoConverter: 15 mm). Two
+upstream bugs were noted and left alone because 3.4–3.5 make them irrelevant for these models: the default
+quadrant side site is looked up under the wrong name (`<object>_cylinder_sidesite` instead of `<object>_sidesite`),
+so it is never used; and a sphere's "−x/−y/−z" quadrant puts its side site on the positive side.
 
 ## What was wrong
 

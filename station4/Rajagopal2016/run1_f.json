@@ -1,0 +1,1204 @@
+{
+ "F1": {
+  "status": "FAIL",
+  "activation": "a1",
+  "muscles": 80,
+  "better": 54,
+  "same": 15,
+  "worse": 11,
+  "ours_mean_rms_pct": 3.069913433211279,
+  "myoconverter_mean_rms_pct": 6.882392742106633,
+  "misses_listed_with_reason": [],
+  "misses_unexplained": [
+   {
+    "muscle": "ehl_r",
+    "detail": "ours 2.49% vs MyoConverter 1.95%"
+   },
+   {
+    "muscle": "fdl_r",
+    "detail": "ours 2.88% vs MyoConverter 1.97%"
+   },
+   {
+    "muscle": "perlong_r",
+    "detail": "ours 2.26% vs MyoConverter 1.03%"
+   },
+   {
+    "muscle": "soleus_r",
+    "detail": "ours 2.98% vs MyoConverter 2.31%"
+   },
+   {
+    "muscle": "tibant_r",
+    "detail": "ours 2.39% vs MyoConverter 1.60%"
+   },
+   {
+    "muscle": "tibpost_r",
+    "detail": "ours 2.88% vs MyoConverter 1.88%"
+   },
+   {
+    "muscle": "edl_l",
+    "detail": "ours 3.16% vs MyoConverter 2.24%"
+   },
+   {
+    "muscle": "perlong_l",
+    "detail": "ours 2.22% vs MyoConverter 0.99%"
+   },
+   {
+    "muscle": "sart_l",
+    "detail": "ours 3.77% vs MyoConverter 2.31%"
+   },
+   {
+    "muscle": "soleus_l",
+    "detail": "ours 2.93% vs MyoConverter 1.80%"
+   },
+   {
+    "muscle": "tibpost_l",
+    "detail": "ours 2.85% vs MyoConverter 1.24%"
+   }
+  ],
+  "muscles_detail": [
+   {
+    "muscle": "addbrev_r",
+    "ours_rms_pct": 2.657512431619133,
+    "myoconverter_rms_pct": 3.2738859322525675,
+    "delta_pct": -0.6163735006334345,
+    "ok": true
+   },
+   {
+    "muscle": "addlong_r",
+    "ours_rms_pct": 2.5276568255688425,
+    "myoconverter_rms_pct": 4.583489010988151,
+    "delta_pct": -2.0558321854193085,
+    "ok": true
+   },
+   {
+    "muscle": "addmagDist_r",
+    "ours_rms_pct": 1.2965045600915237,
+    "myoconverter_rms_pct": 1.3849628938935987,
+    "delta_pct": -0.08845833380207502,
+    "ok": true
+   },
+   {
+    "muscle": "addmagIsch_r",
+    "ours_rms_pct": 2.363847020191978,
+    "myoconverter_rms_pct": 3.0360886928471187,
+    "delta_pct": -0.6722416726551406,
+    "ok": true
+   },
+   {
+    "muscle": "addmagMid_r",
+    "ours_rms_pct": 0.7939493762218168,
+    "myoconverter_rms_pct": 3.1051656587138363,
+    "delta_pct": -2.3112162824920195,
+    "ok": true
+   },
+   {
+    "muscle": "addmagProx_r",
+    "ours_rms_pct": 0.8478117929365189,
+    "myoconverter_rms_pct": 1.4941036286808274,
+    "delta_pct": -0.6462918357443085,
+    "ok": true
+   },
+   {
+    "muscle": "bflh_r",
+    "ours_rms_pct": 3.2754022694801037,
+    "myoconverter_rms_pct": 5.454751263106278,
+    "delta_pct": -2.1793489936261743,
+    "ok": true
+   },
+   {
+    "muscle": "bfsh_r",
+    "ours_rms_pct": 1.7451987237853455,
+    "myoconverter_rms_pct": 4.413414096946697,
+    "delta_pct": -2.6682153731613516,
+    "ok": true
+   },
+   {
+    "muscle": "edl_r",
+    "ours_rms_pct": 3.1269101345430053,
+    "myoconverter_rms_pct": 3.037372508394654,
+    "delta_pct": 0.08953762614835137,
+    "ok": true
+   },
+   {
+    "muscle": "ehl_r",
+    "ours_rms_pct": 2.493452324812915,
+    "myoconverter_rms_pct": 1.9536057069501775,
+    "delta_pct": 0.5398466178627372,
+    "ok": false
+   },
+   {
+    "muscle": "fdl_r",
+    "ours_rms_pct": 2.883394449858991,
+    "myoconverter_rms_pct": 1.9692178655973804,
+    "delta_pct": 0.9141765842616105,
+    "ok": false
+   },
+   {
+    "muscle": "fhl_r",
+    "ours_rms_pct": 3.0195943229642177,
+    "myoconverter_rms_pct": 2.9381492220913827,
+    "delta_pct": 0.08144510087283496,
+    "ok": true
+   },
+   {
+    "muscle": "gaslat_r",
+    "ours_rms_pct": 2.9510760450230427,
+    "myoconverter_rms_pct": 7.106425784013216,
+    "delta_pct": -4.155349738990173,
+    "ok": true
+   },
+   {
+    "muscle": "gasmed_r",
+    "ours_rms_pct": 4.806667621470303,
+    "myoconverter_rms_pct": 15.36514423545959,
+    "delta_pct": -10.558476613989288,
+    "ok": true
+   },
+   {
+    "muscle": "glmax1_r",
+    "ours_rms_pct": 5.704278588446837,
+    "myoconverter_rms_pct": 37.615141370665036,
+    "delta_pct": -31.9108627822182,
+    "ok": true
+   },
+   {
+    "muscle": "glmax2_r",
+    "ours_rms_pct": 5.7384067751704775,
+    "myoconverter_rms_pct": 5.816416897354276,
+    "delta_pct": -0.0780101221837981,
+    "ok": true
+   },
+   {
+    "muscle": "glmax3_r",
+    "ours_rms_pct": 6.799908696768732,
+    "myoconverter_rms_pct": 7.6711138378522685,
+    "delta_pct": -0.8712051410835366,
+    "ok": true
+   },
+   {
+    "muscle": "glmed1_r",
+    "ours_rms_pct": 2.100076686819779,
+    "myoconverter_rms_pct": 5.841592505219477,
+    "delta_pct": -3.7415158183996984,
+    "ok": true
+   },
+   {
+    "muscle": "glmed2_r",
+    "ours_rms_pct": 3.2503398006896735,
+    "myoconverter_rms_pct": 9.906052168894997,
+    "delta_pct": -6.655712368205323,
+    "ok": true
+   },
+   {
+    "muscle": "glmed3_r",
+    "ours_rms_pct": 4.1632471203849075,
+    "myoconverter_rms_pct": 10.4453711549344,
+    "delta_pct": -6.282124034549492,
+    "ok": true
+   },
+   {
+    "muscle": "glmin1_r",
+    "ours_rms_pct": 1.9469571505270507,
+    "myoconverter_rms_pct": 4.7176017733194575,
+    "delta_pct": -2.770644622792407,
+    "ok": true
+   },
+   {
+    "muscle": "glmin2_r",
+    "ours_rms_pct": 3.998948258268651,
+    "myoconverter_rms_pct": 7.14208931090703,
+    "delta_pct": -3.1431410526383794,
+    "ok": true
+   },
+   {
+    "muscle": "glmin3_r",
+    "ours_rms_pct": 5.247293011526704,
+    "myoconverter_rms_pct": 13.206961356607895,
+    "delta_pct": -7.959668345081191,
+    "ok": true
+   },
+   {
+    "muscle": "grac_r",
+    "ours_rms_pct": 3.965186449362843,
+    "myoconverter_rms_pct": 5.176566138336047,
+    "delta_pct": -1.2113796889732038,
+    "ok": true
+   },
+   {
+    "muscle": "iliacus_r",
+    "ours_rms_pct": 3.980785553682006,
+    "myoconverter_rms_pct": 5.057273956855588,
+    "delta_pct": -1.076488403173582,
+    "ok": true
+   },
+   {
+    "muscle": "perbrev_r",
+    "ours_rms_pct": 0.9263994556426425,
+    "myoconverter_rms_pct": 0.8645596820148063,
+    "delta_pct": 0.061839773627836214,
+    "ok": true
+   },
+   {
+    "muscle": "perlong_r",
+    "ours_rms_pct": 2.2642612642706728,
+    "myoconverter_rms_pct": 1.0298441861064067,
+    "delta_pct": 1.234417078164266,
+    "ok": false
+   },
+   {
+    "muscle": "piri_r",
+    "ours_rms_pct": 2.9604178471917013,
+    "myoconverter_rms_pct": 11.500170933390153,
+    "delta_pct": -8.539753086198452,
+    "ok": true
+   },
+   {
+    "muscle": "psoas_r",
+    "ours_rms_pct": 3.6270339405020233,
+    "myoconverter_rms_pct": 19.521889867066754,
+    "delta_pct": -15.89485592656473,
+    "ok": true
+   },
+   {
+    "muscle": "recfem_r",
+    "ours_rms_pct": 4.228800735435658,
+    "myoconverter_rms_pct": 17.448818276380756,
+    "delta_pct": -13.220017540945097,
+    "ok": true
+   },
+   {
+    "muscle": "sart_r",
+    "ours_rms_pct": 3.748772785286967,
+    "myoconverter_rms_pct": 6.4576853611909275,
+    "delta_pct": -2.7089125759039607,
+    "ok": true
+   },
+   {
+    "muscle": "semimem_r",
+    "ours_rms_pct": 3.1866062792844643,
+    "myoconverter_rms_pct": 8.96064895091806,
+    "delta_pct": -5.7740426716335955,
+    "ok": true
+   },
+   {
+    "muscle": "semiten_r",
+    "ours_rms_pct": 4.4087981415711,
+    "myoconverter_rms_pct": 5.65458045953891,
+    "delta_pct": -1.2457823179678105,
+    "ok": true
+   },
+   {
+    "muscle": "soleus_r",
+    "ours_rms_pct": 2.9752841081786596,
+    "myoconverter_rms_pct": 2.306866275446856,
+    "delta_pct": 0.6684178327318038,
+    "ok": false
+   },
+   {
+    "muscle": "tfl_r",
+    "ours_rms_pct": 2.6267689035276334,
+    "myoconverter_rms_pct": 22.855672951929215,
+    "delta_pct": -20.22890404840158,
+    "ok": true
+   },
+   {
+    "muscle": "tibant_r",
+    "ours_rms_pct": 2.3948181209309234,
+    "myoconverter_rms_pct": 1.6040374305801604,
+    "delta_pct": 0.790780690350763,
+    "ok": false
+   },
+   {
+    "muscle": "tibpost_r",
+    "ours_rms_pct": 2.8814157969306793,
+    "myoconverter_rms_pct": 1.8847924281581327,
+    "delta_pct": 0.9966233687725465,
+    "ok": false
+   },
+   {
+    "muscle": "vasint_r",
+    "ours_rms_pct": 1.8756267120260322,
+    "myoconverter_rms_pct": 7.532610548856088,
+    "delta_pct": -5.656983836830055,
+    "ok": true
+   },
+   {
+    "muscle": "vaslat_r",
+    "ours_rms_pct": 1.4345028210922737,
+    "myoconverter_rms_pct": 1.450249568165576,
+    "delta_pct": -0.01574674707330237,
+    "ok": true
+   },
+   {
+    "muscle": "vasmed_r",
+    "ours_rms_pct": 1.6327575502157563,
+    "myoconverter_rms_pct": 9.758882625053467,
+    "delta_pct": -8.12612507483771,
+    "ok": true
+   },
+   {
+    "muscle": "addbrev_l",
+    "ours_rms_pct": 2.6061828522271417,
+    "myoconverter_rms_pct": 6.173689523560212,
+    "delta_pct": -3.56750667133307,
+    "ok": true
+   },
+   {
+    "muscle": "addlong_l",
+    "ours_rms_pct": 2.4081862320651366,
+    "myoconverter_rms_pct": 3.7715702964256845,
+    "delta_pct": -1.363384064360548,
+    "ok": true
+   },
+   {
+    "muscle": "addmagDist_l",
+    "ours_rms_pct": 1.3093547841415882,
+    "myoconverter_rms_pct": 1.626028722724043,
+    "delta_pct": -0.31667393858245485,
+    "ok": true
+   },
+   {
+    "muscle": "addmagIsch_l",
+    "ours_rms_pct": 2.329333672514333,
+    "myoconverter_rms_pct": 2.3607339892020467,
+    "delta_pct": -0.03140031668771348,
+    "ok": true
+   },
+   {
+    "muscle": "addmagMid_l",
+    "ours_rms_pct": 0.7838921336131798,
+    "myoconverter_rms_pct": 2.260312453627671,
+    "delta_pct": -1.476420320014491,
+    "ok": true
+   },
+   {
+    "muscle": "addmagProx_l",
+    "ours_rms_pct": 0.8369118071508699,
+    "myoconverter_rms_pct": 2.007538476730161,
+    "delta_pct": -1.170626669579291,
+    "ok": true
+   },
+   {
+    "muscle": "bflh_l",
+    "ours_rms_pct": 3.22322453083977,
+    "myoconverter_rms_pct": 5.614250852939398,
+    "delta_pct": -2.3910263220996284,
+    "ok": true
+   },
+   {
+    "muscle": "bfsh_l",
+    "ours_rms_pct": 1.8127044891673136,
+    "myoconverter_rms_pct": 6.963679044501988,
+    "delta_pct": -5.150974555334674,
+    "ok": true
+   },
+   {
+    "muscle": "edl_l",
+    "ours_rms_pct": 3.159894352726161,
+    "myoconverter_rms_pct": 2.2384540364360372,
+    "delta_pct": 0.9214403162901239,
+    "ok": false
+   },
+   {
+    "muscle": "ehl_l",
+    "ours_rms_pct": 2.5272266419354668,
+    "myoconverter_rms_pct": 2.7840568110559984,
+    "delta_pct": -0.2568301691205317,
+    "ok": true
+   },
+   {
+    "muscle": "fdl_l",
+    "ours_rms_pct": 2.8119991911728532,
+    "myoconverter_rms_pct": 2.3331627187513218,
+    "delta_pct": 0.4788364724215315,
+    "ok": true
+   },
+   {
+    "muscle": "fhl_l",
+    "ours_rms_pct": 2.9885497350157024,
+    "myoconverter_rms_pct": 3.0546446424686446,
+    "delta_pct": -0.06609490745294222,
+    "ok": true
+   },
+   {
+    "muscle": "gaslat_l",
+    "ours_rms_pct": 2.915228583471207,
+    "myoconverter_rms_pct": 4.7439893458032,
+    "delta_pct": -1.8287607623319935,
+    "ok": true
+   },
+   {
+    "muscle": "gasmed_l",
+    "ours_rms_pct": 4.882869127902475,
+    "myoconverter_rms_pct": 7.732327725722504,
+    "delta_pct": -2.8494585978200293,
+    "ok": true
+   },
+   {
+    "muscle": "glmax1_l",
+    "ours_rms_pct": 5.608755437233146,
+    "myoconverter_rms_pct": 37.23883346980045,
+    "delta_pct": -31.6300780325673,
+    "ok": true
+   },
+   {
+    "muscle": "glmax2_l",
+    "ours_rms_pct": 5.680676718784009,
+    "myoconverter_rms_pct": 6.306317514473218,
+    "delta_pct": -0.6256407956892085,
+    "ok": true
+   },
+   {
+    "muscle": "glmax3_l",
+    "ours_rms_pct": 6.755348040910821,
+    "myoconverter_rms_pct": 7.023042772566174,
+    "delta_pct": -0.26769473165535285,
+    "ok": true
+   },
+   {
+    "muscle": "glmed1_l",
+    "ours_rms_pct": 2.0978248007888585,
+    "myoconverter_rms_pct": 7.006029097195789,
+    "delta_pct": -4.908204296406931,
+    "ok": true
+   },
+   {
+    "muscle": "glmed2_l",
+    "ours_rms_pct": 3.236858161671145,
+    "myoconverter_rms_pct": 3.591937152038798,
+    "delta_pct": -0.355078990367653,
+    "ok": true
+   },
+   {
+    "muscle": "glmed3_l",
+    "ours_rms_pct": 4.112946441905114,
+    "myoconverter_rms_pct": 5.558627423825783,
+    "delta_pct": -1.4456809819206686,
+    "ok": true
+   },
+   {
+    "muscle": "glmin1_l",
+    "ours_rms_pct": 1.9423796445235824,
+    "myoconverter_rms_pct": 5.0762406458316125,
+    "delta_pct": -3.13386100130803,
+    "ok": true
+   },
+   {
+    "muscle": "glmin2_l",
+    "ours_rms_pct": 4.005396961891816,
+    "myoconverter_rms_pct": 10.161705427269146,
+    "delta_pct": -6.15630846537733,
+    "ok": true
+   },
+   {
+    "muscle": "glmin3_l",
+    "ours_rms_pct": 5.207485594279137,
+    "myoconverter_rms_pct": 11.508921082653762,
+    "delta_pct": -6.301435488374625,
+    "ok": true
+   },
+   {
+    "muscle": "grac_l",
+    "ours_rms_pct": 3.944968526081117,
+    "myoconverter_rms_pct": 4.8061941890427935,
+    "delta_pct": -0.8612256629616764,
+    "ok": true
+   },
+   {
+    "muscle": "iliacus_l",
+    "ours_rms_pct": 5.539122345499363,
+    "myoconverter_rms_pct": 6.573228956330587,
+    "delta_pct": -1.0341066108312233,
+    "ok": true
+   },
+   {
+    "muscle": "perbrev_l",
+    "ours_rms_pct": 0.8900574151093291,
+    "myoconverter_rms_pct": 1.2189465064816565,
+    "delta_pct": -0.32888909137232736,
+    "ok": true
+   },
+   {
+    "muscle": "perlong_l",
+    "ours_rms_pct": 2.2212162868402805,
+    "myoconverter_rms_pct": 0.9884621224718464,
+    "delta_pct": 1.232754164368434,
+    "ok": false
+   },
+   {
+    "muscle": "piri_l",
+    "ours_rms_pct": 2.984050429435562,
+    "myoconverter_rms_pct": 10.655800716288587,
+    "delta_pct": -7.671750286853024,
+    "ok": true
+   },
+   {
+    "muscle": "psoas_l",
+    "ours_rms_pct": 2.4460425954243243,
+    "myoconverter_rms_pct": 6.660526034541336,
+    "delta_pct": -4.214483439117012,
+    "ok": true
+   },
+   {
+    "muscle": "recfem_l",
+    "ours_rms_pct": 4.199997692274116,
+    "myoconverter_rms_pct": 20.961997599863867,
+    "delta_pct": -16.76199990758975,
+    "ok": true
+   },
+   {
+    "muscle": "sart_l",
+    "ours_rms_pct": 3.767107679826432,
+    "myoconverter_rms_pct": 2.3123054101968314,
+    "delta_pct": 1.4548022696296004,
+    "ok": false
+   },
+   {
+    "muscle": "semimem_l",
+    "ours_rms_pct": 3.320265690470098,
+    "myoconverter_rms_pct": 7.5516167944450725,
+    "delta_pct": -4.2313511039749745,
+    "ok": true
+   },
+   {
+    "muscle": "semiten_l",
+    "ours_rms_pct": 4.338163546041434,
+    "myoconverter_rms_pct": 6.082390724373791,
+    "delta_pct": -1.7442271783323573,
+    "ok": true
+   },
+   {
+    "muscle": "soleus_l",
+    "ours_rms_pct": 2.9298985521023035,
+    "myoconverter_rms_pct": 1.7965560711895008,
+    "delta_pct": 1.1333424809128028,
+    "ok": false
+   },
+   {
+    "muscle": "tfl_l",
+    "ours_rms_pct": 2.641546131170281,
+    "myoconverter_rms_pct": 19.580397123916793,
+    "delta_pct": -16.938850992746513,
+    "ok": true
+   },
+   {
+    "muscle": "tibant_l",
+    "ours_rms_pct": 2.419272422783446,
+    "myoconverter_rms_pct": 2.4115495949310213,
+    "delta_pct": 0.0077228278524246186,
+    "ok": true
+   },
+   {
+    "muscle": "tibpost_l",
+    "ours_rms_pct": 2.8450268496803734,
+    "myoconverter_rms_pct": 1.244578999725128,
+    "delta_pct": 1.6004478499552455,
+    "ok": false
+   },
+   {
+    "muscle": "vasint_l",
+    "ours_rms_pct": 1.9087432516439995,
+    "myoconverter_rms_pct": 2.7776147394665744,
+    "delta_pct": -0.868871487822575,
+    "ok": true
+   },
+   {
+    "muscle": "vaslat_l",
+    "ours_rms_pct": 1.4500995120120845,
+    "myoconverter_rms_pct": 7.8688826589880945,
+    "delta_pct": -6.4187831469760095,
+    "ok": true
+   },
+   {
+    "muscle": "vasmed_l",
+    "ours_rms_pct": 1.6475953422743632,
+    "myoconverter_rms_pct": 9.421011384995305,
+    "delta_pct": -7.7734160427209416,
+    "ok": true
+   }
+  ]
+ },
+ "F2": {
+  "status": "FAIL",
+  "activation": "a0",
+  "muscles": 80,
+  "better": 65,
+  "same": 13,
+  "worse": 2,
+  "ours_mean_rms_pct": 1.443605134421984,
+  "myoconverter_mean_rms_pct": 6.873010179623565,
+  "misses_listed_with_reason": [],
+  "misses_unexplained": [
+   {
+    "muscle": "iliacus_r",
+    "detail": "ours 8.03% vs MyoConverter 3.60%"
+   },
+   {
+    "muscle": "iliacus_l",
+    "detail": "ours 11.32% vs MyoConverter 5.82%"
+   }
+  ],
+  "muscles_detail": [
+   {
+    "muscle": "addbrev_r",
+    "ours_rms_pct": 0.6314971693103851,
+    "myoconverter_rms_pct": 14.685371098924534,
+    "delta_pct": -14.053873929614149,
+    "ok": true
+   },
+   {
+    "muscle": "addlong_r",
+    "ours_rms_pct": 0.535193128600475,
+    "myoconverter_rms_pct": 0.5310160831606987,
+    "delta_pct": 0.004177045439776261,
+    "ok": true
+   },
+   {
+    "muscle": "addmagDist_r",
+    "ours_rms_pct": 0.21652760658168702,
+    "myoconverter_rms_pct": 2.3538352216071363,
+    "delta_pct": -2.137307615025449,
+    "ok": true
+   },
+   {
+    "muscle": "addmagIsch_r",
+    "ours_rms_pct": 0.42506660753126335,
+    "myoconverter_rms_pct": 5.072692571877186,
+    "delta_pct": -4.647625964345922,
+    "ok": true
+   },
+   {
+    "muscle": "addmagMid_r",
+    "ours_rms_pct": 0.21470325101596088,
+    "myoconverter_rms_pct": 0.27240644616703075,
+    "delta_pct": -0.057703195151069864,
+    "ok": true
+   },
+   {
+    "muscle": "addmagProx_r",
+    "ours_rms_pct": 0.14233690064808396,
+    "myoconverter_rms_pct": 0.4298294682113424,
+    "delta_pct": -0.2874925675632584,
+    "ok": true
+   },
+   {
+    "muscle": "bflh_r",
+    "ours_rms_pct": 1.3770243990546625,
+    "myoconverter_rms_pct": 11.974891516944995,
+    "delta_pct": -10.597867117890333,
+    "ok": true
+   },
+   {
+    "muscle": "bfsh_r",
+    "ours_rms_pct": 0.9573890825110183,
+    "myoconverter_rms_pct": 35.88436396627484,
+    "delta_pct": -34.92697488376382,
+    "ok": true
+   },
+   {
+    "muscle": "edl_r",
+    "ours_rms_pct": 1.5609328813000805,
+    "myoconverter_rms_pct": 3.3169126651947236,
+    "delta_pct": -1.7559797838946432,
+    "ok": true
+   },
+   {
+    "muscle": "ehl_r",
+    "ours_rms_pct": 1.6347593195456875,
+    "myoconverter_rms_pct": 1.5115088536952612,
+    "delta_pct": 0.12325046585042632,
+    "ok": true
+   },
+   {
+    "muscle": "fdl_r",
+    "ours_rms_pct": 0.9551406571882616,
+    "myoconverter_rms_pct": 2.2529561990601716,
+    "delta_pct": -1.29781554187191,
+    "ok": true
+   },
+   {
+    "muscle": "fhl_r",
+    "ours_rms_pct": 0.5961716968456638,
+    "myoconverter_rms_pct": 10.983120161653996,
+    "delta_pct": -10.386948464808333,
+    "ok": true
+   },
+   {
+    "muscle": "gaslat_r",
+    "ours_rms_pct": 4.570740570734244,
+    "myoconverter_rms_pct": 4.946606517167217,
+    "delta_pct": -0.375865946432973,
+    "ok": true
+   },
+   {
+    "muscle": "gasmed_r",
+    "ours_rms_pct": 2.4991194600358075,
+    "myoconverter_rms_pct": 3.2569260571587493,
+    "delta_pct": -0.7578065971229417,
+    "ok": true
+   },
+   {
+    "muscle": "glmax1_r",
+    "ours_rms_pct": 1.342915333351696,
+    "myoconverter_rms_pct": 9.958779544582754,
+    "delta_pct": -8.615864211231058,
+    "ok": true
+   },
+   {
+    "muscle": "glmax2_r",
+    "ours_rms_pct": 1.0216914071449503,
+    "myoconverter_rms_pct": 1.5303526303414954,
+    "delta_pct": -0.508661223196545,
+    "ok": true
+   },
+   {
+    "muscle": "glmax3_r",
+    "ours_rms_pct": 1.823967510139851,
+    "myoconverter_rms_pct": 17.930051233138627,
+    "delta_pct": -16.106083722998775,
+    "ok": true
+   },
+   {
+    "muscle": "glmed1_r",
+    "ours_rms_pct": 0.4675720285643707,
+    "myoconverter_rms_pct": 1.9506760948313682,
+    "delta_pct": -1.4831040662669974,
+    "ok": true
+   },
+   {
+    "muscle": "glmed2_r",
+    "ours_rms_pct": 0.6589947384416497,
+    "myoconverter_rms_pct": 5.844123825507172,
+    "delta_pct": -5.185129087065522,
+    "ok": true
+   },
+   {
+    "muscle": "glmed3_r",
+    "ours_rms_pct": 0.6814162907797272,
+    "myoconverter_rms_pct": 7.256448962768567,
+    "delta_pct": -6.57503267198884,
+    "ok": true
+   },
+   {
+    "muscle": "glmin1_r",
+    "ours_rms_pct": 0.443708021763663,
+    "myoconverter_rms_pct": 1.0643379730352382,
+    "delta_pct": -0.6206299512715753,
+    "ok": true
+   },
+   {
+    "muscle": "glmin2_r",
+    "ours_rms_pct": 1.3255532989146794,
+    "myoconverter_rms_pct": 3.1205412964576835,
+    "delta_pct": -1.794987997543004,
+    "ok": true
+   },
+   {
+    "muscle": "glmin3_r",
+    "ours_rms_pct": 0.824050405764051,
+    "myoconverter_rms_pct": 13.33761055573578,
+    "delta_pct": -12.51356014997173,
+    "ok": true
+   },
+   {
+    "muscle": "grac_r",
+    "ours_rms_pct": 0.7048103097392682,
+    "myoconverter_rms_pct": 4.162714498008424,
+    "delta_pct": -3.457904188269156,
+    "ok": true
+   },
+   {
+    "muscle": "iliacus_r",
+    "ours_rms_pct": 8.033771636912693,
+    "myoconverter_rms_pct": 3.602913577920574,
+    "delta_pct": 4.4308580589921185,
+    "ok": false
+   },
+   {
+    "muscle": "perbrev_r",
+    "ours_rms_pct": 0.8658838412864553,
+    "myoconverter_rms_pct": 1.1528684794494297,
+    "delta_pct": -0.28698463816297437,
+    "ok": true
+   },
+   {
+    "muscle": "perlong_r",
+    "ours_rms_pct": 0.9860665292211576,
+    "myoconverter_rms_pct": 2.1355865016014337,
+    "delta_pct": -1.149519972380276,
+    "ok": true
+   },
+   {
+    "muscle": "piri_r",
+    "ours_rms_pct": 1.635654965378757,
+    "myoconverter_rms_pct": 20.193076166679575,
+    "delta_pct": -18.55742120130082,
+    "ok": true
+   },
+   {
+    "muscle": "psoas_r",
+    "ours_rms_pct": 7.820281821408462,
+    "myoconverter_rms_pct": 23.55354755007328,
+    "delta_pct": -15.733265728664819,
+    "ok": true
+   },
+   {
+    "muscle": "recfem_r",
+    "ours_rms_pct": 2.0698560962010437,
+    "myoconverter_rms_pct": 13.968393277274634,
+    "delta_pct": -11.898537181073591,
+    "ok": true
+   },
+   {
+    "muscle": "sart_r",
+    "ours_rms_pct": 0.18566436110633952,
+    "myoconverter_rms_pct": 7.423624720501824,
+    "delta_pct": -7.237960359395484,
+    "ok": true
+   },
+   {
+    "muscle": "semimem_r",
+    "ours_rms_pct": 1.5781616987153173,
+    "myoconverter_rms_pct": 15.26753372442631,
+    "delta_pct": -13.689372025710991,
+    "ok": true
+   },
+   {
+    "muscle": "semiten_r",
+    "ours_rms_pct": 1.270244802626618,
+    "myoconverter_rms_pct": 1.4883519797376763,
+    "delta_pct": -0.21810717711105831,
+    "ok": true
+   },
+   {
+    "muscle": "soleus_r",
+    "ours_rms_pct": 2.5698765937464003,
+    "myoconverter_rms_pct": 5.8623676628170855,
+    "delta_pct": -3.2924910690706852,
+    "ok": true
+   },
+   {
+    "muscle": "tfl_r",
+    "ours_rms_pct": 1.1656824143545155,
+    "myoconverter_rms_pct": 2.8176167568524195,
+    "delta_pct": -1.651934342497904,
+    "ok": true
+   },
+   {
+    "muscle": "tibant_r",
+    "ours_rms_pct": 1.2276184142313096,
+    "myoconverter_rms_pct": 2.377143178380605,
+    "delta_pct": -1.1495247641492956,
+    "ok": true
+   },
+   {
+    "muscle": "tibpost_r",
+    "ours_rms_pct": 0.7841026336016875,
+    "myoconverter_rms_pct": 3.9214610982130806,
+    "delta_pct": -3.1373584646113932,
+    "ok": true
+   },
+   {
+    "muscle": "vasint_r",
+    "ours_rms_pct": 0.6694048258148443,
+    "myoconverter_rms_pct": 10.230563574626432,
+    "delta_pct": -9.561158748811588,
+    "ok": true
+   },
+   {
+    "muscle": "vaslat_r",
+    "ours_rms_pct": 0.8515405904690033,
+    "myoconverter_rms_pct": 2.8531781877067752,
+    "delta_pct": -2.001637597237772,
+    "ok": true
+   },
+   {
+    "muscle": "vasmed_r",
+    "ours_rms_pct": 0.6745064024554107,
+    "myoconverter_rms_pct": 8.990359096948843,
+    "delta_pct": -8.315852694493433,
+    "ok": true
+   },
+   {
+    "muscle": "addbrev_l",
+    "ours_rms_pct": 0.5760194290189581,
+    "myoconverter_rms_pct": 0.4577925924301004,
+    "delta_pct": 0.11822683658885769,
+    "ok": true
+   },
+   {
+    "muscle": "addlong_l",
+    "ours_rms_pct": 0.49846581662745737,
+    "myoconverter_rms_pct": 2.83255390724237,
+    "delta_pct": -2.3340880906149124,
+    "ok": true
+   },
+   {
+    "muscle": "addmagDist_l",
+    "ours_rms_pct": 0.22100768346182484,
+    "myoconverter_rms_pct": 0.6047010893742683,
+    "delta_pct": -0.3836934059124434,
+    "ok": true
+   },
+   {
+    "muscle": "addmagIsch_l",
+    "ours_rms_pct": 0.4173118561580072,
+    "myoconverter_rms_pct": 6.781125397295914,
+    "delta_pct": -6.363813541137906,
+    "ok": true
+   },
+   {
+    "muscle": "addmagMid_l",
+    "ours_rms_pct": 0.21346784070846533,
+    "myoconverter_rms_pct": 0.25232972572829215,
+    "delta_pct": -0.03886188501982682,
+    "ok": true
+   },
+   {
+    "muscle": "addmagProx_l",
+    "ours_rms_pct": 0.13175897476209672,
+    "myoconverter_rms_pct": 0.09107602817585944,
+    "delta_pct": 0.04068294658623728,
+    "ok": true
+   },
+   {
+    "muscle": "bflh_l",
+    "ours_rms_pct": 1.3896402700602943,
+    "myoconverter_rms_pct": 11.14473032161164,
+    "delta_pct": -9.755090051551345,
+    "ok": true
+   },
+   {
+    "muscle": "bfsh_l",
+    "ours_rms_pct": 0.9563015653043473,
+    "myoconverter_rms_pct": 14.327309670601618,
+    "delta_pct": -13.371008105297271,
+    "ok": true
+   },
+   {
+    "muscle": "edl_l",
+    "ours_rms_pct": 1.5107561708467285,
+    "myoconverter_rms_pct": 1.0579637499833918,
+    "delta_pct": 0.4527924208633367,
+    "ok": true
+   },
+   {
+    "muscle": "ehl_l",
+    "ours_rms_pct": 1.558466965916116,
+    "myoconverter_rms_pct": 4.962063318619042,
+    "delta_pct": -3.403596352702926,
+    "ok": true
+   },
+   {
+    "muscle": "fdl_l",
+    "ours_rms_pct": 0.8760460138999284,
+    "myoconverter_rms_pct": 6.628463143577216,
+    "delta_pct": -5.752417129677287,
+    "ok": true
+   },
+   {
+    "muscle": "fhl_l",
+    "ours_rms_pct": 0.5197399609573482,
+    "myoconverter_rms_pct": 7.184349879544807,
+    "delta_pct": -6.664609918587459,
+    "ok": true
+   },
+   {
+    "muscle": "gaslat_l",
+    "ours_rms_pct": 4.336308213771626,
+    "myoconverter_rms_pct": 4.700045205635085,
+    "delta_pct": -0.3637369918634592,
+    "ok": true
+   },
+   {
+    "muscle": "gasmed_l",
+    "ours_rms_pct": 2.4375324696550225,
+    "myoconverter_rms_pct": 3.335026391576253,
+    "delta_pct": -0.8974939219212303,
+    "ok": true
+   },
+   {
+    "muscle": "glmax1_l",
+    "ours_rms_pct": 1.3761533216182138,
+    "myoconverter_rms_pct": 12.410802732232662,
+    "delta_pct": -11.034649410614449,
+    "ok": true
+   },
+   {
+    "muscle": "glmax2_l",
+    "ours_rms_pct": 1.0248677596748643,
+    "myoconverter_rms_pct": 11.56772769967476,
+    "delta_pct": -10.542859939999897,
+    "ok": true
+   },
+   {
+    "muscle": "glmax3_l",
+    "ours_rms_pct": 1.7784820096759844,
+    "myoconverter_rms_pct": 4.787857897390014,
+    "delta_pct": -3.0093758877140293,
+    "ok": true
+   },
+   {
+    "muscle": "glmed1_l",
+    "ours_rms_pct": 0.45225953261311697,
+    "myoconverter_rms_pct": 2.4374281069309047,
+    "delta_pct": -1.9851685743177878,
+    "ok": true
+   },
+   {
+    "muscle": "glmed2_l",
+    "ours_rms_pct": 0.6452255191534755,
+    "myoconverter_rms_pct": 8.000861587270496,
+    "delta_pct": -7.35563606811702,
+    "ok": true
+   },
+   {
+    "muscle": "glmed3_l",
+    "ours_rms_pct": 0.6548050471238107,
+    "myoconverter_rms_pct": 2.4917707607975754,
+    "delta_pct": -1.8369657136737647,
+    "ok": true
+   },
+   {
+    "muscle": "glmin1_l",
+    "ours_rms_pct": 0.44425889880248615,
+    "myoconverter_rms_pct": 1.5959124299816936,
+    "delta_pct": -1.1516535311792073,
+    "ok": true
+   },
+   {
+    "muscle": "glmin2_l",
+    "ours_rms_pct": 1.2834673249486253,
+    "myoconverter_rms_pct": 6.349105800635066,
+    "delta_pct": -5.06563847568644,
+    "ok": true
+   },
+   {
+    "muscle": "glmin3_l",
+    "ours_rms_pct": 0.8388846519212824,
+    "myoconverter_rms_pct": 13.625382466903323,
+    "delta_pct": -12.786497814982042,
+    "ok": true
+   },
+   {
+    "muscle": "grac_l",
+    "ours_rms_pct": 0.7084995122963402,
+    "myoconverter_rms_pct": 8.11663298813699,
+    "delta_pct": -7.40813347584065,
+    "ok": true
+   },
+   {
+    "muscle": "iliacus_l",
+    "ours_rms_pct": 11.32060024988644,
+    "myoconverter_rms_pct": 5.823050453832657,
+    "delta_pct": 5.497549796053782,
+    "ok": false
+   },
+   {
+    "muscle": "perbrev_l",
+    "ours_rms_pct": 0.8822635335166323,
+    "myoconverter_rms_pct": 26.11059212039106,
+    "delta_pct": -25.22832858687443,
+    "ok": true
+   },
+   {
+    "muscle": "perlong_l",
+    "ours_rms_pct": 0.9638247030156556,
+    "myoconverter_rms_pct": 1.9430193132931644,
+    "delta_pct": -0.9791946102775088,
+    "ok": true
+   },
+   {
+    "muscle": "piri_l",
+    "ours_rms_pct": 1.6721495134788975,
+    "myoconverter_rms_pct": 19.135294922378606,
+    "delta_pct": -17.46314540889971,
+    "ok": true
+   },
+   {
+    "muscle": "psoas_l",
+    "ours_rms_pct": 4.855548048549939,
+    "myoconverter_rms_pct": 10.369757711730918,
+    "delta_pct": -5.514209663180979,
+    "ok": true
+   },
+   {
+    "muscle": "recfem_l",
+    "ours_rms_pct": 1.9490244716023442,
+    "myoconverter_rms_pct": 4.775807414410605,
+    "delta_pct": -2.8267829428082605,
+    "ok": true
+   },
+   {
+    "muscle": "sart_l",
+    "ours_rms_pct": 0.17629958601851498,
+    "myoconverter_rms_pct": 1.94181091075615,
+    "delta_pct": -1.765511324737635,
+    "ok": true
+   },
+   {
+    "muscle": "semimem_l",
+    "ours_rms_pct": 1.5921583349698707,
+    "myoconverter_rms_pct": 20.465857764261425,
+    "delta_pct": -18.873699429291555,
+    "ok": true
+   },
+   {
+    "muscle": "semiten_l",
+    "ours_rms_pct": 1.2518295961848174,
+    "myoconverter_rms_pct": 5.955660484472872,
+    "delta_pct": -4.703830888288055,
+    "ok": true
+   },
+   {
+    "muscle": "soleus_l",
+    "ours_rms_pct": 2.6110989283443535,
+    "myoconverter_rms_pct": 5.315908523562039,
+    "delta_pct": -2.704809595217686,
+    "ok": true
+   },
+   {
+    "muscle": "tfl_l",
+    "ours_rms_pct": 1.2379885299012734,
+    "myoconverter_rms_pct": 3.01597890469454,
+    "delta_pct": -1.7779903747932668,
+    "ok": true
+   },
+   {
+    "muscle": "tibant_l",
+    "ours_rms_pct": 1.1662224480759744,
+    "myoconverter_rms_pct": 2.7440015634619392,
+    "delta_pct": -1.5777791153859648,
+    "ok": true
+   },
+   {
+    "muscle": "tibpost_l",
+    "ours_rms_pct": 0.7346345981629785,
+    "myoconverter_rms_pct": 1.6281289673586106,
+    "delta_pct": -0.8934943691956321,
+    "ok": true
+   },
+   {
+    "muscle": "vasint_l",
+    "ours_rms_pct": 0.6843349830364537,
+    "myoconverter_rms_pct": 3.1106562793034067,
+    "delta_pct": -2.426321296266953,
+    "ok": true
+   },
+   {
+    "muscle": "vaslat_l",
+    "ours_rms_pct": 0.8618330976482275,
+    "myoconverter_rms_pct": 3.6941076297563646,
+    "delta_pct": -2.832274532108137,
+    "ok": true
+   },
+   {
+    "muscle": "vasmed_l",
+    "ours_rms_pct": 0.6792736193527217,
+    "myoconverter_rms_pct": 8.601509540156464,
+    "delta_pct": -7.922235920803742,
+    "ok": true
+   }
+  ]
+ }
+}

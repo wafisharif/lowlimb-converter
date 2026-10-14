@@ -1,0 +1,2817 @@
+{
+ "model": "Rajagopal2016_cvt3.xml",
+ "mujoco_version": "3.15.0",
+ "numpy_version": "2.5.3",
+ "opensim_version": "4.6",
+ "poses": 2189,
+ "muscles": 80,
+ "pairs_total": 198,
+ "pairs_scored": 198,
+ "mesh_geoms_removed": 81,
+ "max_equality_residual": 4.440892098500626e-16,
+ "opensim_moment_arm": "length-derivative",
+ "m0_osim_h_vs_10h_within_1e-6_frac": 1.0,
+ "m0_mujoco_h_vs_10h_within_1e-6_frac": 1.0,
+ "M0": "PASS",
+ "M0_problems": [],
+ "summary": {
+  "ma_rms_mm_median": 0.006276370096710482,
+  "ma_rms_mm_mean": 0.5635337540927595,
+  "ma_rms_mm_worst": {
+   "muscle": "gasmed_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 31.060202049237873,
+   "rms_mm": 13.015006393260428,
+   "max_mm": 16.763975430045264,
+   "rms_pct_peak": 41.90251683691085,
+   "worst_pose": "sweep:ankle_angle_r",
+   "opensim_analytic_vs_length_derivative_rms_mm": 13.810216721081197,
+   "opensim_analytic_vs_length_derivative_max_mm": 18.053961536764525
+  },
+  "pairs_within_5pct_peak": 181,
+  "pairs_within_2mm": 178,
+  "length_rms_mm_median": 0.00037385296006482423,
+  "length_rms_mm_worst": "iliacus_l"
+ },
+ "pairs": [
+  {
+   "muscle": "addbrev_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 39.425978176632626,
+   "rms_mm": 0.054478216114750976,
+   "max_mm": 0.2282457417512873,
+   "rms_pct_peak": 0.13817847681719578,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.09226494553282816,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.6769819852675517
+  },
+  {
+   "muscle": "addbrev_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 73.7308360615474,
+   "rms_mm": 0.03390141260206096,
+   "max_mm": 0.20512251619475563,
+   "rms_pct_peak": 0.04597996498203478,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.2171554863776468,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.0339860333172939
+  },
+  {
+   "muscle": "addbrev_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 14.334650529079784,
+   "rms_mm": 0.1455091468363817,
+   "max_mm": 0.5419956566887763,
+   "rms_pct_peak": 1.0150868103913426,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.169529778503312,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.32897961038585477
+  },
+  {
+   "muscle": "addlong_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 49.79128150062184,
+   "rms_mm": 0.0649684522570556,
+   "max_mm": 0.35661953945442804,
+   "rms_pct_peak": 0.13048158291777287,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.10423691042621322,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.7336653052443034
+  },
+  {
+   "muscle": "addlong_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 76.67352899809465,
+   "rms_mm": 0.02030010624811623,
+   "max_mm": 0.12424167250557616,
+   "rms_pct_peak": 0.026476029619845323,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.14911617364260316,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.2321469587181637
+  },
+  {
+   "muscle": "addlong_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 4.628955468932716,
+   "rms_mm": 0.23436859646335143,
+   "max_mm": 0.5116701506935328,
+   "rms_pct_peak": 5.063098965551057,
+   "worst_pose": "sweep:hip_rotation_r",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.14789116034329364,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.2840455270201846
+  },
+  {
+   "muscle": "addmagDist_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 52.29357868952178,
+   "rms_mm": 0.15106281348631642,
+   "max_mm": 0.6324329532292339,
+   "rms_pct_peak": 0.28887449907226437,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.25774695758143557,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.2735499325430226
+  },
+  {
+   "muscle": "addmagDist_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 64.2886776036633,
+   "rms_mm": 0.04266714242707307,
+   "max_mm": 0.3672504661489384,
+   "rms_pct_peak": 0.06636805113664651,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.29600678877126757,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.761664306920239
+  },
+  {
+   "muscle": "addmagDist_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 4.956992594173926,
+   "rms_mm": 0.14054770129941008,
+   "max_mm": 0.6086879333899731,
+   "rms_pct_peak": 2.8353421682453033,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.29618581879383726,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.6878821062113426
+  },
+  {
+   "muscle": "addmagIsch_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 61.13229855664315,
+   "rms_mm": 0.06543981682934846,
+   "max_mm": 0.24655297248266095,
+   "rms_pct_peak": 0.1070462233130562,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.35254120105540915,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.064714036079899
+  },
+  {
+   "muscle": "addmagIsch_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 70.2902376581438,
+   "rms_mm": 0.13636395165278756,
+   "max_mm": 0.3810916859858793,
+   "rms_pct_peak": 0.19400126702657192,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.11153478594075691,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.6773190069233985
+  },
+  {
+   "muscle": "addmagIsch_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 8.256743261325639,
+   "rms_mm": 0.1496651167046899,
+   "max_mm": 0.35556374511358513,
+   "rms_pct_peak": 1.812641037365389,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.2998818747171293,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.3606785630365199
+  },
+  {
+   "muscle": "addmagMid_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 42.404768557657846,
+   "rms_mm": 0.1426129273080662,
+   "max_mm": 0.5173176470529839,
+   "rms_pct_peak": 0.33631341983191143,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.22492521382048788,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.0263416371788932
+  },
+  {
+   "muscle": "addmagMid_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 64.61443209648809,
+   "rms_mm": 0.027935543046427383,
+   "max_mm": 0.21593907911787724,
+   "rms_pct_peak": 0.043234215855540624,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.1647690688695448,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.2296969905158661
+  },
+  {
+   "muscle": "addmagMid_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 11.153920176365517,
+   "rms_mm": 0.17563783087862295,
+   "max_mm": 0.7306252963745763,
+   "rms_pct_peak": 1.5746735506570049,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.25759015329288265,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.7233974479679746
+  },
+  {
+   "muscle": "addmagProx_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 33.28237588307026,
+   "rms_mm": 0.06082181527180351,
+   "max_mm": 0.33125420462187805,
+   "rms_pct_peak": 0.18274481210562174,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.09158767674955431,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.5220730452219386
+  },
+  {
+   "muscle": "addmagProx_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 71.06707522464006,
+   "rms_mm": 0.08100140905561273,
+   "max_mm": 0.45900708234292154,
+   "rms_pct_peak": 0.1139788133950506,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.35442581016798336,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.3679644646677445
+  },
+  {
+   "muscle": "addmagProx_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 28.494965255421167,
+   "rms_mm": 0.08434905550718548,
+   "max_mm": 0.4418458099397782,
+   "rms_pct_peak": 0.2960138914053881,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.18935396551973135,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.6170071598123412
+  },
+  {
+   "muscle": "bflh_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 62.64672849920494,
+   "rms_mm": 1.3077492829824339e-05,
+   "max_mm": 6.411537967210279e-05,
+   "rms_pct_peak": 2.087498125299601e-05,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 8.409299348627617e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.619482739722571e-07
+  },
+  {
+   "muscle": "bflh_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 60.17355341780828,
+   "rms_mm": 1.2335119454645106e-05,
+   "max_mm": 4.191091917959966e-05,
+   "rms_pct_peak": 2.0499237213062017e-05,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 8.110743444623953e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.009245032661092e-07
+  },
+  {
+   "muscle": "bflh_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 7.980917565708623,
+   "rms_mm": 1.4997848639602454e-05,
+   "max_mm": 4.8683279629813114e-05,
+   "rms_pct_peak": 0.00018792135761485967,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 8.241641504420314e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.603729182068751e-07
+  },
+  {
+   "muscle": "bflh_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 37.43034884817753,
+   "rms_mm": 0.0057478192430541345,
+   "max_mm": 0.008490097513913497,
+   "rms_pct_peak": 0.015356039737615198,
+   "worst_pose": "sweep:hip_rotation_r",
+   "opensim_analytic_vs_length_derivative_rms_mm": 6.371048340133159e-07,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.5251997442788934e-06
+  },
+  {
+   "muscle": "bfsh_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 41.80337992432115,
+   "rms_mm": 6.894123645370099,
+   "max_mm": 32.60142927841159,
+   "rms_pct_peak": 16.49178525241474,
+   "worst_pose": "sweep:knee_angle_r",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.09280715011004298,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.45608123931836514
+  },
+  {
+   "muscle": "edl_r",
+   "coordinate": "ankle_angle_r",
+   "scored": true,
+   "peak_osim_mm": 37.14422117107041,
+   "rms_mm": 3.633819929937312e-07,
+   "max_mm": 1.27675647831893e-06,
+   "rms_pct_peak": 9.783002080462236e-07,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 9.621428829595081e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.994802931314936e-07
+  },
+  {
+   "muscle": "ehl_r",
+   "coordinate": "ankle_angle_r",
+   "scored": true,
+   "peak_osim_mm": 40.224485409190436,
+   "rms_mm": 8.630235424695341e-07,
+   "max_mm": 3.969047313034935e-06,
+   "rms_pct_peak": 2.1455179194718837e-06,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 9.871991016954057e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.106562061569676e-07
+  },
+  {
+   "muscle": "fdl_r",
+   "coordinate": "ankle_angle_r",
+   "scored": true,
+   "peak_osim_mm": 13.410743293640337,
+   "rms_mm": 6.919266066468094e-07,
+   "max_mm": 2.275957200481571e-06,
+   "rms_pct_peak": 5.1594948281124425e-06,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 1.0871312924712033e-07,
+   "opensim_analytic_vs_length_derivative_max_mm": 7.909267472731851e-07
+  },
+  {
+   "muscle": "fhl_r",
+   "coordinate": "ankle_angle_r",
+   "scored": true,
+   "peak_osim_mm": 19.75124253039695,
+   "rms_mm": 5.115333782944353e-07,
+   "max_mm": 2.1649348980190553e-06,
+   "rms_pct_peak": 2.5898794848333763e-06,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 1.0760379804889335e-07,
+   "opensim_analytic_vs_length_derivative_max_mm": 8.404964120523051e-07
+  },
+  {
+   "muscle": "gaslat_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 26.941062991614473,
+   "rms_mm": 4.612404030843029,
+   "max_mm": 10.311263787254887,
+   "rms_pct_peak": 17.12034908302861,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 8.893932309448866,
+   "opensim_analytic_vs_length_derivative_max_mm": 16.48964704586383
+  },
+  {
+   "muscle": "gaslat_r",
+   "coordinate": "ankle_angle_r",
+   "scored": true,
+   "peak_osim_mm": 44.688164252404405,
+   "rms_mm": 1.0826241338806497,
+   "max_mm": 2.586014902217215,
+   "rms_pct_peak": 2.422619393729963,
+   "worst_pose": "sweep:ankle_angle_r",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.011509405183472845,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.09009593284772799
+  },
+  {
+   "muscle": "gasmed_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 31.060202049237873,
+   "rms_mm": 13.015006393260428,
+   "max_mm": 16.763975430045264,
+   "rms_pct_peak": 41.90251683691085,
+   "worst_pose": "sweep:ankle_angle_r",
+   "opensim_analytic_vs_length_derivative_rms_mm": 13.810216721081197,
+   "opensim_analytic_vs_length_derivative_max_mm": 18.053961536764525
+  },
+  {
+   "muscle": "gasmed_r",
+   "coordinate": "ankle_angle_r",
+   "scored": true,
+   "peak_osim_mm": 43.61345640191416,
+   "rms_mm": 1.3458302714689387,
+   "max_mm": 6.076037062374695,
+   "rms_pct_peak": 3.0858142933378496,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.07290640508499066,
+   "opensim_analytic_vs_length_derivative_max_mm": 2.9737352088073097
+  },
+  {
+   "muscle": "glmax1_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 62.75571036440386,
+   "rms_mm": 0.15107485424681003,
+   "max_mm": 4.903180778059735,
+   "rms_pct_peak": 0.24073483252689357,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.4339301567152014,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.511806851562135
+  },
+  {
+   "muscle": "glmax1_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 59.96684911135919,
+   "rms_mm": 0.2130927956890347,
+   "max_mm": 6.980898831221438,
+   "rms_pct_peak": 0.35535099617009847,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.3304783499591133,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.6152039905660676
+  },
+  {
+   "muscle": "glmax1_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 46.28439409515295,
+   "rms_mm": 0.2130226350468419,
+   "max_mm": 7.007316782381423,
+   "rms_pct_peak": 0.46024721552777187,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.7081559736084676,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.224251447924533
+  },
+  {
+   "muscle": "glmax2_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 77.15981115152815,
+   "rms_mm": 0.4391719902224445,
+   "max_mm": 20.487220600551304,
+   "rms_pct_peak": 0.5691719350634346,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.3982869402787129,
+   "opensim_analytic_vs_length_derivative_max_mm": 15.351456730623589
+  },
+  {
+   "muscle": "glmax2_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 54.673153518369766,
+   "rms_mm": 0.5917926836031321,
+   "max_mm": 27.60072009833081,
+   "rms_pct_peak": 1.0824191500208493,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.5510930479637105,
+   "opensim_analytic_vs_length_derivative_max_mm": 24.387567398896046
+  },
+  {
+   "muscle": "glmax2_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 44.56767160876396,
+   "rms_mm": 0.46180108545961923,
+   "max_mm": 21.52484152029288,
+   "rms_pct_peak": 1.036179519346505,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.44850081471433245,
+   "opensim_analytic_vs_length_derivative_max_mm": 19.42918408936644
+  },
+  {
+   "muscle": "glmax3_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 85.58133392233546,
+   "rms_mm": 4.071549663128126,
+   "max_mm": 21.73028440521918,
+   "rms_pct_peak": 4.757520684151794,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.04900030621549537,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.3320490305453519
+  },
+  {
+   "muscle": "glmax3_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 83.1609812818046,
+   "rms_mm": 0.6190355288700328,
+   "max_mm": 4.226842598153979,
+   "rms_pct_peak": 0.7443821842028651,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.3162996374094651,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.9204314604616308
+  },
+  {
+   "muscle": "glmax3_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 23.366809251412768,
+   "rms_mm": 0.5054363563905544,
+   "max_mm": 4.574789186362338,
+   "rms_pct_peak": 2.1630525201466924,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.06857942876878896,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.4625466608193691
+  },
+  {
+   "muscle": "glmed1_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 50.66667924796819,
+   "rms_mm": 2.3904440397786734e-08,
+   "max_mm": 3.122502256758253e-07,
+   "rms_pct_peak": 4.717980485911821e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.047973195006653e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.374628632091259e-07
+  },
+  {
+   "muscle": "glmed1_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 60.37128399971614,
+   "rms_mm": 4.385082164725212e-08,
+   "max_mm": 2.3592239273284576e-07,
+   "rms_pct_peak": 7.263523109340908e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.3013156359932056e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.3586432246490716e-07
+  },
+  {
+   "muscle": "glmed1_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 59.57800879030639,
+   "rms_mm": 2.586790440669007e-08,
+   "max_mm": 2.7755575615628914e-07,
+   "rms_pct_peak": 4.341854474817375e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.810609447937116e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.2563916146921557e-07
+  },
+  {
+   "muscle": "glmed2_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 52.05500253069317,
+   "rms_mm": 2.4993028834053507e-08,
+   "max_mm": 2.3592239273284576e-07,
+   "rms_pct_peak": 4.801273195466061e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.1522620949099844e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 2.915200719710853e-07
+  },
+  {
+   "muscle": "glmed2_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 58.78743776499551,
+   "rms_mm": 2.498466679664913e-08,
+   "max_mm": 4.3021142204224816e-07,
+   "rms_pct_peak": 4.2500009775091855e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.931432090220314e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 4.292552754220358e-07
+  },
+  {
+   "muscle": "glmed2_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 55.362507592193744,
+   "rms_mm": 2.7809016098509958e-08,
+   "max_mm": 4.0245584642661925e-07,
+   "rms_pct_peak": 5.023077405263902e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.950783067862496e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 4.1960424024267695e-07
+  },
+  {
+   "muscle": "glmed3_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 50.62545031797594,
+   "rms_mm": 2.5164056766697256e-08,
+   "max_mm": 3.122502256758253e-07,
+   "rms_pct_peak": 4.970633665210495e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.260606211810462e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.6873873399123624e-07
+  },
+  {
+   "muscle": "glmed3_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 58.4419296012495,
+   "rms_mm": 2.3605945075647476e-08,
+   "max_mm": 2.220446049250313e-07,
+   "rms_pct_peak": 4.0392138378577385e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.885760335696975e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.983074425839561e-07
+  },
+  {
+   "muscle": "glmed3_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 56.378561943959404,
+   "rms_mm": 3.1954986995835036e-08,
+   "max_mm": 4.163336342344337e-07,
+   "rms_pct_peak": 5.667932259002716e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.116450866066924e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.9199415935442516e-07
+  },
+  {
+   "muscle": "glmin1_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 41.32162264094963,
+   "rms_mm": 2.4265345656492174e-08,
+   "max_mm": 2.1510571102112408e-07,
+   "rms_pct_peak": 5.8723119049166475e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.721382159907554e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 2.8877150063527646e-07
+  },
+  {
+   "muscle": "glmin1_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 57.05954151877246,
+   "rms_mm": 2.192152308369307e-08,
+   "max_mm": 3.608224830031759e-07,
+   "rms_pct_peak": 3.841868073279372e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.9290063087180334e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.998941594529626e-07
+  },
+  {
+   "muscle": "glmin1_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 56.404584961033954,
+   "rms_mm": 2.3670702310506577e-08,
+   "max_mm": 3.608224830031759e-07,
+   "rms_pct_peak": 4.1965918775679375e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.8765273413709e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.817154960172875e-07
+  },
+  {
+   "muscle": "glmin2_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 43.41144352326687,
+   "rms_mm": 2.044432315122409e-08,
+   "max_mm": 2.1510571102112408e-07,
+   "rms_pct_peak": 4.709431774657923e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.415210658760263e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.9789054689931547e-07
+  },
+  {
+   "muscle": "glmin2_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 56.5690726622714,
+   "rms_mm": 2.714621066354822e-08,
+   "max_mm": 4.0245584642661925e-07,
+   "rms_pct_peak": 4.798772436242059e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.9961603905756236e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.2304491026646787e-07
+  },
+  {
+   "muscle": "glmin2_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 56.381453023696125,
+   "rms_mm": 2.6041949785219033e-08,
+   "max_mm": 2.8449465006019636e-07,
+   "rms_pct_peak": 4.61888589041401e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.859932194033612e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.6408802361886927e-07
+  },
+  {
+   "muscle": "glmin3_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 43.72393110074757,
+   "rms_mm": 2.170219141270589e-08,
+   "max_mm": 2.220446049250313e-07,
+   "rms_pct_peak": 4.963458423420404e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.7528993794459276e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.010998230260076e-07
+  },
+  {
+   "muscle": "glmin3_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 53.92161909339998,
+   "rms_mm": 2.2018385779158284e-08,
+   "max_mm": 2.1510571102112408e-07,
+   "rms_pct_peak": 4.083405904600023e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.5119845881924686e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 2.979685942428034e-07
+  },
+  {
+   "muscle": "glmin3_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 52.91489545491967,
+   "rms_mm": 2.7731394654669712e-08,
+   "max_mm": 3.7470027081099033e-07,
+   "rms_pct_peak": 5.24075393445598e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.6088837280007064e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.2487371126599385e-07
+  },
+  {
+   "muscle": "grac_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 51.557845631711174,
+   "rms_mm": 0.005464332058925748,
+   "max_mm": 0.009246575727317463,
+   "rms_pct_peak": 0.010598449163214948,
+   "worst_pose": "sweep:hip_adduction_r",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.012061248867458565,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.02540985489378131
+  },
+  {
+   "muscle": "grac_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 73.33840720824547,
+   "rms_mm": 0.00872257533614636,
+   "max_mm": 0.01721858766678963,
+   "rms_pct_peak": 0.011893598004356002,
+   "worst_pose": "sweep:hip_rotation_r",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.030675394746795454,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.05158000851983313
+  },
+  {
+   "muscle": "grac_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 10.326516503011973,
+   "rms_mm": 0.004398876242240339,
+   "max_mm": 0.014800188852248652,
+   "rms_pct_peak": 0.04259787161485969,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.009091001147979942,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.05555543490653753
+  },
+  {
+   "muscle": "grac_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 47.33652092525631,
+   "rms_mm": 0.04730588128490098,
+   "max_mm": 0.11488618389954297,
+   "rms_pct_peak": 0.0999352727244072,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.08488298932870063,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.18538592235030696
+  },
+  {
+   "muscle": "iliacus_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 48.45852791257599,
+   "rms_mm": 2.4966090790040196,
+   "max_mm": 58.935542585070166,
+   "rms_pct_peak": 5.152053078269631,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.035595487029347374,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.606786841012348
+  },
+  {
+   "muscle": "iliacus_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 48.45824055910164,
+   "rms_mm": 2.2225946501986424,
+   "max_mm": 60.637614859859745,
+   "rms_pct_peak": 4.586618549404153,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.16005511108093623,
+   "opensim_analytic_vs_length_derivative_max_mm": 2.4175125746228425
+  },
+  {
+   "muscle": "iliacus_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 11.717878209416277,
+   "rms_mm": 1.114977753726087,
+   "max_mm": 24.850969088108243,
+   "rms_pct_peak": 9.515184692994255,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.016752262703824763,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.33212221688724497
+  },
+  {
+   "muscle": "perbrev_r",
+   "coordinate": "ankle_angle_r",
+   "scored": true,
+   "peak_osim_mm": 8.3370861880816,
+   "rms_mm": 5.955340164120645e-06,
+   "max_mm": 7.049916206369744e-06,
+   "rms_pct_peak": 7.143191313811997e-05,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 7.645465413222693e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.301134557364473e-07
+  },
+  {
+   "muscle": "perlong_r",
+   "coordinate": "ankle_angle_r",
+   "scored": true,
+   "peak_osim_mm": 10.792436860862509,
+   "rms_mm": 4.868091887401437e-06,
+   "max_mm": 5.828670879282072e-06,
+   "rms_pct_peak": 4.51065125528322e-05,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 9.092880831643028e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.017345428015574e-07
+  },
+  {
+   "muscle": "piri_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 34.21592881247548,
+   "rms_mm": 2.155638860073191e-08,
+   "max_mm": 2.220446049250313e-07,
+   "rms_pct_peak": 6.300103299511258e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.722036603400101e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.6624871191381914e-07
+  },
+  {
+   "muscle": "piri_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 44.77368446831331,
+   "rms_mm": 2.3589516738235608e-08,
+   "max_mm": 3.885780586188048e-07,
+   "rms_pct_peak": 5.268611913082582e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.9229658445829275e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.2910992334156397e-07
+  },
+  {
+   "muscle": "piri_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 43.773711412564694,
+   "rms_mm": 2.7149451518436778e-08,
+   "max_mm": 3.191891195797325e-07,
+   "rms_pct_peak": 6.202227465374085e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.066365034375133e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.8627468758323236e-07
+  },
+  {
+   "muscle": "psoas_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 38.08310683472982,
+   "rms_mm": 3.0256279090045575,
+   "max_mm": 75.42856061970582,
+   "rms_pct_peak": 7.944803248681754,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.03824160006784756,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.3357783078461567
+  },
+  {
+   "muscle": "psoas_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 38.747509034653405,
+   "rms_mm": 1.560553353764967,
+   "max_mm": 40.82044294251297,
+   "rms_pct_peak": 4.02749336059075,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.19594430404193666,
+   "opensim_analytic_vs_length_derivative_max_mm": 2.2401580787670268
+  },
+  {
+   "muscle": "psoas_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 11.394160642774764,
+   "rms_mm": 0.680724792812799,
+   "max_mm": 21.447868758794897,
+   "rms_pct_peak": 5.974330309661365,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.05236546198982452,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.7017349350432432
+  },
+  {
+   "muscle": "recfem_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 51.15294399171688,
+   "rms_mm": 0.183638096127222,
+   "max_mm": 1.6159840410256976,
+   "rms_pct_peak": 0.35899809824622847,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.0024024753921135494,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.027344411238007515
+  },
+  {
+   "muscle": "recfem_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 46.72027437147008,
+   "rms_mm": 0.06850127333846,
+   "max_mm": 0.9852204607696535,
+   "rms_pct_peak": 0.14662001510053324,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.003609543626686383,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.03588391278030317
+  },
+  {
+   "muscle": "recfem_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 6.566688193210268,
+   "rms_mm": 0.12603067211098423,
+   "max_mm": 1.195285925792433,
+   "rms_pct_peak": 1.9192425223005967,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.0037199777469727425,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.03434710853740877
+  },
+  {
+   "muscle": "recfem_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 49.082190783922286,
+   "rms_mm": 2.143407761421846,
+   "max_mm": 14.26411061489219,
+   "rms_pct_peak": 4.366976549310745,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.0014442874788847928,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.009680207348990166
+  },
+  {
+   "muscle": "sart_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 72.8386017889715,
+   "rms_mm": 1.613514156048143e-07,
+   "max_mm": 9.992007221626409e-07,
+   "rms_pct_peak": 2.215191006443022e-07,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 9.966426914869856e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.264746776896146e-07
+  },
+  {
+   "muscle": "sart_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 64.2665793360031,
+   "rms_mm": 1.5466284427364032e-07,
+   "max_mm": 1.304512053934559e-06,
+   "rms_pct_peak": 2.406582797335782e-07,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 9.083071283930579e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.002881789395452e-07
+  },
+  {
+   "muscle": "sart_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 9.182845511768178,
+   "rms_mm": 1.5706415184775036e-07,
+   "max_mm": 9.992007221626409e-07,
+   "rms_pct_peak": 1.7104083004169727e-06,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 9.13473551582488e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.16925454264322e-07
+  },
+  {
+   "muscle": "sart_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 43.584718195655014,
+   "rms_mm": 0.008801802240400848,
+   "max_mm": 0.011908030117524504,
+   "rms_pct_peak": 0.020194698061116075,
+   "worst_pose": "sweep:pelvis_list",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.970595800583055e-07,
+   "opensim_analytic_vs_length_derivative_max_mm": 9.326731366388064e-07
+  },
+  {
+   "muscle": "semimem_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 55.318635588941234,
+   "rms_mm": 0.00021659029722659166,
+   "max_mm": 0.002427641421220983,
+   "rms_pct_peak": 0.00039153224753412085,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.0013090328820234086,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.018287872661639643
+  },
+  {
+   "muscle": "semimem_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 50.836419185351645,
+   "rms_mm": 0.0005778483367062854,
+   "max_mm": 0.004933942143736658,
+   "rms_pct_peak": 0.001136681823712695,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.0032050403893584137,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.01901780080378751
+  },
+  {
+   "muscle": "semimem_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 6.356164983234436,
+   "rms_mm": 0.0006995253356537013,
+   "max_mm": 0.004745093207247919,
+   "rms_pct_peak": 0.01100546221658546,
+   "worst_pose": "sweep:hip_rotation_r",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.004004921778930028,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.022848612330990826
+  },
+  {
+   "muscle": "semimem_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 46.275234033554824,
+   "rms_mm": 0.0048966164816164025,
+   "max_mm": 0.017996854007051866,
+   "rms_pct_peak": 0.010581505602037144,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.002444348680561192,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.027335758246163633
+  },
+  {
+   "muscle": "semiten_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 66.70558455601494,
+   "rms_mm": 0.0006563299534934043,
+   "max_mm": 0.00675073885680888,
+   "rms_pct_peak": 0.0009839205485745526,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.0033530544824076835,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.039883962610997095
+  },
+  {
+   "muscle": "semiten_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 67.0741566177746,
+   "rms_mm": 0.0011746534120936623,
+   "max_mm": 0.011625256313152477,
+   "rms_pct_peak": 0.0017512757093428438,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.005315075138173585,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.04794268825634475
+  },
+  {
+   "muscle": "semiten_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 9.84490061695098,
+   "rms_mm": 0.0013956307540807808,
+   "max_mm": 0.01126349014057837,
+   "rms_pct_peak": 0.014176179205687253,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.00665299429670494,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.046744296636600305
+  },
+  {
+   "muscle": "semiten_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 55.44839162818782,
+   "rms_mm": 0.006281023701336452,
+   "max_mm": 0.03309755247649093,
+   "rms_pct_peak": 0.011327693224096012,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.008450844679032126,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.09533882996402149
+  },
+  {
+   "muscle": "soleus_r",
+   "coordinate": "ankle_angle_r",
+   "scored": true,
+   "peak_osim_mm": 44.17052892891071,
+   "rms_mm": 1.6905632259298034e-06,
+   "max_mm": 3.3584246494910985e-06,
+   "rms_pct_peak": 3.82735563038116e-06,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 6.931645791608728e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.2980368009381e-07
+  },
+  {
+   "muscle": "tfl_r",
+   "coordinate": "hip_flexion_r",
+   "scored": true,
+   "peak_osim_mm": 102.94974484015285,
+   "rms_mm": 1.516028007844263e-07,
+   "max_mm": 1.0547118733938987e-06,
+   "rms_pct_peak": 1.4725903499791638e-07,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 9.890527734539462e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.515558292549684e-07
+  },
+  {
+   "muscle": "tfl_r",
+   "coordinate": "hip_adduction_r",
+   "scored": true,
+   "peak_osim_mm": 92.38408288370081,
+   "rms_mm": 1.5821277588450668e-07,
+   "max_mm": 9.436895709313831e-07,
+   "rms_pct_peak": 1.7125544893233977e-07,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 8.70067800460283e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.374308442191889e-07
+  },
+  {
+   "muscle": "tfl_r",
+   "coordinate": "hip_rotation_r",
+   "scored": true,
+   "peak_osim_mm": 62.14746048338604,
+   "rms_mm": 1.4915250737666946e-07,
+   "max_mm": 9.159339953157541e-07,
+   "rms_pct_peak": 2.399977508598965e-07,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 8.752361301211484e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 7.014126501836415e-07
+  },
+  {
+   "muscle": "tfl_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 16.515189771304506,
+   "rms_mm": 0.008413665805203016,
+   "max_mm": 0.011378370468051457,
+   "rms_pct_peak": 0.050945014388038945,
+   "worst_pose": "sweep:hip_flexion_r",
+   "opensim_analytic_vs_length_derivative_rms_mm": 6.438468408195521e-07,
+   "opensim_analytic_vs_length_derivative_max_mm": 2.0102340998404133e-06
+  },
+  {
+   "muscle": "tibant_r",
+   "coordinate": "ankle_angle_r",
+   "scored": true,
+   "peak_osim_mm": 44.064999621395984,
+   "rms_mm": 2.628831763195844e-06,
+   "max_mm": 4.357625371653739e-06,
+   "rms_pct_peak": 5.965804574566254e-06,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 7.011141641368497e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.06485667242751e-07
+  },
+  {
+   "muscle": "tibpost_r",
+   "coordinate": "ankle_angle_r",
+   "scored": true,
+   "peak_osim_mm": 13.748066046703755,
+   "rms_mm": 4.295006768421203e-07,
+   "max_mm": 1.6930901125533637e-06,
+   "rms_pct_peak": 3.124080691662793e-06,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 8.814800453190182e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.835043680874064e-07
+  },
+  {
+   "muscle": "vasint_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 46.07035550274752,
+   "rms_mm": 1.9873641955366241,
+   "max_mm": 12.606266974746205,
+   "rms_pct_peak": 4.313759192542161,
+   "worst_pose": "sweep:knee_angle_r",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.001342027153160312,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.011580119579215203
+  },
+  {
+   "muscle": "vaslat_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 45.251843300286865,
+   "rms_mm": 3.2604434463582983,
+   "max_mm": 16.638864591689284,
+   "rms_pct_peak": 7.205106374832756,
+   "worst_pose": "sweep:knee_angle_r",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.0030227711720035473,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.020504577770325688
+  },
+  {
+   "muscle": "vasmed_r",
+   "coordinate": "knee_angle_r",
+   "scored": true,
+   "peak_osim_mm": 44.847446117879386,
+   "rms_mm": 2.140013172493612,
+   "max_mm": 12.82899950161287,
+   "rms_pct_peak": 4.771761510942427,
+   "worst_pose": "sweep:knee_angle_r",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.0010626110802686654,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.009057947616096518
+  },
+  {
+   "muscle": "addbrev_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 39.64332177114338,
+   "rms_mm": 0.05346777362702684,
+   "max_mm": 0.2146084837617579,
+   "rms_pct_peak": 0.1348720824548723,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.09125362476121596,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.6411354221591524
+  },
+  {
+   "muscle": "addbrev_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 73.69329142747904,
+   "rms_mm": 0.03190213760050369,
+   "max_mm": 0.20481082108059212,
+   "rms_pct_peak": 0.04329042302568114,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.2103518676267833,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.0196871378905583
+  },
+  {
+   "muscle": "addbrev_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 13.56446503036901,
+   "rms_mm": 0.1446446669822109,
+   "max_mm": 0.5137028996626825,
+   "rms_pct_peak": 1.0663499567315848,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.16642471549392981,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.3280259871201053
+  },
+  {
+   "muscle": "addlong_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 49.835244902984854,
+   "rms_mm": 0.06626996717848295,
+   "max_mm": 0.32517916137564384,
+   "rms_pct_peak": 0.13297811078784072,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.10370766607138408,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.6969061416164934
+  },
+  {
+   "muscle": "addlong_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 76.63404108515515,
+   "rms_mm": 0.018985387463490825,
+   "max_mm": 0.1139689731477489,
+   "rms_pct_peak": 0.024774091506403025,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.14838382171947406,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.033562001935051
+  },
+  {
+   "muscle": "addlong_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 4.628955496688292,
+   "rms_mm": 0.23571562588351702,
+   "max_mm": 0.5130683933263214,
+   "rms_pct_peak": 5.09219900800852,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.14651008989462908,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.22825157443679636
+  },
+  {
+   "muscle": "addmagDist_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 52.28243493693441,
+   "rms_mm": 0.14890165602530764,
+   "max_mm": 0.5901647642803098,
+   "rms_pct_peak": 0.2848024507751408,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.24601978728217966,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.0974970200446659
+  },
+  {
+   "muscle": "addmagDist_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 64.25466317350192,
+   "rms_mm": 0.04802698860208707,
+   "max_mm": 0.4957790983306509,
+   "rms_pct_peak": 0.0747447519449343,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.3105823706494704,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.9053150522694244
+  },
+  {
+   "muscle": "addmagDist_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 4.946457049515018,
+   "rms_mm": 0.13702748429623343,
+   "max_mm": 0.5885043008468926,
+   "rms_pct_peak": 2.770214780489572,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.2916137284271035,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.6920470613995967
+  },
+  {
+   "muscle": "addmagIsch_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 61.18180961856012,
+   "rms_mm": 0.06405590699605566,
+   "max_mm": 0.24235261020244536,
+   "rms_pct_peak": 0.10469763381536798,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.34787965025253204,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.0344995891579112
+  },
+  {
+   "muscle": "addmagIsch_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 69.64206031301323,
+   "rms_mm": 0.13613743726954927,
+   "max_mm": 0.35579217350090175,
+   "rms_pct_peak": 0.19548163373924593,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.11715517043728038,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.8394282082001799
+  },
+  {
+   "muscle": "addmagIsch_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 8.25340407129005,
+   "rms_mm": 0.1521117215920109,
+   "max_mm": 0.3481489541101723,
+   "rms_pct_peak": 1.8430179872222716,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.30030413845930587,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.36061919908115386
+  },
+  {
+   "muscle": "addmagMid_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 42.41285420092389,
+   "rms_mm": 0.1435503026844373,
+   "max_mm": 0.6375386815693496,
+   "rms_pct_peak": 0.33845942554205727,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.22523961363941702,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.256880902481678
+  },
+  {
+   "muscle": "addmagMid_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 64.59639650957527,
+   "rms_mm": 0.037286973077250284,
+   "max_mm": 0.427616553277943,
+   "rms_pct_peak": 0.05772299244544261,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.19513984597800207,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.743779814523165
+  },
+  {
+   "muscle": "addmagMid_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 10.973935093971932,
+   "rms_mm": 0.17196403682694864,
+   "max_mm": 0.6998805007762954,
+   "rms_pct_peak": 1.567022543457632,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.25170086463460783,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.7155127134539814
+  },
+  {
+   "muscle": "addmagProx_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 33.03491508122036,
+   "rms_mm": 0.05870569946762438,
+   "max_mm": 0.31426673763323976,
+   "rms_pct_peak": 0.17770803806605606,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.08877537140851122,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.49053740269962115
+  },
+  {
+   "muscle": "addmagProx_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 70.11509299548192,
+   "rms_mm": 0.07761398277317479,
+   "max_mm": 0.4315868912252441,
+   "rms_pct_peak": 0.11069511492793155,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.3416843829429319,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.43523236915832
+  },
+  {
+   "muscle": "addmagProx_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 28.111266793529044,
+   "rms_mm": 0.07947958233957945,
+   "max_mm": 0.4368878175897706,
+   "rms_pct_peak": 0.2827321263155417,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.1805397361314201,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.5951127849914981
+  },
+  {
+   "muscle": "bflh_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 62.57625473349293,
+   "rms_mm": 1.2792722351247989e-05,
+   "max_mm": 5.9868776602911566e-05,
+   "rms_pct_peak": 2.044341324953232e-05,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 8.544050849682567e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.588794912969597e-07
+  },
+  {
+   "muscle": "bflh_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 58.6538063396258,
+   "rms_mm": 1.244712130907628e-05,
+   "max_mm": 5.6843418860808015e-05,
+   "rms_pct_peak": 2.1221335981169148e-05,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 8.125385410035503e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.691393446278671e-07
+  },
+  {
+   "muscle": "bflh_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 7.954173125712671,
+   "rms_mm": 1.5043028057238722e-05,
+   "max_mm": 4.6906922790412864e-05,
+   "rms_pct_peak": 0.00018912120492588488,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 9.03284143695988e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.669553589966348e-07
+  },
+  {
+   "muscle": "bflh_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 37.510332812074054,
+   "rms_mm": 0.0057688999089882,
+   "max_mm": 0.008490097513913497,
+   "rms_pct_peak": 0.01537949539901515,
+   "worst_pose": "sweep:hip_rotation_l",
+   "opensim_analytic_vs_length_derivative_rms_mm": 6.366123578951336e-07,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.5251997442788934e-06
+  },
+  {
+   "muscle": "bfsh_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 41.76611000106245,
+   "rms_mm": 7.085528596843134,
+   "max_mm": 32.601429222900435,
+   "rms_pct_peak": 16.964779809905426,
+   "worst_pose": "sweep:knee_angle_l",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.09573624519128307,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.4560811838072139
+  },
+  {
+   "muscle": "edl_l",
+   "coordinate": "ankle_angle_l",
+   "scored": true,
+   "peak_osim_mm": 37.1442047952808,
+   "rms_mm": 3.712130113041053e-07,
+   "max_mm": 1.0269562977782698e-06,
+   "rms_pct_peak": 9.993833852414797e-07,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 9.087046672985593e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.973673652432844e-07
+  },
+  {
+   "muscle": "ehl_l",
+   "coordinate": "ankle_angle_l",
+   "scored": true,
+   "peak_osim_mm": 40.22449107132786,
+   "rms_mm": 8.0291787534039e-07,
+   "max_mm": 3.858025010572419e-06,
+   "rms_pct_peak": 1.996092067185189e-06,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 9.610248232590934e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.819500172894344e-07
+  },
+  {
+   "muscle": "fdl_l",
+   "coordinate": "ankle_angle_l",
+   "scored": true,
+   "peak_osim_mm": 13.410743293640337,
+   "rms_mm": 6.758432275903465e-07,
+   "max_mm": 2.3592239273284576e-06,
+   "rms_pct_peak": 5.0395657630017114e-06,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 1.0242570589650268e-07,
+   "opensim_analytic_vs_length_derivative_max_mm": 7.496778883439581e-07
+  },
+  {
+   "muscle": "fhl_l",
+   "coordinate": "ankle_angle_l",
+   "scored": true,
+   "peak_osim_mm": 19.75124253039695,
+   "rms_mm": 5.072644891306096e-07,
+   "max_mm": 1.8873791418627661e-06,
+   "rms_pct_peak": 2.568266215909885e-06,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 1.022075714659371e-07,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.263573340548056e-07
+  },
+  {
+   "muscle": "gaslat_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 26.941486791498548,
+   "rms_mm": 4.634672265715891,
+   "max_mm": 6.846346517486168,
+   "rms_pct_peak": 17.202733841616986,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 8.81356431897549,
+   "opensim_analytic_vs_length_derivative_max_mm": 11.728895912384255
+  },
+  {
+   "muscle": "gaslat_l",
+   "coordinate": "ankle_angle_l",
+   "scored": true,
+   "peak_osim_mm": 44.68844594374133,
+   "rms_mm": 1.0720002402298616,
+   "max_mm": 2.5860150409950933,
+   "rms_pct_peak": 2.39883087807397,
+   "worst_pose": "sweep:ankle_angle_l",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.010962889011789552,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.0985217819405651
+  },
+  {
+   "muscle": "gasmed_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 31.05916543399978,
+   "rms_mm": 12.958203117630548,
+   "max_mm": 16.763975374534112,
+   "rms_pct_peak": 41.721028033307974,
+   "worst_pose": "sweep:ankle_angle_l",
+   "opensim_analytic_vs_length_derivative_rms_mm": 13.765979499220226,
+   "opensim_analytic_vs_length_derivative_max_mm": 18.05396148125282
+  },
+  {
+   "muscle": "gasmed_l",
+   "coordinate": "ankle_angle_l",
+   "scored": true,
+   "peak_osim_mm": 43.61525388074661,
+   "rms_mm": 1.3234388400376857,
+   "max_mm": 3.236346357571307,
+   "rms_pct_peak": 3.034348587437435,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.03555956736325134,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.06268216484187072
+  },
+  {
+   "muscle": "glmax1_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 62.793183902565275,
+   "rms_mm": 0.07481702530769546,
+   "max_mm": 1.3827491929241376,
+   "rms_pct_peak": 0.11914832256919365,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.5070778402483663,
+   "opensim_analytic_vs_length_derivative_max_mm": 4.803108171513713
+  },
+  {
+   "muscle": "glmax1_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 59.0748649026418,
+   "rms_mm": 0.0674983262837219,
+   "max_mm": 2.4160430878161776,
+   "rms_pct_peak": 0.11425896004157161,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.37673149740634304,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.60204519428438
+  },
+  {
+   "muscle": "glmax1_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 45.92679433979008,
+   "rms_mm": 0.11032805109960851,
+   "max_mm": 2.219655917401475,
+   "rms_pct_peak": 0.24022589141176448,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.8134187240501246,
+   "opensim_analytic_vs_length_derivative_max_mm": 7.082586757775751
+  },
+  {
+   "muscle": "glmax2_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 75.75671401305328,
+   "rms_mm": 0.031026036643031416,
+   "max_mm": 0.7692848857931978,
+   "rms_pct_peak": 0.04095483423117516,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.24509783870678686,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.9911488923661205
+  },
+  {
+   "muscle": "glmax2_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 53.87969088943567,
+   "rms_mm": 0.04312422998989199,
+   "max_mm": 0.95594779314645,
+   "rms_pct_peak": 0.08003800556017567,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.18247078627353314,
+   "opensim_analytic_vs_length_derivative_max_mm": 2.968755778125588
+  },
+  {
+   "muscle": "glmax2_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 44.9404161939615,
+   "rms_mm": 0.03593663910463387,
+   "max_mm": 0.797177851508124,
+   "rms_pct_peak": 0.07996507853761836,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.16461292290640955,
+   "opensim_analytic_vs_length_derivative_max_mm": 2.3897410070491225
+  },
+  {
+   "muscle": "glmax3_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 85.58133392233546,
+   "rms_mm": 3.8713423043218187,
+   "max_mm": 20.086722674061974,
+   "rms_pct_peak": 4.523582569810186,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.04683852583836184,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.32792891799071977
+  },
+  {
+   "muscle": "glmax3_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 82.94962246246928,
+   "rms_mm": 0.6036504293588023,
+   "max_mm": 4.2536064115417105,
+   "rms_pct_peak": 0.7277313765134075,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.3103128233697231,
+   "opensim_analytic_vs_length_derivative_max_mm": 1.9874833088776127
+  },
+  {
+   "muscle": "glmax3_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 23.380505642656146,
+   "rms_mm": 0.48803837234788267,
+   "max_mm": 3.7921077389313496,
+   "rms_pct_peak": 2.0873730440520917,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.06662317225283111,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.4630482841187743
+  },
+  {
+   "muscle": "glmed1_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 52.541410278106326,
+   "rms_mm": 2.678239584136073e-08,
+   "max_mm": 3.608224830031759e-07,
+   "rms_pct_peak": 5.097388079154926e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.001351454213243e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 4.1507190306350195e-07
+  },
+  {
+   "muscle": "glmed1_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 59.962070628194475,
+   "rms_mm": 4.368724595536191e-08,
+   "max_mm": 4.093947403305265e-07,
+   "rms_pct_peak": 7.285813431336033e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.4553831375644715e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.7939261454678075e-07
+  },
+  {
+   "muscle": "glmed1_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 59.60674814148304,
+   "rms_mm": 2.2705805110801484e-08,
+   "max_mm": 3.608224830031759e-07,
+   "rms_pct_peak": 3.809267544155707e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.813591357764987e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.571017856418557e-07
+  },
+  {
+   "muscle": "glmed2_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 51.86581360228093,
+   "rms_mm": 2.612469663702013e-08,
+   "max_mm": 4.093947403305265e-07,
+   "rms_pct_peak": 5.036978082972023e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.240884919907089e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.461101683033263e-07
+  },
+  {
+   "muscle": "glmed2_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 58.82741335727637,
+   "rms_mm": 2.5795101088218656e-08,
+   "max_mm": 2.3592239273284576e-07,
+   "rms_pct_peak": 4.3848776643564694e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.344466388919068e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 4.0069061263414696e-07
+  },
+  {
+   "muscle": "glmed2_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 55.37116402887232,
+   "rms_mm": 2.339053640259448e-08,
+   "max_mm": 3.7470027081099033e-07,
+   "rms_pct_peak": 4.2243172620315326e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.7625578348235187e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.0591645883149e-07
+  },
+  {
+   "muscle": "glmed3_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 50.46020965654429,
+   "rms_mm": 2.6778289182667628e-08,
+   "max_mm": 3.8163916471489756e-07,
+   "rms_pct_peak": 5.306812905640533e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.432097337197609e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.272911299617709e-07
+  },
+  {
+   "muscle": "glmed3_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 59.73628722233393,
+   "rms_mm": 2.2427040237884527e-08,
+   "max_mm": 2.220446049250313e-07,
+   "rms_pct_peak": 3.754341168612101e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.958460255391504e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.485113586609856e-07
+  },
+  {
+   "muscle": "glmed3_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 56.064436815272956,
+   "rms_mm": 2.521644737846135e-08,
+   "max_mm": 4.163336342344337e-07,
+   "rms_pct_peak": 4.4977616490730435e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.869840410762124e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.582934296475493e-07
+  },
+  {
+   "muscle": "glmin1_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 44.805397787783804,
+   "rms_mm": 2.4788234206257904e-08,
+   "max_mm": 4.371503159461554e-07,
+   "rms_pct_peak": 5.532421411291749e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.82379324283437e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.068503359390795e-07
+  },
+  {
+   "muscle": "glmin1_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 57.07811167807164,
+   "rms_mm": 2.078945566640459e-08,
+   "max_mm": 2.0122792321330962e-07,
+   "rms_pct_peak": 3.642281612899173e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.749003209672503e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.439723254491933e-07
+  },
+  {
+   "muscle": "glmin1_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 56.361138554839044,
+   "rms_mm": 2.2758659869401965e-08,
+   "max_mm": 2.220446049250313e-07,
+   "rms_pct_peak": 4.0380056991322005e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.673200020867493e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.5051469365887655e-07
+  },
+  {
+   "muscle": "glmin2_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 45.6942276585992,
+   "rms_mm": 2.5046984718374546e-08,
+   "max_mm": 3.8163916471489756e-07,
+   "rms_pct_peak": 5.481432995325166e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.440643643925606e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.550434651139467e-07
+  },
+  {
+   "muscle": "glmin2_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 57.53123194507381,
+   "rms_mm": 2.398928818704555e-08,
+   "max_mm": 4.163336342344337e-07,
+   "rms_pct_peak": 4.169785241162329e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.015838505961408e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.738464954272658e-07
+  },
+  {
+   "muscle": "glmin2_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 56.296163317842705,
+   "rms_mm": 2.815419975786988e-08,
+   "max_mm": 4.3021142204224816e-07,
+   "rms_pct_peak": 5.001086770143462e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.006429539821051e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.6942300607467615e-07
+  },
+  {
+   "muscle": "glmin3_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 42.0097369946415,
+   "rms_mm": 2.4301633543741498e-08,
+   "max_mm": 3.122502256758253e-07,
+   "rms_pct_peak": 5.7847621247524744e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.705998260414923e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.444085155956955e-07
+  },
+  {
+   "muscle": "glmin3_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 54.45481201724056,
+   "rms_mm": 2.150927242967627e-08,
+   "max_mm": 3.9898639947466563e-07,
+   "rms_pct_peak": 3.94993052640901e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.792596449628404e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 4.1643633680310543e-07
+  },
+  {
+   "muscle": "glmin3_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 51.61280922094669,
+   "rms_mm": 2.257477103740886e-08,
+   "max_mm": 3.608224830031759e-07,
+   "rms_pct_peak": 4.373869854820275e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.824844082015574e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.617859900550968e-07
+  },
+  {
+   "muscle": "grac_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 51.582229543267744,
+   "rms_mm": 0.005460976881631111,
+   "max_mm": 0.009246547971741848,
+   "rms_pct_peak": 0.010586934550881295,
+   "worst_pose": "sweep:hip_adduction_l",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.012052214205969792,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.028332600278312137
+  },
+  {
+   "muscle": "grac_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 73.51151840029324,
+   "rms_mm": 0.008725384558127465,
+   "max_mm": 0.0172185321556384,
+   "rms_pct_peak": 0.01186941141742579,
+   "worst_pose": "sweep:hip_rotation_l",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.030706732840186837,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.054666183970420584
+  },
+  {
+   "muscle": "grac_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 10.242401177196214,
+   "rms_mm": 0.004406603955211914,
+   "max_mm": 0.013846312985066334,
+   "rms_pct_peak": 0.043023153252606645,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.008948176366128475,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.05594539493274358
+  },
+  {
+   "muscle": "grac_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 47.33471950513213,
+   "rms_mm": 0.04722755683391973,
+   "max_mm": 0.09844924875324068,
+   "rms_pct_peak": 0.09977360662039883,
+   "worst_pose": "sweep:hip_flexion_l",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.08466727235914522,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.16581262943020716
+  },
+  {
+   "muscle": "iliacus_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 48.43232921658558,
+   "rms_mm": 2.9639045075808483,
+   "max_mm": 58.20811511958457,
+   "rms_pct_peak": 6.119681947003829,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.03455559432162319,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.732870241398148
+  },
+  {
+   "muscle": "iliacus_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 48.44773560108706,
+   "rms_mm": 2.643264705209295,
+   "max_mm": 56.91960147657937,
+   "rms_pct_peak": 5.455909698182026,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.1738845603156225,
+   "opensim_analytic_vs_length_derivative_max_mm": 2.8658130607935908
+  },
+  {
+   "muscle": "iliacus_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 11.724291301695722,
+   "rms_mm": 1.4903197782203719,
+   "max_mm": 24.634715101168325,
+   "rms_pct_peak": 12.711384764082263,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.025204393284189136,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.5698199480442083
+  },
+  {
+   "muscle": "perbrev_l",
+   "coordinate": "ankle_angle_l",
+   "scored": true,
+   "peak_osim_mm": 8.3370861880816,
+   "rms_mm": 5.961546750528621e-06,
+   "max_mm": 7.16093850883226e-06,
+   "rms_pct_peak": 7.150635864903299e-05,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 7.250560025264004e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.22901214983318e-07
+  },
+  {
+   "muscle": "perlong_l",
+   "coordinate": "ankle_angle_l",
+   "scored": true,
+   "peak_osim_mm": 10.792436860862509,
+   "rms_mm": 4.872175124239592e-06,
+   "max_mm": 6.078471059822732e-06,
+   "rms_pct_peak": 4.5144346796301e-05,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 9.123824571954696e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.377038311132898e-07
+  },
+  {
+   "muscle": "piri_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 33.79946609399775,
+   "rms_mm": 2.36704990403997e-08,
+   "max_mm": 3.885780586188048e-07,
+   "rms_pct_peak": 7.003216848032757e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.816962990953996e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 4.2736972120926975e-07
+  },
+  {
+   "muscle": "piri_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 45.11721639344213,
+   "rms_mm": 2.820327824605727e-08,
+   "max_mm": 4.163336342344337e-07,
+   "rms_pct_peak": 6.251112214040907e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.981419444439621e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.8975072128022425e-07
+  },
+  {
+   "muscle": "piri_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 42.6593794594643,
+   "rms_mm": 2.37400896504836e-08,
+   "max_mm": 4.163336342344337e-07,
+   "rms_pct_peak": 5.5650339857948136e-08,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 4.839414568198328e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 3.9183352742999666e-07
+  },
+  {
+   "muscle": "psoas_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 38.053482309674536,
+   "rms_mm": 1.10099969371526,
+   "max_mm": 40.55248824241797,
+   "rms_pct_peak": 2.89329550645447,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.041523430309516,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.9082141161669832
+  },
+  {
+   "muscle": "psoas_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 39.235386578573284,
+   "rms_mm": 1.0941298699159743,
+   "max_mm": 39.137447949144644,
+   "rms_pct_peak": 2.788630278243483,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.18688599249268728,
+   "opensim_analytic_vs_length_derivative_max_mm": 2.055148176463845
+  },
+  {
+   "muscle": "psoas_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 11.301679161968003,
+   "rms_mm": 0.5397201676654508,
+   "max_mm": 20.341276676938413,
+   "rms_pct_peak": 4.775575026777413,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.05119377997680569,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.851257255135707
+  },
+  {
+   "muscle": "recfem_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 51.13923218225125,
+   "rms_mm": 0.1793792869853555,
+   "max_mm": 1.722852527308305,
+   "rms_pct_peak": 0.3507664846161147,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.002436447320056403,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.02854494907987906
+  },
+  {
+   "muscle": "recfem_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 44.882948413427215,
+   "rms_mm": 0.0617003126723868,
+   "max_mm": 0.8874245227552535,
+   "rms_pct_peak": 0.1374693839273903,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.0037686749391472635,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.03899521192685454
+  },
+  {
+   "muscle": "recfem_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 6.28526236612359,
+   "rms_mm": 0.13530457183424077,
+   "max_mm": 1.6276106573620552,
+   "rms_pct_peak": 2.1527275068660234,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.004033649065995115,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.03272507422952091
+  },
+  {
+   "muscle": "recfem_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 49.134909391179704,
+   "rms_mm": 2.230649521050836,
+   "max_mm": 15.783409634817502,
+   "rms_pct_peak": 4.539846615553674,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.0014673701245090003,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.009388518493358422
+  },
+  {
+   "muscle": "sart_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 72.84621672543068,
+   "rms_mm": 1.5920508365450155e-07,
+   "max_mm": 1.0547118733938987e-06,
+   "rms_pct_peak": 2.1854955660164423e-07,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 1.0178741208784785e-07,
+   "opensim_analytic_vs_length_derivative_max_mm": 4.910984396921947e-07
+  },
+  {
+   "muscle": "sart_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 63.15725531447214,
+   "rms_mm": 1.6611873807371533e-07,
+   "max_mm": 2.0539125955565396e-06,
+   "rms_pct_peak": 2.630239981876637e-07,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 8.850894468061667e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 7.15611916946024e-07
+  },
+  {
+   "muscle": "sart_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 9.180419785481675,
+   "rms_mm": 1.5599056338071319e-07,
+   "max_mm": 9.159339953157541e-07,
+   "rms_pct_peak": 1.6991659099010223e-06,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 9.099089361738948e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.225392254309957e-07
+  },
+  {
+   "muscle": "sart_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 43.58474753329844,
+   "rms_mm": 0.008808708244457569,
+   "max_mm": 0.011908030117524504,
+   "rms_pct_peak": 0.020210529469575977,
+   "worst_pose": "sweep:pelvis_list",
+   "opensim_analytic_vs_length_derivative_rms_mm": 5.971069049283138e-07,
+   "opensim_analytic_vs_length_derivative_max_mm": 9.326731366388064e-07
+  },
+  {
+   "muscle": "semimem_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 55.31863547791893,
+   "rms_mm": 0.00020922276114146863,
+   "max_mm": 0.0023032686868873498,
+   "rms_pct_peak": 0.00037821388639454475,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.0012356561570464751,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.015320134259850723
+  },
+  {
+   "muscle": "semimem_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 49.57314544973279,
+   "rms_mm": 0.0005877543685780543,
+   "max_mm": 0.005950129278176064,
+   "rms_pct_peak": 0.0011856305732587367,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.003174681147085321,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.026414004264507795
+  },
+  {
+   "muscle": "semimem_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 6.301580590672984,
+   "rms_mm": 0.0006827191908717424,
+   "max_mm": 0.004845429613098418,
+   "rms_pct_peak": 0.010834094415649307,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.003820945466677228,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.02284864008638126
+  },
+  {
+   "muscle": "semimem_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 46.26857308398513,
+   "rms_mm": 0.004924082218558497,
+   "max_mm": 0.021147777973240522,
+   "rms_pct_peak": 0.010642390483104959,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.002578083704282541,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.03904652287002597
+  },
+  {
+   "muscle": "semiten_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 66.70558450050379,
+   "rms_mm": 0.0006119433932900984,
+   "max_mm": 0.005333455899148021,
+   "rms_pct_peak": 0.0009173795535596824,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.0031204736189657627,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.03915812069690827
+  },
+  {
+   "muscle": "semiten_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 65.83976466800756,
+   "rms_mm": 0.0011730841465893464,
+   "max_mm": 0.015774159756176687,
+   "rms_pct_peak": 0.0017817259106324905,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.005183522833685818,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.05696848073275668
+  },
+  {
+   "muscle": "semiten_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 10.018211343831851,
+   "rms_mm": 0.0012928911706706263,
+   "max_mm": 0.011624923246245089,
+   "rms_pct_peak": 0.012905409222242564,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.005939750379855022,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.04617787939540513
+  },
+  {
+   "muscle": "semiten_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 55.43698211596393,
+   "rms_mm": 0.006271716492084513,
+   "max_mm": 0.03608285892298113,
+   "rms_pct_peak": 0.011313235772764902,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.008140158011940209,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.11580246251246401
+  },
+  {
+   "muscle": "soleus_l",
+   "coordinate": "ankle_angle_l",
+   "scored": true,
+   "peak_osim_mm": 44.17053445227026,
+   "rms_mm": 1.692398311144557e-06,
+   "max_mm": 3.469446951953614e-06,
+   "rms_pct_peak": 3.831509697880895e-06,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 7.102834785541732e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.371986258606576e-07
+  },
+  {
+   "muscle": "tfl_l",
+   "coordinate": "hip_flexion_l",
+   "scored": true,
+   "peak_osim_mm": 102.31944386207559,
+   "rms_mm": 1.5580319539591805e-07,
+   "max_mm": 1.27675647831893e-06,
+   "rms_pct_peak": 1.5227134698458428e-07,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 9.861497797689731e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 6.941469621324359e-07
+  },
+  {
+   "muscle": "tfl_l",
+   "coordinate": "hip_adduction_l",
+   "scored": true,
+   "peak_osim_mm": 93.03894951684377,
+   "rms_mm": 1.6565094195848848e-07,
+   "max_mm": 1.2490009027033011e-06,
+   "rms_pct_peak": 1.780447251594334e-07,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 8.555765528381672e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.873459565930439e-07
+  },
+  {
+   "muscle": "tfl_l",
+   "coordinate": "hip_rotation_l",
+   "scored": true,
+   "peak_osim_mm": 62.24978552071825,
+   "rms_mm": 1.5568908405669363e-07,
+   "max_mm": 8.326672684688674e-07,
+   "rms_pct_peak": 2.501038079960556e-07,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 8.764256263932967e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 7.506277960311891e-07
+  },
+  {
+   "muscle": "tfl_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 16.51518816148112,
+   "rms_mm": 0.008427250719787512,
+   "max_mm": 0.011378370468051457,
+   "rms_pct_peak": 0.05102727645236672,
+   "worst_pose": "sweep:hip_flexion_l",
+   "opensim_analytic_vs_length_derivative_rms_mm": 6.439553183960735e-07,
+   "opensim_analytic_vs_length_derivative_max_mm": 2.0102340998404133e-06
+  },
+  {
+   "muscle": "tibant_l",
+   "coordinate": "ankle_angle_l",
+   "scored": true,
+   "peak_osim_mm": 44.06504033882541,
+   "rms_mm": 2.6200116258038623e-06,
+   "max_mm": 4.3298697960381105e-06,
+   "rms_pct_peak": 5.945782882888655e-06,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 6.541253296034309e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 4.603044681528168e-07
+  },
+  {
+   "muscle": "tibpost_l",
+   "coordinate": "ankle_angle_l",
+   "scored": true,
+   "peak_osim_mm": 13.748066046703755,
+   "rms_mm": 4.1670413543204407e-07,
+   "max_mm": 1.5543122344752192e-06,
+   "rms_pct_peak": 3.0310018443063364e-06,
+   "worst_pose": "random",
+   "opensim_analytic_vs_length_derivative_rms_mm": 8.790031150065729e-08,
+   "opensim_analytic_vs_length_derivative_max_mm": 5.741930620209446e-07
+  },
+  {
+   "muscle": "vasint_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 46.07035769543799,
+   "rms_mm": 2.0853976636758986,
+   "max_mm": 12.606267002501781,
+   "rms_pct_peak": 4.526549755619545,
+   "worst_pose": "sweep:knee_angle_l",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.0014400167327559275,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.011580091823549382
+  },
+  {
+   "muscle": "vaslat_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 45.25205915539843,
+   "rms_mm": 3.3656377335479224,
+   "max_mm": 16.63886467495601,
+   "rms_pct_peak": 7.437534990374935,
+   "worst_pose": "sweep:knee_angle_l",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.00319722712659309,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.020504522259174457
+  },
+  {
+   "muscle": "vasmed_l",
+   "coordinate": "knee_angle_l",
+   "scored": true,
+   "peak_osim_mm": 44.84795745884895,
+   "rms_mm": 2.236288872088238,
+   "max_mm": 12.828999557124021,
+   "rms_pct_peak": 4.986378418995303,
+   "worst_pose": "sweep:knee_angle_l",
+   "opensim_analytic_vs_length_derivative_rms_mm": 0.0011357087847349845,
+   "opensim_analytic_vs_length_derivative_max_mm": 0.009057892104945287
+  }
+ ],
+ "per_muscle": {
+  "addbrev_r": {
+   "length_rms_mm": 0.05289912428901596,
+   "length_max_mm": 0.3626871244055696,
+   "length_mean_signed_mm": -0.0340292731036913
+  },
+  "addlong_r": {
+   "length_rms_mm": 0.10329495266426203,
+   "length_max_mm": 0.36901289769949996,
+   "length_mean_signed_mm": -0.08193090733934905
+  },
+  "addmagDist_r": {
+   "length_rms_mm": 0.06574817064956055,
+   "length_max_mm": 0.4692890418463991,
+   "length_mean_signed_mm": -0.045299949676124156
+  },
+  "addmagIsch_r": {
+   "length_rms_mm": 0.10800766376286916,
+   "length_max_mm": 0.3406577583844328,
+   "length_mean_signed_mm": -0.09203825490760564
+  },
+  "addmagMid_r": {
+   "length_rms_mm": 0.06803228539787905,
+   "length_max_mm": 0.4991063629014303,
+   "length_mean_signed_mm": -0.04294558969734972
+  },
+  "addmagProx_r": {
+   "length_rms_mm": 0.04712552767148407,
+   "length_max_mm": 0.3767397316513932,
+   "length_mean_signed_mm": -0.02896427316690226
+  },
+  "bflh_r": {
+   "length_rms_mm": 0.0002376496236907973,
+   "length_max_mm": 0.0005700349929860238,
+   "length_mean_signed_mm": 4.156595984752433e-05
+  },
+  "bfsh_r": {
+   "length_rms_mm": 1.8213323668533992,
+   "length_max_mm": 10.335021341936201,
+   "length_mean_signed_mm": -0.5558024752496359
+  },
+  "edl_r": {
+   "length_rms_mm": 8.165573527911605e-08,
+   "length_max_mm": 2.4893409555915014e-07,
+   "length_mean_signed_mm": 1.787109214990318e-08
+  },
+  "ehl_r": {
+   "length_rms_mm": 1.7209215693677742e-07,
+   "length_max_mm": 5.622602383681397e-07,
+   "length_mean_signed_mm": -8.677861753885072e-08
+  },
+  "fdl_r": {
+   "length_rms_mm": 1.9290574523625728e-07,
+   "length_max_mm": 7.641643429145972e-07,
+   "length_mean_signed_mm": -7.069943519003774e-08
+  },
+  "fhl_r": {
+   "length_rms_mm": 1.3923729372577184e-07,
+   "length_max_mm": 5.414683146298671e-07,
+   "length_mean_signed_mm": -4.59452979443698e-08
+  },
+  "gaslat_r": {
+   "length_rms_mm": 5.1394388961168405,
+   "length_max_mm": 7.716232544342172,
+   "length_mean_signed_mm": -4.967756051976607
+  },
+  "gasmed_r": {
+   "length_rms_mm": 6.41610912237995,
+   "length_max_mm": 11.614774082536861,
+   "length_mean_signed_mm": -6.1747347863902915
+  },
+  "glmax1_r": {
+   "length_rms_mm": 0.01974996469025732,
+   "length_max_mm": 0.44108627222561037,
+   "length_mean_signed_mm": -0.003908898923718348
+  },
+  "glmax2_r": {
+   "length_rms_mm": 0.006201101448658149,
+   "length_max_mm": 0.07695227924758852,
+   "length_mean_signed_mm": -0.0015688318541657745
+  },
+  "glmax3_r": {
+   "length_rms_mm": 1.3548512105714148,
+   "length_max_mm": 9.994121832378744,
+   "length_mean_signed_mm": -0.4000242957112475
+  },
+  "glmed1_r": {
+   "length_rms_mm": 8.421493713521654e-14,
+   "length_max_mm": 1.2073675392798577e-12,
+   "length_mean_signed_mm": -1.323112981037404e-14
+  },
+  "glmed2_r": {
+   "length_rms_mm": 7.943214811132132e-14,
+   "length_max_mm": 8.187894806610529e-13,
+   "length_mean_signed_mm": -2.2487214871776097e-14
+  },
+  "glmed3_r": {
+   "length_rms_mm": 7.88802880810008e-14,
+   "length_max_mm": 8.326672684688674e-13,
+   "length_mean_signed_mm": -1.7966948673981804e-14
+  },
+  "glmin1_r": {
+   "length_rms_mm": 7.202793400945211e-14,
+   "length_max_mm": 7.216449660063518e-13,
+   "length_mean_signed_mm": -7.408037941265962e-15
+  },
+  "glmin2_r": {
+   "length_rms_mm": 6.522357258527225e-14,
+   "length_max_mm": 6.522560269672795e-13,
+   "length_mean_signed_mm": -7.0118014232264914e-15
+  },
+  "glmin3_r": {
+   "length_rms_mm": 7.278661296093387e-14,
+   "length_max_mm": 8.049116928532385e-13,
+   "length_mean_signed_mm": -5.870640251272812e-15
+  },
+  "grac_r": {
+   "length_rms_mm": 0.0035150366032603683,
+   "length_max_mm": 0.011974112575141582,
+   "length_mean_signed_mm": -0.0026004263020333986
+  },
+  "iliacus_r": {
+   "length_rms_mm": 7.572864581008312,
+   "length_max_mm": 174.28785681601033,
+   "length_mean_signed_mm": 0.36033587686534163
+  },
+  "perbrev_r": {
+   "length_rms_mm": 1.5250422749043085e-06,
+   "length_max_mm": 4.464572073148432e-06,
+   "length_mean_signed_mm": 2.6670373485451e-07
+  },
+  "perlong_r": {
+   "length_rms_mm": 1.2396950531185479e-06,
+   "length_max_mm": 3.5789207153413827e-06,
+   "length_mean_signed_mm": 2.080890976255451e-07
+  },
+  "piri_r": {
+   "length_rms_mm": 8.69596485951322e-14,
+   "length_max_mm": 7.494005416219807e-13,
+   "length_mean_signed_mm": -3.389882659131288e-14
+  },
+  "psoas_r": {
+   "length_rms_mm": 7.8125404169312365,
+   "length_max_mm": 168.18592828634655,
+   "length_mean_signed_mm": 0.40481569032628756
+  },
+  "recfem_r": {
+   "length_rms_mm": 0.2583620961879574,
+   "length_max_mm": 2.280598716565163,
+   "length_mean_signed_mm": -0.040234271124758844
+  },
+  "sart_r": {
+   "length_rms_mm": 0.00017304283850558955,
+   "length_max_mm": 0.00044269310650602023,
+   "length_mean_signed_mm": -3.0419677884554433e-05
+  },
+  "semimem_r": {
+   "length_rms_mm": 0.0002352571481385761,
+   "length_max_mm": 0.002509962546803912,
+   "length_mean_signed_mm": -0.00010906639164166631
+  },
+  "semiten_r": {
+   "length_rms_mm": 0.000489719147163431,
+   "length_max_mm": 0.006283068539336689,
+   "length_mean_signed_mm": -0.00016420196996501529
+  },
+  "soleus_r": {
+   "length_rms_mm": 4.6751133447573166e-07,
+   "length_max_mm": 1.6589871698613479e-06,
+   "length_mean_signed_mm": 1.3875961371751002e-07
+  },
+  "tfl_r": {
+   "length_rms_mm": 0.0002594589239393725,
+   "length_max_mm": 0.0005188745814121987,
+   "length_mean_signed_mm": 9.295763646402214e-05
+  },
+  "tibant_r": {
+   "length_rms_mm": 6.233178729527176e-07,
+   "length_max_mm": 1.728763965314073e-06,
+   "length_mean_signed_mm": -2.797496580359057e-08
+  },
+  "tibpost_r": {
+   "length_rms_mm": 1.0368342777737111e-07,
+   "length_max_mm": 4.3870418409142076e-07,
+   "length_mean_signed_mm": -4.89899532037147e-08
+  },
+  "vasint_r": {
+   "length_rms_mm": 0.26145861405764204,
+   "length_max_mm": 2.0275577907630793,
+   "length_mean_signed_mm": -0.04582951892476372
+  },
+  "vaslat_r": {
+   "length_rms_mm": 0.7533840021539038,
+   "length_max_mm": 4.545402377926,
+   "length_mean_signed_mm": -0.19982950997087373
+  },
+  "vasmed_r": {
+   "length_rms_mm": 0.3251386662580009,
+   "length_max_mm": 2.3686796762241724,
+   "length_mean_signed_mm": -0.06358331659368269
+  },
+  "addbrev_l": {
+   "length_rms_mm": 0.053408096074806934,
+   "length_max_mm": 0.3377132401724825,
+   "length_mean_signed_mm": -0.03401900502802934
+  },
+  "addlong_l": {
+   "length_rms_mm": 0.10626238221862289,
+   "length_max_mm": 0.3743052952657755,
+   "length_mean_signed_mm": -0.08282673800693335
+  },
+  "addmagDist_l": {
+   "length_rms_mm": 0.06482138900910499,
+   "length_max_mm": 0.4454791122879831,
+   "length_mean_signed_mm": -0.04434314899012316
+  },
+  "addmagIsch_l": {
+   "length_rms_mm": 0.10972117910205675,
+   "length_max_mm": 0.34124303487043095,
+   "length_mean_signed_mm": -0.09340307533970858
+  },
+  "addmagMid_l": {
+   "length_rms_mm": 0.06836817878565227,
+   "length_max_mm": 0.4672064844318813,
+   "length_mean_signed_mm": -0.04245059657066924
+  },
+  "addmagProx_l": {
+   "length_rms_mm": 0.04457881581963825,
+   "length_max_mm": 0.3657381935741333,
+   "length_mean_signed_mm": -0.02711637955827354
+  },
+  "bflh_l": {
+   "length_rms_mm": 0.00023917550366032097,
+   "length_max_mm": 0.0005726424792684703,
+   "length_mean_signed_mm": 3.84563103519543e-05
+  },
+  "bfsh_l": {
+   "length_rms_mm": 1.8947092852828875,
+   "length_max_mm": 10.335021341936008,
+   "length_mean_signed_mm": -0.5808319750919286
+  },
+  "edl_l": {
+   "length_rms_mm": 8.095642153277338e-08,
+   "length_max_mm": 2.4893409555915014e-07,
+   "length_mean_signed_mm": 1.734064214488201e-08
+  },
+  "ehl_l": {
+   "length_rms_mm": 1.6834420370448562e-07,
+   "length_max_mm": 5.622602383681397e-07,
+   "length_mean_signed_mm": -8.092806905299491e-08
+  },
+  "fdl_l": {
+   "length_rms_mm": 1.9546642030689473e-07,
+   "length_max_mm": 7.641643429145972e-07,
+   "length_mean_signed_mm": -6.893177587534393e-08
+  },
+  "fhl_l": {
+   "length_rms_mm": 1.4077645914026835e-07,
+   "length_max_mm": 5.414683146298671e-07,
+   "length_mean_signed_mm": -4.5034291711226787e-08
+  },
+  "gaslat_l": {
+   "length_rms_mm": 5.144643314784649,
+   "length_max_mm": 7.504769822404556,
+   "length_mean_signed_mm": -4.976795168208777
+  },
+  "gasmed_l": {
+   "length_rms_mm": 6.469271446985064,
+   "length_max_mm": 11.519128129138634,
+   "length_mean_signed_mm": -6.214190900003302
+  },
+  "glmax1_l": {
+   "length_rms_mm": 0.021715186475372565,
+   "length_max_mm": 0.40228925044627495,
+   "length_mean_signed_mm": -0.004417719734662356
+  },
+  "glmax2_l": {
+   "length_rms_mm": 0.006417258934018364,
+   "length_max_mm": 0.15008075284861366,
+   "length_mean_signed_mm": -0.0015393320650835777
+  },
+  "glmax3_l": {
+   "length_rms_mm": 1.254334321193046,
+   "length_max_mm": 8.674801657342135,
+   "length_mean_signed_mm": -0.3630897462534914
+  },
+  "glmed1_l": {
+   "length_rms_mm": 7.952956065170584e-14,
+   "length_max_mm": 8.881784197001252e-13,
+   "length_mean_signed_mm": -9.490657080081427e-15
+  },
+  "glmed2_l": {
+   "length_rms_mm": 8.13522933117201e-14,
+   "length_max_mm": 8.881784197001252e-13,
+   "length_mean_signed_mm": -1.1322854739495943e-14
+  },
+  "glmed3_l": {
+   "length_rms_mm": 8.076031861648343e-14,
+   "length_max_mm": 7.91033905045424e-13,
+   "length_mean_signed_mm": -1.6112561769557075e-14
+  },
+  "glmin1_l": {
+   "length_rms_mm": 7.112307298998148e-14,
+   "length_max_mm": 8.118505867571457e-13,
+   "length_mean_signed_mm": -5.680446722613866e-15
+  },
+  "glmin2_l": {
+   "length_rms_mm": 7.418235289859014e-14,
+   "length_max_mm": 8.604228440844963e-13,
+   "length_mean_signed_mm": -4.1525587090536635e-15
+  },
+  "glmin3_l": {
+   "length_rms_mm": 7.751594070265104e-14,
+   "length_max_mm": 8.604228440844963e-13,
+   "length_mean_signed_mm": -4.662911344288503e-15
+  },
+  "grac_l": {
+   "length_rms_mm": 0.0034982268020782,
+   "length_max_mm": 0.009243527275215602,
+   "length_mean_signed_mm": -0.0025905059282643303
+  },
+  "iliacus_l": {
+   "length_rms_mm": 10.896523085241714,
+   "length_max_mm": 181.80553928054485,
+   "length_mean_signed_mm": 0.6962638105630483
+  },
+  "perbrev_l": {
+   "length_rms_mm": 1.5024785025575929e-06,
+   "length_max_mm": 4.464572045392856e-06,
+   "length_mean_signed_mm": 2.6463492713864043e-07
+  },
+  "perlong_l": {
+   "length_rms_mm": 1.2199422887938505e-06,
+   "length_max_mm": 3.5789207153413827e-06,
+   "length_mean_signed_mm": 2.0683199313448669e-07
+  },
+  "piri_l": {
+   "length_rms_mm": 9.472101614930988e-14,
+   "length_max_mm": 8.604228440844963e-13,
+   "length_mean_signed_mm": -3.401928249279688e-14
+  },
+  "psoas_l": {
+   "length_rms_mm": 4.843364473954158,
+   "length_max_mm": 163.95123353702306,
+   "length_mean_signed_mm": 0.144928239008927
+  },
+  "recfem_l": {
+   "length_rms_mm": 0.27346995948059594,
+   "length_max_mm": 2.991387367183629,
+   "length_mean_signed_mm": -0.04639083049752926
+  },
+  "sart_l": {
+   "length_rms_mm": 0.000173897800321157,
+   "length_max_mm": 0.0004428124912303488,
+   "length_mean_signed_mm": -3.601436788814876e-05
+  },
+  "semimem_l": {
+   "length_rms_mm": 0.00024733726238381095,
+   "length_max_mm": 0.0034194053737390817,
+   "length_mean_signed_mm": -0.0001109808163342679
+  },
+  "semiten_l": {
+   "length_rms_mm": 0.00048691878336424346,
+   "length_max_mm": 0.007513083832622058,
+   "length_mean_signed_mm": -0.00015668243292802077
+  },
+  "soleus_l": {
+   "length_rms_mm": 4.688997164428146e-07,
+   "length_max_mm": 1.6589871698613479e-06,
+   "length_mean_signed_mm": 1.3542387266404884e-07
+  },
+  "tfl_l": {
+   "length_rms_mm": 0.00026078713676540505,
+   "length_max_mm": 0.0005188791740717846,
+   "length_mean_signed_mm": 9.125996581580734e-05
+  },
+  "tibant_l": {
+   "length_rms_mm": 6.010724009456703e-07,
+   "length_max_mm": 1.728763965314073e-06,
+   "length_mean_signed_mm": -3.152965571994952e-08
+  },
+  "tibpost_l": {
+   "length_rms_mm": 1.0523201374543399e-07,
+   "length_max_mm": 4.3870418409142076e-07,
+   "length_mean_signed_mm": -4.755174164179029e-08
+  },
+  "vasint_l": {
+   "length_rms_mm": 0.2783285026989872,
+   "length_max_mm": 2.027557790763024,
+   "length_mean_signed_mm": -0.054118296358863074
+  },
+  "vaslat_l": {
+   "length_rms_mm": 0.7872929306537272,
+   "length_max_mm": 4.545402377926,
+   "length_mean_signed_mm": -0.2140113335607249
+  },
+  "vasmed_l": {
+   "length_rms_mm": 0.3447280527838561,
+   "length_max_mm": 2.368679676224117,
+   "length_mean_signed_mm": -0.0729264352512819
+  }
+ }
+}

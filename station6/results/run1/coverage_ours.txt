@@ -1,0 +1,33 @@
+Models/Arm26/arm26.osim: predicted converts | converted | ok
+Models/BouncingBlock/bouncing_block.osim: predicted fails (PointOnLineConstraint lock_block_to_y_axis) | failed: NotImplementedError | ok
+Models/BouncingBlock/bouncing_block_weak_spring.osim: predicted fails (PointOnLineConstraint lock_block_to_y_axis) | failed: NotImplementedError | ok
+Models/DoublePendulum/double_pendulum.osim: predicted converts | converted | ok
+Models/Gait10dof18musc/gait10dof18musc.osim: predicted converts | converted | ok
+Models/Gait10dof18musc/subject01.osim: predicted converts | converted | ok
+Models/Gait10dof18musc/subject01_metabolics.osim: predicted converts | converted | ok
+Models/Gait10dof18musc/subject01_metabolics_path_actuator.osim: predicted converts | converted | ok
+Models/Gait10dof18musc/subject01_metabolics_path_spring.osim: predicted converts | converted | ok
+Models/Gait10dof18musc/subject01_metabolics_spring.osim: predicted converts | converted | ok
+Models/Gait2354_Simbody/gait2354_simbody.osim: predicted converts | converted | ok
+Models/Gait2354_Simbody/subject01_simbody.osim: predicted converts | converted | ok
+Models/Gait2392_Simbody/gait2392_millard2012muscle.osim: predicted converts | converted | ok
+Models/Gait2392_Simbody/gait2392_thelen2003muscle.osim: predicted converts | converted | ok
+Models/Gait2392_Simbody/subject01.osim: predicted converts | converted | ok
+Models/Gait2392_Simbody/subject01_adjusted.osim: predicted converts | converted | ok
+Models/Gait2392_Simbody/subject01_simbody_adjusted.osim: predicted converts | converted | ok
+Models/Hamner/FullBodyModel_Hamner2010_v2_0.osim: predicted converts | converted | ok
+Models/Jumper/DynamicJumperModel.osim: predicted converts | failed:   Error detected by Simbody method SimbodyMatterSubsystem::projectQ(): Failed to achieve required accuracy 1e-09. Norm o | MISMATCH
+Models/Leg39/leg39.osim: predicted fails (Mesh tibia_r/tibia_r_geom_2) | failed: FileNotFoundError: File (/tmp/claude-0/s6w/coverage/geometry/27c69a463b81/fibula_R.vtp) not found | ok
+Models/Leg6Dof9Musc/leg6dof9musc.osim: predicted converts | converted | ok
+Models/Pendulum/double_pendulum.osim: predicted converts | converted | ok
+Models/Rajagopal/Rajagopal2016.osim: predicted converts | converted | ok
+Models/Rajagopal/RajagopalLaiUhlrich2023.osim: predicted converts | converted | ok
+Models/Rajagopal_OpenSense/Rajagopal2015_opensense.osim: predicted converts | converted | ok
+Models/SoccerKick/SoccerKickingModel.osim: predicted converts | failed: ValueError: Error: decoder failed for mesh file '/tmp/claude-0/s6w/coverage/ours/25/Geometry/Soccer_frame.stl' | MISMATCH
+Models/ToyLanding/ToyLandingModel.osim: predicted converts | failed: ValueError: Error: plane only allowed in static bodies | MISMATCH
+Models/ToyLanding/ToyLandingModel_AFO.osim: predicted converts | failed: ValueError: Error: plane only allowed in static bodies | MISMATCH
+Models/ToyLanding/ToyLandingModel_activeAFO.osim: predicted converts | failed: ValueError: Error: plane only allowed in static bodies | MISMATCH
+Models/Tug_of_War/Tug_of_War.osim: predicted converts | converted | ok
+Models/Tug_of_War/Tug_of_War_Millard.osim: predicted converts | converted | ok
+Models/WalkerModel/WalkerModel.osim: predicted converts | converted | ok
+Models/WalkerModel/WalkerModelTerrain.osim: predicted converts | converted | ok
