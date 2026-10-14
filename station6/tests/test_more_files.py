@@ -41,6 +41,7 @@ cov = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(cov)
 
 fails = 0
+SRC = None    # the converter under test (main sets it)
 
 
 def check(ok, msg):
@@ -56,7 +57,12 @@ def convert(src, osm, rel, scratch, label):
     r = subprocess.run([sys.executable, "-c", cov.RUNNER, osim, geometry, out, src], capture_output=True, text=True)
     xml = os.path.join(out, os.path.basename(rel)[:-5] + "_cvt1.xml")
     ok = r.returncode == 0 and os.path.isfile(xml)
-    last = next((ln for ln in reversed((r.stdout + r.stderr).strip().splitlines()) if "Error" in ln), "")
+    lines = (r.stdout + r.stderr).strip().splitlines()
+    last = next((ln for ln in reversed(lines) if "Error" in ln), "")
+    if not ok and src == SRC:       # say why, so a failure on another machine can be read from the log
+        tail = [ln for ln in lines if ln.strip() and not ln.startswith("[")][-25:]
+        print(f"    conversion of {rel}: exit code {r.returncode}, cvt1 written: {os.path.isfile(xml)}; output ends:")
+        print("\n".join("      " + ln[:200] for ln in tail))
     return (xml if ok else None), geometry, out, last
 
 
@@ -114,7 +120,9 @@ def binary_triangles(path):
 
 
 def main():
+    global SRC
     src, old, osm, scratch = (os.path.abspath(p) for p in sys.argv[1:5])
+    SRC = src
     if os.path.exists(scratch):
         shutil.rmtree(scratch)
     os.makedirs(scratch)
