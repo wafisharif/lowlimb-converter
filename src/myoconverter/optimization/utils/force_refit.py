@@ -4,6 +4,9 @@
 # estimate, so the result doesn't depend on the particle swarm and left/right copies of a muscle get the same values.
 # Change 5.4 (2026-10-12): training poses where the converted muscle path is more than 5 mm from OpenSim's are left
 # out, because force parameters can't fix a path error and fitting them there distorts the force everywhere else.
+# Change 4.4 (2026-10-13): at full activation and at the passive end, the fit is kept within LEVEL_SLACK of a fit made
+# to that level alone (Rajagopal 2016's compliant lower-leg tendons traded full-activation accuracy for the rest); Step
+# 3's result is kept only if it is at least as good at every activation level.
 """ Deterministic refit of MuJoCo muscle force parameters to OpenSim's static muscle forces (Station 4, change 4.1).
 
 MyoConverter's Step 3 fits four parameters of each MuJoCo muscle (lmin, lmax, fpmax, force scale) to OpenSim's force at
@@ -16,8 +19,8 @@ maps to MuJoCo's normalised length), lmin, lmax, fpmax and the peak force. The t
 force at activations 0, 0.25, 0.5 and 1 on training poses drawn here (seed 2; the coordinates that change the
 muscle's length sampled uniformly over their ranges, everything else at its default), leaving out samples where
 OpenSim has no equilibrium (fiber clamped at its minimum length while the tendon pulls). It uses scipy's least squares
-from four fixed starting points. Step 3's own result is scored on the same data and kept if it is better, so the
-refit is never worse on the training poses (it hasn't happened on the gait models).
+from four fixed starting points. Step 3's own result is scored on the same data and kept if it is better (since
+change 4.4: better or equal at every activation level), so the refit never makes the training fit worse everywhere.
 
 Static force doesn't determine every parameter: in the poses a muscle can reach, several parameter sets give the same
 force (Station 4 FINDINGS). Change 4.3 therefore adds a weak penalty (REG_WEIGHT) pulling the parameters towards a
@@ -35,6 +38,21 @@ the hip flexors (iliopsoas, iliacus, psoas) with the hip extended beyond -90 deg
 point switches off and its path jumps by about 20 mm (Station 5 FINDINGS): iliopsoas's force error over the poses
 with the hip at -90 degrees or more fell from 3.6% to 2.3% of Fmax (a = 1) and from 2.7% to 0.6% (a = 0). If more
 than half of a muscle's poses were off, nothing is left out (its path is the problem, not a few poses).
+
+Change 4.4 (Station 4, Rajagopal 2016): a rigid-tendon MuJoCo muscle can't follow how an elastic tendon shifts the
+force-length curve with activation, so fitting all four levels at once trades accuracy between them. With Rajagopal
+2016's long, compliant lower-leg tendons the equal-weight fit gave up 0.5-1.4% of Fmax at full activation, where
+MyoConverter's Step 3 (which fits full activation only) was better. The two ends of the range now have a guarantee:
+the same least squares is also run on the full-activation samples alone and on the passive (lowest activation) samples
+alone, and while the combined fit is more than LEVEL_SLACK worse than that at either end (on the training poses), that
+end's residuals get twice the weight (up to MAX_LEVEL_WEIGHT). The sub-maximal levels pay for it. Everything stays
+deterministic (no dependence on Step 3's particle swarm); a muscle that already meets both guarantees keeps exactly
+the parameters of the equal-weight fit. A reweighted fit is only kept if its largest error over every training sample
+with an OpenSim force (including the poses change 5.4 leaves out) is at most MAX_ERROR_SLACK above the equal-weight
+fit's; otherwise the equal-weight fit is used. Without that check, gastrocnemius lateralis in Rajagopal 2016 (30% of
+its poses left out by change 5.4) got lmax at its lower bound and a passive force 600-700% of Fmax too high in poses
+just outside the fitted ones. Step 3's result is kept only if it is at least as good as the refit at every activation
+level.
 """
 import numpy as np
 from loguru import logger
@@ -44,6 +62,10 @@ import mujoco
 
 ACTIVATIONS = (0.0, 0.25, 0.5, 1.0)
 REG_WEIGHT = 0.01   # change 4.3: a parameter 1 unit from the estimate costs as much as 1% of Fmax RMS force error
+GUARDED_LEVELS = (0.0, 1.0)   # change 4.4: activation levels kept close to a fit made to them alone
+LEVEL_SLACK = 0.0025          # change 4.4: allowed RMS above that fit (fraction of Fmax)
+MAX_LEVEL_WEIGHT = 256        # change 4.4: largest weight given to a guarded level's residuals
+MAX_ERROR_SLACK = 0.25        # change 4.4: allowed growth of the largest training error over the equal-weight fit
 PATH_TOL = 0.005    # change 5.4: training poses with the converted path further than this from OpenSim's are left out
 
 
@@ -215,9 +237,24 @@ def refit_muscle(mjc_model, osim_model, muscle_name, n_train=400, seed=2):
   target = np.where(valid, force, 0.0) / fmax
   lengths = np.broadcast_to(length, force.shape)
 
-  def residual_for(lengthrange, prm):
-    f = static_force(lengths[valid], act[valid], lengthrange, prm) / fmax
-    return f - target[valid]
+  def residual_for(lengthrange, prm, mask=None):
+    mask = valid if mask is None else mask
+    f = static_force(lengths[mask], act[mask], lengthrange, prm) / fmax
+    return f - target[mask]
+
+  def level_mask(a):                   # change 4.4: the samples of one activation level
+    mask = np.zeros_like(valid)
+    mask[ACTIVATIONS.index(a)] = True
+    return mask & valid
+
+  def level_rms(lengthrange, prm):
+    out = {}
+    for k, a in enumerate(ACTIVATIONS):
+      mask = np.zeros_like(valid)
+      mask[k] = True
+      mask &= valid
+      out[a] = float(np.sqrt(np.mean(residual_for(lengthrange, prm, mask) ** 2))) if mask.any() else float("nan")
+    return out
 
   # Step 3's parameters (MuJoCo's own definition; gainprm[2] is the peak force in N)
   old_lr = np.array(mjc_model.actuator_lengthrange[aid], dtype=float)
@@ -247,27 +284,69 @@ def refit_muscle(mjc_model, osim_model, muscle_name, n_train=400, seed=2):
   estimate = np.array([(mid - osim_muscle.getTendonSlackLength()) / fiber, half / fiber, 0.5, 1.6, 1.3, 1.0])
   estimate = np.clip(estimate, lower + 1e-3, upper - 1e-3)
   scale = np.array([1.0, estimate[1], 1.0, 1.0, 1.0, 1.0])     # the range's slope counts relative to its estimate
-  penalty = REG_WEIGHT * np.sqrt(int(valid.sum())) / scale
-
-  def residual(theta):
-    return np.concatenate([residual_for(lr, unpack(theta)), penalty * (theta - estimate)])
 
   starts = [estimate.copy()]
   for c0, c1 in ((1.0, 0.3), (0.9, 0.5), (1.1, 0.2)):
     starts.append(np.array([c0, c1, 0.5, 1.6, 1.3, 1.0]))
-  best = None
-  for s in starts:
-    s = np.clip(s, lower + 1e-9, upper - 1e-9)
-    sol = least_squares(residual, s, bounds=(lower, upper), method="trf", max_nfev=3000)
-    if best is None or sol.cost < best[0]:
-      best = (sol.cost, sol.x)
-  theta = best[1]
+
+  def fit(mask, weights=None, first=None):
+    w = np.ones(int(mask.sum()))
+    for a, wa in (weights or {}).items():
+      w[level_mask(a)[mask]] = wa
+    pen = REG_WEIGHT * np.sqrt(float(w.sum())) / scale
+
+    def residual(theta):
+      return np.concatenate([w * residual_for(lr, unpack(theta), mask), pen * (theta - estimate)])
+    best = None
+    for s in ([first] if first is not None else []) + starts:
+      s = np.clip(s, lower + 1e-9, upper - 1e-9)
+      sol = least_squares(residual, s, bounds=(lower, upper), method="trf", max_nfev=3000)
+      if best is None or sol.cost < best[0]:
+        best = (sol.cost, sol.x)
+    return best[1]
+
+  theta = fit(valid)
+  # change 4.4: keep each guarded level (full activation, and the passive end) within LEVEL_SLACK of the fit made to
+  # that level alone, by doubling the weight of a level that misses it (up to MAX_LEVEL_WEIGHT)
+  best_alone = {a: float(np.sqrt(np.mean(residual_for(lr, unpack(fit(level_mask(a))), level_mask(a)) ** 2)))
+                for a in GUARDED_LEVELS if level_mask(a).any()}
+  weights = {a: 1 for a in best_alone}
+  equal_theta = theta
+  while True:
+    rms = level_rms(lr, unpack(theta))
+    missed = [a for a in best_alone if rms[a] > best_alone[a] + LEVEL_SLACK and weights[a] < MAX_LEVEL_WEIGHT]
+    if not missed:
+      break
+    for a in missed:
+      weights[a] *= 2
+    theta = fit(valid, weights, first=theta)
+
+  # The reweighted fit must also stay sane on every training sample with an OpenSim force, including the poses left
+  # out by change 5.4 (path a few mm off): if its largest error there exceeds the equal-weight fit's by more than
+  # MAX_ERROR_SLACK, the equal-weight fit is used instead (heavy weights can pick a degenerate curve, e.g. lmax at its
+  # bound, whose passive force explodes just outside the fitted lengths).
+  with_force = np.isfinite(force) & np.isfinite(held)
+
+  def max_error(th):
+    f = static_force(lengths[with_force], held[with_force], lr, unpack(th)) / fmax
+    return float(np.max(np.abs(f - force[with_force] / fmax))) if with_force.any() else 0.0
+  stopped = theta is not equal_theta and max_error(theta) > max_error(equal_theta) + MAX_ERROR_SLACK
+  if stopped:
+    theta, weights = equal_theta, {a: 1 for a in best_alone}
   new_rms = float(np.sqrt(np.mean(residual_for(lr, unpack(theta)) ** 2)))   # data only, comparable with Step 3's
 
   report = {"muscle": muscle_name, "coordinates": relevant, "samples": int(valid.sum()),
             "excluded_samples": int((~valid).sum()), "off_path_poses": int(off_path.sum()),
-            "step3_rms_pct": 100 * old_rms, "refit_rms_pct": 100 * new_rms}
-  if new_rms < old_rms:
+            "step3_rms_pct": 100 * old_rms, "refit_rms_pct": 100 * new_rms, "level_weights": dict(weights),
+            "weighting_dropped_by_max_error": stopped,
+            "level_alone_rms_pct": {a: 100 * v for a, v in best_alone.items()},
+            "step3_level_rms_pct": {a: 100 * v for a, v in level_rms(old_lr, old_prm).items()},
+            "refit_level_rms_pct": {a: 100 * v for a, v in level_rms(lr, unpack(theta)).items()}}
+  # change 4.4: Step 3's particle-swarm result is kept only if it is at least as good at every activation level (the
+  # refit no longer minimises the plain sum over levels, so that sum can't decide; before 4.4: new_rms < old_rms)
+  old_levels, new_levels = report["step3_level_rms_pct"], report["refit_level_rms_pct"]
+  step3_dominates = all(old_levels[a] <= new_levels[a] for a in ACTIVATIONS if np.isfinite(new_levels[a]))
+  if not step3_dominates:
     prm = unpack(theta)
     mjc_model.actuator_lengthrange[aid] = lr
     mjc_model.actuator_gainprm[aid, :9] = prm

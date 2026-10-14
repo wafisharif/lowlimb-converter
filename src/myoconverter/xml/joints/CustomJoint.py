@@ -4,6 +4,9 @@
 # helper joint with two quartics in sequence (fit_spline_chained; Station 2, change 2.4).
 # Modified by lowlimb-converter (2026-10-12): the helper joint is scaled so it adds no measurable inertia or damping
 # to the knee (scale_helper; Station 5, change 5.3).
+# Modified by lowlimb-converter (2026-10-12): PolynomialFunction axes (degree <= 4) are converted exactly, and a
+# coordinate is designated by its first linear axis instead of failing when its first-processed axis isn't linear
+# (Station 2, change 2.5; RajagopalLaiUhlrich2023's walker knee).
 """ Contains the `CustomJoint` parser.
 
 @author: Aleksi Ikkala
@@ -11,6 +14,7 @@
 
 from copy import deepcopy
 import numpy as np
+from numpy.polynomial.polynomial import Polynomial
 from lxml import etree
 import os
 
@@ -165,13 +169,32 @@ class CustomJoint(Joint):
         params["_transform_value"] = value
 
       # Handle a "SimmSpline" or "NaturalCubicSpline" transformation with a quartic approximation
-      elif t.find("SimmSpline") is not None or t.find("NaturalCubicSpline") is not None:
+      elif t.find("SimmSpline") is not None or t.find("NaturalCubicSpline") is not None \
+          or t.find("PolynomialFunction") is not None:
 
         # We can't model the relationship between two joints using a spline, but we can try to approximate it
         # with a quartic function. So fit a quartic function and check that the error is small enough
 
         # Get spline values
-        if t.find("SimmSpline") is not None:
+        if t.find("PolynomialFunction") is not None:
+          # lowlimb-converter (change 2.5): a polynomial of degree <= 4 is exactly MuJoCo's quartic coupling
+          spline_kind = "PolynomialFunction"
+          coefficients = scale*str2vec(t.find("PolynomialFunction/coefficients").text)   # highest order first
+          poly = Polynomial(coefficients[::-1]).trim()
+          if len(poly.coef) > 5:
+            logger.critical(f"{params['name']}: PolynomialFunction of degree {len(poly.coef) - 1}; MuJoCo couples "
+                            f"joints with polynomials of degree 4 at most")
+            raise NotImplementedError
+          domain = _fit_domain(coordinate.text, np.array([-np.pi, np.pi]))
+          x_values = np.linspace(domain[0], domain[1], 2001)
+          y_values = poly(x_values)
+          fit = poly
+          polycoef = np.zeros(5)
+          polycoef[:len(poly.coef)] = poly.coef
+          joint_range = np.array([np.min(y_values), np.max(y_values)])
+          fit_error = 0.0
+          logger.info(f"{params['name']}: PolynomialFunction of degree {len(poly.coef) - 1}, converted exactly")
+        elif t.find("SimmSpline") is not None:
           spline_kind = "SimmSpline"
           x_values = t.find("SimmSpline/x")
           y_values = t.find("SimmSpline/y")
@@ -184,15 +207,16 @@ class CustomJoint(Joint):
                           "SimmSpline or NaturalCubicSpline")
           raise RuntimeError
 
-        # Convert into numpy arrays; apply scaling to y values
-        x_values = str2vec(x_values.text)
-        y_values = scale*str2vec(y_values.text)
+        if spline_kind != "PolynomialFunction":
+          # Convert into numpy arrays; apply scaling to y values
+          x_values = str2vec(x_values.text)
+          y_values = scale*str2vec(y_values.text)
 
-        # lowlimb-converter (change 2.3): fit OpenSim's spline over the range the coordinate actually covers
-        domain = _fit_domain(coordinate.text, x_values)
-        fit, polycoef, joint_range, fit_error = fit_spline_on_range(spline_kind, x_values, y_values, domain)
-        logger.info(f"{params['name']}: quartic fit to {spline_kind} over [{domain[0]:.6g}, {domain[1]:.6g}], "
-                    f"max error {fit_error:.3g}")
+          # lowlimb-converter (change 2.3): fit OpenSim's spline over the range the coordinate actually covers
+          domain = _fit_domain(coordinate.text, x_values)
+          fit, polycoef, joint_range, fit_error = fit_spline_on_range(spline_kind, x_values, y_values, domain)
+          logger.info(f"{params['name']}: quartic fit to {spline_kind} over [{domain[0]:.6g}, {domain[1]:.6g}], "
+                      f"max error {fit_error:.3g}")
 
         # lowlimb-converter (change 2.4): two chained quartics where one isn't close enough
         chain = None
@@ -325,6 +349,11 @@ class CustomJoint(Joint):
     for coordinate_name in coordinates.keys():
       if coordinate_name not in dof_designated:
         c = cfg.M_EQUALITY.find(f"joint[@joint1='{coordinate_name}']")
+        if c is None:
+          # lowlimb-converter (change 2.5): no axis maps to this coordinate linearly (upstream: AttributeError)
+          logger.critical(f"{xml.attrib['name']}: no transform axis maps linearly to coordinate {coordinate_name}, "
+                          f"so it can't be a MuJoCo joint")
+          raise NotImplementedError
         cfg.M_EQUALITY.remove(c)
 
     return all_joints, all_params
@@ -395,8 +424,11 @@ class CustomJoint(Joint):
         # Should we convert this into an identity mapping as is done above?
 
     else:
-      logger.critical("Only LinearFunction and SimmSpline transformation types are currently implemented")
-      raise NotImplementedError
+      # lowlimb-converter (change 2.5): upstream raised NotImplementedError here, so a coordinate whose
+      # first-processed axis (translations come first) is, e.g., a PolynomialFunction couldn't be converted even if
+      # a later axis maps to it linearly. Such an axis is now coupled like a non-linear spline, and the coordinate is
+      # designated by its first linear axis (checked after the loop)
+      return False
 
     # Range of designated dof may have been modified above, if the mapping between Coordinate and designated dof is
     # not identity. In that case, we need to update the dependencies (polycoefs) of constraints that depend on this

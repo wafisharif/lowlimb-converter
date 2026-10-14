@@ -94,7 +94,10 @@ def evaluate(xml_path, ref, keep_arrays=False):
     tid = np.array(tid)
     from_coord, driven, problems = mc.joint_plan(m, names)
     w0 += problems
-    missing = [n for n in names if mujoco.mj_name2id(m, J, n) < 0]
+    # a coordinate a coupler drives needn't be a MuJoCo joint: the converter may reproduce its effect through the
+    # coupling (Rajagopal's knee_angle_beta: the patella's helper joints, change 2.4) (2026-10-13 amendment)
+    dependent = {str(x) for x in ref["dependent"]} if "dependent" in ref else set()
+    missing = [n for n in names if mujoco.mj_name2id(m, J, n) < 0 and n not in dependent]
     if missing:
         w0.append(f"OpenSim coordinates without a MuJoCo joint: {missing}")
     extra = [str(x) for x in ref["ik_labels"] if str(x) not in coord_index and str(x) != "time"]
@@ -161,12 +164,18 @@ def evaluate(xml_path, ref, keep_arrays=False):
     if max_res > RESIDUAL:
         w0.append(f"MuJoCo equality residual {max_res:.2e} > {RESIDUAL}")
 
+    # (station5/GATES.md amendment 2026-10-12: with OpenSim moment arms defined as -dL/dq, OpenSim's check is h vs
+    # 10h within 1e-6 m, the same as MuJoCo's)
+    definition = str(ref["moment_arm"]) if "moment_arm" in ref else "analytic"
+    os_tol = 1e-5 if definition == "analytic" else 1e-6
     os_check = np.abs(np.asarray(ref["ma_fd_check"]) - np.asarray(ref["ma"])[check_frames])
-    frac_os = float(np.mean(os_check <= 1e-5)) if os_check.size else 1.0
+    frac_os = float(np.mean(os_check <= os_tol)) if os_check.size else 1.0
     mj_check = np.abs(ma_10h - ma[check_frames])
     frac_mj = float(np.mean(mj_check <= 1e-6)) if mj_check.size else 1.0
     if frac_os < 0.99:
-        w0.append(f"OpenSim computeMomentArm vs finite difference: only {100 * frac_os:.2f}% within 1e-5 m")
+        w0.append(f"OpenSim computeMomentArm vs finite difference: only {100 * frac_os:.2f}% within 1e-5 m"
+                  if definition == "analytic" else
+                  f"OpenSim -dL/dq h vs 10h: only {100 * frac_os:.2f}% within 1e-6 m")
     if frac_mj < 0.99:
         w0.append(f"MuJoCo finite difference h vs 10h: only {100 * frac_mj:.2f}% within 1e-6 m")
     if not (np.all(np.isfinite(tau)) and np.all(np.isfinite(length)) and np.all(np.isfinite(ma))):
@@ -187,6 +196,8 @@ def evaluate(xml_path, ref, keep_arrays=False):
               "max_mm": float(np.max(np.abs(maerr[:, k])))} for k in range(len(pair_coord))]
     per_coord = {}
     for j, n in enumerate(names):
+        if n in dependent:              # its generalized force is carried to its independent coordinates (amendment)
+            continue
         e = terr[:, j]
         per_coord[n] = {"unit": "N*m/kg" if rot[j] else "N/kg", "gated": n.startswith(GATED_PREFIXES),
                         "rms": float(np.sqrt(np.mean(e ** 2))), "max": float(np.max(np.abs(e))),
@@ -203,7 +214,8 @@ def evaluate(xml_path, ref, keep_arrays=False):
         "muscles": len(muscles), "pairs_total": len(pairs), "pairs_scored": len(scored), "mesh_geoms_removed": n_mesh,
         "total_mass_osim_kg": mass, "total_mass_mujoco_kg": float(np.sum(m.body_mass)),
         "gravity_mujoco": [float(v) for v in m.opt.gravity], "max_equality_residual": max_res,
-        "w0_osim_fd_within_1e-5_frac": frac_os, "w0_mujoco_h_vs_10h_within_1e-6_frac": frac_mj,
+        ("w0_osim_fd_within_1e-5_frac" if definition == "analytic" else "w0_osim_h_vs_10h_within_1e-6_frac"): frac_os,
+        "w0_mujoco_h_vs_10h_within_1e-6_frac": frac_mj, "opensim_moment_arm": definition,
         "W0": "PASS" if not w0 else "FAIL", "W0_problems": w0,
         "summary": {
             "length_rms_mm_mean": float(np.mean([v["length_rms_mm"] for v in per_muscle.values()])),

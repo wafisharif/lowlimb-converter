@@ -5,6 +5,9 @@
 # unreproducible on/off jump no longer pulls the fit away from OpenSim's path elsewhere (Station 5, change 5.1).
 # Modified by lowlimb-converter (2026-10-12): poses where OpenSim's point is active weigh more in that fit, and a point
 # next to a plain path point on its body can switch toward it through a helper joint (Station 5, change 5.3).
+# Modified by lowlimb-converter (2026-10-12): the conditional-point fit applies to every force with a geometry path
+# (PathActuator, PathSpring, Ligament), not only muscles (Station 6, change 6.5).
+# Modified by lowlimb-converter (2026-10-13): the cached OpenSim model can be released (Station 6, change 6.9).
 """ This module contains a collection of utility functions useful for parsing and converting the OpenSim `PathPointSet`
 
 @author: Aleksi Ikkala
@@ -41,6 +44,17 @@ def _osim_model():
     state = model.initSystem()
     _OSIM_CACHE = (cfg.OSIM_FILE, model, state)
   return _OSIM_CACHE[1], _OSIM_CACHE[2]
+
+
+def release_osim_model():
+  """ lowlimb-converter (change 6.9): drop the cached OpenSim model. Keeping it alive made a later, separate OpenSim
+  simulation of the same file fail to take its first step (ToyLandingModel's contact calibration). Releasing it did
+  not remove every failure (1 in 12 conversions still failed): change 6.13 runs those simulations in a fresh process.
+  """
+  global _OSIM_CACHE
+  _OSIM_CACHE = None
+  import gc
+  gc.collect()
 
 
 def _set_coordinates(model, state, values):
@@ -145,7 +159,14 @@ def conditional_path_point_dependencies(xml, force_name, upstream=None, n_train=
   from numpy.polynomial import Chebyshev
   from scipy.optimize import least_squares
   model, state = _osim_model()
-  muscle = opensim.Muscle.safeDownCast(model.getForceSet().get(force_name))
+  # lowlimb-converter (change 6.5): any force with a geometry path (muscles and other PathActuators, PathSprings,
+  # Ligaments), not only muscles
+  force = model.getForceSet().get(force_name)
+  muscle = None
+  for kind in (opensim.PathActuator, opensim.PathSpring, opensim.Ligament):
+    muscle = kind.safeDownCast(force)
+    if muscle is not None:
+      break
   if muscle is None:
     return None
   points = muscle.getGeometryPath().getPathPointSet()

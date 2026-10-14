@@ -1,3 +1,5 @@
+# Modified by lowlimb-converter (2026-10-12), from MyoConverter @ cadf380: the joint parser collection skips the helper
+# module joints/_as_custom.py (Station 6, change 6.2).
 """ This module defines parsers (classes) that collect individual parsers from their respective packages.
 
 The individual parsers and respective packages are defined under myoconverter.xml
@@ -118,7 +120,7 @@ class JointParser(BaseParser):
     matching file name.
   """
   def __init__(self):
-    super().__init__("joints", ignore_files={"utils.py", "Joint.py"})
+    super().__init__("joints", ignore_files={"utils.py", "Joint.py", "_as_custom.py"})   # lowlimb-converter (6.2)
 
 class ForceParser(BaseParser):
   """ This class collects all parsers relevant to parsing forces.

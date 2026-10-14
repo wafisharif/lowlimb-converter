@@ -1,5 +1,9 @@
 # Modified by lowlimb-converter (2026-10-10), from MyoConverter @ cadf380: keeps the OpenSim file path (OSIM_FILE)
 # so path points can be evaluated with OpenSim kinematics (Station 3, change 3.1).
+# Modified by lowlimb-converter (2026-10-12): the model's <defaults> objects are applied to every component that omits
+# a property, as OpenSim itself does when it reads the file (MyoConverter limitation 3; change 1c.3).
+# Modified by lowlimb-converter (2026-10-12): the model is read with read_osim(), so files with "::" element names load
+# (change 6.1). A model with its own contact forces gets no extra ground plane (change 6.6).
 """ Contains definitions for global variables that are used in the conversion process.
 
 @author: Aleksi Ikkala
@@ -9,6 +13,7 @@ from lxml import etree
 
 from loguru import logger
 
+from myoconverter.xml.utils import read_osim
 from myoconverter.xml.parsers import BodyParser, ConstraintParser, ForceParser, JointParser, PathPointParser, \
   PathWrapParser, PathWrapSetParser, WrapObjectParser, MarkerParser
 
@@ -24,6 +29,7 @@ OUTPUT_PLOT_FOLDER = None
 
 # Parsing parameters
 ADD_GROUND_GEOM = None
+CONTACT_GROUPS = None  # lowlimb-converter (change 6.6): contact pairs grouped by OpenSim material, for the calibration
 TREAT_AS_NORMAL_PATH_POINT = None
 
 # Variables for parsed OpenSim XML
@@ -100,8 +106,9 @@ def initialise(xml_file, output_folder, **kwargs):
   parser = etree.XMLParser(remove_blank_text=True)
 
   # Set parsing parameters
-  global ADD_GROUND_GEOM
+  global ADD_GROUND_GEOM, CONTACT_GROUPS
   ADD_GROUND_GEOM = kwargs.get("add_ground_geom", False)
+  CONTACT_GROUPS = {}
 
   # Optional parameters for users
   global TREAT_AS_NORMAL_PATH_POINT
@@ -110,7 +117,8 @@ def initialise(xml_file, output_folder, **kwargs):
   # Read and parse OpenSim model
   global OPENSIM, O_GROUND, O_BODYSET, O_JOINTSET, O_FORCESET, O_CONSTRAINTSET, O_MARKERSET, OSIM_FILE
   OSIM_FILE = os.path.abspath(xml_file)
-  OPENSIM = etree.parse(xml_file, parser).getroot().find("Model")
+  OPENSIM = read_osim(xml_file, parser).getroot().find("Model")   # lowlimb-converter (change 6.1)
+  apply_document_defaults(OPENSIM)   # lowlimb-converter (change 1c.3)
   O_GROUND = OPENSIM.find("Ground")
   O_BODYSET = OPENSIM.find("BodySet/objects")
   O_BODYSET = [] if O_BODYSET is None else O_BODYSET
@@ -122,6 +130,14 @@ def initialise(xml_file, output_folder, **kwargs):
   O_CONSTRAINTSET = [] if O_CONSTRAINTSET is None else O_CONSTRAINTSET
   O_MARKERSET = OPENSIM.find("MarkerSet/objects")
   O_MARKERSET = [] if O_MARKERSET is None else O_MARKERSET
+
+  # lowlimb-converter (change 6.6): a model with its own contact forces gets those contacts, not MyoConverter's ground
+  # plane in contact with every mesh (which would add contacts OpenSim doesn't have)
+  contact = [f for f in OPENSIM.findall("ForceSet/objects/HuntCrossleyForce")
+             if f.find("appliesForce") is None or (f.find("appliesForce").text or "").strip() not in ("false", "0")]
+  if ADD_GROUND_GEOM and contact:
+    logger.warning("The model defines its own contact (HuntCrossleyForce): no ground plane is added")
+    ADD_GROUND_GEOM = False
 
   # Read and parse MuJoCo template
   global MUJOCO, M_GROUND, M_WORLDBODY, M_ASSET, M_TENDON, M_ACTUATOR, M_EQUALITY, M_CONTACT
@@ -148,3 +164,36 @@ def initialise(xml_file, output_folder, **kwargs):
   JOINT_PARSER = JointParser()
   CONSTRAINT_PARSER = ConstraintParser()
   MARKER_PARSER = MarkerParser()
+
+
+def apply_document_defaults(model):
+  """ lowlimb-converter (change 1c.3): fill in properties a component omits from the file's <defaults> objects.
+
+  When OpenSim reads a model file, an object whose XML leaves out a property takes that property from the
+  document's default object of the same class (the <defaults> element), not from the class's built-in default:
+  e.g. a CoordinateActuator without <optimal_force> in Rajagopal 2016 gets 300 from <defaults>, not 1. MyoConverter
+  reads the XML directly and never looked at <defaults> (its documented limitation 3), so such a property took the
+  converter's own fallback. This copies every omitted property of a component from the default object of its class,
+  at every level (a nested object is filled from its own class's default object), before anything is parsed. Models
+  without <defaults> are unchanged.
+
+  :param model: the OpenSim `Model` XML element (modified in place)
+  :return: number of properties filled in
+  """
+  from copy import deepcopy
+  defaults_element = model.find("defaults")
+  if defaults_element is None:
+    return 0
+  templates = {d.tag: d for d in defaults_element if isinstance(d.tag, str)}
+  targets = [el for el in model.iter() if isinstance(el.tag, str) and el.tag in templates
+             and el is not defaults_element and defaults_element not in el.iterancestors()]
+  filled = 0
+  for el in targets:
+    present = {c.tag for c in el if isinstance(c.tag, str)}
+    for prop in templates[el.tag]:
+      if isinstance(prop.tag, str) and prop.tag not in present:
+        el.append(deepcopy(prop))
+        filled += 1
+  if filled:
+    logger.info(f"Filled in {filled} omitted properties from the model's <defaults> element, as OpenSim does")
+  return filled

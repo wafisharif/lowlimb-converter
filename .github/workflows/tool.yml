@@ -2,8 +2,9 @@ name: tool
 
 # The installable tool on clean machines: install the package (exact versions from the lockfile), then run
 # tests/test_tool.py, which converts gait10dof18musc with the `lowlimb-convert` command and validates it.
-# Linux runs the full conversion with --validate; macOS (Apple Silicon) runs the quick part, to check that the
-# package installs and converts natively there.
+# Linux runs the full conversion with --validate, including the walking level on OpenSim's gait10dof18musc example
+# trial and OpenSim's WalkerModel (contact, limit forces; the "elements" level); macOS (Apple Silicon) runs the quick
+# part, to check that the package installs and converts natively there.
 on:
   workflow_dispatch:
   push:
@@ -23,11 +24,11 @@ jobs:
       matrix:
         include:
           - os: ubuntu-22.04
-            extra: --full
+            extra: --full --osm ../opensim-models
           - os: macos-15
             extra: ""
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -45,6 +46,12 @@ jobs:
         run: |
           git clone --quiet https://github.com/MyoHub/myoconverter.git upstream
           git -C upstream checkout --quiet cadf38059367a51239e6dc28c9fbe8b8fbd5149f
+      - name: Clone opensim-models at the pinned commit (gait10dof18musc walking trial, WalkerModel and meshes; Linux)
+        if: runner.os == 'Linux'
+        run: |
+          git clone --quiet --filter=blob:none --no-checkout https://github.com/opensim-org/opensim-models.git "$RUNNER_TEMP/opensim-models"
+          git -C "$RUNNER_TEMP/opensim-models" sparse-checkout set Pipelines/Gait10dof18musc Models/WalkerModel Geometry
+          git -C "$RUNNER_TEMP/opensim-models" checkout --quiet d9b05d470b1a481c222372c85b75772faf8f7792
       - name: Tool tests (run outside the repo folder, so the installed package is what gets imported)
         shell: bash
         run: |
@@ -57,6 +64,7 @@ jobs:
           mkdir -p tool_reports
           cp "$RUNNER_TEMP"/tool_run/scratch/report_step1/report.md tool_reports/report_step1.md 2>/dev/null || true
           cp "$RUNNER_TEMP"/tool_run/scratch/out_full/validation/report.* tool_reports/ 2>/dev/null || true
+          cp "$RUNNER_TEMP"/tool_run/scratch/report_walking/report.md tool_reports/report_walking.md 2>/dev/null || true
       - name: Upload the validation reports
         if: always()
         uses: actions/upload-artifact@v4

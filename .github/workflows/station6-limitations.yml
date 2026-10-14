@@ -1,0 +1,81 @@
+name: station6-limitations
+
+# Station 6: past MyoConverter's limitations (station6/GATES.md) on a clean Linux machine. On push: the tests of
+# changes 6.1-6.13 (each fails on the converter before it), the wrap-side and level-guard tests of changes 3.5 and
+# 4.4, and the support report's S1 check on all 56 opensim-models files. The gated run over all 56 files
+# (station6/run_station6.sh, several hours) is manual.
+on:
+  workflow_dispatch:
+    inputs:
+      gated_run:
+        description: "Also run station6/run_station6.sh (all gates, several hours)"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "env/**"
+      - "lowlimb_converter/**"
+      - "station6/**"
+      - ".github/workflows/station6-limitations.yml"
+
+jobs:
+  linux:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # coverage.py takes the Station 1a port (tag station1a) from the history
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: System libraries for VTK (mesh conversion)
+        run: sudo apt-get update && sudo apt-get install -y libgl1 libxrender1 libxext6
+      - name: Install the locked environment
+        run: python -m pip install --require-hashes -r env/requirements.lock
+      - name: Clone upstream MyoConverter at the pinned commit (gait models)
+        run: |
+          git clone --quiet https://github.com/MyoHub/myoconverter.git upstream
+          git -C upstream checkout --quiet cadf38059367a51239e6dc28c9fbe8b8fbd5149f
+      - name: Clone opensim-models at the pinned commit (all model files)
+        run: |
+          git clone --quiet https://github.com/opensim-org/opensim-models.git ../opensim-models
+          git -C ../opensim-models checkout --quiet d9b05d470b1a481c222372c85b75772faf8f7792
+      - name: The converter before Station 6, for the tests that show each change was needed
+        run: |
+          mkdir -p ../before && git archive 49140ff src | tar -x -C ../before
+      - name: Merged geometry for the Rajagopal model (station1/support/README.md)
+        run: |
+          mkdir -p ../rajagopal_geometry
+          cp -R ../opensim-models/Geometry/. ../rajagopal_geometry/
+          cp -R ../opensim-models/Models/Rajagopal/Geometry/. ../rajagopal_geometry/
+      - name: Reading every OpenSim 4 file (6.1), four joint types (6.2)
+        run: |
+          G=upstream/models/osim/Gait10dof18musc
+          python station6/tests/test_reading.py src $G/gait10dof18musc.osim $G/Geometry ../s6_scratch/reading
+          python station6/tests/test_joint_types.py src ../s6_scratch/joints
+      - name: Mass properties, limit forces, path actuators and springs (6.3-6.5)
+        run: python station6/tests/test_forces_and_mass.py src ../before/src upstream ../opensim-models ../s6_scratch/forces
+      - name: Contact geometry and calibration (6.6, 6.12)
+        run: python station6/tests/test_contacts.py src ../before/src ../opensim-models ../s6_scratch/contacts
+      - name: The files that stopped the first gated runs (6.7-6.9, 6.11, 6.13)
+        run: python station6/tests/test_more_files.py src ../before/src ../opensim-models ../s6_scratch/more
+      - name: Wrap sides (3.5) and the force refit's level guarantees (4.4)
+        run: |
+          python station3/tests/test_wrap_sides.py src ../opensim-models ../rajagopal_geometry upstream/models/osim/Gait10dof18musc ../s6_scratch/wraps
+          python station4/tests/test_level_guard.py src ../before/src ../opensim-models ../rajagopal_geometry upstream/models/osim/Gait10dof18musc ../s6_scratch/levels
+      - name: Support report S1 on all 56 files
+        run: |
+          python station1/tests/test_support_report.py upstream ../s6_scratch/s1 $(cd ../opensim-models && find . -name "*.osim" | sort | sed "s#^\./#$PWD/../opensim-models/#")
+      - name: Gated run (manual)
+        if: github.event_name == 'workflow_dispatch' && inputs.gated_run
+        run: bash station6/run_station6.sh ci upstream ../opensim-models ../s6_work python
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: station6-linux-results
+          path: station6/results/ci/
+          if-no-files-found: ignore

@@ -5,10 +5,14 @@
 # follow by two quartics in sequence, through a helper joint (Station 2, change 2.4).
 # Modified by lowlimb-converter (2026-10-12): helper joints are scaled so they add no measurable inertia or damping
 # (scale_helper, add_helper_joint; Station 5, change 5.3).
+# Modified by lowlimb-converter (2026-10-12): new read_osim() reads OpenSim files whose element names contain "::"
+# (Station 6, change 6.1).
 """ This module contains a collection of utility functions useful for parsing and converting the OpenSim model.
 
 @author: Aleksi Ikkala
 """
+
+import re
 
 import numpy as np
 from sklearn.metrics import r2_score
@@ -21,6 +25,27 @@ from loguru import logger
 
 
 split_name = lambda string: string.split('/')[1:]
+
+# lowlimb-converter (change 6.1): OpenSim 4 writes nested-class elements as e.g. <HuntCrossleyForce::ContactParameters>;
+# "::" is not allowed in an XML name, so lxml refuses the whole file. They are read as "__" (HuntCrossleyForce__...).
+_NESTED_NAME = re.compile(rb"<(/?)([A-Za-z_][A-Za-z0-9_.-]*)::([A-Za-z_][A-Za-z0-9_.-]*)")
+
+
+def read_osim(path, parser=None):
+  """ lowlimb-converter (change 6.1): parse an OpenSim model file with lxml, as OpenSim reads it.
+
+  Element names with "::" (OpenSim's nested classes, e.g. HuntCrossleyForce::ContactParametersSet) become "__", so files
+  OpenSim itself writes can be read. Files without such names are parsed exactly as before.
+
+  :param path: path of the .osim file
+  :param parser: optional lxml parser
+  :return: lxml ElementTree
+  """
+  with open(path, "rb") as f:
+    data = f.read()
+  if b"::" in data:
+    data = _NESTED_NAME.sub(rb"<\1\2__\3", data)
+  return etree.ElementTree(etree.fromstring(data, parser))
 
 def find_element_by_name(xml, names):
   """ Find a name from given XML element.

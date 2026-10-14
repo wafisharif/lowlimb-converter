@@ -1,5 +1,6 @@
 # Modified by lowlimb-converter (2026-10-10), from MyoConverter @ cadf380: the model's gravity is converted, rotated
 # into MuJoCo's world frame with the ground (change 1c.1; upstream left MuJoCo's default 9.81 m/s^2).
+# Modified by lowlimb-converter (2026-10-12): OpenSim's placeholder mesh ("Unassigned") is skipped (change 6.1).
 """ Contains the Ground parser.
 
 @author: Aleksi Ikkala
@@ -7,6 +8,7 @@
 
 from scipy.spatial.transform import Rotation
 from lxml import etree
+from loguru import logger
 import os
 
 from myoconverter.xml.parsers import IParser
@@ -73,6 +75,11 @@ class Ground(IParser):
     # Copy any attached geometries
     for mesh in xml.findall("attached_geometry/Mesh"):
       mesh_name, mesh_file = copy_mesh_file(mesh.find("mesh_file").text, cfg.GEOMETRY_FOLDER, cfg.OUTPUT_GEOMETRY_FOLDER)
+      if mesh_name is None:
+        # lowlimb-converter (change 6.1): OpenSim's placeholder for "no mesh file"
+        logger.warning(f"Mesh {mesh.attrib['name']} has no file ('{mesh.find('mesh_file').text}'): skipping "
+                       f"{mesh.attrib['name']}")
+        continue
       etree.SubElement(cfg.M_ASSET, "mesh",
                        name=f"{mesh.attrib['name']}_{mesh_name}",
                        file=os.path.join("Geometry", mesh_file),

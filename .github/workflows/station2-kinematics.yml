@@ -1,7 +1,8 @@
 name: station2-kinematics
 
 # Station 2: kinematic check (station2/GATES.md) on a clean Linux machine, plus its self-tests.
-# All three models must pass K0-K2 (Rajagopal2016 since change 2.4, the chained patella coupling).
+# All four models must pass K0-K2 (Rajagopal2016 since change 2.4, the chained patella coupling;
+# RajagopalLaiUhlrich2023 since change 2.5, its PolynomialFunction knees).
 # Also checks that the full pipeline still runs and passes the structural gates (Station 1a P1-P2) on gait10dof18musc.
 on:
   workflow_dispatch:
@@ -31,7 +32,7 @@ jobs:
         run: |
           git clone --quiet https://github.com/MyoHub/myoconverter.git upstream
           git -C upstream checkout --quiet cadf38059367a51239e6dc28c9fbe8b8fbd5149f
-      - name: Clone opensim-models at the pinned commit (Rajagopal2016 and its meshes only)
+      - name: Clone opensim-models at the pinned commit (the Rajagopal models and their meshes only)
         run: |
           git clone --quiet --filter=blob:none --no-checkout https://github.com/opensim-org/opensim-models.git ../opensim-models
           git -C ../opensim-models sparse-checkout set Geometry Models/Rajagopal
@@ -40,8 +41,12 @@ jobs:
         run: |
           python station2/tests/test_harness.py upstream/models/osim/Gait10dof18musc/gait10dof18musc.osim ../s2_scratch/harness ../opensim-models/Models/Rajagopal/Rajagopal2016.osim
           python station2/tests/test_frame_offsets.py src upstream/models/osim/Gait10dof18musc/gait10dof18musc.osim upstream/models/osim/Gait10dof18musc/Geometry ../s2_scratch/offsets
-      - name: Station 2 gates, all three models
+      - name: Station 2 gates, all four models
         run: bash station2/run_station2.sh ci upstream ../opensim-models ../s2_work python
+      - name: PolynomialFunction axes convert exactly (change 2.5)
+        run: python station2/tests/test_polynomial_axes.py src upstream/models/osim/Gait10dof18musc/gait10dof18musc.osim upstream/models/osim/Gait10dof18musc/Geometry ../s2_scratch/polynomial
+      - name: The model's <defaults> element is applied as OpenSim does (change 1c.3)
+        run: python station1/tests/test_document_defaults.py src upstream/models/osim/Gait10dof18musc/gait10dof18musc.osim upstream/models/osim/Gait10dof18musc/Geometry ../s2_scratch/defaults
       - name: Chained patella coupling (change 2.4) holds in simulation
         run: python station2/tests/test_chained_coupling.py src ../opensim-models/Models/Rajagopal/Rajagopal2016.osim ../s2_work/rajagopal_geometry ../s2_scratch/chained
       - name: Full pipeline still runs, structural gates P1-P2 (gait10dof18musc)

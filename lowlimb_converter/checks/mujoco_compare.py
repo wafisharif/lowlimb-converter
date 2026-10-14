@@ -57,12 +57,17 @@ def joint_plan(m, coord_names):
     problems = []
     driven = {}                                        # dependent joint id -> (independent joint id or -1, coefs)
     active = _eq_active(m)
+    # (2026-10-13, Station 6 amendment) an inactive joint equality is accepted when its joint is held by an active lock
+    # (the converter deactivates a coupling whose independent coordinate is locked and locks the dependent joint)
+    locked = {int(m.eq_obj1id[e]) for e in range(m.neq)
+              if int(m.eq_type[e]) == eq_joint and active[e] and int(m.eq_obj2id[e]) < 0}
     for e in range(m.neq):
         if int(m.eq_type[e]) != eq_joint:
             problems.append(f"equality {e} has type {int(m.eq_type[e])}, not a joint equality")
             continue
         if not active[e]:
-            problems.append(f"joint equality {_name(m, mujoco.mjtObj.mjOBJ_EQUALITY, e)} is inactive")
+            if int(m.eq_obj1id[e]) not in locked:
+                problems.append(f"joint equality {_name(m, mujoco.mjtObj.mjOBJ_EQUALITY, e)} is inactive")
             continue
         j1, j2 = int(m.eq_obj1id[e]), int(m.eq_obj2id[e])
         if j1 in driven:
@@ -170,8 +175,9 @@ def compare(xml_path, ref, keep_arrays=True):
             Rm = Rg.T @ d.xmat[bid[b]].reshape(3, 3)
             perr[p, k] = 1000.0 * np.linalg.norm(pm - ref["pos"][p, ob[k]])
             rerr[p, k] = angle_deg(ref["rot"][p, ob[k]], Rm)
-    if n_eq_rows != m.neq:
-        k0.append(f"{n_eq_rows} equality rows in the solver, model has {m.neq} equalities")
+    n_active = int(np.sum(_eq_active(m)))     # (2026-10-13 amendment) inactive equalities have no rows
+    if n_eq_rows != n_active:
+        k0.append(f"{n_eq_rows} equality rows in the solver, model has {n_active} active equalities")
     if max_res > K0_RESIDUAL:
         k0.append(f"MuJoCo equality residual {max_res:.2e} > {K0_RESIDUAL}")
 

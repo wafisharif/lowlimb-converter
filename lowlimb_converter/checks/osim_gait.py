@@ -7,6 +7,17 @@ Method and gates: station5/GATES.md. Usage:
 The coordinates are prepared exactly as OpenSim's InverseDynamicsTool prepares them (Storage padded by half its
 length, 6 Hz IIR low-pass, degrees to radians, quintic GCV splines); the generalized forces then equal the tool's
 bit for bit (station5/tests/test_gait_harness.py), and the same coordinates, speeds and accelerations go to MuJoCo.
+
+Moment arm (2026-10-12, Station 5 amendment for Rajagopal 2016): "analytic" (default) is OpenSim's
+`computeMomentArm`; "length-derivative" is -dL/dq of OpenSim's muscle length by central difference (h = 1e-6),
+needed where paths wrap over cylinders (see station3/GATES.md, amendment). Finite differences move coupled
+coordinates with their constraint (e.g. Rajagopal's knee_angle_beta with knee_angle).
+
+Coupled coordinates (2026-10-13 amendment, station5/GATES.md): their value, speed and acceleration along the trial
+come from their constraint and the independent coordinates (chain rule), not from the IK file's own column, which
+satisfies the constraint only to IK's accuracy (Rajagopal 2016: QErr 2e-9); and their generalized force from inverse
+dynamics is carried to the independent coordinates by the coupler's derivative (`tau`; the solver's own output is kept
+as `tau_raw`). Models without couplers are unchanged.
 """
 import argparse
 import os
@@ -52,7 +63,42 @@ def _u_index(model, state, names):
     return out
 
 
-def reference(osim_path, ik_path, grf_path, start=None, end=None):
+MOMENT_ARMS = ("analytic", "length-derivative")
+
+
+def _lengths_at(model, state, cs, names, qrow, couplers, coord, delta, idx, ms):
+    """Lengths of muscles `idx` with coordinate `coord` moved by delta, coupled coordinates following."""
+    values = dict(zip(names, qrow))
+    values[coord] += delta
+    for d, ind, cc in couplers:
+        x = osim.Vector(len(ind), 0.0)
+        for k, n in enumerate(ind):
+            x.set(k, values[n])
+        values[d] = cc.getFunction().calcValue(x)
+    for n in names:
+        if not cs.get(n).getLocked(state):
+            cs.get(n).setValue(state, values[n], False)
+    model.realizePosition(state)
+    return [ms.get(i).getLength(state) for i in idx]
+
+
+def _length_derivatives(model, state, cs, names, qrow, couplers, pairs, ms, h):
+    """-dL/dq by central difference for every (muscle, coordinate) pair, one coordinate at a time."""
+    by_coord = {}
+    for i, c in pairs:
+        by_coord.setdefault(c, []).append(i)
+    out = {}
+    for c, idx in by_coord.items():
+        lp = _lengths_at(model, state, cs, names, qrow, couplers, c, h, idx, ms)
+        lm = _lengths_at(model, state, cs, names, qrow, couplers, c, -h, idx, ms)
+        for i, a, b in zip(idx, lp, lm):
+            out[(i, c)] = -(a - b) / (2 * h)
+    return out
+
+
+def reference(osim_path, ik_path, grf_path, start=None, end=None, moment_arm="analytic"):
+    if moment_arm not in MOMENT_ARMS:
+        raise ValueError(f"moment_arm must be one of {MOMENT_ARMS}")
     model = osim.Model(osim_path)
     loads = osim.ExternalLoads(grf_path, True)
     model.addModelComponent(loads)
@@ -96,13 +142,29 @@ def reference(osim_path, ik_path, grf_path, start=None, end=None):
     qd = np.zeros_like(q)
     qdd = np.zeros_like(q)
     tau = np.zeros_like(q)
+    tau_raw = np.zeros_like(q)
     qerr = np.zeros(F)
     length = np.zeros((F, len(muscles)))
     ma = np.zeros((F, len(pairs)))
+    ma_analytic = np.zeros((F, len(pairs)))
     grf_force, grf_point, grf_torque = (np.zeros((F, len(ext), 3)) for _ in range(3))
+    col = {n: j for j, n in enumerate(names)}
     for f, t in enumerate(frames):
         for j, n in enumerate(names):
             q[f, j], qd[f, j], qdd[f, j] = value(n, t, 0), value(n, t, 1), value(n, t, 2)
+        # coupled coordinates follow their constraint exactly (2026-10-13 amendment): the IK file's own column for
+        # them (Rajagopal's knee_angle_beta) satisfies it only to IK's accuracy
+        for dep, ind, cc in couplers:
+            x = osim.Vector(len(ind), 0.0)
+            for k, n in enumerate(ind):
+                x.set(k, q[f, col[n]])
+            fn = cc.getFunction()
+            grad = [fn.calcDerivative(osim.StdVectorInt([k]), x) for k in range(len(ind))]
+            q[f, col[dep]] = fn.calcValue(x)
+            qd[f, col[dep]] = sum(grad[k] * qd[f, col[n]] for k, n in enumerate(ind))
+            qdd[f, col[dep]] = sum(grad[k] * qdd[f, col[n]] for k, n in enumerate(ind)) + sum(
+                fn.calcDerivative(osim.StdVectorInt([k, l]), x) * qd[f, col[a]] * qd[f, col[b]]
+                for k, a in enumerate(ind) for l, b in enumerate(ind))
         for j, n in enumerate(names):
             if not cs.get(n).getLocked(state):
                 cs.get(n).setValue(state, q[f, j], False)
@@ -117,30 +179,40 @@ def reference(osim_path, ik_path, grf_path, start=None, end=None):
             udot.set(uidx[n], qdd[f, j])
         gen = solver.solve(state, udot)
         tau[f] = [gen.get(uidx[n]) for n in names]
+        tau_raw[f] = tau[f]
+        # 2026-10-13 amendment: a coupled coordinate's generalized force is carried to its independent coordinates by
+        # the coupler's derivative (virtual work, as the MuJoCo side's chain rule does); its own entry becomes 0
+        for dep, ind, cc in couplers:
+            x = osim.Vector(len(ind), 0.0)
+            for k, n in enumerate(ind):
+                x.set(k, q[f, col[n]])
+            for k, n in enumerate(ind):
+                tau[f, col[n]] += cc.getFunction().calcDerivative(osim.StdVectorInt([k]), x) * tau[f, col[dep]]
+            tau[f, col[dep]] = 0.0
         for i in range(len(muscles)):
             length[f, i] = ms.get(i).getLength(state)
         for k, (i, c) in enumerate(pairs):
-            ma[f, k] = ms.get(i).computeMomentArm(state, cs.get(c))
+            ma_analytic[f, k] = ms.get(i).computeMomentArm(state, cs.get(c))
         for k, e in enumerate(ext):
             for arr, getter in ((grf_force, e.getForceAtTime), (grf_point, e.getPointAtTime),
                                 (grf_torque, e.getTorqueAtTime)):
                 v = getter(float(t))
                 arr[f, k] = [v.get(0), v.get(1), v.get(2)]
 
-    # moment-arm self-check (as Station 3's M0): computeMomentArm vs -dL/dq by central difference
+    if moment_arm == "analytic":
+        ma[:] = ma_analytic
+    else:
+        for f in range(F):
+            fd = _length_derivatives(model, state, cs, names, q[f], couplers, pairs, ms, H)
+            ma[f] = [fd[p] for p in pairs]
+
+    # moment-arm self-check (as Station 3's M0): analytic -> -dL/dq with h; length-derivative -> the same with 10 h
     check_frames = np.unique(np.linspace(0, F - 1, min(N_CHECK, F)).astype(int))
     check = np.zeros((len(check_frames), len(pairs)))
-    col = {n: j for j, n in enumerate(names)}
+    h_check = H if moment_arm == "analytic" else 10 * H
     for r, f in enumerate(check_frames):
-        for k, (i, c) in enumerate(pairs):
-            ls = []
-            for sgn in (1, -1):
-                for j, n in enumerate(names):
-                    if not cs.get(n).getLocked(state):
-                        cs.get(n).setValue(state, q[f, j] + (sgn * H if n == c else 0.0), False)
-                model.realizePosition(state)
-                ls.append(ms.get(i).getLength(state))
-            check[r, k] = -(ls[0] - ls[1]) / (2 * H)
+        fd = _length_derivatives(model, state, cs, names, q[f], couplers, pairs, ms, h_check)
+        check[r] = [fd[p] for p in pairs]
 
     for e in ext:
         for prop in ("force_expressed_in_body", "point_expressed_in_body"):
@@ -149,14 +221,15 @@ def reference(osim_path, ik_path, grf_path, start=None, end=None):
     total_mass = model.getTotalMass(state)
     return dict(coord_names=np.array(names), free=np.array(free), dependent=np.array(sorted(dependent)),
                 missing_in_file=np.array(missing), ik_labels=np.array(ik_labels), times=frames, q=q, qd=qd,
-                qdd=qdd, tau=tau, qerr=qerr, muscles=np.array(muscles),
+                qdd=qdd, tau=tau, tau_raw=tau_raw, qerr=qerr, muscles=np.array(muscles),
                 pair_muscle=np.array([i for i, _ in pairs]), pair_coord=np.array([c for _, c in pairs]),
                 length=length, ma=ma, ma_fd_check=check, check_frames=check_frames, h=np.array(H),
                 grf_body=np.array([e.get_applied_to_body() for e in ext]), grf_force=grf_force, grf_point=grf_point,
                 grf_torque=grf_torque, total_mass=np.array(total_mass),
                 rotational=np.array([cs.get(n).getMotionType() == 1 for n in names]),
                 gravity=np.array([model.getGravity().get(k) for k in range(3)]),
-                opensim_version=np.array(osim.__version__), cutoff_hz=np.array(CUTOFF_HZ))
+                opensim_version=np.array(osim.__version__), cutoff_hz=np.array(CUTOFF_HZ),
+                moment_arm=np.array(moment_arm), ma_analytic=ma_analytic)
 
 
 def main(argv=None):
@@ -167,8 +240,10 @@ def main(argv=None):
     ap.add_argument("out")
     ap.add_argument("--start", type=float)
     ap.add_argument("--end", type=float)
+    ap.add_argument("--moment-arm", choices=MOMENT_ARMS, default="analytic",
+                    help="OpenSim's computeMomentArm (default), or -dL/dq of OpenSim's length (wrapped paths)")
     a = ap.parse_args(argv)
-    r = reference(a.osim, a.ik, a.grf, a.start, a.end)
+    r = reference(a.osim, a.ik, a.grf, a.start, a.end, a.moment_arm)
     np.savez_compressed(a.out, **r)
     print(f"{os.path.basename(a.osim)}: {len(r['times'])} frames {r['times'][0]:.4f}-{r['times'][-1]:.4f} s, "
           f"{len(r['coord_names'])} coordinates ({len(r['missing_in_file'])} not in the file), "

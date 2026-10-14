@@ -1,23 +1,67 @@
+# Modified by lowlimb-converter (2026-10-12), from MyoConverter @ cadf380: CoordinateLimitForce is converted (upstream
+# skipped it with a warning; its old, unused O2MConverter code is removed). The limit springs become MuJoCo fixed
+# tendons with dead-band springs on the coordinate's joint (Station 6, change 6.4; see station6/GATES.md, gate L4).
 """ Contains the `CoordinateLimitForce` parser.
 
-@author: Aleksi Ikkala
+@author: Aleksi Ikkala (upstream stub); conversion by lowlimb-converter
 """
 
-from myoconverter.xml.parsers import IParser
+import numpy as np
+from lxml import etree
 
 from loguru import logger
+
+from myoconverter.xml.parsers import IParser
+from myoconverter.xml.utils import str2bool
+from myoconverter.xml import config as cfg
+
+# Number of dead-band springs per limit for OpenSim's smooth onset (see CoordinateLimitForce.parse)
+ONSET_NODES = 8
+# Lower bound of an upper-limit spring's dead band (and upper bound of a lower-limit spring's): far beyond any joint
+FAR = 1.0e6
+
+
+def smooth_step(t):
+  """ Simbody's Function::Step from 0 to 1 over t in [0, 1] (quintic: 10t^3 - 15t^4 + 6t^5), which OpenSim's
+  CoordinateLimitForce uses to switch its limit springs (and damping) on over the transition region. """
+  t = np.clip(t, 0.0, 1.0)
+  return t ** 3 * (10.0 - 15.0 * t + 6.0 * t ** 2)
+
+
+def onset_springs(stiffness, transition, nodes=ONSET_NODES):
+  """ Dead-band springs (k_j, h_j), j = 0..nodes, whose sum  sum_j k_j * max(x - h_j, 0)  is the piecewise-linear
+  interpolant of OpenSim's one-sided limit force  stiffness * x * smooth_step(x / transition)  at h_j = j/nodes *
+  transition, continued with slope `stiffness` beyond the transition. That continuation is exact: for x >= transition
+  OpenSim's force is stiffness * x, and the interpolant passes through (transition, stiffness * transition) with that
+  slope. Inside the transition the error is at most max|g''| / 8 * stiffness * transition / nodes^2, with
+  g(t) = t * smooth_step(t) (max|g''| = 4.62 at t = 0.386), i.e. 0.58 * stiffness * transition / nodes^2. Slopes
+  rise and then fall (the onset curve is convex, then concave), so some k_j are negative (MuJoCo allows negative
+  stiffness).
+
+  :param stiffness: limit stiffness (N m / rad or N / m)
+  :param transition: transition width (rad or m), > 0
+  :return: list of (k_j, h_j), h_j measured from the limit, into the limited region
+  """
+  h = np.linspace(0.0, transition, nodes + 1)
+  f = stiffness * h * smooth_step(h / transition)
+  slopes = np.append(np.diff(f) / np.diff(h), stiffness)   # last: beyond the transition
+  k = np.diff(np.concatenate([[0.0], slopes]))
+  return list(zip(k, h))
 
 
 class CoordinateLimitForce(IParser):
   """ This class parses and converts the OpenSim `CoordinateLimitForce` XML element to MuJoCo.
 
-  CoordinateLimitForce parser has not been implemented. These forces probably should be optimized after the
-  conversion process. I'll leave the old conversion code (from O2MConverter) here for reference, but it is not entirely
-  correct, and would require further development.
+  OpenSim (CoordinateLimitForce): beyond `upper_limit`, the coordinate q feels  -K_up * (q - upper) * S((q - upper) / w)
+  and below `lower_limit`  K_low * (lower - q) * S((lower - q) / w), with S Simbody's quintic step over the `transition`
+  w; plus damping -c * qdot * S(...) beyond either limit. Rotational stiffness, limits, transition and damping are given
+  per degree in the file. MuJoCo has no such force, but a fixed tendon of length q (coefficient 1 on the coordinate's
+  joint) with a dead-band spring (springlength "low high", stiffness k) applies -k (q - high) above high and
+  -k (q - low) below low, and nothing in between. Each limit's smooth onset is the sum of ONSET_NODES + 1 such springs
+  (onset_springs: exact beyond the transition, interpolated inside it).
 
-  Another option to implementing CoordinateLimitForces might be to use MuJoCo tendons, with suitably chosen
-  springlengths. The issue with this approach is that there might be multiple tendons for each DoF; would also need
-  optimization after conversion process.
+  Approximation: the damping (active only beyond a limit in OpenSim) is not converted; MuJoCo's tendon damping would
+  act everywhere. It is reported by gate L4 (force at +-1 rad/s beyond each limit).
   """
 
   def parse(self, xml):
@@ -25,92 +69,50 @@ class CoordinateLimitForce(IParser):
 
     :param xml: OpenSim `CoordinateLimitForce` XML element
     :return: None
+    :raises: NotImplementedError if the coordinate is not a MuJoCo joint
     """
 
-    logger.warning(f"CoordinateLimitForce parsing not implemented, skipping {xml.attrib['name']}")
-    return
-
-    # Ignore disabled forces
-    if force["isDisabled"].lower() == "true":
+    name = xml.attrib["name"]
+    applies = xml.find("appliesForce")
+    if applies is not None and applies.text is not None and not str2bool(applies.text.strip()):
+      logger.info(f"CoordinateLimitForce {name} has appliesForce false, not converted")
       return
 
-    # Get joint name
-    joint_name = force["coordinate"]
+    coordinate = xml.find("coordinate").text.strip()
+    joint = cfg.M_WORLDBODY.find(f".//joint[@name='{coordinate}']")
+    if joint is None:
+      logger.critical(f"CoordinateLimitForce {name}: coordinate {coordinate} is not a joint of the converted model")
+      raise NotImplementedError
 
-    # We need to search for this joint
-    target = None
-    for body in self.joints:
-      for joint in self.joints[body]:
-        for mujoco_joint in joint.mujoco_joints:
-          if mujoco_joint["name"] == joint_name:
-            target = mujoco_joint
+    # Rotational coordinates: the file gives limits, transition in degrees and stiffness, damping per degree
+    rotational = joint.attrib.get("type", "hinge") == "hinge"
+    to_si = np.pi / 180.0 if rotational else 1.0
 
-    # Check if joint was found
-    assert target is not None, "Cannot set CoordinateLimitForce params, couldn't find the joint"
+    def value(tag, default):
+      element = xml.find(tag)
+      return float(element.text) if element is not None and element.text is not None else default
 
-    # TODO for now let's ignore these forces -- they are too difficult to implement and optimize
-    # Let's just switch the joint limit on if it's defined; mark this so it won't be unclamped later
-    if "range" in target and target["range"][0] != target["range"][1]:
-      target["limited"] = True
-      target["user"] = 1
-      # continue
+    upper, lower = value("upper_limit", 0.0) * to_si, value("lower_limit", 0.0) * to_si
+    k_upper, k_lower = value("upper_stiffness", 1.0) / to_si, value("lower_stiffness", 1.0) / to_si
+    transition = value("transition", 0.1) * to_si
+    damping = value("damping", 0.001) / to_si
 
-    # Take the average of stiffness
-    stiffness = 0.5 *(float(force["upper_stiffness"]) + float(force["lower_stiffness"]))
+    count = 0
+    for side, limit, stiffness in (("upper", upper, k_upper), ("lower", lower, k_lower)):
+      if stiffness == 0:
+        continue
+      for j, (k, h) in enumerate(onset_springs(stiffness, transition)):
+        if k == 0:
+          continue
+        if side == "upper":
+          springlength = f"{repr(-FAR)} {repr(float(limit + h))}"      # pushes q down above limit + h
+        else:
+          springlength = f"{repr(float(limit - h))} {repr(FAR)}"       # pushes q up below limit - h
+        tendon = etree.SubElement(cfg.M_TENDON, "fixed", name=f"{name}_{side}_{j}", springlength=springlength,
+                                  stiffness=repr(float(k)))
+        etree.SubElement(tendon, "joint", joint=coordinate, coef="1")
+        count += 1
 
-    # Stiffness / damping may be defined in two separate forces; we assume that we're dealing with damping
-    # if average stiffness is close to zero
-    if stiffness < 1e-4:
-
-      # Check if rotational stiffness
-      damping = float(force["damping"])
-      if target["motion_type"] == "rotational":
-        damping *= math.pi/180
-
-      # Set damping
-      target["damping"] = damping
-
-    else:
-
-      # We need to create a soft joint coordinate limit, but we can't use separate limits like in OpenSim;
-      # this is something we'll need to approximate
-
-      # Limits in CoordinateLimitForce should be in degrees
-      force_coordinate_limits = np.array([float(force["lower_limit"]), float(force["upper_limit"])]) * math.pi /180
-
-      # Check if there are hard limits defined for this joint
-      if target["limited"]:
-
-        # Range should be given if joint is limited; use range to calculate width param of solimp
-        range = target.get("range")
-        width = np.array([force_coordinate_limits[0] - range[0], range[1] - force_coordinate_limits[1]])
-
-        # If either width is > 0 create a soft limit
-        pos_idx = width > 0
-        if np.any(pos_idx):
-
-          # Mark this joint for optimization
-          target["user"] = 1
-
-          # Define the soft limit
-          target["solimplimit"] = [0.0001, 0.99, np.mean(width[pos_idx])]
-
-      else:
-
-        # Use force_coordinate_limits as range
-
-        # Calculate width with the original range if it was defined
-        width = 0.001
-        if "range" in target:
-          width_range = np.array([force_coordinate_limits[0] - target["range"][0],
-                                  target["range"][1] - force_coordinate_limits[1]])
-          pos_idx = width_range > 0
-          if np.any(pos_idx):
-            width = np.mean(width_range[pos_idx])
-
-        # Mark this joint for optimization
-        target["user"] = 1
-
-        # Define the soft limit
-        target["limited"] = True
-        target["solimplimit"] = [0.0001, 0.99, width, 0.5, 1]
+    if damping != 0:
+      logger.warning(f"CoordinateLimitForce {name}: damping {damping:.6g} beyond the limits is not converted")
+    logger.info(f"CoordinateLimitForce {name} on {coordinate}: {count} dead-band springs (change 6.4)")

@@ -1,3 +1,5 @@
+# Modified by lowlimb-converter (2026-10-12), from MyoConverter @ cadf380: a Coordinate that omits <range>, <clamped> or
+# <locked> gets OpenSim's own default for it, as OpenSim does, instead of crashing (Station 6, change 6.1).
 """ This module contains a collection of utility functions useful for parsing and converting the OpenSim `JointSet`
 
 @author: Aleksi Ikkala
@@ -14,6 +16,19 @@ from myoconverter.xml.utils import str2vec, str2bool
 
 matplotlib.use("agg")
 pp.ioff()
+
+
+# lowlimb-converter (change 6.1): OpenSim's Coordinate class defaults (OpenSim 4.6: opensim.Coordinate() properties;
+# station6/tests/test_reading.py checks them against the installed OpenSim). A file's <defaults> element, if any, has
+# already been applied (change 1c.3), so these are only used where neither the component nor <defaults> gives a value.
+COORDINATE_DEFAULTS = {"range": "-10 10", "clamped": "false", "locked": "false"}
+
+
+def _coordinate_property(coordinate, tag):
+  element = coordinate.find(tag)
+  if element is None or element.text is None:
+    return COORDINATE_DEFAULTS[tag]
+  return element.text.strip()
 
 
 def parse_coordinates(objects):
@@ -33,9 +48,9 @@ def parse_coordinates(objects):
     default_value = coordinate.find("default_value")
     coordinates[coordinate.attrib["name"]] = {
       "name": coordinate.attrib["name"],
-      "range": str2vec(coordinate.find("range").text),
-      "limited": str2bool(coordinate.find("clamped").text),
-      "_locked": str2bool(coordinate.find("locked").text)}
+      "range": str2vec(_coordinate_property(coordinate, "range")),
+      "limited": str2bool(_coordinate_property(coordinate, "clamped")),
+      "_locked": str2bool(_coordinate_property(coordinate, "locked"))}
     if default_value is not None:
       coordinates[coordinate.attrib["name"]].update({"user": float(default_value.text),
                                                      "_transform_value": float(default_value.text)})

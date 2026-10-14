@@ -1,3 +1,5 @@
+# Modified by lowlimb-converter (2026-10-12), from MyoConverter @ cadf380: wraps over unconstrained objects get no
+# sidesite (Station 3, change 3.4).
 """ This module contains a collection of utility functions useful for parsing and converting the OpenSim `PathWrapSet`
 
 @author: Aleksi Ikkala
@@ -11,7 +13,7 @@ from myoconverter.xml.wrap_objects.WrapObject import WrapObject
 
 
 def add_wrapping_site(idx, sites, muscle_name, wrap_object_name, wrap_object_pos, wrap_object_radius, wrap_object_body,
-                      wrap_object_body_pos, M_WORLDBODY):
+                      wrap_object_body_pos, M_WORLDBODY, unconstrained=False):
   """ Add wrapping site to given index.
 
   :param idx: Index indicating between which sites a wrapping site is added
@@ -23,8 +25,13 @@ def add_wrapping_site(idx, sites, muscle_name, wrap_object_name, wrap_object_pos
   :param wrap_object_body: MuJoCo `Body` where wrapping object is located
   :param wrap_object_body_pos: Position of the `wrap_object_body`
   :param M_WORLDBODY: Pointer to MuJoCo XML `worldbody` element
+  :param unconstrained: lowlimb-converter (change 3.4): the object's quadrant is "all": no sidesite
   :return: Dictionary with wrapping site info
   """
+
+  if unconstrained:
+    return {"sidesite": None, "wrap_object": wrap_object_name, "wrap_object_body": wrap_object_body,
+            "predefined": True}
 
   # Get relevant sites
   s1 = sites[idx-1]
@@ -71,7 +78,7 @@ def add_wrapping_site(idx, sites, muscle_name, wrap_object_name, wrap_object_pos
           "predefined": True}
 
 def maybe_add_wrapping_site(idx, sites, muscle_name, wrap_object_name, wrap_object_pos, wrap_object_radius,
-                            wrap_object_body, wrap_object_body_pos, params, M_WORLDBODY):
+                            wrap_object_body, wrap_object_body_pos, params, M_WORLDBODY, unconstrained=False):
   """ Maybe add a wrapping site to given index.
 
   Wrapping site not added if one of the proposed sites is a ConditionalPathPoint or a MovingPathPoint. We can currently
@@ -87,6 +94,7 @@ def maybe_add_wrapping_site(idx, sites, muscle_name, wrap_object_name, wrap_obje
   :param wrap_object_body_pos: Position of the `wrap_object_body`
   :param params: Dictionary with wrapping site info for an existing wrapping site (for this `idx`)
   :param M_WORLDBODY: Pointer to MuJoCo XML `worldbody` element
+  :param unconstrained: lowlimb-converter (change 3.4): the object's quadrant is "all": no sidesite
   :return: Dictionary with wrapping site info, boolean indicating whether a warning should be raised
   """
 
@@ -120,6 +128,11 @@ def maybe_add_wrapping_site(idx, sites, muscle_name, wrap_object_name, wrap_obje
     # Add a wrapping site; overwrite existing wrapping site if this one is closer to the wrap object
     if params is not None and closest_dist > params["dist"]:
       return None, False
+
+    if unconstrained:
+      # lowlimb-converter (change 3.4): no sidesite
+      return {"sidesite": None, "wrap_object": wrap_object_name, "wrap_object_body": wrap_object_body,
+              "predefined": False, "dist": closest_dist}, False
 
     # Check if a sidesite already exists
     default_sidesite = wrap_object_body.find(f"site[@name='{wrap_object_name}_sidesite']")

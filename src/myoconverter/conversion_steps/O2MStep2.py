@@ -3,6 +3,8 @@
 # Modified by lowlimb-converter (2026-10-12), from MyoConverter @ cadf380: cvt2 is saved with the time step the model
 # was loaded with; the moment-arm functions set opt.timestep = 0.001 on the shared model, which leaked into the
 # saved file (Station 5, change 5.2).
+# Modified by lowlimb-converter (2026-10-13): after the optimization, a wrap's side site is kept only where it brings
+# the muscle path closer to OpenSim's (optimization/utils/wrap_sides.py; Station 3, change 3.5).
 """
 Created on Sat Mar  5 22:29:33 2022
 
@@ -10,6 +12,7 @@ Created on Sat Mar  5 22:29:33 2022
 """
 
 from myoconverter.optimization.utils.UtilsLengthOpt import getMomentArmDiff, maOptPSO_cust
+from myoconverter.optimization.utils.wrap_sides import choose_side_sites   # lowlimb-converter (change 3.5)
 from myoconverter.optimization.model_states.OsimMuscleStates import OsimMuscleStates
 from myoconverter.optimization.utils.UtilsMujoco import sortMuscleWrapSiteJoint, \
       computeMomentArmMuscleJoints, getCoordinateRange_mjc
@@ -424,6 +427,10 @@ class MomentArmOpt:
         self.mjc_model.opt.timestep = self.timestep   # lowlimb-converter (change 5.2)
         with open(cvt2_model_path, 'w+') as xml_file:
             mujoco.mj_saveLastXML(cvt2_model_path, self.mjc_model)
+
+        # lowlimb-converter (change 3.5): keep a wrap's side site only where it brings the path closer to OpenSim's
+        choose_side_sites(cvt2_model_path, self.osim_model, self.muscle_list)
+        self.mjc_model = mujoco.MjModel.from_xml_path(cvt2_model_path)
 
         return cvt2_model_path
     

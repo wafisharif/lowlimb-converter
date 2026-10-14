@@ -8,9 +8,11 @@ Usage: python station2/tests/test_chained_coupling.py <src_dir> <Rajagopal2016.o
 - Converting Rajagopal 2016 (XML step): each patella rotation is coupled to its knee through a helper joint on its own
   body under the world body; the helper adds the template's minimum body mass (0.001 kg) and nothing else to the
   model; the keyframe satisfies every joint equality.
-- In motion (MuJoCo simulation, gravity off, the right knee driven through 11-80 degrees by a joint torque, 4 s):
+- In motion (MuJoCo simulation, gravity off, muscles at zero activation, the right knee driven through 11-80 degrees
+  by a joint torque, 4 s):
   the patella angle follows OpenSim's spline of the simulated knee angle within 0.25 deg at every step (half of
-  Station 2's 0.5 deg limit), and nothing diverges.
+  Station 2's 0.5 deg limit), and nothing diverges. The joints the couplings drive have no damping (change 6.10:
+  with the template's 0.05 and the patella's own inertia, change 6.3, it lagged by 1.9 deg).
 Exit 0 if every check passes.
 """
 import os
@@ -109,8 +111,13 @@ def main():
     res, n = mc.equality_residual(m, d)
     check(res < 1e-9, f"keyframe satisfies all {n} joint equalities (largest residual {res:.1e})")
 
+    for jn in ("patellofemoral_r_rotation1_helper", "patellofemoral_r_rotation1"):
+        check(m.dof_damping[m.jnt_dofadr[J(jn)]] == 0.0, f"{jn}: no damping (a coupling drives it, change 6.10)")
     print("In motion")
     m.opt.gravity[:] = 0
+    # muscles at zero activation, as this test was written: since change 1c.3 Rajagopal's muscles have OpenSim's
+    # min_control 0.01, and 1% activation of the quadriceps pulls the patella off its coupling
+    m.actuator_ctrlrange[:, 0] = np.minimum(m.actuator_ctrlrange[:, 0], 0.0)
     knee, pat = J("knee_angle_r"), J("patellofemoral_r_rotation1")
     mujoco.mj_resetDataKeyframe(m, d, 0)
     worst, kmin, kmax = 0.0, 9.0, -9.0

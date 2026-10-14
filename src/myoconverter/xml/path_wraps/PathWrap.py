@@ -1,3 +1,6 @@
+# Modified by lowlimb-converter (2026-10-12), from MyoConverter @ cadf380: a path over an unconstrained (quadrant "all")
+# wrapping cylinder or sphere gets no sidesite, so MuJoCo wraps it only where the straight path would pass through the
+# object, as OpenSim does (Station 3, change 3.4).
 """ Contains the `PathWrap` parser.
 
 @author: Aleksi Ikkala
@@ -9,7 +12,7 @@ from myoconverter.xml.parsers import IParser
 from myoconverter.xml import config as cfg
 from myoconverter.xml.utils import calculate_mujoco_position, str2vec
 from myoconverter.xml.path_wraps.utils import add_wrapping_site, maybe_add_wrapping_site
-from myoconverter.xml.wrap_objects.utils import mujoco_wrap_object_name
+from myoconverter.xml.wrap_objects.utils import mujoco_wrap_object_name, is_unconstrained
 
 
 class PathWrap(IParser):
@@ -30,6 +33,13 @@ class PathWrap(IParser):
 
     # Get original wrap object name
     osim_wrap_object_name = xml.find("wrap_object").text
+
+    # lowlimb-converter (change 3.4): is the wrapping object unconstrained (quadrant "all")? OpenSim then wraps a
+    # segment only where the straight segment intersects the object, on whichever side is shorter. A MuJoCo sidesite
+    # constrains the wrap to one side and makes MuJoCo wrap whenever the segment passes on the other side, even far from
+    # the object (Rajagopal 2016's vasti were 127 mm too long in the default pose); without one, MuJoCo wraps only
+    # where the segment intersects the object, taking the shorter way round, which is OpenSim's rule.
+    unconstrained = is_unconstrained(osim_wrap_object_name)
 
     # Get wrap object name with suffix
     wrap_object_name = mujoco_wrap_object_name(osim_wrap_object_name)
@@ -73,7 +83,7 @@ class PathWrap(IParser):
       for idx in range(idxs[0], idxs[1]):
         params[idx] = add_wrapping_site(idx, sites, muscle_name, wrap_object_name,
                                         wrap_object_pos, wrap_object_radius, wrap_object_body, wrap_object_body_pos,
-                                        cfg.M_WORLDBODY)
+                                        cfg.M_WORLDBODY, unconstrained=unconstrained)
 
     else:
 
@@ -81,7 +91,8 @@ class PathWrap(IParser):
       for idx in range(1, len(sites)):
         p, issue_warning = maybe_add_wrapping_site(idx, sites, muscle_name, wrap_object_name,
                                                    wrap_object_pos, wrap_object_radius, wrap_object_body,
-                                                   wrap_object_body_pos, params.get(idx-1, None), cfg.M_WORLDBODY)
+                                                   wrap_object_body_pos, params.get(idx-1, None), cfg.M_WORLDBODY,
+                                                   unconstrained=unconstrained)
 
         if p is not None:
           params[idx] = p

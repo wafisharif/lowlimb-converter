@@ -3,6 +3,7 @@
 # sparse MuJoCo-3 layout via _actuator_moment_dense().
 # Modified by lowlimb-converter (2026-10-12): dependencyJointAng() follows chained joint equalities (helper joints of
 # changes 2.4 and 5.3); unchanged for models without chains.
+# Modified by lowlimb-converter (2026-10-12): sortMuscleWrapSiteJoint() skips wraps without a sidesite (change 3.4).
 
 import mujoco
 import numpy as np
@@ -271,6 +272,11 @@ def sortMuscleWrapSiteJoint(mjc_model, muscle_para_osim):
         
         # if the site is a wrap
         if mjc_model.wrap_type[i] == 4 or mjc_model.wrap_type[i] == 5:  
+
+            # lowlimb-converter (change 3.4): a wrap without a sidesite (an unconstrained OpenSim object) is exact
+            # geometry with nothing to optimise; skip it. (MuJoCo stores -1 there; upstream read it as site -1.)
+            if mjc_model.wrap_prm[i] < 0:
+                continue
 
             wrap_id = mjc_model.wrap_objid[i]  # get the wrap id
             # get geometry name

@@ -1,11 +1,13 @@
 # Modified by lowlimb-converter (2026-10-06), from MyoConverter @ cadf380: body placement now composes the joint's
 # parent and child frames as OpenSim does (Station 2, change 2.1; see station2/FINDINGS.md).
+# Modified by lowlimb-converter (2026-10-12): OpenSim's placeholder mesh ("Unassigned") is skipped (change 6.1).
 """ Contains the `Body` parser.
 
 @author: Aleksi Ikkala
 """
 
 from lxml import etree
+from loguru import logger
 import os
 from scipy.spatial.transform import Rotation
 
@@ -69,6 +71,11 @@ class Body(IParser):
     # Add meshes (as geoms and assets)
     for mesh in xml.findall("attached_geometry/Mesh"):
       mesh_name, mesh_file = copy_mesh_file(mesh.find("mesh_file").text, cfg.GEOMETRY_FOLDER, cfg.OUTPUT_GEOMETRY_FOLDER)
+      if mesh_name is None:
+        # lowlimb-converter (change 6.1): OpenSim's placeholder for "no mesh file"
+        logger.warning(f"Mesh {mesh.attrib['name']} has no file ('{mesh.find('mesh_file').text}'): skipping "
+                       f"{mesh.attrib['name']}")
+        continue
       etree.SubElement(cfg.M_ASSET, "mesh",
                        name=f"{mesh.attrib['name']}_{mesh_name}",
                        file=os.path.join("Geometry", mesh_file),

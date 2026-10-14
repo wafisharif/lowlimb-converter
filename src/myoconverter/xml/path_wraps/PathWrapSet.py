@@ -1,3 +1,5 @@
+# Modified by lowlimb-converter (2026-10-12), from MyoConverter @ cadf380: a wrap may have no sidesite (unconstrained
+# object, Station 3 change 3.4).
 """ Contains the `PathWrapSet` parser.
 
 @author: Aleksi Ikkala
@@ -57,8 +59,9 @@ class PathWrapSet(IParser):
     # Add wrapping sites (in reverse order). sorted sorts according to first item in each tuple by default
     for p in sorted(params_list, reverse=True):
 
-      # Create the sidesite
-      p[1]["wrap_object_body"].append(p[1]["sidesite"])
+      # Create the sidesite (lowlimb-converter, change 3.4: none for an unconstrained object)
+      if p[1]["sidesite"] is not None:
+        p[1]["wrap_object_body"].append(p[1]["sidesite"])
 
       # When dealing with ellipsoid wrapping objects, we will create unique sphere wrapping objects for each muscle-
       # wrapping object pair, so we can optimize their locations separately for each muscle. We'll create the wrapping
@@ -86,4 +89,7 @@ class PathWrapSet(IParser):
         p[1]["wrap_object"] = unique_name
 
       # Add the wrapping site to tendon
-      tendon.insert(p[0], etree.Element("geom", geom=p[1]["wrap_object"], sidesite=p[1]["sidesite"].attrib["name"]))
+      if p[1]["sidesite"] is None:
+        tendon.insert(p[0], etree.Element("geom", geom=p[1]["wrap_object"]))
+      else:
+        tendon.insert(p[0], etree.Element("geom", geom=p[1]["wrap_object"], sidesite=p[1]["sidesite"].attrib["name"]))

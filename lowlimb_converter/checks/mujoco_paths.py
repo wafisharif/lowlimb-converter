@@ -94,12 +94,18 @@ def evaluate(xml_path, ref, keep_arrays=False):
         m0.append(f"MuJoCo equality residual {max_res:.2e} > {RESIDUAL}")
 
     # M0 self-consistency of both moment-arm methods (first n_check random poses)
+    # (station3/GATES.md amendment 2026-10-12: with OpenSim moment arms defined as -dL/dq, OpenSim's check is h vs
+    # 10h within 1e-6 m, the same as MuJoCo's)
+    definition = str(ref["moment_arm"]) if "moment_arm" in ref else "analytic"
+    os_tol = 1e-5 if definition == "analytic" else 1e-6
     os_check = np.abs(np.asarray(ref["ma_fd_check"]) - np.asarray(ref["ma"])[:n_check])
-    frac_os = float(np.mean(os_check <= 1e-5))
+    frac_os = float(np.mean(os_check <= os_tol))
     mj_check = np.abs(ma_10h - ma[:n_check])
     frac_mj = float(np.mean(mj_check <= 1e-6))
     if frac_os < 0.99:
-        m0.append(f"OpenSim computeMomentArm vs finite difference: only {100 * frac_os:.2f}% within 1e-5 m")
+        m0.append(f"OpenSim computeMomentArm vs finite difference: only {100 * frac_os:.2f}% within 1e-5 m"
+                  if definition == "analytic" else
+                  f"OpenSim -dL/dq h vs 10h: only {100 * frac_os:.2f}% within 1e-6 m")
     if frac_mj < 0.99:
         m0.append(f"MuJoCo finite difference h vs 10h: only {100 * frac_mj:.2f}% within 1e-6 m")
 
@@ -107,6 +113,9 @@ def evaluate(xml_path, ref, keep_arrays=False):
     err = 1000.0 * np.abs(ma - ref_ma)
     lerr = 1000.0 * np.abs(length - ref_len)
     peak = 1000.0 * np.max(np.abs(ref_ma), axis=0)
+    analytic_gap = None    # reported, no gate: how far OpenSim's computeMomentArm is from -dL/dq (amendment)
+    if definition != "analytic" and "ma_analytic" in ref:
+        analytic_gap = 1000.0 * np.abs(np.asarray(ref["ma_analytic"]) - ref_ma)
     pairs = []
     for k in range(len(pair_coord)):
         rms = float(np.sqrt(np.mean(err[:, k] ** 2)))
@@ -114,6 +123,9 @@ def evaluate(xml_path, ref, keep_arrays=False):
                       "peak_osim_mm": float(peak[k]), "rms_mm": rms, "max_mm": float(err[:, k].max()),
                       "rms_pct_peak": float(100 * rms / peak[k]) if peak[k] > 0 else None,
                       "worst_pose": labels[int(np.argmax(err[:, k]))]})
+        if analytic_gap is not None:
+            pairs[-1]["opensim_analytic_vs_length_derivative_rms_mm"] = float(np.sqrt(np.mean(analytic_gap[:, k] ** 2)))
+            pairs[-1]["opensim_analytic_vs_length_derivative_max_mm"] = float(analytic_gap[:, k].max())
     per_muscle = {mn: {"length_rms_mm": float(np.sqrt(np.mean(lerr[:, i] ** 2))), "length_max_mm": float(lerr[:, i].max()),
                        "length_mean_signed_mm": float(1000 * np.mean(length[:, i] - ref_len[:, i]))}
                   for i, mn in enumerate(muscles)}
@@ -122,7 +134,8 @@ def evaluate(xml_path, ref, keep_arrays=False):
         "model": os.path.basename(xml_path), "mujoco_version": mujoco.__version__, "numpy_version": np.__version__,
         "opensim_version": str(ref["opensim_version"]), "poses": P, "muscles": len(muscles),
         "pairs_total": len(pairs), "pairs_scored": len(scored), "mesh_geoms_removed": n_mesh,
-        "max_equality_residual": max_res, "m0_osim_fd_within_1e-5_frac": frac_os,
+        "max_equality_residual": max_res, "opensim_moment_arm": definition,
+        ("m0_osim_fd_within_1e-5_frac" if definition == "analytic" else "m0_osim_h_vs_10h_within_1e-6_frac"): frac_os,
         "m0_mujoco_h_vs_10h_within_1e-6_frac": frac_mj,
         "M0": "PASS" if not m0 else "FAIL", "M0_problems": m0,
         "summary": {

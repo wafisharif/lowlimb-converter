@@ -5,6 +5,7 @@
 # Modified by lowlimb-converter (2026-10-12): cvt3 is saved with the time step the model was loaded with; the force
 # functions set opt.timestep = 0.005 on the shared model, which leaked into the saved file (Station 5, change 5.2).
 # Modified by lowlimb-converter (2026-10-12): the refit log line counts the poses left out by change 5.4.
+# Modified by lowlimb-converter (2026-10-13): the refit log also gives the error per activation level (change 4.4).
 """
 Created on Fri Apr  1 13:51:09 2022
 
@@ -362,6 +363,11 @@ class MuscleForceOpt:
                         f"{report['refit_rms_pct']:.2f}% (refit); kept {report['kept']} "
                         f"({report['samples']} samples; {report['excluded_samples']} left out: without OpenSim "
                         f"equilibrium, or in the {report['off_path_poses']} poses off OpenSim's path, change 5.4)")
+            # lowlimb-converter (change 4.4): per activation level, and the full-activation weight used
+            before, after = report['step3_level_rms_pct'], report['refit_level_rms_pct']
+            levels = ", ".join(f"a={a:g} {before[a]:.2f} -> {after[a]:.2f}" for a in after)
+            weights = ", ".join(f"a={a:g} x{w}" for a, w in report['level_weights'].items())
+            logger.info(f"    {muscle}: by activation (% Fmax, Step 3 -> refit) {levels}; level weights {weights}")
 
         # save the updated model
         cvt3_model_path = self.mjc_model_path[0:-8] + 'cvt3.xml'

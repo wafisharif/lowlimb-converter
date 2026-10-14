@@ -2,7 +2,8 @@
 
   lowlimb-convert check    MODEL.osim [--geometry DIR] [--md FILE] [--json FILE]
   lowlimb-convert convert  MODEL.osim OUT_DIR [--geometry DIR] [--steps 1 2 3] [--validate] [...]
-  lowlimb-convert validate MODEL.osim CONVERTED.xml OUT_DIR [--levels kinematics paths forces]
+  lowlimb-convert validate MODEL.osim CONVERTED.xml OUT_DIR [--levels kinematics paths forces elements]
+                           [--ik TRIAL_IK.mot --grf TRIAL_GRF.xml [--start S --end S] [--controls CONTROLS.sto]]
 
 Exit codes: 0 success; 1 the model can't be converted / a check failed; 2 bad input.
 """
@@ -43,6 +44,12 @@ def _cmd_check(a):
 def _cmd_convert(a):
     from lowlimb_converter import convert as cv
     try:
+        walking = _walking_args(a)            # checked before converting, so a bad trial fails fast
+        for k in ("ik", "grf", "controls"):
+            if walking and walking.get(k) and not os.path.isfile(walking[k]):
+                raise FileNotFoundError(walking[k])
+        if walking and not a.validate:
+            raise ValueError("--ik/--grf are for the validation report: add --validate")
         out = cv.convert(a.osim, a.out_dir, geometry=a.geometry, steps=a.steps, speedy=a.speedy,
                          myoconverter_validation=a.myoconverter_report, pdf=a.myoconverter_report,
                          add_ground_geom=not a.no_ground)
@@ -56,22 +63,47 @@ def _cmd_convert(a):
     if not a.validate:
         return 0
     from lowlimb_converter import validate as va
-    levels = ("kinematics",) if sorted(set(a.steps)) == [1] else va.LEVELS   # no muscles fitted after step 1 alone
+    levels = ("kinematics", "elements") if sorted(set(a.steps)) == [1] else va.LEVELS   # no muscles fitted yet
+    if walking and "paths" in levels:
+        levels = tuple(levels) + ("walking",)
     report_dir = os.path.join(a.out_dir, "validation")
-    r = va.validate(a.osim, out, report_dir, levels=levels)
+    r = va.validate(a.osim, out, report_dir, levels=levels, walking=walking)
     print(f"validation report: {os.path.join(report_dir, 'report.md')}")
     return 0 if r["ok"] else 1
+
+
+def _walking_args(a):
+    """The walking trial from --ik/--grf (both needed), or None."""
+    if not a.ik and not a.grf:
+        return None
+    if not (a.ik and a.grf):
+        raise ValueError("a walking trial needs both --ik and --grf")
+    return {"ik": a.ik, "grf": a.grf, "start": a.start, "end": a.end, "controls": a.controls}
 
 
 def _cmd_validate(a):
     from lowlimb_converter import validate as va
     try:
-        r = va.validate(a.osim, a.xml, a.out_dir, levels=a.levels)
+        walking = _walking_args(a)
+        levels = list(a.levels)
+        if walking and "walking" not in levels:
+            levels.append("walking")
+        r = va.validate(a.osim, a.xml, a.out_dir, levels=levels, walking=walking)
     except (FileNotFoundError, ValueError) as e:
         print(f"error: {e}", file=sys.stderr)
         return 2
     print(f"validation report: {os.path.join(a.out_dir, 'report.md')}")
     return 0 if r["ok"] else 1
+
+
+def _add_walking_args(p):
+    g = p.add_argument_group("walking trial (adds the walking level to the validation report)")
+    g.add_argument("--ik", help="OpenSim inverse-kinematics result of the trial (.mot or .sto)")
+    g.add_argument("--grf", help="its ground reaction forces as an OpenSim ExternalLoads file (.xml)")
+    g.add_argument("--start", type=float, help="start of the part to compare (s; default: the whole trial)")
+    g.add_argument("--end", type=float, help="end of the part to compare (s)")
+    g.add_argument("--controls", help="muscle excitations (.sto, e.g. OpenSim CMC's *_controls.sto): also replay "
+                                      "them open loop in both simulators (reported only)")
 
 
 def build_parser():
@@ -101,14 +133,16 @@ def build_parser():
     v.add_argument("--myoconverter-report", action="store_true",
                    help="also run MyoConverter's own validation plots and PDF (slow)")
     v.add_argument("--no-ground", action="store_true", help="don't add a ground plane geom")
+    _add_walking_args(v)
     v.set_defaults(func=_cmd_convert)
 
     r = sub.add_parser("validate", help="compare a converted MuJoCo model with its OpenSim original")
     r.add_argument("osim")
     r.add_argument("xml", help="the converted MuJoCo model (the _cvt3.xml for paths and forces)")
     r.add_argument("out_dir", help="folder for report.md, report.json and the detailed results")
-    r.add_argument("--levels", nargs="+", default=["kinematics", "paths", "forces"],
-                   choices=["kinematics", "paths", "forces"])
+    r.add_argument("--levels", nargs="+", default=["kinematics", "paths", "forces", "elements"],
+                   choices=["kinematics", "paths", "forces", "elements", "walking"])
+    _add_walking_args(r)
     r.set_defaults(func=_cmd_validate)
     return ap
 

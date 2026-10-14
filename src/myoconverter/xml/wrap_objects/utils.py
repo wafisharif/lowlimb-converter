@@ -1,3 +1,5 @@
+# Modified by lowlimb-converter (2026-10-12), from MyoConverter @ cadf380: new is_unconstrained() (Station 3,
+# change 3.4).
 """ This module contains a collection of utility functions useful for parsing and converting the OpenSim `WrapObjectSet`
 
 @author: Aleksi Ikkala
@@ -38,6 +40,21 @@ def mujoco_wrap_object_name(osim_wrap_object_name):
     raise RuntimeError
 
   return f"{osim_wrap_object_name}_{wrap_name_mapping[wrap_object[0].tag]}"
+
+def is_unconstrained(osim_wrap_object_name):
+  """ lowlimb-converter (change 3.4): True for a WrapCylinder or WrapSphere whose quadrant is "all" (or missing).
+
+  Such an object wraps a path only where the straight path intersects it, on the shorter side, and in MuJoCo that is a
+  wrap without a sidesite. Ellipsoids (approximated, and sized by Step 2 through their sidesites) and tori keep
+  upstream's handling.
+  """
+  found = cfg.O_BODYSET.findall(f".//*[@name='{osim_wrap_object_name}']") or \
+    cfg.O_GROUND.findall(f".//*[@name='{osim_wrap_object_name}']")
+  if len(found) != 1 or found[0].tag not in ("WrapCylinder", "WrapSphere"):
+    return False
+  quadrant = found[0].find("quadrant")
+  return quadrant is None or quadrant.text is None or quadrant.text.strip().lower() == "all"
+
 
 def projected_point_inside_segment(a, b, p):
   """ Check if projection of point p is inside segment starting from a and ending in b.

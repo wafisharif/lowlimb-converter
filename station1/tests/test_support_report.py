@@ -11,7 +11,7 @@ import os, sys, collections
 from lxml import etree
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.join(HERE, "..", "..")
 sys.path.insert(0, REPO)
-from lowlimb_converter.support import build_report
+from lowlimb_converter.support import build_report, read_osim
 
 fails = []
 def check(cond, msg):
@@ -21,7 +21,7 @@ def check(cond, msg):
 def n(root, xp): return len(root.xpath(xp))
 
 def s1(osim):
-    r = build_report(osim); m = etree.parse(osim).getroot().find("Model")
+    r = build_report(osim); m = read_osim(osim).getroot().find("Model")   # read_osim: "::" names (change 6.1)
     items = r["items"]
     print(f"S1 {os.path.basename(osim)}: {len(items)} items, outcome {r['outcome']}")
     check(all(i["status"] in ("converted","approximated","skipped","ignored","unsupported") and i["reason"] for i in items),
@@ -46,6 +46,7 @@ def s1(osim):
         elif sec in ("BodySet", "Ground") and i["rule"] == "body_components": by["body_components"] += 1
         elif sec in ("BodySet", "Ground"): by["geometry"] += 1
         elif sec == "Model" and kind == "gravity": by["gravity"] += 1
+        elif sec == "Model" and kind == "defaults": by["defaults"] += 1
         elif sec == "Model": by["top_other"] += 1
         else: by["UNCLASSIFIED"] += 1
     other_sets = [c for c in m if isinstance(c.tag, str) and c.tag not in
@@ -69,6 +70,7 @@ def s1(osim):
         "body_components": n(m, "BodySet/objects/*/components/*"),
         "top_other": top_other,
         "gravity": 1,
+        "defaults": 1 if m.find("defaults") is not None else 0,   # change 1c.3
     }
     check(by["UNCLASSIFIED"] == 0, "0 unclassified items")
     for k, v in expect.items():

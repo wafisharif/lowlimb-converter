@@ -22,6 +22,7 @@ Exit code: 0 if the predicted outcome is "converts", 1 if "fails", 2 on bad inpu
 import argparse
 import json
 import os
+import re
 import sys
 from collections import Counter
 
@@ -31,12 +32,16 @@ CONVERTED, APPROX, SKIPPED, IGNORED, UNSUPPORTED = "converted", "approximated", 
 STATUSES = (CONVERTED, APPROX, SKIPPED, IGNORED, UNSUPPORTED)
 
 # Element types with a parser (xml/parsers.py collects one class per file in each package folder).
-JOINT_TYPES = {"CustomJoint", "PinJoint", "SliderJoint", "UniversalJoint", "WeldJoint"}
+JOINT_TYPES = {"CustomJoint", "PinJoint", "SliderJoint", "UniversalJoint", "WeldJoint",
+               "PlanarJoint", "FreeJoint", "BallJoint", "GimbalJoint"}   # the last four: change 6.2
+CUSTOM_EQUIVALENT = {"PlanarJoint": 3, "FreeJoint": 6, "BallJoint": 3, "GimbalJoint": 3}   # number of coordinates
 CONSTRAINT_TYPES = {"CoordinateCouplerConstraint"}
 MUSCLE_TYPES = {"Thelen2003Muscle", "Millard2012EquilibriumMuscle", "Schutte1993Muscle_Deprecated"}
-STUB_FORCES = {"BushingForce", "FunctionBasedBushingForce", "CoordinateLimitForce", "PointActuator",
+STUB_FORCES = {"BushingForce", "FunctionBasedBushingForce", "PointActuator",
                "TorqueActuator", "SpringGeneralizedForce"}   # parse() only logs "not implemented, skipping"
 OTHER_FORCES = {"Ligament", "CoordinateActuator"}
+PATH_FORCES = {"PathActuator", "PathSpring"}                       # change 6.5
+CONTACT_GEOMETRY = {"ContactSphere", "ContactHalfSpace"}           # change 6.6
 PATH_POINT_TYPES = {"PathPoint", "MovingPathPoint", "ConditionalPathPoint"}
 WRAP_TYPES = {"WrapCylinder", "WrapSphere", "WrapEllipsoid", "WrapTorus"}
 WRAP_QUADRANTS = {"all", "+x", "x", "-x", "+y", "y", "-y", "+z", "z", "-z"}
@@ -51,7 +56,8 @@ RULES = {
     "ground_components": "bodies/Ground.py parse: if <components> exists only its children's geometry is parsed",
     "body": "bodies/Body.py parse: body with mass, mass_center, fullinertia (inertia dropped if not positive definite)",
     "body_unreached": "converter._add_bodies_and_joints: only bodies reachable from ground through JointSet are visited",
-    "mesh": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file)",
+    "mesh": "bodies/Body.py parse: only attached_geometry/Mesh is converted (vtp->stl via utils.copy_mesh_file; "
+            "ASCII stl->binary stl, obj copied, change 6.7)",
     "other_geometry": "bodies/Body.py parse: findall('attached_geometry/Mesh') ignores other geometry types",
     "body_components": "bodies/Body.py parse: <components> of a body are not read",
     "wrap": "wrap_objects/<type>.py via parsers.WrapObjectParser",
@@ -61,29 +67,42 @@ RULES = {
     "wrap_unknown": "parsers.BaseParser.parse: no parser for this tag -> NotImplementedError",
     "joint": "joints/<type>.py via parsers.JointParser",
     "joint_unknown": "parsers.BaseParser.parse: no parser for this tag -> NotImplementedError",
-    "joint_ncoord": "joints/PinJoint|SliderJoint|UniversalJoint.py: wrong number of coordinates -> error",
+    "joint_ncoord": "joints/PinJoint|SliderJoint|UniversalJoint.py, joints/_as_custom.py: wrong number of "
+                    "coordinates -> error",
+    "joint_custom_equivalent": "joints/_as_custom.py: converted as the CustomJoint it is (rotations about fixed axes, "
+                               "translations in the parent frame), exact (change 6.2)",
     "axis_constant": "joints/CustomJoint.py: Constant -> locked joint (or skipped if ~0)",
     "axis_linear": "joints/CustomJoint.py: LinearFunction with coefficients (+-1, 0) -> plain/flipped joint",
     "axis_linear_bad": "joints/CustomJoint.py: LinearFunction with other coefficients -> RuntimeError",
     "axis_spline": "joints/CustomJoint.py: SimmSpline/NaturalCubicSpline -> quartic polynomial (fitted over the "
                    "independent coordinate's range, Station 2 change 2.3) + joint equality; where one quartic is "
                    "off by more than 0.25 deg / 0.5 mm, two chained quartics through a helper joint (change 2.4)",
+    "axis_polynomial": "joints/CustomJoint.py: PolynomialFunction of degree <= 4 -> the same polynomial as a joint "
+                       "equality, exact (Station 2 change 2.5)",
+    "axis_polynomial_bad": "joints/CustomJoint.py: PolynomialFunction of degree > 4 -> NotImplementedError",
     "axis_unknown": "joints/CustomJoint.py: other function types -> RuntimeError",
     "axis_multi_dep": "joints/CustomJoint.py: spline axis whose coordinate depends on >1 coordinate, or on a "
                       "non-identity LinearFunction coupling -> NotImplementedError",
     "axis_order": "joints/CustomJoint.py parse: axes must be named rotation1..3, translation1..3 in that order -> "
                   "IndexError",
-    "designate_bad": "joints/CustomJoint.py _designate_dof: the first axis of each coordinate (processing order "
-                     "translation1-3, rotation1-3) must be SimmSpline or LinearFunction -> NotImplementedError",
+    "designate_bad": "joints/CustomJoint.py _designate_dof: unused since change 2.5 (an axis that can't be designated "
+                     "is coupled instead, and the coordinate is designated by its first linear axis)",
     "designate_linear_bad": "joints/CustomJoint.py _designate_dof: LinearFunction with slope != 1 and intercept != 0 "
                             "-> RuntimeWarning raised",
-    "undesignated": "joints/CustomJoint.py parse: a coordinate never designated as a DoF has its equality removed; "
-                    "with no such equality, M_EQUALITY.remove(None) -> TypeError",
-    "mesh_ext": "bodies/utils.py copy_mesh_file: mesh file not .vtp or .stl -> NotImplementedError",
-    "mesh_missing": "bodies/utils.py copy_mesh_file: mesh file not found in the geometry folder -> FileNotFoundError",
+    "undesignated": "joints/CustomJoint.py parse: no axis maps linearly to this coordinate (and no coupler drives "
+                    "it), so it can't be a MuJoCo joint -> NotImplementedError (change 2.5)",
+    "mesh_ext": "bodies/utils.py copy_mesh_file: mesh file not .vtp, .stl or .obj (any case, change 6.1; .obj and "
+                "ASCII .stl since change 6.7) -> NotImplementedError",
+    "mesh_placeholder": "bodies/utils.py copy_mesh_file: OpenSim's placeholder for no mesh file ('Unassigned' or "
+                        "empty); OpenSim shows nothing, the converter logs 'skipping' (change 6.1)",
+    "mesh_missing": "bodies/utils.py copy_mesh_file: mesh file not found in the geometry folder (not even up to "
+                    "case) -> FileNotFoundError",
+    "mesh_case": "bodies/utils.py find_mesh_file: the mesh file exists in the geometry folder under a name that "
+                 "differs only in case; that file is converted (change 6.11)",
     "coordinate": "joints/utils.py: range->range, clamped->limited, locked->lock equality, default_value->keyframe",
     "coordinate_prescribed": "joints/utils.py: <prescribed>/<prescribed_function> are not read",
-    "coordinate_fields": "joints/utils.py: reads <range>, <clamped>, <locked>; missing -> AttributeError",
+    "coordinate_fields": "joints/utils.py: <range>, <clamped> or <locked> omitted -> OpenSim's class default "
+                         "(range -10 10, not clamped, not locked), as OpenSim does (change 6.1)",
     "constraint": "constraints/CoordinateCouplerConstraint.py: spline -> quartic fit; LinearFunction -> exact",
     "constraint_bad": "constraints/CoordinateCouplerConstraint.py: >2 independent coords or other function -> error",
     "constraint_unknown": "parsers.BaseParser.parse: no parser for this tag -> NotImplementedError",
@@ -118,6 +137,26 @@ RULES = {
     "marker": "markers/Marker.py: site '<name>_marker' on the parent body",
     "marker_unknown": "parsers.BaseParser.parse: no parser for this tag -> NotImplementedError",
     "top_ignored": "converter.convert: this top-level set/component is never read",
+    "clf": "forces/CoordinateLimitForce.py: dead-band springs (fixed tendons) on the coordinate's joint, exact beyond "
+           "the transition and interpolated inside it; the damping beyond the limits is not converted (change 6.4)",
+    "clf_bad": "forces/CoordinateLimitForce.py: the coordinate is not a joint of the converted model -> "
+               "NotImplementedError",
+    "path_actuator": "forces/PathActuator.py: spatial tendon (path as for muscles) + general actuator with gain "
+                     "-optimal_force (change 6.5)",
+    "path_spring": "forces/PathSpring.py: spatial tendon with a one-sided spring (springlength 0..resting_length), "
+                   "exact at zero speed; dissipation not converted (change 6.5)",
+    "hunt_crossley": "forces/HuntCrossleyForce.py: sphere/plane geoms and contact pairs with exact geometry; the "
+                     "contact law is MuJoCo's, its parameters calibrated against OpenSim drops of the model "
+                     "(xml/contact_calibration.py, change 6.6)",
+    "contact_geometry_bad": "forces/HuntCrossleyForce.py: contact geometry missing, of a type other than "
+                            "ContactSphere/ContactHalfSpace, or on a frame that isn't a body, ground or an offset "
+                            "frame on one -> NotImplementedError/RuntimeError",
+    "contact_geometry": "forces/HuntCrossleyForce.py add_contact_geom: geom (sphere, or plane for a half-space; "
+                        "a large box for a half-space on a body that can move, change 6.8) at the same place on the same "
+                        "body, used by a converted contact force (change 6.6)",
+    "contact_unused": "converter.convert: contact geometry no converted contact force uses (not converted)",
+    "defaults": "xml/config.py apply_document_defaults: properties a component omits are taken from the file's "
+                "<defaults> objects, as OpenSim does (change 1c.3; MyoConverter ignored <defaults>)",
     "gravity": "bodies/Ground.py: the model's gravity, rotated into MuJoCo's world frame with the ground "
                "(change 1c.1)",
 }
@@ -158,18 +197,33 @@ class Report:
         return item
 
 
+def _case_match(folder, name):
+    """The one file in folder whose name equals name up to case (change 6.11), or None."""
+    if not os.path.isdir(folder):
+        return None
+    matches = [f for f in os.listdir(folder) if f.lower() == name.lower()]
+    return matches[0] if len(matches) == 1 else None
+
+
 def _geometry(rep, owner_xml, owner_name, section):
     ag = owner_xml.find("attached_geometry")
     for g in ([c for c in ag if isinstance(c.tag, str)] if ag is not None else []):
         name = g.get("name", "")
         if g.tag == "Mesh":
             mf = _txt(g, "mesh_file", "")
-            if mf[-3:] not in ("vtp", "stl"):
+            if mf.strip().lower() in ("", "unassigned"):
+                rep.add(section, "Mesh", name, SKIPPED, "mesh_placeholder", path=f"{owner_name}/{name}")
+            elif mf[-3:].lower() not in ("vtp", "stl", "obj"):
                 rep.add(section, "Mesh", name, UNSUPPORTED, "mesh_ext", path=f"{owner_name}/{name}",
-                        reason=f"mesh file '{mf}' is not .vtp or .stl -> NotImplementedError")
-            elif rep.geometry is not None and not os.path.isfile(os.path.join(rep.geometry, mf)):
+                        reason=f"mesh file '{mf}' is not .vtp, .stl or .obj -> NotImplementedError")
+            elif rep.geometry is not None and not os.path.isfile(os.path.join(rep.geometry, mf)) and \
+                    _case_match(rep.geometry, mf) is None:
                 rep.add(section, "Mesh", name, UNSUPPORTED, "mesh_missing", path=f"{owner_name}/{name}",
                         reason=f"mesh file '{mf}' not found in {rep.geometry} -> FileNotFoundError")
+            elif rep.geometry is not None and not os.path.isfile(os.path.join(rep.geometry, mf)):
+                rep.add(section, "Mesh", name, CONVERTED, "mesh_case", path=f"{owner_name}/{name}",
+                        reason=f"mesh file '{mf}' read from '{_case_match(rep.geometry, mf)}' (same name but for "
+                               "case; change 6.11)")
             else:
                 rep.add(section, "Mesh", name, CONVERTED, "mesh", path=f"{owner_name}/{name}")
         else:
@@ -237,21 +291,23 @@ def _joint(rep, root, joint, section="JointSet"):
         return
     cel = joint.find("coordinates")   # joints/*.py: parse_coordinates(xml.find("coordinates")) iterates children
     coords = [c for c in (cel if cel is not None else []) if isinstance(c.tag, str)]
-    expected = {"PinJoint": 1, "SliderJoint": 1, "UniversalJoint": 2}.get(joint.tag)
+    expected = {"PinJoint": 1, "SliderJoint": 1, "UniversalJoint": 2, **CUSTOM_EQUIVALENT}.get(joint.tag)
     if expected is not None and len(coords) != expected:
         rep.add(section, joint.tag, jname, UNSUPPORTED, "joint_ncoord",
                 reason=f"{joint.tag} has {len(coords)} coordinates, expected {expected}")
         return
-    rep.add(section, joint.tag, jname, CONVERTED, "joint")
+    rep.add(section, joint.tag, jname, CONVERTED,
+            "joint_custom_equivalent" if joint.tag in CUSTOM_EQUIVALENT else "joint")
     for c in coords:
         cpath = f"{jname}/{c.get('name')}"
-        if any(c.find(t) is None for t in ("range", "clamped", "locked")):
-            rep.add(section, "Coordinate", c.get("name"), UNSUPPORTED, "coordinate_fields", path=cpath)
-            continue
+        missing = [t for t in ("range", "clamped", "locked") if c.find(t) is None]
         prescribed = (_txt(c, "prescribed", "false") or "false").lower() in ("true", "1")
         if prescribed:
             rep.add(section, "Coordinate", c.get("name"), APPROX, "coordinate_prescribed", path=cpath,
                     reason="prescribed=true is not read: the coordinate becomes a free joint")
+        elif missing:
+            rep.add(section, "Coordinate", c.get("name"), CONVERTED, "coordinate_fields", path=cpath,
+                    reason=f"{RULES['coordinate_fields']}: {', '.join(missing)} omitted")
         else:
             rep.add(section, "Coordinate", c.get("name"), CONVERTED, "coordinate", path=cpath)
     if joint.tag != "CustomJoint":
@@ -284,7 +340,8 @@ def _custom_axes(rep, root, joint, coord_names, section):
         status = None
         if coord and coord in coord_names and coord not in designated:
             # _designate_dof(t, ...): SimmSpline (identity -> designated; non-identity -> not designated),
-            # LinearFunction (designated unless slope != 1 and intercept != 0), anything else -> error
+            # LinearFunction (designated unless slope != 1 and intercept != 0), anything else -> not designated
+            # (change 2.5; upstream raised NotImplementedError)
             if fn is not None and fn.tag == "SimmSpline":
                 x, y = _spline_xy(fn)
                 if not (len(x) > 2 and not (len(x) == len(y) and all(abs(a - b) <= 1e-8 + 1e-5 * abs(b)
@@ -297,9 +354,6 @@ def _custom_axes(rep, root, joint, coord_names, section):
                     status = (UNSUPPORTED, "designate_linear_bad", f"coefficients {k}")
                 else:
                     designated.append(coord)
-            else:
-                status = (UNSUPPORTED, "designate_bad",
-                          f"first axis of coordinate {coord} uses {fn.tag if fn is not None else 'no function'}")
         if status is None:
             if fn is None:
                 status = (UNSUPPORTED, "axis_unknown", "no function element")
@@ -308,6 +362,16 @@ def _custom_axes(rep, root, joint, coord_names, section):
             elif fn.tag in SPLINES:
                 status = (UNSUPPORTED, "axis_multi_dep", None) if coord and not _coupling_ok(root, coord) \
                     else (APPROX, "axis_spline", None)
+            elif fn.tag == "PolynomialFunction":
+                k = _vec(_txt(fn, "coefficients", ""))
+                while len(k) > 1 and k[0] == 0:
+                    k = k[1:]
+                if len(k) > 5:
+                    status = (UNSUPPORTED, "axis_polynomial_bad", f"degree {len(k) - 1}")
+                elif coord and not _coupling_ok(root, coord):
+                    status = (UNSUPPORTED, "axis_multi_dep", None)
+                else:
+                    status = (CONVERTED, "axis_polynomial", None)
             elif fn.tag == "LinearFunction":
                 k = [scale * v for v in _vec(_txt(fn, "coefficients", "1 0"))]
                 if abs(k[0]) != 1 or k[1] != 0:
@@ -348,37 +412,72 @@ def _body_tree(rep, root):
                 return b
         return None
 
+    def frame(joint, frames, name):
+        """converter._socket_frame (change 6.1): (socket_parent of the frame) or None."""
+        f = frames.find(f".//*[@name='{name}']") if frames is not None else None
+        if f is not None:
+            return _txt(f, "socket_parent")
+        if not (name or "").startswith("/"):
+            return None
+        parts = [p for p in name.split("/") if p]
+        if len(parts) == 3 and parts[0] == "bodyset" or len(parts) == 2 and parts[0] == "ground":
+            owner = root.find("Ground") if parts[0] == "ground" else find_body(parts[1])
+            if owner is None or owner.find(f"components/PhysicalOffsetFrame[@name='{parts[-1]}']") is None:
+                return None
+            return "/" + "/".join(parts[:-1])
+        if len(parts) == 2 and parts[0] == "bodyset" or parts == ["ground"]:
+            return name
+        return None
+
+    def add(joint, child_parent, depth):
+        child_name = child_parent.split("/")[-1]
+        body = find_body(child_name)
+        if body is None:
+            rep.add("BodySet", "Body", child_name, UNSUPPORTED, "body",
+                    reason="child body referenced by a joint not found in BodySet")
+            return
+        visited_bodies.add(child_name)
+        visited_joints.add(joint.get("name"))
+        rep.add("BodySet", body.tag, child_name, CONVERTED, "body")
+        _geometry(rep, body, child_name, "BodySet")
+        _wraps(rep, body, child_name, "BodySet")
+        comps = body.find("components")
+        for comp in ([c for c in comps if isinstance(c.tag, str)] if comps is not None else []):
+            rep.add("BodySet", comp.tag, comp.get("name", ""), IGNORED, "body_components",
+                    path=f"{child_name}/{comp.get('name', '')}", traversed=False)
+        _joint(rep, root, joint)
+        visit(child_parent, depth + 1)
+
     def visit(parent_name, depth=0):
         if jointset is None or depth > 500:
             return
+        origin = parent_name
         for s in jointset.xpath(f".//socket_parent[text()='{parent_name}']"):
             frames = s.getparent().getparent()
             joint = frames.getparent()
-            pf = frames.find(f".//*[@name='{_txt(joint, 'socket_parent_frame')}']")
-            cf = frames.find(f".//*[@name='{_txt(joint, 'socket_child_frame')}']")
+            pf = frame(joint, frames, _txt(joint, 'socket_parent_frame'))
+            cf = frame(joint, frames, _txt(joint, 'socket_child_frame'))
             if pf is None or cf is None:
                 rep.add("JointSet", joint.tag, joint.get("name", ""), UNSUPPORTED, "joint_unknown",
                         reason="socket frames not found")
                 continue
-            if _txt(cf, "socket_parent") == parent_name:
+            if cf == parent_name:
                 continue
-            child_name = _txt(cf, "socket_parent").split("/")[-1]
-            body = find_body(child_name)
-            if body is None:
-                rep.add("BodySet", "Body", child_name, UNSUPPORTED, "body",
-                        reason="child body referenced by a joint not found in BodySet")
+            add(joint, cf, depth)
+        # change 6.1: joints whose parent socket names this body (or an offset frame on it) directly
+        for joint in _objects(root, "JointSet"):
+            name = _txt(joint, "socket_parent_frame") or ""
+            frames = joint.find("frames")
+            if (frames is not None and frames.find(f".//*[@name='{name}']") is not None) or not name.startswith("/"):
                 continue
-            visited_bodies.add(child_name)
-            visited_joints.add(joint.get("name"))
-            rep.add("BodySet", body.tag, child_name, CONVERTED, "body")
-            _geometry(rep, body, child_name, "BodySet")
-            _wraps(rep, body, child_name, "BodySet")
-            comps = body.find("components")
-            for comp in ([c for c in comps if isinstance(c.tag, str)] if comps is not None else []):
-                rep.add("BodySet", comp.tag, comp.get("name", ""), IGNORED, "body_components",
-                        path=f"{child_name}/{comp.get('name', '')}", traversed=False)
-            _joint(rep, root, joint)
-            visit(_txt(cf, "socket_parent"), depth + 1)
+            if frame(joint, frames, name) != origin:
+                continue
+            cf = frame(joint, frames, _txt(joint, "socket_child_frame"))
+            if cf is None:
+                rep.add("JointSet", joint.tag, joint.get("name", ""), UNSUPPORTED, "joint_unknown",
+                        reason="socket frames not found")
+                continue
+            add(joint, cf, depth)
 
     ground = root.find("Ground") if root.find("Ground") is not None else root.find("ground")
     visit(f"/{ground.get('name', 'ground')}")
@@ -439,7 +538,8 @@ def _mpp_status(pp):
 def _cpp_fit_applies(force, pp, index, n_points):
     """Mirrors conditional_path_point_dependencies' early returns: a Muscle, not the first or last point, and a
     condition coordinate that is unlocked and is not the dependent of an enforced coupler (so it is a MuJoCo joint)."""
-    if not force.tag.endswith("Muscle") or index == 0 or index == n_points - 1:
+    if not (force.tag.endswith("Muscle") or force.tag in PATH_FORCES or force.tag == "Ligament") \
+            or index == 0 or index == n_points - 1:     # PathActuator, PathSpring, Ligament: change 6.5
         return False
     cname = (_txt(pp, "socket_coordinate") or "").split("/")[-1]
     root = force.getroottree().getroot()
@@ -481,6 +581,39 @@ def _path(rep, force):
                 path=f"{fname}/{pw.get('name', '')}->{_txt(pw, 'wrap_object')}")
 
 
+def _contact_geometries(root):
+    objs = root.find("ContactGeometrySet/objects")
+    return {g.get("name"): g for g in (objs if objs is not None else []) if isinstance(g.tag, str)}
+
+
+def _contact_names(force):
+    return [n for p in force.iter("HuntCrossleyForce__ContactParameters")
+            for n in (_txt(p, "geometry", "") or "").split()]
+
+
+def _contact_problem(root, force):
+    """Why the converter would stop on this HuntCrossleyForce (HuntCrossleyForce.parse), or None."""
+    geometries = _contact_geometries(root)
+    bodies = {b.get("name"): b for b in _objects(root, "BodySet")}
+    ground = root.find("Ground")
+    for n in _contact_names(force):
+        g = geometries.get(n)
+        if g is None:
+            return f"contact geometry {n} not found"
+        if g.tag not in CONTACT_GEOMETRY:
+            return f"{n} is a {g.tag}"
+        parts = [p for p in (_txt(g, "socket_frame", "") or "").split("/") if p]
+        if parts and parts[0] == "ground":
+            owner, rest = ground, parts[1:]
+        elif len(parts) >= 2 and parts[0] == "bodyset" and parts[1] in bodies:
+            owner, rest = bodies[parts[1]], parts[2:]
+        else:
+            return f"{n} is on frame {_txt(g, 'socket_frame')}"
+        if len(rest) > 1 or (rest and owner.find(f"components/PhysicalOffsetFrame[@name='{rest[0]}']") is None):
+            return f"{n} is on frame {_txt(g, 'socket_frame')}"
+    return None
+
+
 def _forces(rep, root):
     for f in _objects(root, "ForceSet"):
         name = f.get("name")
@@ -494,6 +627,31 @@ def _forces(rep, root):
             _path(rep, f)
         elif f.tag == "CoordinateActuator":
             rep.add("ForceSet", f.tag, name, CONVERTED, "coord_actuator")
+        elif f.tag == "CoordinateLimitForce":
+            if not applies:
+                rep.add("ForceSet", f.tag, name, IGNORED, "not_applied")
+                continue
+            coord = (_txt(f, "coordinate") or "").strip()
+            known = bool(root.xpath(f"JointSet//coordinates/Coordinate[@name='{coord}']"))
+            rep.add("ForceSet", f.tag, name, APPROX if known else UNSUPPORTED, "clf" if known else "clf_bad")
+        elif f.tag in PATH_FORCES:
+            if not applies:
+                rep.add("ForceSet", f.tag, name, IGNORED, "not_applied")
+                _ignore_path(rep, f, "its force has appliesForce=false and is not converted")
+                continue
+            rep.add("ForceSet", f.tag, name, CONVERTED if f.tag == "PathActuator" else APPROX,
+                    "path_actuator" if f.tag == "PathActuator" else "path_spring")
+            _path(rep, f)
+        elif f.tag == "HuntCrossleyForce":
+            if not applies:
+                rep.add("ForceSet", f.tag, name, IGNORED, "not_applied")
+                continue
+            problem = _contact_problem(root, f)
+            if problem:
+                rep.add("ForceSet", f.tag, name, UNSUPPORTED, "contact_geometry_bad",
+                        reason=f"{RULES['contact_geometry_bad']} ({problem})")
+            else:
+                rep.add("ForceSet", f.tag, name, APPROX, "hunt_crossley")
         elif f.tag in STUB_FORCES:
             rep.add("ForceSet", f.tag, name, SKIPPED, "stub")
             _ignore_path(rep, f, "its force is skipped (stub parser)")
@@ -535,12 +693,49 @@ def _ground(rep, root):
     _wraps(rep, g, gname, "Ground")
 
 
+_NESTED_NAME = re.compile(rb"<(/?)([A-Za-z_][A-Za-z0-9_.-]*)::([A-Za-z_][A-Za-z0-9_.-]*)")
+
+
+def read_osim(path):
+    """Same as the converter's xml/utils.py read_osim (change 6.1): OpenSim's nested-class element names
+    (HuntCrossleyForce::ContactParameters) are read with "__" instead of "::", which XML doesn't allow."""
+    with open(path, "rb") as f:
+        data = f.read()
+    if b"::" in data:
+        data = _NESTED_NAME.sub(rb"<\1\2__\3", data)
+    return etree.ElementTree(etree.fromstring(data))
+
+
+def apply_document_defaults(model):
+    """Same as the converter's xml/config.py apply_document_defaults (change 1c.3), kept here so the report needs no
+    converter import: every component that omits a property gets it from the <defaults> object of its class."""
+    from copy import deepcopy
+    defaults_element = model.find("defaults")
+    if defaults_element is None:
+        return 0
+    templates = {d.tag: d for d in defaults_element if isinstance(d.tag, str)}
+    targets = [el for el in model.iter() if isinstance(el.tag, str) and el.tag in templates
+               and el is not defaults_element and defaults_element not in el.iterancestors()]
+    filled = 0
+    for el in targets:
+        present = {c.tag for c in el if isinstance(c.tag, str)}
+        for prop in templates[el.tag]:
+            if isinstance(prop.tag, str) and prop.tag not in present:
+                el.append(deepcopy(prop))
+                filled += 1
+    return filled
+
+
 def build_report(osim_path, geometry=None):
-    tree = etree.parse(osim_path)
+    tree = read_osim(osim_path)
     root = tree.getroot().find("Model")
     if root is None:
         raise ValueError("no <Model> element: not an OpenSim 4 model file")
     rep = Report(root.get("name"), geometry)
+    filled = apply_document_defaults(root)       # what the converter does first (change 1c.3)
+    if root.find("defaults") is not None:
+        rep.add("Model", "defaults", "defaults", CONVERTED, "defaults", traversed=False,
+                reason=f"{RULES['defaults']}: {filled} properties filled in")
     _ground(rep, root)
     _constraints(rep, root)
     _body_tree(rep, root)
@@ -550,8 +745,23 @@ def build_report(osim_path, geometry=None):
             rep.add("MarkerSet", "Marker", m.get("name"), CONVERTED, "marker")
         else:
             rep.add("MarkerSet", m.tag, m.get("name"), UNSUPPORTED, "marker_unknown")
+    used_contact = {n for f in _objects(root, "ForceSet") if f.tag == "HuntCrossleyForce"
+                    and (_txt(f, "appliesForce", "true") or "true").lower() not in ("false", "0")
+                    for n in _contact_names(f)}
     for child in [c for c in root if isinstance(c.tag, str)]:
         if child.tag in HANDLED_TOP or child.tag in NON_ELEMENT_TOP:
+            continue
+        if child.tag == "ContactGeometrySet":     # change 6.6
+            objs = child.find("objects")
+            members = [c for c in (objs if objs is not None else []) if isinstance(c.tag, str)]
+            if not members:
+                rep.add("Model", child.tag, child.tag, IGNORED, "top_ignored", traversed=False,
+                        reason=f"{RULES['top_ignored']} (empty)")
+            for m in members:
+                ok = m.get("name") in used_contact and m.tag in CONTACT_GEOMETRY
+                rep.add("Model", m.tag, m.get("name", m.tag), CONVERTED if ok else IGNORED,
+                        "contact_geometry" if ok else "contact_unused", path=f"{child.tag}/{m.get('name', m.tag)}",
+                        traversed=False)
             continue
         objs = child.find("objects")
         members = [c for c in (objs if objs is not None else child) if isinstance(c.tag, str)]
