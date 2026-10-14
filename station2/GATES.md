@@ -65,3 +65,13 @@ If a model fails K1 or K2, it stays at Station 2. The cause is found and fixed i
   body origin, not the joint's child frame. Size unknown until run.
 - The `'%.4g'` formatting also tilts the root by 0.0117° (90° becomes 1.571 rad). Both `ground` and `pelvis` get the
   same tilt, so it cancels in this comparison. It does tilt gravity relative to the model; noted for Station 5.
+
+## Addendum 2026-10-12: a fourth model (written before any result for it)
+
+RajagopalLaiUhlrich2023 (opensim-models @ d9b05d4, `Models/Rajagopal/`, same merged geometry folder as
+Rajagopal2016) could not be converted until change 2.5 (PolynomialFunction axes in its walker knees). From now on it is
+checked like Rajagopal2016: XML step (cvt1), the same poses, method and gates K0–K2. Nothing above changes.
+
+Expected from reading the model and the code: the knee's PolynomialFunction axes are degree 3–4 and become MuJoCo's
+coupling exactly, so the knee itself should pass. The patella uses SimmSplines like Rajagopal2016's (chained where
+one quartic is off by more than 0.25°); expect PASS, with the patella the worst body.

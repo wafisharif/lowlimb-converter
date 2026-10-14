@@ -76,3 +76,14 @@ samples without equilibrium should go. Corrected rule:
 
 - A sample is left out (and counted) when OpenSim's fiber is at its minimum length **and** |tendon force − fiber force
   along tendon| > 1e-6 × Fmax. Clamped samples where the two agree (a slack muscle, force zero) stay in.
+
+## Addendum 2026-10-12: Rajagopal 2016 (written before any Station 4 result for it)
+
+Rajagopal2016 is checked with the method and gates F0–F2 above (with the amendment); nothing above changes. As in
+Station 3's addendum, the MyoConverter column is the cvt3 of the full pipeline run by the Station 1a port (commit
+1670ae3; MyoConverter never shipped a Rajagopal 2016 conversion), in MuJoCo 3.15. Poses: the Station 2 poses for
+Rajagopal2016; all 80 muscles (Millard2012EquilibriumMuscle). Misses may be listed only with a test-backed reason.
+
+Expected: as for the gait models, the refit (changes 4.1–4.3) should beat MyoConverter's particle swarm for nearly
+every muscle; muscles whose MyoConverter path is already off (below the knee, Station 2's 15.6 mm error) will be off
+in force too in that column.

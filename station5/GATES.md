@@ -70,3 +70,51 @@ shown by a test.
 Reported, no gate: max errors; means over muscles, pairs and coordinates; the pelvis (residual) forces and moments;
 level 3. If W1–W3 fail, the model stays at Station 5; the cause is fixed in the converter as its own change (logged,
 with a before/after on both models). The gates don't change.
+
+## Addendum 2026-10-12: Rajagopal 2016 (written before any Station 5 result for it)
+
+Rajagopal2016 is checked with the method and gates W0–W3 above; nothing above changes. What differs:
+
+- **MyoConverter column:** the cvt3 of the full pipeline run by the Station 1a port (commit 1670ae3), as in the
+  Station 3 and 4 addenda (MyoConverter never shipped a Rajagopal 2016 conversion), run in MuJoCo 3.15.
+- **Walking data:** OpenSim's own Rajagopal pipeline in opensim-models @ d9b05d4 (`Pipelines/Rajagopal`) ships the
+  raw trial (markers, ground reaction forces) but not its inverse kinematics, so `station5/make_rajagopal_trial.py`
+  rebuilds it with OpenSim's tools and the pipeline's own settings: the generic model scaled with the pipeline's
+  applied scale factors and given its subject marker set, then the InverseKinematicsTool with `IK/ik_setup_walk.xml`.
+  Ground reaction forces: `ID/grf_walk.xml` with `ExpData/grf_walk.mot`. Time range: the ID setup's 0.45–1.8 s. As
+  for the gait models, the coordinates are replayed on the generic model.
+- **Level 3 is not run:** the pipeline ships no CMC result (excitations) for this trial.
+
+Expected: the MyoConverter column carries Station 2's knee error (15.6 mm below the knee), so its lengths, moment arms
+and joint moments below the knee should be much worse than ours; W3's absolute limit (0.02 N·m/kg) is the harder part
+for both, because the generic model is driven by a scaled subject's data and Rajagopal's light feet and patellae make
+the ankle and knee moments sensitive.
+
+## Amendment 2026-10-12 (Rajagopal 2016 only; before any Station 5 result for it)
+
+Station 3 found that for paths wrapping over cylinders OpenSim's `computeMomentArm` is not the derivative of OpenSim's
+own muscle length (Rajagopal 2016: typically 0.05–1 mm, up to 18 mm off; station3/GATES.md, amendment of the same
+day). The same definition change applies here, for Rajagopal2016 only: OpenSim's moment arm along the trial is −dL/dq
+of OpenSim's muscle length by central difference (h = 1e-6, coupled coordinates following their constraint, as
+MuJoCo's side), and W0's OpenSim self-check compares h with 10h within 1e-6 m on ≥ 99% of samples. `computeMomentArm`
+is still stored and its difference reported. Finite differences now also move coupled coordinates with their
+constraint (Rajagopal's knee_angle_beta; the gait models have no couplers, and their reference data are unchanged
+bit for bit). Seen before writing this: no Station 5 number for Rajagopal2016.
+
+## Amendment 2026-10-13 (Rajagopal 2016 only; after W0 failed in run1, before any W1–W3 number)
+
+run1 failed W0 for our column on the check itself, not on a converted value (W1–W3 were not evaluated, so no W1–W3
+number exists for any column): (1) "OpenSim coordinates without a MuJoCo joint: knee_angle_r_beta, knee_angle_l_beta",
+the coordinates Rajagopal's patella couplers drive, which the converter reproduces through the coupling (helper
+joints, change 2.4) instead of as joints of their own; (2) OpenSim QErr 2.0e-9 > 1e-9, because the IK file's own
+column for those coordinates satisfies the coupler only to IK's accuracy. Stations 2 and 3 already treat coupled
+coordinates as following their constraint. Changes, which leave the gait models (no couplers) bit for bit unchanged:
+- A coordinate an enforced CoordinateCouplerConstraint drives needn't have a MuJoCo joint (W0).
+- Along the trial its value, speed and acceleration come from the coupler and the independent coordinates (chain
+  rule), not from the IK file's column; QErr's limit stays 1e-9.
+- Its generalized force from inverse dynamics is carried to its independent coordinate(s) by the coupler's derivative
+  (virtual work), which is what the MuJoCo side's projection onto the coordinates does; W3 then compares the
+  independent coordinates (knee_angle_r/l include the patella's share on both sides). The solver's own output is kept
+  (`tau_raw`).
+Everything else (gates, tolerances, columns, data) is unchanged. Seen before writing this: run1's W0 problems above;
+no W1–W3 number.

@@ -55,3 +55,48 @@ own Step 2 report compares with this check.
 
 If M1 fails, the model stays at Station 3; the cause is fixed in the converter as its own change (logged, with a
 before/after on both models). The gates don't change.
+
+## Addendum 2026-10-12: Rajagopal 2016 (written before any Station 3 result for it)
+
+Rajagopal2016 passed Station 2 (change 2.4) and is checked here with the method, pose rule and gates M0–M1 above;
+nothing above changes. Two things differ only because MyoConverter never shipped or reported a Rajagopal 2016
+conversion, so Station 0 has no output for it:
+
+| Column | MuJoCo file | Run in |
+| --- | --- | --- |
+| MyoConverter (baseline) | cvt3 of the full pipeline run by the Station 1a port (commit 1670ae3: upstream @ cadf380 plus the four MuJoCo 3 / NumPy 2 fixes, shown equal to upstream's output to 1e-16 on both gait models) | MuJoCo 3.15 |
+| Ours | cvt3 from the full pipeline with the current converter | MuJoCo 3.15 |
+
+- Poses: the Station 2 poses for Rajagopal2016 (1000 random + 41 per swept coordinate; locked coordinates at default,
+  `knee_angle_*_beta` from its coupler).
+- Muscles: all 80. The 17 CoordinateActuators are not muscles and are not checked here.
+- Expected from reading the model and the code: the MyoConverter column carries Station 2's knee error (the tibia and
+  everything below it were 15.6 mm off before change 2.1), so every muscle crossing the knee or ankle should be
+  worse there than ours. Rajagopal's paths use 40 wrapping cylinders, which MyoConverter's Step 2 moves but never
+  rotates (its documented limitation 7); muscles wrapping over the hip and knee are where M1 could fail for us.
+
+## Amendment 2026-10-12 (Rajagopal 2016 only; after M0 failed on OpenSim's side, before any gated M1 number)
+
+The first Station 3 check on Rajagopal2016 failed M0 in the OpenSim column: OpenSim's `computeMomentArm` agreed with
+−dL/dq by central difference within 1e-5 m on only 78% of the check samples. Every disagreeing pair belongs to a muscle
+whose path wraps over a cylinder (the adductors around the femoral shaft, the hamstrings, gastrocnemii and quadriceps
+at the knee, iliacus and psoas at the pelvic brim, gluteus maximus); no pair of a muscle without wrapping disagrees.
+It is not finite-difference noise: for the pairs examined, −dL/dq gives the same value for steps from 1e-7 to 1e-3
+(to 1e-7 mm), while it differs from `computeMomentArm` by typically 0.05–1 mm and up to 18 mm (gastrocnemius about
+the knee). So for wrapped paths OpenSim's analytic moment arm is not the derivative of OpenSim's own muscle length,
+while MuJoCo's side of this check, and the definition of a moment arm (virtual work: the length change per unit
+coordinate change), is −dL/dq.
+
+Change, for Rajagopal2016 only (the gait models have no wrapping, M0 passed there on 100% of samples, and their
+numbers stay as gated):
+- **OpenSim moment arm := −dL/dq of OpenSim's muscle length**, central difference, h = 1e-6 (rad or m), coupled
+  coordinates following their constraint, exactly as MuJoCo's side.
+- **M0's OpenSim self-check becomes the same as MuJoCo's:** −dL/dq with h = 1e-6 and h = 1e-5 agree within 1e-6 m
+  for ≥ 99% of samples of the first 50 random poses. The difference between `computeMomentArm` and −dL/dq is reported
+  for every pair (no gate).
+- Everything else (poses, pairs, M1 and its tolerance, the MyoConverter column) is unchanged.
+
+Seen before writing this: the M0 failure and its cause above, and the per-pair errors of our own XML-step model (cvt1)
+against OpenSim's `computeMomentArm`, which is not a gated column; no MyoConverter-column or cvt3 number. Open for Wafi
+to reverse. MyoConverter's own Step 2 fits its wrapping sites to `computeMomentArm`, so its targets carry the same
+inconsistency; that is part of what this station measures, not a reason to change the gate.
