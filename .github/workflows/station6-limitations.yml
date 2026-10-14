@@ -1,7 +1,7 @@
 name: station6-limitations
 
 # Station 6: past MyoConverter's limitations (station6/GATES.md) on a clean Linux machine. On push: the tests of
-# changes 6.1-6.13 (each fails on the converter before it), the wrap-side and level-guard tests of changes 3.5 and
+# changes 6.1-6.14 (each fails on the converter before it), the wrap-side and level-guard tests of changes 3.5 and
 # 4.4, and the support report's S1 check on all 56 opensim-models files. The gated run over all 56 files
 # (station6/run_station6.sh, several hours) is manual.
 on:
@@ -62,6 +62,8 @@ jobs:
         run: python station6/tests/test_contacts.py src ../before/src ../opensim-models ../s6_scratch/contacts
       - name: The files that stopped the first gated runs (6.7-6.9, 6.11, 6.13)
         run: python station6/tests/test_more_files.py src ../before/src ../opensim-models ../s6_scratch/more
+      - name: A spline fit whose least-squares solve breaks down (6.14)
+        run: python station6/tests/test_fit_breakdown.py src ../before/src
       - name: Wrap sides (3.5) and the force refit's level guarantees (4.4)
         run: |
           python station3/tests/test_wrap_sides.py src ../opensim-models ../rajagopal_geometry upstream/models/osim/Gait10dof18musc ../s6_scratch/wraps

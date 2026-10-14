@@ -7,6 +7,8 @@
 # (scale_helper, add_helper_joint; Station 5, change 5.3).
 # Modified by lowlimb-converter (2026-10-12): new read_osim() reads OpenSim files whose element names contain "::"
 # (Station 6, change 6.1).
+# Modified by osim2mujoco (2026-10-14): fit_spline_on_range() stops its reweighting when a weighted least-squares
+# solve breaks down, instead of failing the conversion (Station 6, change 6.14).
 """ This module contains a collection of utility functions useful for parsing and converting the OpenSim model.
 
 @author: Aleksi Ikkala
@@ -232,7 +234,14 @@ def fit_spline_on_range(kind, x_values, y_values, x_range, n_samples=2001, itera
   candidates = [Polynomial.fit(x_values, y_values, degree).convert()]   # upstream fit
   w = np.full(n_samples, 1.0 / n_samples)
   for _ in range(iterations):
-    p = Polynomial.fit(xs, ys, degree, w=np.sqrt(w)).convert()
+    # change 6.14: the reweighting drives many weights to exactly zero (up to half the samples), and on some machines
+    # LAPACK's SVD then fails to converge (GitHub's Linux runners, now and then: SoccerKick's and Leg39's moving path
+    # points). The candidates so far are kept; the best of them is chosen below exactly as before, so where the solve
+    # doesn't break down nothing changes.
+    try:
+      p = Polynomial.fit(xs, ys, degree, w=np.sqrt(w)).convert()
+    except np.linalg.LinAlgError:
+      break
     candidates.append(p)
     e = np.abs(p(xs) - ys)
     if e.max() == 0:

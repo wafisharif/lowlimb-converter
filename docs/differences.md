@@ -95,6 +95,7 @@ Details: {repo}`station5/FINDINGS.md`.
 | 6.11 | A mesh file named in another case is found |
 | 6.12 | Contact parameters must keep the whole model stable (the best fit threw a free walker model 4 m into the air) |
 | 6.13 | The calibration's OpenSim simulations run in a fresh process (they failed now and then inside the conversion) |
+| 6.14 | A spline fit whose least-squares solve breaks down keeps its best result so far instead of failing the conversion (it happened now and then on GitHub's machines) |
 
 Details: {repo}`station6/FINDINGS.md`.
 

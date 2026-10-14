@@ -23,9 +23,6 @@ calibration drops that include rocking and sliding.
 force–length curve with activation, so the force fit keeps full activation and passive closest and lets the middle of
 the range pay. How force changes with speed (force–velocity) isn't checked at all.
 
-**Intermittent CI failure.** On one run of GitHub's Linux machine, two models (SoccerKick, Leg39) failed to convert
-inside a test, and passed on the next run. The cause isn't known yet. The test now prints the error if it happens
-again.
 
 ## MyoConverter's documented limitations
 

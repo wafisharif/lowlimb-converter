@@ -28,6 +28,7 @@ Gates and method: `station6/GATES.md` (posted to the plan doc before any Station
 | 6.11 | A mesh file named in another case finds its file (as OpenSim does on macOS and Windows) | Leg39 |
 | 6.12 | The calibrated contact parameters must keep the whole, unlocked model stable | WalkerModel: the best fit to the drops threw the free model 4 m into the air |
 | 6.13 | The calibration's OpenSim drops run in a fresh process (bit for bit the same result) | ToyLandingModel: in the conversion's own process OpenSim's first step failed in 1 of 12 conversions (run4), leaving its contacts uncalibrated |
+| 6.14 | A spline fit stops its reweighting when the least-squares solve breaks down, keeping its best fit so far (no change where it doesn't) | SoccerKick, Leg39: on GitHub's Linux runners LAPACK now and then failed to converge on the fit's near-degenerate weights, failing the conversion |
 
 Still not converted: PointOnLineConstraint (BouncingBlock ×2, the only files left), bushing forces (ToyLanding's
 AFOs: skipped, as reported), PointActuator and TorqueActuator (no file uses them), contact meshes and elastic
@@ -77,7 +78,8 @@ held-out drops for any model with a WalkerModel-like root.
 - Every change has a test that fails on the converter before it (`station6/tests/`: reading, joint types, forces and
   mass, contacts, more files; `station2/tests/test_chained_coupling.py` for 6.10). 6.13's original failure is
   intermittent (1 in 12 conversions), so its test checks the isolation itself: the drops run with OpenSim blocked in
-  the calling process, which the converter before can't do.
+  the calling process, which the converter before can't do. 6.14's breakdown depends on the machine's LAPACK, so
+  `test_fit_breakdown.py` simulates it (the solve raising from its k-th call on).
 - The calibration and the gate's harness are separate code; both simulate OpenSim's rigid drop alike (2e-14 m).
 - run1 (stopped after L0–L1 failed on five files: ASCII STL, a plane on a moving body, an OpenSim drop that couldn't
   be assembled) and run2 (stopped after L1 failed on Leg39) are in `station6/results/run1`, `run2`; run3 passed L0–L6
