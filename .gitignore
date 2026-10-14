@@ -14,3 +14,6 @@ dist/
 *.egg-info/
 # MuJoCo writes its warnings here (e.g. an unstable open-loop replay in Station 5 level 3).
 MUJOCO_LOG.TXT
+
+# documentation build output
+docs/_build/

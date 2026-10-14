@@ -6,8 +6,8 @@ measured.
 ## Reporting a problem
 
 Open an issue with the OpenSim model (or a link to it), the command you ran, and the output of
-`lowlimb-convert check model.osim`. If the problem is in a converted model, attach `report.md` from
-`lowlimb-convert validate`.
+`osim2mujoco check model.osim`. If the problem is in a converted model, attach `report.md` from
+`osim2mujoco validate`.
 
 ## Changing the converter
 
@@ -21,7 +21,7 @@ The project follows a gated plan ([pipeline doc](https://claude.ai/code/artifact
 3. **Log everything.** Every run gets a row in `EXPERIMENTS.md`: intended, actual, deviation and why. Rows are
    never deleted; a wrong result is corrected by a new row.
 4. **Mark vendored changes.** Files in `src/myoconverter/` are MyoConverter's (Apache 2.0). Every modified file
-   starts with a short "Modified by lowlimb-converter" note saying what changed and why.
+   starts with a short "Modified by osim2mujoco" note saying what changed and why.
 5. **Show the check can fail.** New checks come with a test that breaks the model on purpose and shows the check
    catches it (see `station*/tests/`).
 

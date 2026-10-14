@@ -15,9 +15,10 @@ h = 0.05; h = 0.05 with rotation +-0.15 rad; h = 0.02 with 0.5 m/s along ground 
 10 mm and 2 deg RMS; C2: mean held-out position RMS <= half of MuJoCo's default contact parameters'.
 
 This harness is written independently of the converter's calibration (src/myoconverter/xml/contact_calibration.py);
-station6/tests/test_contact_dynamics.py checks that both simulate the OpenSim side alike.
+station6/tests/test_contacts.py (WalkerModel) and test_more_files.py (DynamicJumperModel) check that both simulate the
+OpenSim side alike.
 
-Usage: python -m lowlimb_converter.checks.contact_dynamics model.osim converted.xml out.json [--scenarios held-out]
+Usage: python -m osim2mujoco.checks.contact_dynamics model.osim converted.xml out.json [--scenarios held-out]
 """
 import argparse
 import json
@@ -86,7 +87,7 @@ def root_coordinates(model, state):
 
 
 def _signed_distance(cg_a, cg_b, state):
-    from lowlimb_converter.checks.contact_geometry import _signed_distance as sd
+    from osim2mujoco.checks.contact_geometry import _signed_distance as sd
     return sd(cg_a, cg_b, state)
 
 
@@ -122,7 +123,7 @@ class RigidOpenSim:
         self.pairs = self._pairs()
 
     def _pairs(self):
-        from lowlimb_converter.support import read_osim     # the file's ContactParameters (geometry names)
+        from osim2mujoco.support import read_osim     # the file's ContactParameters (geometry names)
         root = read_osim(self.path).getroot().find("Model")
         cgs = self.model.getContactGeometrySet()
         out = []
@@ -200,7 +201,7 @@ class RigidOpenSim:
 def rigid_mujoco(xml_path, osim_path, root_coords, contact=None):
     """The converted model made rigid in its default pose, root joints kept; returns a compiled MjModel.
     contact: optional {"solref", "solimp", "friction"} to set on every pair (the 'MuJoCo defaults' column)."""
-    from lowlimb_converter.checks import mujoco_compare as mc
+    from osim2mujoco.checks import mujoco_compare as mc
     spec = mujoco.MjSpec.from_file(xml_path)
     for mesh in list(spec.meshes):          # meshes don't matter here and need the files
         spec.delete(mesh)
@@ -214,7 +215,7 @@ def rigid_mujoco(xml_path, osim_path, root_coords, contact=None):
     cset = om.getCoordinateSet()
     names = [cset.get(i).getName() for i in range(cset.getSize())]
     defaults = {n: cset.get(n).getDefaultValue() for n in names}
-    from lowlimb_converter.checks.osim_reference import _couplers
+    from osim2mujoco.checks.osim_reference import _couplers
     for dep, ind, cc in _couplers(om):
         x = osim.Vector(len(ind), 0.0)
         for k, n in enumerate(ind):
@@ -321,7 +322,7 @@ def evaluate(osim_path, xml_path, which=("held-out",)):
 def free_run(osim_path, xml_path, duration=DURATION):
     """Reported only (L7): the whole model, nothing locked, released from its default pose with every force on, in
     both simulators (muscles, if any, unexcited). Returns RMS differences over time per coordinate."""
-    from lowlimb_converter.checks import mujoco_compare as mc
+    from osim2mujoco.checks import mujoco_compare as mc
     model = osim.Model(osim_path)
     s = model.initSystem()
     cs = model.getCoordinateSet()

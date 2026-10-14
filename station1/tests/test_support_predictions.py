@@ -13,7 +13,7 @@ Usage: python station1/tests/test_support_predictions.py <out_dir> <model.osim>:
 import os, re, sys, json, subprocess
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.abspath(os.path.join(HERE, "..", ".."))
 sys.path.insert(0, REPO)
-from lowlimb_converter.support import build_report
+from osim2mujoco.support import build_report
 
 RUNNER = r'''
 import sys, json, traceback

@@ -1,9 +1,9 @@
 # Station 1b: element-support reports
 
-`python -m lowlimb_converter.support <model.osim> --geometry <dir> --md report.md --json report.json` lists every
+`python -m osim2mujoco.support <model.osim> --geometry <dir> --md report.md --json report.json` lists every
 element of an OpenSim model with one status (converted, approximated, skipped, ignored, unsupported) and predicts
 whether the converter's XML step will succeed. Every rule cites the vendored source it comes from
-(`lowlimb_converter/support.py`, `RULES`). Gates S1–S3 are in `station1/GATES.md`; results are in
+(`osim2mujoco/support.py`, `RULES`). Gates S1–S3 are in `station1/GATES.md`; results are in
 `station1/FINDINGS.md`.
 
 ## Models and where they came from

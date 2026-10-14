@@ -94,7 +94,7 @@ def main():
         print(f"{fails} CHECK(S) FAILED")
         return 1
     sys.path.insert(0, REPO)
-    from lowlimb_converter.checks import mujoco_compare as mc
+    from osim2mujoco.checks import mujoco_compare as mc
     m, _ = mc.load_without_meshes(os.path.join(out, "gait10_defaults_cvt1.xml"))
     A = lambda n: mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_ACTUATOR, n)
     a = A(ACT)

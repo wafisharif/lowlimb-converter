@@ -3,7 +3,7 @@
 For each joint type, builds a small model with OpenSim's API: ground -> (joint) -> body "a" -> PinJoint -> body "b",
 the joint under test with rotated and offset parent and child frames (so axis conventions and frame composition
 matter), and gives every coordinate a range. Then converts it with the converter in src_dir and runs Station 2's
-kinematic check (lowlimb_converter.checks: the same poses, method and K0-K2 limits): every body within 1e-6 mm and
+kinematic check (osim2mujoco.checks: the same poses, method and K0-K2 limits): every body within 1e-6 mm and
 1e-6 deg of OpenSim in every pose (exact up to round-off). The converter before change 6.2 refuses each model
 (no parser for the joint type).
 
@@ -19,8 +19,8 @@ import opensim as osim
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, REPO)
-from lowlimb_converter.checks import mujoco_compare as mc   # noqa: E402
-from lowlimb_converter.checks import osim_reference as orf  # noqa: E402
+from osim2mujoco.checks import mujoco_compare as mc   # noqa: E402
+from osim2mujoco.checks import osim_reference as orf  # noqa: E402
 
 RUNNER = r'''
 import sys

@@ -1,8 +1,8 @@
-"""Convert an OpenSim model to MuJoCo with the lowlimb-converter pipeline.
+"""Convert an OpenSim model to MuJoCo with the osim2mujoco pipeline.
 
 A thin, safe wrapper around the vendored MyoConverter pipeline (src/myoconverter) with our fixes:
 
-- the model is checked first (lowlimb_converter.support), and a model the converter can't handle is rejected with
+- the model is checked first (osim2mujoco.support), and a model the converter can't handle is rejected with
   the reason, before anything runs;
 - the output folder must be new or empty, because the pipeline silently resumes Steps 2-3 from any _cvt2.xml /
   _cvt3.xml it finds there (station3/FINDINGS.md). The folder is claimed with a marker file created atomically, so
@@ -11,10 +11,10 @@ A thin, safe wrapper around the vendored MyoConverter pipeline (src/myoconverter
 """
 import os
 
-from lowlimb_converter import support
+from osim2mujoco import support
 
 STEPS = (1, 2, 3)
-MARKER = ".lowlimb-convert-running"
+MARKER = ".osim2mujoco-running"
 
 
 class ConversionError(RuntimeError):
@@ -77,12 +77,15 @@ def output_path(osim_path, out_dir, steps):
 
 def convert(osim_path, out_dir, geometry=None, steps=STEPS, speedy=False, myoconverter_validation=False,
             pdf=False, add_ground_geom=True, muscle_list=None, check=True):
-    """Convert `osim_path` into `out_dir`; return the path of the converted MuJoCo model.
+    """Convert ``osim_path`` into ``out_dir``; return the path of the converted MuJoCo model.
 
-    steps: any of (1,), (1, 2), (1, 2, 3). 1 = XML conversion, 2 = muscle-path optimisation (MyoConverter's;
+    :param steps: any of (1,), (1, 2), (1, 2, 3). 1 = XML conversion, 2 = muscle-path optimisation (MyoConverter's;
         a no-op for models without wrapping objects), 3 = muscle-force fit (MyoConverter's plus our refit).
-    myoconverter_validation, pdf: also run MyoConverter's own validation plots / PDF report (slow).
-    check: run the support pre-check (recommended).
+    :param geometry: mesh folder (default: the ``Geometry`` folder next to the model).
+    :param myoconverter_validation: also run MyoConverter's own validation plots (slow); ``pdf``: and its PDF report.
+    :param add_ground_geom: add a ground plane (not added if the model has its own contact).
+    :param check: run the support pre-check first (recommended).
+    :raises ConversionError: the model can't be converted, or the output folder isn't new or empty.
     """
     steps = tuple(sorted(set(int(s) for s in steps)))
     if steps not in ((1,), (1, 2), (1, 2, 3)):

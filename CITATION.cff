@@ -1,11 +1,11 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it and the MyoConverter papers it builds on."
-title: "lowlimb-converter: validated OpenSim-to-MuJoCo conversion for lower-limb gait models"
+title: "osim2mujoco: validated OpenSim-to-MuJoCo conversion for lower-limb gait models"
 authors:
   - family-names: Sharif
     given-names: Wafi
 license: Apache-2.0
-repository-code: "https://github.com/wafisharif/lowlimb-converter"
+repository-code: "https://github.com/wafisharif/osim2mujoco"
 references:
   - type: conference-paper
     title: "MyoSim: Fast and physiologically realistic MuJoCo models for musculoskeletal and exoskeletal studies"

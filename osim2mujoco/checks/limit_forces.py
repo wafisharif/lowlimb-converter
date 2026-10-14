@@ -8,7 +8,7 @@ coordinate's joint from the CLF's tendons only (every other tendon's and joint's
 model). Gate: |MuJoCo - OpenSim| <= 1% of the largest |OpenSim force| over the sweep, at every step. Reported: OpenSim's
 force at +-1 rad/s (m/s) beyond each limit minus its static force (the damping, which isn't converted).
 
-Usage: python -m lowlimb_converter.checks.limit_forces model.osim converted.xml out.json
+Usage: python -m osim2mujoco.checks.limit_forces model.osim converted.xml out.json
 """
 import argparse
 import json
@@ -24,7 +24,7 @@ TOLERANCE = 0.01   # of the largest |OpenSim force| over the sweep
 
 
 def _load(xml_path):
-    from lowlimb_converter.checks.mujoco_compare import load_without_meshes
+    from osim2mujoco.checks.mujoco_compare import load_without_meshes
     return load_without_meshes(xml_path)[0]
 
 

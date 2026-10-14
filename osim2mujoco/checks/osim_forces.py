@@ -2,7 +2,7 @@
 
 Writes one .npz that the MuJoCo side reads (so the MuJoCo side can run in MuJoCo 2.3.7, which has no OpenSim).
 Method and gates: station4/GATES.md. Usage:
-    python -m lowlimb_converter.checks.osim_forces model.osim out.npz
+    python -m osim2mujoco.checks.osim_forces model.osim out.npz
     or: python station4/osim_forces.py ...
 
 Moved here from station4/osim_forces.py on 2026-10-11 so the installable tool can use it; that file is now a

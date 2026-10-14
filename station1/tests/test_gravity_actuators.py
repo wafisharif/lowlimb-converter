@@ -62,7 +62,7 @@ def main():
         print(r.stderr[-1500:])
         return 1
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))  # repo root
-    from lowlimb_converter.checks import mujoco_compare as mc
+    from osim2mujoco.checks import mujoco_compare as mc
     m, _ = mc.load_without_meshes(os.path.join(out, "gait10_1c_cvt1.xml"))
     gx, gy, gz = GRAVITY
     expect = np.array([gx, -gz, gy])

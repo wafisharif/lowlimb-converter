@@ -9,11 +9,11 @@ labels: conversion
 **Command and output:**
 
 ```
-(the lowlimb-convert command you ran and what it printed)
+(the osim2mujoco command you ran and what it printed)
 ```
 
-**Support report:** output of `lowlimb-convert check model.osim`
+**Support report:** output of `osim2mujoco check model.osim`
 
-**Validation report (if the model converted):** attach `report.md` from `lowlimb-convert validate`
+**Validation report (if the model converted):** attach `report.md` from `osim2mujoco validate`
 
 **What you expected:**

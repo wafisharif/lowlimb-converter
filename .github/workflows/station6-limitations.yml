@@ -16,7 +16,7 @@ on:
     paths:
       - "src/**"
       - "env/**"
-      - "lowlimb_converter/**"
+      - "osim2mujoco/**"
       - "station6/**"
       - ".github/workflows/station6-limitations.yml"
 

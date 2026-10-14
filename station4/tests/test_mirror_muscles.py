@@ -26,7 +26,7 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(os.path.dirname(HERE)))
-from lowlimb_converter.support import read_osim   # noqa: E402
+from osim2mujoco.support import read_osim   # noqa: E402
 
 TOL_PCT = 0.5          # the F1/F2 tolerance (station4/GATES.md)
 SYMMETRY_PCT = 0.1

@@ -14,9 +14,9 @@ import traceback
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 sys.path.insert(0, REPO)
-from lowlimb_converter.checks import (contact_dynamics, contact_geometry, limit_forces, mass_properties,  # noqa: E402
+from osim2mujoco.checks import (contact_dynamics, contact_geometry, limit_forces, mass_properties,  # noqa: E402
                                       mujoco_compare, osim_reference, path_forces)
-from lowlimb_converter.support import read_osim  # noqa: E402
+from osim2mujoco.support import read_osim  # noqa: E402
 
 OUT_OF_SCOPE = {"Models/BouncingBlock/bouncing_block.osim", "Models/BouncingBlock/bouncing_block_weak_spring.osim"}
 # L2's gated files (the regression on the four models of Stations 2-5 is station2/run_station2.sh)

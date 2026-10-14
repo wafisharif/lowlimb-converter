@@ -1,0 +1,10 @@
+# Documentation build (Read the Docs and the docs workflow). The package itself is imported for the API reference;
+# OpenSim, MuJoCo and the other heavy dependencies are mocked in docs/conf.py, so only these are needed.
+sphinx==9.1.0
+furo==2025.12.19
+myst-parser==5.1.0
+sphinx-copybutton==0.5.2
+# imported at module level by osim2mujoco (same versions as env/requirements.lock)
+numpy==2.5.3
+lxml==6.1.3
+loguru==0.7.3

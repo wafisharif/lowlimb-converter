@@ -7,6 +7,8 @@
 - Excluded: `myoconverter/tests/` (its scripts need ~22 MB of test data not vendored) and 65 compiled `.pyc` files that upstream tracks in git.
 - The first commit adding this folder contains the files byte-for-byte as in upstream (checksums below).
   Every later change is a separate commit, and each modified file gets a header noting the change (Apache 2.0, section 4(b)).
+  Headers and comments written before 2026-10-14 say "lowlimb-converter", this project's name until then; they are
+  kept as written.
 - Added by us inside the tree (not upstream, Apache 2.0): `myoconverter/optimization/utils/force_refit.py`
   (Station 4, changes 4.1–4.3; Station 5, change 5.4).
 

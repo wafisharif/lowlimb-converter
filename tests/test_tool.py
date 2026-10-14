@@ -1,4 +1,4 @@
-"""Tests of the installable tool (the `lowlimb-convert` command and lowlimb_converter.convert / .validate).
+"""Tests of the installable tool (the `osim2mujoco` command and osim2mujoco.convert / .validate).
 
 Run after `pip install .` (or with the repo root on sys.path):
     python tests/test_tool.py <upstream_myoconverter_clone> <scratch_dir> [--full] [--osm <opensim_models_clone>]
@@ -7,8 +7,8 @@ Run after `pip install .` (or with the repo root on sys.path):
   claim is released when a conversion ends, also when it fails;
 - the support pre-check rejects a model the converter can't handle (a degree-5 PolynomialFunction knee, made from
   gait10dof18musc) before anything runs, with the reason;
-- `lowlimb-convert check` and its exit codes;
-- `lowlimb-convert convert --steps 1` on gait10dof18musc, then `validate --levels kinematics`: the report must pass
+- `osim2mujoco check` and its exit codes;
+- `osim2mujoco convert --steps 1` on gait10dof18musc, then `validate --levels kinematics`: the report must pass
   and its numbers must equal the Station 2 check run directly (same code path, same result);
 - the walking options: --ik without --grf, a missing trial file, or a trial without --validate is refused (exit 2)
   before anything is converted;
@@ -31,7 +31,7 @@ from lxml import etree
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO)
 sys.path.insert(0, os.path.join(REPO, "src"))
-from lowlimb_converter import convert as cv  # noqa: E402
+from osim2mujoco import convert as cv  # noqa: E402
 
 fails = 0
 
@@ -44,11 +44,11 @@ def check(ok, msg):
 
 def cli(*args):
     """Run the command as a user would: the installed console script if there is one, else `python -m`."""
-    exe = shutil.which("lowlimb-convert")
+    exe = shutil.which("osim2mujoco")
     if exe:                                   # the installed package, exactly as a user runs it
         return subprocess.run([exe] + list(args), capture_output=True, text=True)
     env = dict(os.environ, PYTHONPATH=os.pathsep.join([REPO, os.path.join(REPO, "src")]))
-    return subprocess.run([sys.executable, "-m", "lowlimb_converter.cli"] + list(args), capture_output=True,
+    return subprocess.run([sys.executable, "-m", "osim2mujoco.cli"] + list(args), capture_output=True,
                           text=True, env=env)
 
 
@@ -144,7 +144,7 @@ def main():
     k = rep["levels"]["kinematics"]
     check(k["status"] == "pass" and k["worst_position_mm"]["value"] < 1.0,
           f"kinematics pass, worst {k['worst_position_mm']['value']:.4f} mm")
-    from lowlimb_converter.checks import mujoco_compare, osim_reference
+    from osim2mujoco.checks import mujoco_compare, osim_reference
     direct = mujoco_compare.compare(cvt1, osim_reference.reference(osim), keep_arrays=False)
     detailed = json.load(open(os.path.join(rep_dir, "kinematics.json")))
     check(json.loads(json.dumps(direct)) == detailed, "report's detailed result equals the Station 2 check run directly")
@@ -195,7 +195,7 @@ def main():
             w = rep["levels"]["walking"]
             check(w["status"] == "pass" and w["joint_moment_rms_mean"] < 0.02,
                   f"walking pass, joint moments {w['joint_moment_rms_mean']:.4f} N*m/kg mean")
-            from lowlimb_converter.checks import mujoco_gait, osim_gait
+            from osim2mujoco.checks import mujoco_gait, osim_gait
             direct = mujoco_gait.evaluate(cvt3, osim_gait.reference(osim, ik, grf))
             detailed = json.load(open(os.path.join(rep_w, "walking.json")))
             check(json.loads(json.dumps(direct)) == detailed,

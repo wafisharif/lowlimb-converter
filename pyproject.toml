@@ -3,7 +3,7 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "lowlimb-converter"
+name = "osim2mujoco"
 version = "0.1.0.dev0"
 description = "OpenSim to MuJoCo conversion for lower-limb gait models, with validation reports (a fork of MyoConverter)"
 readme = "README.md"
@@ -33,15 +33,16 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/wafisharif/lowlimb-converter"
+Repository = "https://github.com/wafisharif/osim2mujoco"
 Upstream = "https://github.com/MyoHub/myoconverter"
 
 [project.scripts]
-lowlimb-convert = "lowlimb_converter.cli:main"
+osim2mujoco = "osim2mujoco.cli:main"
+lowlimb-convert = "osim2mujoco.cli:main"   # the command's name before the project was renamed (2026-10-14)
 
 [tool.setuptools.packages.find]
 where = [".", "src"]
-include = ["lowlimb_converter*", "myoconverter*"]
+include = ["osim2mujoco*", "myoconverter*"]
 
 [tool.setuptools.package-data]
 myoconverter = ["xml/template.xml"]

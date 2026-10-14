@@ -7,7 +7,7 @@ On Rajagopal 2016's XML-step model (cvt1; Step 1 only, a few minutes) with the c
 - it keeps gluteus maximus 1's side sites (without them its path is further from OpenSim's);
 - it touches nothing else: every other element of the file is unchanged, and a model without side sites
   (gait10dof18musc) is not rewritten at all;
-- independently of the module's own sampling: in the 2189 Station 2 poses (lowlimb_converter.checks.osim_paths
+- independently of the module's own sampling: in the 2189 Station 2 poses (osim2mujoco.checks.osim_paths
   reference), iliacus_r and psoas_r without side sites are within 0.1 mm of OpenSim everywhere.
 
 Usage: python station3/tests/test_wrap_sides.py <src_dir> <opensim_models_dir> <rajagopal_geometry_dir>
@@ -55,7 +55,7 @@ def main():
     from lxml import etree
     from myoconverter.optimization.utils import wrap_sides
     from myoconverter.optimization.utils.force_refit import _joint_plan, _solve_qpos
-    from lowlimb_converter.checks import mujoco_compare as mc, osim_paths
+    from osim2mujoco.checks import mujoco_compare as mc, osim_paths
 
     if os.path.exists(scratch):
         shutil.rmtree(scratch)

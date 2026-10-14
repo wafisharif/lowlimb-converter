@@ -3,7 +3,7 @@
 Needs only MuJoCo and NumPy (works with MuJoCo 2.3.7 / NumPy 1.x and MuJoCo 3.x / NumPy 2.x), reads the .npz
 written by osim_reference.py. Checks gate K0 (the check is valid) and reports K1 (position) and K2 (orientation).
 Method and gates: station2/GATES.md. Usage:
-    python -m lowlimb_converter.checks.mujoco_compare model.xml reference.npz out.json
+    python -m osim2mujoco.checks.mujoco_compare model.xml reference.npz out.json
     or: python station2/mujoco_compare.py ...
 Exit 0 if K0, K1 and K2 all pass, 1 if any fails.
 

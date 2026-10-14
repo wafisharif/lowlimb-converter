@@ -33,7 +33,7 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, REPO)
-from lowlimb_converter.checks import contact_dynamics, contact_geometry   # noqa: E402
+from osim2mujoco.checks import contact_dynamics, contact_geometry   # noqa: E402
 
 # station6/coverage.py (its geometry folders and conversion runner), loaded by path (a "coverage" package may exist)
 _spec = importlib.util.spec_from_file_location("station6_coverage", os.path.join(REPO, "station6", "coverage.py"))

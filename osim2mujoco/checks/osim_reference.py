@@ -4,7 +4,7 @@ Needs OpenSim (the modern stack). Writes one .npz that the MuJoCo side reads, so
 MuJoCo 2.3.7 (MyoConverter's own output), which has no OpenSim.
 
 Method and gates: station2/GATES.md. Usage:
-    python -m lowlimb_converter.checks.osim_reference model.osim out.npz
+    python -m osim2mujoco.checks.osim_reference model.osim out.npz
     or: python station2/osim_reference.py ...
 
 Moved here from station2/osim_reference.py on 2026-10-11 so the installable tool can use it; that file is now a

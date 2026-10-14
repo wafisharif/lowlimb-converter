@@ -1,6 +1,6 @@
 """Validation report for a converted model: how closely the MuJoCo model matches its OpenSim original.
 
-Runs the project's own checks (lowlimb_converter.checks, the code behind Stations 2-4) on any OpenSim model and
+Runs the project's own checks (osim2mujoco.checks, the code behind Stations 2-4) on any OpenSim model and
 its MuJoCo conversion:
 
   kinematics  every body's position and orientation in ~1000-2000 poses (Station 2)
@@ -29,7 +29,7 @@ import time
 
 import numpy as np
 
-from lowlimb_converter import __version__
+from osim2mujoco import __version__
 
 LEVELS = ("kinematics", "paths", "forces", "elements")   # the default: needs only the two models
 ALL_LEVELS = LEVELS + ("walking",)                  # walking needs a trial (see validate())
@@ -90,7 +90,7 @@ def summarize_forces(r):
 
 
 def _kinematics(osim_path, xml_path, out_dir):
-    from lowlimb_converter.checks import mujoco_compare, osim_reference
+    from osim2mujoco.checks import mujoco_compare, osim_reference
     ref = osim_reference.reference(osim_path)
     _save_npz(os.path.join(out_dir, "kinematics_reference.npz"), ref)
     r = mujoco_compare.compare(xml_path, ref, keep_arrays=False)
@@ -99,7 +99,7 @@ def _kinematics(osim_path, xml_path, out_dir):
 
 
 def _paths(osim_path, xml_path, out_dir):
-    from lowlimb_converter.checks import mujoco_paths, osim_paths
+    from osim2mujoco.checks import mujoco_paths, osim_paths
     # wrapped paths: OpenSim's computeMomentArm isn't the derivative of its own length there (station3/GATES.md,
     # amendment 2026-10-12), so moment arms are -dL/dq on both sides
     definition = "length-derivative" if osim_paths.has_wrapped_paths(osim_path) else "analytic"
@@ -111,7 +111,7 @@ def _paths(osim_path, xml_path, out_dir):
 
 
 def _forces(osim_path, xml_path, out_dir):
-    from lowlimb_converter.checks import mujoco_forces, osim_forces
+    from osim2mujoco.checks import mujoco_forces, osim_forces
     ref = osim_forces.reference(osim_path)
     _save_npz(os.path.join(out_dir, "forces_reference.npz"), ref)
     r = mujoco_forces.evaluate(xml_path, ref)
@@ -146,7 +146,7 @@ def summarize_walking(r, replay=None):
 
 
 def _walking(osim_path, xml_path, out_dir, walking):
-    from lowlimb_converter.checks import mujoco_gait, osim_gait, osim_paths
+    from osim2mujoco.checks import mujoco_gait, osim_gait, osim_paths
     definition = "length-derivative" if osim_paths.has_wrapped_paths(osim_path) else "analytic"
     ref = osim_gait.reference(osim_path, walking["ik"], walking["grf"], walking.get("start"), walking.get("end"),
                               moment_arm=definition)
@@ -155,7 +155,7 @@ def _walking(osim_path, xml_path, out_dir, walking):
     _dump(os.path.join(out_dir, "walking.json"), r)
     replay = None
     if walking.get("controls"):
-        from lowlimb_converter.checks import mujoco_replay, osim_replay
+        from osim2mujoco.checks import mujoco_replay, osim_replay
         rref = osim_replay.reference(osim_path, walking["ik"], walking["grf"], walking["controls"])
         _save_npz(os.path.join(out_dir, "replay_reference.npz"), rref)
         replay = mujoco_replay.evaluate(xml_path, rref)
@@ -164,10 +164,10 @@ def _walking(osim_path, xml_path, out_dir, walking):
 
 
 def _elements(osim_path, xml_path, out_dir):
-    """Station 6's checks, each where the model has the element (lowlimb_converter.checks)."""
-    from lowlimb_converter.checks import (contact_dynamics, contact_geometry, limit_forces, mass_properties,
+    """Station 6's checks, each where the model has the element (osim2mujoco.checks)."""
+    from osim2mujoco.checks import (contact_dynamics, contact_geometry, limit_forces, mass_properties,
                                           path_forces)
-    from lowlimb_converter.support import read_osim
+    from osim2mujoco.support import read_osim
     root = read_osim(osim_path).getroot().find("Model")
     present = lambda *tags: any(root.find(f"ForceSet/objects/{t}") is not None for t in tags)
     checks = {"mass_properties": (mass_properties.evaluate, "L3", True),
@@ -214,15 +214,18 @@ RUNNERS = {"kinematics": _kinematics, "paths": _paths, "forces": _forces, "eleme
 
 
 def validate(osim_path, xml_path, out_dir, levels=LEVELS, progress=print, walking=None):
-    """Compare `xml_path` (MuJoCo) with `osim_path` (OpenSim); write the report into `out_dir`; return the summary.
+    """Compare ``xml_path`` (MuJoCo) with ``osim_path`` (OpenSim); write the report into ``out_dir``; return the
+    summary.
 
-    levels: any of "kinematics", "paths", "forces", "walking". Kinematics only needs the bodies and joints, so it can
-    be run on the Step 1 output (_cvt1.xml); the others need the muscles (use the final _cvt3.xml).
-    walking (needed for the "walking" level): {"ik": OpenSim IK .mot/.sto of the trial, "grf": ExternalLoads .xml of
-    its ground reaction forces, optional "start"/"end" (s), optional "controls": a .sto of muscle excitations (e.g.
-    OpenSim CMC's *_controls.sto) for the open-loop replay}. The model is replayed as the trial says (OpenSim's
-    pipelines record data on a scaled subject; replaying it on the generic model is fine for this comparison, since
-    both simulators get exactly the same inputs).
+    :param levels: any of "kinematics", "paths", "forces", "elements", "walking" (default: all but "walking").
+        Kinematics only needs the bodies and joints, so it can be run on the Step 1 output (``_cvt1.xml``); the
+        others need the muscles (use the final ``_cvt3.xml``).
+    :param walking: needed for the "walking" level: ``{"ik": OpenSim IK .mot/.sto of the trial, "grf": ExternalLoads
+        .xml of its ground reaction forces}``, optionally with ``"start"``/``"end"`` (s) and ``"controls"`` (a .sto of
+        muscle excitations, e.g. OpenSim CMC's ``*_controls.sto``, for the open-loop replay). The model is replayed as
+        the trial says (OpenSim's pipelines record data on a scaled subject; replaying it on the generic model is fine
+        for this comparison, since both simulators get exactly the same inputs).
+    :param progress: called with a line of text as each level starts and ends.
     """
     unknown = set(levels) - set(ALL_LEVELS)
     if unknown:
@@ -237,7 +240,7 @@ def validate(osim_path, xml_path, out_dir, levels=LEVELS, progress=print, walkin
         if not os.path.isfile(p):
             raise FileNotFoundError(p)
     os.makedirs(out_dir, exist_ok=True)
-    report = {"tool": "lowlimb-converter", "version": __version__,
+    report = {"tool": "osim2mujoco", "version": __version__,
               "opensim_model": os.path.abspath(osim_path), "mujoco_model": os.path.abspath(xml_path),
               "levels": {}}
     for level in ALL_LEVELS:
@@ -269,10 +272,11 @@ def _invalid(lines, v):
 
 
 def to_markdown(report):
+    """The summary :func:`validate` returns, as the Markdown written to ``report.md``."""
     lines = ["# Validation report", "",
              f"- OpenSim model: `{report['opensim_model']}`",
              f"- MuJoCo model: `{report['mujoco_model']}`",
-             f"- lowlimb-converter {report['version']}", ""]
+             f"- osim2mujoco {report['version']}", ""]
     lv = report["levels"]
     if "kinematics" in lv:
         v = lv["kinematics"]

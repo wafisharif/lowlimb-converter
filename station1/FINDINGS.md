@@ -72,7 +72,7 @@ or newer), but that is **not verified yet**. The `macos` job in `.github/workflo
 
 # Station 1b: element-support report
 
-**Result: `lowlimb_converter/support.py` lists every element of an OpenSim model with one status and predicts the
+**Result: `osim2mujoco/support.py` lists every element of an OpenSim model with one status and predicts the
 XML conversion step correctly on all four models tried.** Gates S1–S3 (`station1/GATES.md`) all pass. Reports and
 provenance are in `station1/support/`.
 

@@ -1,7 +1,10 @@
-# lowlimb-converter
+# osim2mujoco
 
 OpenSim → MuJoCo conversion for lower-limb gait models, with a validation report for every
-converted model. It's a specialised fork of [MyoConverter](https://github.com/MyoHub/myoconverter).
+converted model. It's a specialised fork of [MyoConverter](https://github.com/MyoHub/myoconverter), and an independent
+project (not affiliated with the OpenSim or MuJoCo teams). Documentation: <https://osim2mujoco.readthedocs.io>.
+Until 2026-10-14 the project was called lowlimb-converter (its command `lowlimb-convert` still works); results and logs
+from before then use that name.
 
 > **Status: Stations 2–5 pass for both gait models and Rajagopal 2016 (RajagopalLaiUhlrich2023: Station 2), and Station
 > 6 takes the converter past MyoConverter's documented limitations on all 56 model files OpenSim distributes (gates
@@ -39,19 +42,19 @@ Python 3.11–3.13 (tested on 3.12, which the lockfile is for). OpenSim publishe
 newer and Windows; only Linux has been tested end to end so far (CI now also runs the quick test on macOS).
 
 ```bash
-git clone https://github.com/wafisharif/lowlimb-converter.git && cd lowlimb-converter
+git clone https://github.com/wafisharif/osim2mujoco.git && cd osim2mujoco
 python3.12 -m venv .venv && source .venv/bin/activate
 pip install --require-hashes -r env/requirements.lock   # the exact, tested versions
-pip install --no-deps .                                   # adds the lowlimb-convert command
+pip install --no-deps .                                   # adds the osim2mujoco command
 ```
 
 Then, for an OpenSim model with its `Geometry` folder next to it:
 
 ```bash
-lowlimb-convert check    model.osim                         # what converts, and how (seconds)
-lowlimb-convert convert  model.osim out/ --validate         # convert, then compare with OpenSim (minutes)
-lowlimb-convert validate model.osim out/model_cvt3.xml report/   # the comparison alone, for any converted model
-lowlimb-convert validate model.osim out/model_cvt3.xml report/ --ik walk_ik.mot --grf walk_grf.xml
+osim2mujoco check    model.osim                         # what converts, and how (seconds)
+osim2mujoco convert  model.osim out/ --validate         # convert, then compare with OpenSim (minutes)
+osim2mujoco validate model.osim out/model_cvt3.xml report/   # the comparison alone, for any converted model
+osim2mujoco validate model.osim out/model_cvt3.xml report/ --ik walk_ik.mot --grf walk_grf.xml
                                                             # ... plus a walking trial of your own (OpenSim IK + GRF)
 ```
 
@@ -70,7 +73,7 @@ along the trial, and the joint moments needed to walk with the measured forces. 
 changes with speed.
 
 The gait models in the examples come with MyoConverter (`models/osim/` in its repo). Python API:
-`lowlimb_converter.convert.convert(...)` and `lowlimb_converter.validate.validate(...)`.
+`osim2mujoco.convert.convert(...)` and `osim2mujoco.validate.validate(...)`.
 
 ## What this will be
 
@@ -160,7 +163,7 @@ repo, because the converted Rajagopal model isn't ours to redistribute. `MODELS=
 ## Checking a model before converting it (Station 1b)
 
 ```bash
-.venv/bin/python -m lowlimb_converter.support path/to/model.osim --geometry path/to/Geometry \
+.venv/bin/python -m osim2mujoco.support path/to/model.osim --geometry path/to/Geometry \
     --md report.md --json report.json
 ```
 
@@ -217,7 +220,7 @@ Runs the support report and the XML step on every one of the 56 model files in o
 port, for MyoConverter's column), then gates L2–L7 on the converted files: kinematics, mass properties, limit forces,
 path actuators and springs, contact geometry, and contact dynamics on WalkerModel drops. Results go to
 `station6/results/myrun/`. Several hours on two cores (`SKIP_COVERAGE_MC=1` skips MyoConverter's column).
-`lowlimb-convert validate` runs the same element checks (level "elements") on any converted model.
+`osim2mujoco validate` runs the same element checks (level "elements") on any converted model.
 
 ## Reproducing the Station 0 baseline
 
@@ -240,8 +243,9 @@ reached end of life. Upstream's `conda_env.yml`, which holds the actual dependen
 | Path | What |
 | --- | --- |
 | `src/myoconverter/` | Vendored MyoConverter @ cadf380 with our port fixes (each modified file says what changed; see `VENDORED.md`) |
-| `lowlimb_converter/` | Our own code: the `lowlimb-convert` command (`cli.py`), conversion wrapper (`convert.py`), validation report (`validate.py`), element-support report (`support.py`, Station 1b) and the checks behind Stations 2–6 (`checks/`) |
+| `osim2mujoco/` | Our own code: the `osim2mujoco` command (`cli.py`), conversion wrapper (`convert.py`), validation report (`validate.py`), element-support report (`support.py`, Station 1b) and the checks behind Stations 2–6 (`checks/`) |
 | `tests/` | Tests of the installable tool |
+| `docs/` | The documentation site (Sphinx; built on Read the Docs from `.readthedocs.yaml`) |
 | `env/` | Modern-stack requirements and the universal hashed lockfile |
 | `station1/` | Station 1a/1b: gates, run script, results per model, tests, findings |
 | `station1/support/` | Support reports for four models, S3 results, model provenance |
@@ -255,7 +259,7 @@ reached end of life. Upstream's `conda_env.yml`, which holds the actual dependen
 | `baseline/upstream_shipped/` | Metrics extracted from the outputs MyoConverter ships, for the reproducibility check |
 | `station0/elastic_tendon/` | Whether MuJoCo supports elastic tendons: test and findings |
 | `docker/` | Baseline image definitions (Station 0) |
-| `.github/workflows/` | Clean-machine checks: Station 0 (Docker, lockfile), Station 2 + P1–P2, Stations 3, 4 and 5 (Linux, on push), the tool (Linux and macOS, on push), Station 1a (manual) |
+| `.github/workflows/` | Clean-machine checks: Station 0 (Docker, lockfile), Station 2 + P1–P2, Stations 3–6 (Linux, on push), the tool (Linux and macOS, on push), the docs (on push), Station 1a (manual) |
 | `EXPERIMENTS.md` | Every run: intended vs actual vs deviation |
 
 ## Credit and license

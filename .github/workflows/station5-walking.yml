@@ -11,7 +11,7 @@ on:
     paths:
       - "src/**"
       - "env/**"
-      - "lowlimb_converter/checks/**"
+      - "osim2mujoco/checks/**"
       - "station5/**"
       - ".github/workflows/station5-walking.yml"
 

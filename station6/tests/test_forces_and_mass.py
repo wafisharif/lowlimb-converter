@@ -24,7 +24,7 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, REPO)
-from lowlimb_converter.checks import limit_forces, mass_properties, path_forces   # noqa: E402
+from osim2mujoco.checks import limit_forces, mass_properties, path_forces   # noqa: E402
 
 RUNNER = r'''
 import sys

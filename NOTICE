@@ -1,4 +1,4 @@
-lowlimb-converter
+osim2mujoco
 Copyright 2026 Wafi Sharif
 
 This project builds on MyoConverter (https://github.com/MyoHub/myoconverter),

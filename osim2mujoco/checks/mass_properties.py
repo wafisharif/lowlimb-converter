@@ -6,7 +6,7 @@ centre of mass (body frame, rebuilt from body_inertia and body_iquat) must equal
 (1e-9 kg; 1e-9 m; 1e-9 times the largest principal moment). Bodies with an invalid OpenSim inertia are listed.
 OpenSim's inertia property is about the body's centre of mass (OpenSim 4 Body).
 
-Usage: python -m lowlimb_converter.checks.mass_properties model.osim converted.xml out.json
+Usage: python -m osim2mujoco.checks.mass_properties model.osim converted.xml out.json
 """
 import argparse
 import json
@@ -35,7 +35,7 @@ def valid(mass, M):
 
 
 def evaluate(osim_path, xml_path):
-    from lowlimb_converter.checks.mujoco_compare import load_without_meshes
+    from osim2mujoco.checks.mujoco_compare import load_without_meshes
     model = osim.Model(osim_path)
     model.initSystem()
     m, _ = load_without_meshes(xml_path)   # every converted body has an explicit inertial: meshes don't matter

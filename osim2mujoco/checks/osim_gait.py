@@ -2,7 +2,7 @@
 
 Writes one .npz that the MuJoCo side (mujoco_gait.py) reads, so the MuJoCo side can also run in MuJoCo 2.3.7.
 Method and gates: station5/GATES.md. Usage:
-    python -m lowlimb_converter.checks.osim_gait model.osim ik.mot grf.xml out.npz [--start T] [--end T]
+    python -m osim2mujoco.checks.osim_gait model.osim ik.mot grf.xml out.npz [--start T] [--end T]
 
 The coordinates are prepared exactly as OpenSim's InverseDynamicsTool prepares them (Storage padded by half its
 length, 6 Hz IIR low-pass, degrees to radians, quintic GCV splines); the generalized forces then equal the tool's

@@ -16,7 +16,7 @@ Predicted outcome: "fails" at the first `unsupported` element in the converter's
 conversion step (Step 1) only; optimisation steps may fail for other reasons.
 
 Usage:
-  python -m lowlimb_converter.support <model.osim> [--geometry DIR] [--json out.json] [--md out.md]
+  python -m osim2mujoco.support <model.osim> [--geometry DIR] [--json out.json] [--md out.md]
 Exit code: 0 if the predicted outcome is "converts", 1 if "fails", 2 on bad input.
 """
 import argparse
@@ -727,6 +727,12 @@ def apply_document_defaults(model):
 
 
 def build_report(osim_path, geometry=None):
+    """Predict, element by element, how the converter's XML step handles ``osim_path``; return the report as a dict.
+
+    The report has ``outcome`` ("converts" or "fails"), ``first_failure`` (the first unsupported element, or None),
+    ``counts`` per status and ``items``: one dict per element with its section, kind, name, status, reason and rule.
+    With ``geometry`` (the mesh folder), every mesh file is also checked to exist.
+    """
     tree = read_osim(osim_path)
     root = tree.getroot().find("Model")
     if root is None:
@@ -787,6 +793,8 @@ def build_report(osim_path, geometry=None):
 
 
 def to_markdown(r):
+    """A report from :func:`build_report` as Markdown: counts per status, then every element that isn't simply
+    converted, grouped by reason."""
     lines = [f"# Support report: {r['model']}", "",
              f"Predicted outcome of the XML conversion step: **{r['outcome']}**"
              + (f" (first failure: {r['first_failure']['kind']} `{r['first_failure']['path']}`)"

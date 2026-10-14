@@ -1,8 +1,8 @@
-"""lowlimb-convert: convert OpenSim gait models to MuJoCo and report how closely the result matches.
+"""osim2mujoco: convert OpenSim gait models to MuJoCo and report how closely the result matches.
 
-  lowlimb-convert check    MODEL.osim [--geometry DIR] [--md FILE] [--json FILE]
-  lowlimb-convert convert  MODEL.osim OUT_DIR [--geometry DIR] [--steps 1 2 3] [--validate] [...]
-  lowlimb-convert validate MODEL.osim CONVERTED.xml OUT_DIR [--levels kinematics paths forces elements]
+  osim2mujoco check    MODEL.osim [--geometry DIR] [--md FILE] [--json FILE]
+  osim2mujoco convert  MODEL.osim OUT_DIR [--geometry DIR] [--steps 1 2 3] [--validate] [...]
+  osim2mujoco validate MODEL.osim CONVERTED.xml OUT_DIR [--levels kinematics paths forces elements]
                            [--ik TRIAL_IK.mot --grf TRIAL_GRF.xml [--start S --end S] [--controls CONTROLS.sto]]
 
 Exit codes: 0 success; 1 the model can't be converted / a check failed; 2 bad input.
@@ -11,7 +11,7 @@ import argparse
 import os
 import sys
 
-from lowlimb_converter import __version__
+from osim2mujoco import __version__
 
 
 def _quiet_logging(verbose):
@@ -35,14 +35,14 @@ def _quiet_logging(verbose):
 
 
 def _cmd_check(a):
-    from lowlimb_converter import support
+    from osim2mujoco import support
     argv = [a.osim] + (["--geometry", a.geometry] if a.geometry else []) + \
         (["--md", a.md] if a.md else []) + (["--json", a.json] if a.json else [])
     return support.main(argv)
 
 
 def _cmd_convert(a):
-    from lowlimb_converter import convert as cv
+    from osim2mujoco import convert as cv
     try:
         walking = _walking_args(a)            # checked before converting, so a bad trial fails fast
         for k in ("ik", "grf", "controls"):
@@ -62,7 +62,7 @@ def _cmd_convert(a):
     print(f"converted model: {out}")
     if not a.validate:
         return 0
-    from lowlimb_converter import validate as va
+    from osim2mujoco import validate as va
     levels = ("kinematics", "elements") if sorted(set(a.steps)) == [1] else va.LEVELS   # no muscles fitted yet
     if walking and "paths" in levels:
         levels = tuple(levels) + ("walking",)
@@ -82,7 +82,7 @@ def _walking_args(a):
 
 
 def _cmd_validate(a):
-    from lowlimb_converter import validate as va
+    from osim2mujoco import validate as va
     try:
         walking = _walking_args(a)
         levels = list(a.levels)
@@ -107,8 +107,8 @@ def _add_walking_args(p):
 
 
 def build_parser():
-    ap = argparse.ArgumentParser(prog="lowlimb-convert", description=__doc__.split("\n\n")[0])
-    ap.add_argument("--version", action="version", version=f"lowlimb-converter {__version__}")
+    ap = argparse.ArgumentParser(prog="osim2mujoco", description=__doc__.split("\n\n")[0])
+    ap.add_argument("--version", action="version", version=f"osim2mujoco {__version__}")
     ap.add_argument("-v", "--verbose", action="store_true", help="show the pipeline's and OpenSim's full log")
     sub = ap.add_subparsers(dest="command", required=True)
 

@@ -10,7 +10,7 @@ kinematics, which gate L2 checks; MuJoCo's own kinematics, mj_geomDistance, is r
 record sums its pairs): OpenSim's force (at zero speed) is non-zero exactly where at least one of its pairs penetrates
 (poses within 1e-9 m of touching are left out).
 
-Usage: python -m lowlimb_converter.checks.contact_geometry model.osim converted.xml out.json
+Usage: python -m osim2mujoco.checks.contact_geometry model.osim converted.xml out.json
 """
 import argparse
 import json
@@ -21,8 +21,8 @@ import numpy as np
 import opensim as osim
 from scipy.spatial.transform import Rotation
 
-from lowlimb_converter.checks import mujoco_compare as mc
-from lowlimb_converter.checks.osim_reference import build_poses
+from osim2mujoco.checks import mujoco_compare as mc
+from osim2mujoco.checks.osim_reference import build_poses
 
 TOLERANCE = 1e-6
 NEAR = 0.1

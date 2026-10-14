@@ -22,9 +22,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, REPO)
 sys.path.insert(0, os.path.join(REPO, "src"))
-from lowlimb_converter.checks import mujoco_compare as mc   # noqa: E402
-from lowlimb_converter.checks import mujoco_forces as mf    # noqa: E402
-from lowlimb_converter.checks import osim_forces as of      # noqa: E402
+from osim2mujoco.checks import mujoco_compare as mc   # noqa: E402
+from osim2mujoco.checks import mujoco_forces as mf    # noqa: E402
+from osim2mujoco.checks import osim_forces as of      # noqa: E402
 from myoconverter.optimization.utils.force_refit import static_force  # noqa: E402
 
 XML = os.path.join(REPO, "station1", "gait10dof18musc", "gait10dof18musc_cvt3.xml")

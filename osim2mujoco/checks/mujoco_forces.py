@@ -3,7 +3,7 @@
 Needs only MuJoCo and NumPy (works with MuJoCo 2.3.7 / NumPy 1.x and MuJoCo 3.x / NumPy 2.x); reads the .npz
 written by osim_forces.py. Checks gate F0 and writes per-muscle errors (F1-F2 compare two such files:
 station4/gate_f.py). Method and gates: station4/GATES.md. Usage:
-    python -m lowlimb_converter.checks.mujoco_forces model.xml forces_reference.npz out.json
+    python -m osim2mujoco.checks.mujoco_forces model.xml forces_reference.npz out.json
     or: python station4/mujoco_forces.py ...
 Exit 0 if F0 passes.
 

@@ -10,7 +10,7 @@ OpenSim's by more than 5 degrees, and the differences along the way, for the mod
 An open-loop replay may blow up; MuJoCo then resets the whole state (time included) with a warning, and the replay
 stops there (status "unstable at ..."), as it does at a non-finite state.
 Method: station5/GATES.md (level 3). Usage:
-    python -m lowlimb_converter.checks.mujoco_replay model.xml replay_reference.npz out.json
+    python -m osim2mujoco.checks.mujoco_replay model.xml replay_reference.npz out.json
 """
 import argparse
 import json

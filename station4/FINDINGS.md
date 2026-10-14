@@ -128,7 +128,7 @@ slack length, no pennation). Three problems:
 - **4.2 Train only on valid equilibria.** Training samples where OpenSim has no equilibrium (the fiber clamped at its
   minimum length while the tendon pulls, see the amendment) are left out, as in the check itself. Effect ≤ 0.03% Fmax.
 - **4.3 Results that don't depend on the particle swarm, and the same for left and right** (`force_refit.py`).
-  Converting gait10dof18musc with the new `lowlimb-convert` command (MyoConverter's validation plots off) gave
+  Converting gait10dof18musc with the new `osim2mujoco` command (MyoConverter's validation plots off) gave
   different muscle parameters from the station runs (plots on), with the same static errors (within 0.0005% of Fmax).
   The cause: Step 3's particle swarm is unseeded, so its result can change from run to run (it did between two
   tool runs, and between the tool and the station runs, although repeated station runs had matched), and the

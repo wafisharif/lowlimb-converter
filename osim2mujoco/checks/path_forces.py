@@ -1,6 +1,6 @@
 """Station 6, gate L5: PathActuators (other than muscles) and PathSprings in OpenSim vs MuJoCo.
 
-Poses: Station 2's (lowlimb_converter.checks.osim_reference.build_poses). For every such force and every pose:
+Poses: Station 2's (osim2mujoco.checks.osim_reference.build_poses). For every such force and every pose:
 - path length: OpenSim's GeometryPath length vs the MuJoCo tendon's length;
 - generalized force on every coordinate the path spans (Station 3's rule): OpenSim: tension times the moment arm
   -dL/dq (central difference, h = 1e-6, couplers followed), with tension = optimal_force (PathActuator at control 1) or
@@ -11,7 +11,7 @@ Poses: Station 2's (lowlimb_converter.checks.osim_reference.build_poses). For ev
 Gate: length RMS <= 1 mm and max <= 3 mm; generalized-force RMS error <= 2% of the largest |OpenSim generalized force|
 of that element (each coordinate). MyoConverter has no parser for either (the file fails), so it has no column.
 
-Usage: python -m lowlimb_converter.checks.path_forces model.osim converted.xml out.json
+Usage: python -m osim2mujoco.checks.path_forces model.osim converted.xml out.json
 """
 import argparse
 import json
@@ -21,9 +21,9 @@ import mujoco
 import numpy as np
 import opensim as osim
 
-from lowlimb_converter.checks import mujoco_compare as mc
-from lowlimb_converter.checks.osim_paths import spanned_coordinates
-from lowlimb_converter.checks.osim_reference import build_poses
+from osim2mujoco.checks import mujoco_compare as mc
+from osim2mujoco.checks.osim_paths import spanned_coordinates
+from osim2mujoco.checks.osim_reference import build_poses
 
 H = 1e-6
 LENGTH_RMS_MM, LENGTH_MAX_MM, FORCE_RMS_PCT = 1.0, 3.0, 2.0

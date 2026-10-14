@@ -31,7 +31,7 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, REPO)
-from lowlimb_converter.checks import mujoco_forces as mf   # noqa: E402
+from osim2mujoco.checks import mujoco_forces as mf   # noqa: E402
 
 EDGE = np.radians(-90.0)
 TOL_PCT = 0.5
@@ -40,7 +40,7 @@ MUSCLES = {"gait10dof18musc": ("iliopsoas_l", "iliopsoas_r"),
 BASELINE = r'''
 import sys, numpy as np
 sys.path.insert(0, sys.argv[1])
-from lowlimb_converter.checks import mujoco_forces as mf
+from osim2mujoco.checks import mujoco_forces as mf
 r = mf.evaluate(sys.argv[2], dict(np.load(sys.argv[3])), keep_arrays=True)
 np.savez(sys.argv[4], force=r["_force"], length=r["_length"])
 '''

@@ -2,7 +2,7 @@
 
 For every .osim file in opensim-models (sorted paths), with the geometry folder built as station6/GATES.md says
 (repo-wide Geometry/, overlaid with <model folder>/Geometry/, overlaid with the mesh files in the model folder itself):
-- the support report's prediction (lowlimb_converter.support for our converter; for the MyoConverter column, the report
+- the support report's prediction (osim2mujoco.support for our converter; for the MyoConverter column, the report
   as of commit 4313be5, Station 1b, which describes the Station 1a port);
 - the real XML step (convert_steps=[1]) in a subprocess with that column's converter, its outcome, and where it stopped
   (the converter's stack frames, matched to the predicted element exactly as Station 1b's gate S3 does).
@@ -78,7 +78,7 @@ def geometry_folder(osm, osim, work):
 def load_support(column, work):
     if column == "ours":
         sys.path.insert(0, REPO)
-        from lowlimb_converter import support
+        from osim2mujoco import support
         return support, os.path.join(REPO, "src")
     port = os.path.join(work, "port")
     if not os.path.isdir(os.path.join(port, "src")):

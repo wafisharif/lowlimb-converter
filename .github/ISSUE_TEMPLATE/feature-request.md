@@ -8,4 +8,4 @@ labels: enhancement
 
 **Why (what you'd use it for):**
 
-**For a new model:** link, license, and the output of `lowlimb-convert check model.osim`
+**For a new model:** link, license, and the output of `osim2mujoco check model.osim`

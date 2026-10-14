@@ -87,7 +87,7 @@ def main():
         print(r.stderr[-1500:])
         return 1
     sys.path.insert(0, REPO)
-    from lowlimb_converter.checks import mujoco_compare as mc
+    from osim2mujoco.checks import mujoco_compare as mc
     xml = os.path.join(out, "Rajagopal2016_cvt1.xml")
     m, _ = mc.load_without_meshes(xml)
     J = lambda n: mujoco.mj_name2id(m, mujoco.mjtObj.mjOBJ_JOINT, n)

@@ -3,7 +3,7 @@
 Needs only MuJoCo and NumPy (works with MuJoCo 2.3.7 / NumPy 1.x and MuJoCo 3.x / NumPy 2.x); reads the .npz
 written by osim_gait.py. Checks gate W0 and writes per-muscle, per-pair and per-coordinate errors (W1-W3 compare two
 such files: station5/gate_w.py). Method and gates: station5/GATES.md. Usage:
-    python -m lowlimb_converter.checks.mujoco_gait model.xml gait_reference.npz out.json
+    python -m osim2mujoco.checks.mujoco_gait model.xml gait_reference.npz out.json
 Exit 0 if W0 passes.
 """
 import argparse

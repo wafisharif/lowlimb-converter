@@ -2,7 +2,7 @@
 
 Writes one .npz that the MuJoCo side reads (so the MuJoCo side can run in MuJoCo 2.3.7, which has no OpenSim).
 Method and gates: station3/GATES.md. Usage:
-    python -m lowlimb_converter.checks.osim_paths model.osim out.npz
+    python -m osim2mujoco.checks.osim_paths model.osim out.npz
     or: python station3/osim_paths.py ...
 
 Moved here from station3/osim_paths.py on 2026-10-11 so the installable tool can use it; that file is now a
@@ -14,7 +14,7 @@ following their constraint), the same definition as the MuJoCo side. For a path 
 `computeMomentArm` is not the derivative of OpenSim's own length (Rajagopal 2016: up to 18 mm off), so the
 length-derivative is used there; the analytic value is still stored (`ma_analytic`) and reported. With
 length-derivative, the M0 self-check compares h with 10h (as MuJoCo's), stored in `ma_fd_check`.
-    python -m lowlimb_converter.checks.osim_paths model.osim out.npz --moment-arm length-derivative
+    python -m osim2mujoco.checks.osim_paths model.osim out.npz --moment-arm length-derivative
 """
 import argparse
 import os

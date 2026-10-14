@@ -1,4 +1,4 @@
-"""Station 1b gates S1 (complete) and S2 (matches the converter) for lowlimb_converter.support.
+"""Station 1b gates S1 (complete) and S2 (matches the converter) for osim2mujoco.support.
 
 S1 recounts elements with whole-file XPath queries written independently of the report's traversal.
 S2 compares the report with a fresh XML conversion by the current converter (cvt1 XML + conversion log), made in
@@ -11,7 +11,7 @@ import os, sys, collections
 from lxml import etree
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.join(HERE, "..", "..")
 sys.path.insert(0, REPO)
-from lowlimb_converter.support import build_report, read_osim
+from osim2mujoco.support import build_report, read_osim
 
 fails = []
 def check(cond, msg):

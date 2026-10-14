@@ -6,7 +6,7 @@ applied as external loads; nothing else acts (no reserve or residual actuators, 
 the inputs (initial state, excitations and ground reaction forces on a fixed time grid) and OpenSim's resulting
 coordinates, so the MuJoCo side (mujoco_replay.py) can rerun the same experiment, also in MuJoCo 2.3.7.
 Method: station5/GATES.md (level 3). Usage:
-    python -m lowlimb_converter.checks.osim_replay model.osim ik.mot grf.xml controls.sto out.npz [--duration S]
+    python -m osim2mujoco.checks.osim_replay model.osim ik.mot grf.xml controls.sto out.npz [--duration S]
 """
 import argparse
 import os
