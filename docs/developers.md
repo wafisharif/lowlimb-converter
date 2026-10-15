@@ -56,11 +56,11 @@ All run on pushes to `main`. Stations 0 and 1a, and the full Station 6 run, are 
 From {repo}`CONTRIBUTING.md`:
 
 1. Write a station's pass/fail criteria before seeing any of its results. If one turns out wrong, add a dated
-   amendment rather than editing it.
+   amendment.
 2. One change per commit, with the affected stations rerun under a new label.
-3. Log every run in `EXPERIMENTS.md`, failures included. Never delete a row.
-4. Mark every modified file in `src/myoconverter/` with what changed and why (Apache 2.0 requires it).
-5. Every new check needs a test showing it catches a deliberately broken case.
+3. Log every run in `EXPERIMENTS.md`, with failures included. Never delete a row.
+4. Mark every modified file in `src/myoconverter/` with what changed and why (required by Apache 2.0).
+5. Every new check needs a test to show it catches a deliberately broken case.
 
 ## Building the docs
 
