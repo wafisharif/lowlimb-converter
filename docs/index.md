@@ -1,8 +1,8 @@
 # osim2mujoco
 
-osim2mujoco converts OpenSim models (`.osim`) to MuJoCo (`.xml`) and checks the result against OpenSim: body
-positions, muscle paths, muscle forces and, given a walking trial, the joint moments needed to walk. It's built for
-lower-limb gait models and started as a fork of [MyoConverter](https://github.com/MyoHub/myoconverter). It isn't
+osim2mujoco converts OpenSim models (`.osim`) to MuJoCo (`.xml`) models, and checks the results directly against OpenSim; this includes body
+positions, muscle paths, muscle forces and, given a walking trial, the joint moments needed to walk. osim2mujoco is built for
+lower-limb gait models and originally began as an extension of [MyoConverter](https://github.com/MyoHub/myoconverter). It isn't
 affiliated with the OpenSim or MuJoCo teams.
 
 ```bash
@@ -23,12 +23,12 @@ osim2mujoco convert  model.osim out/ --validate  # convert, then compare with Op
 | Planar, free, ball and gimbal joints | converted | not supported |
 | Validation report | every conversion | plots and a PDF from its own fitting steps |
 
-Before converting, it also tells you whether a model will convert and stops with the reason if it won't. Method and
+Before converting, it also tells you if a model will convert and, if it won't, stops converting and lists the reason. Method and
 full results: {doc}`validation`.
 
 ## Known gaps
 
-Contact geometry is exact, but contact dynamics aren't: on tilted or sliding drops the converted model ends up several
+Contact geometry is exact, but contact dynamics are not. On tilted or sliding drops, the converted model ends up several
 centimetres from OpenSim's. MuJoCo muscles have rigid tendons, and force–velocity behaviour isn't checked. See
 {doc}`limitations`.
 
