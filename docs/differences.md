@@ -1,109 +1,92 @@
-# How it differs from MyoConverter
+# Changes from MyoConverter
 
-osim2mujoco starts from MyoConverter at commit `cadf380`, vendored in `src/myoconverter/` with every changed file
-marked. Each change below came from a check that found a problem, and each has a test that fails on the converter
-before it. The numbering follows the station that found it (see {doc}`validation`). The findings files have the
-details and the numbers.
+osim2mujoco is based on MyoConverter at `cadf380`, which lives in `src/myoconverter/` with every modified file marked.
+Each change below fixes a problem a check found, and each has a test that fails without it. Numbers follow the
+station that found the problem; the findings files have the details.
 
-## Running on a current stack (Station 1a)
+## Running on current software
 
-MyoConverter is pinned to MuJoCo 2.3.7 and NumPy 1. Four small fixes make it run on MuJoCo 3, NumPy 2 and OpenSim 4.6
-without Docker:
+MyoConverter is pinned to MuJoCo 2.3.7 and NumPy 1. Four fixes get it running on MuJoCo 3, NumPy 2 and OpenSim 4.6
+without Docker: `<option collision="predefined"/>` (removed in MuJoCo 3) is replaced, the now-sparse
+`actuator_moment` is rebuilt as a dense matrix, `eq_active` is renamed and a missing dependency added, and a float
+compared with `[]` (an error in NumPy 2) is fixed. {repo}`station1/FINDINGS.md`
 
-- `<option collision="predefined"/>` was removed in MuJoCo 3, and converted models no longer loaded. It's replaced by
-  MuJoCo's documented equivalent.
-- `actuator_moment` became sparse in MuJoCo 3, a silent risk. The dense matrix is rebuilt.
-- A renamed model field (`eq_active` → `eq_active0`), and a missing dependency (`networkx`).
-- The particle-swarm optimiser compared a float with `[]`, which NumPy 2 rejects.
+## Model-level
 
-Compiled models match MyoConverter's own, apart from documented differences that don't change the physics.
-Details: {repo}`station1/FINDINGS.md`.
+- **1c.1** Gravity is taken from the model. MyoConverter used MuJoCo's default.
+- **1c.2** CoordinateActuators keep their `optimal_force`. Rajagopal 2016's lumbar and arm actuators were 10× too weak
+  without it.
+- **1c.3** `<defaults>` is applied.
 
-## Model-level fixes (1c)
+## Skeleton
 
-- **1c.1 Gravity.** The model's gravity is converted (MyoConverter used MuJoCo's default 9.81 m/s²).
-- **1c.2 Torque actuators' strength.** CoordinateActuators keep their `optimal_force` (Rajagopal 2016's lumbar and arm
-  actuators came out 10× too weak).
-- **1c.3 `<defaults>`.** Properties a component omits come from the file's `<defaults>`, as in OpenSim (MyoConverter's
-  documented limitation 3).
+- **2.1** Joints with an offset child frame rotate about the right point. Rajagopal 2016's knee was 15.6 mm off.
+- **2.2** Numbers are written at full precision instead of 4 significant figures.
+- **2.3** Spline couplings are fitted over the range the coordinate actually covers.
+- **2.4** Where no single quartic follows the spline, two are chained through a helper joint. Rajagopal 2016's patella
+  goes from 0.64° to 0.036°.
+- **2.5** Polynomial axes up to degree 4 convert exactly, which makes RajagopalLaiUhlrich2023 convertible.
 
-## Skeleton (Station 2)
+{repo}`station2/FINDINGS.md`
 
-- **2.1 Joint frames.** A joint with an offset child frame now rotates about the right point (Rajagopal 2016's knee
-  was 15.6 mm off).
-- **2.2 Precision.** Numbers are written in full, not with 4 significant figures.
-- **2.3 Spline fits.** A spline coupling (a kneecap following the knee) is fitted over the range the coordinate
-  actually moves through.
-- **2.4 Chained couplings.** Where no single quartic can follow the spline (Rajagopal 2016's patella: 0.64° at best),
-  two quartics run in sequence through a helper joint (0.036°).
-- **2.5 Polynomial axes.** `PolynomialFunction` axes up to degree 4 convert exactly (RajagopalLaiUhlrich2023 couldn't
-  be converted before).
+## Muscle paths
 
-Details: {repo}`station2/FINDINGS.md`.
+- **3.1** Conditional path points are fitted to OpenSim's path. MyoConverter left them always on, giving rectus
+  femoris the wrong moment-arm sign at the knee.
+- **3.2** Moving path points are fitted over the coordinate's range.
+- **3.3** Moving-point axes that move less than 1 mm are fixed.
+- **3.4** Wraps OpenSim allows on either side go round the shorter side. Rajagopal 2016's vasti were 127 mm too long
+  in flexion.
+- **3.5** Constrained wraps keep their side only where that matches OpenSim better. Iliacus and psoas were going the
+  long way round the pelvis, up to 180 mm.
 
-## Muscle paths (Station 3)
+MyoConverter's own path optimisation only moves wrap sites, so it did nothing for either gait model.
+{repo}`station3/FINDINGS.md`
 
-- **3.1 Conditional path points** are fitted to OpenSim's own path. MyoConverter kept them always on, which gave
-  rectus femoris the wrong moment-arm sign at the knee (69–78 mm error).
-- **3.2 Moving path points** are fitted over the coordinate's range.
-- **3.3** A moving-point axis that moves less than 1 mm is held fixed.
-- **3.4 Wrap sides.** A wrap object that OpenSim lets the path pass on either side gets no side site, so MuJoCo also
-  takes the shorter side (Rajagopal 2016's vasti were 127 mm too long in flexion).
-- **3.5** A constrained wrap keeps its side site only where that brings the path closer to OpenSim's (iliacus and psoas
-  went the long way round the pelvic brim, up to 180 mm).
+## Muscle forces
 
-MyoConverter's own moment-arm step (Step 2) didn't run for any muscle of the two gait models: it only moves wrap
-sites, and they have none. Details: {repo}`station3/FINDINGS.md`.
+- **4.1** After MyoConverter's particle swarm, each muscle is refitted against OpenSim's force at four activation
+  levels. MyoConverter fitted full activation only and averaged 10–16% error, up to 121%.
+- **4.2** Poses with no OpenSim equilibrium are excluded from the fit.
+- **4.3** Results no longer depend on the swarm's random start, so left and right muscles match. MyoConverter's two
+  copies of one muscle came out at 1.5% and 7.9% error.
+- **4.4** Full activation and passive are each kept within 0.25% of their own best fit; the middle of the range takes
+  the error a rigid tendon can't avoid.
 
-## Muscle forces (Station 4)
+{repo}`station4/FINDINGS.md`
 
-- **4.1 Deterministic refit.** After MyoConverter's particle swarm, each muscle is refitted by least squares against
-  OpenSim's force at four activation levels (MyoConverter fitted full activation only: mean errors 10–16% of max force,
-  up to 121%).
-- **4.2** Only poses where OpenSim has a static equilibrium are used.
-- **4.3** The result doesn't depend on the swarm's luck, and left and right muscles get the same parameters
-  (MyoConverter's swarm is unseeded: its copies of one muscle came out 1.5% and 7.9% off).
-- **4.4 Both ends of the activation range.** A rigid tendon can't match an elastic one everywhere; the fit keeps full
-  activation and passive within 0.25% of their own best fits and lets the middle pay.
+## Walking
 
-Details: {repo}`station4/FINDINGS.md`.
-
-## Walking (Station 5)
-
-- **5.1 Robust path fit.** OpenSim's on/off jumps no longer pull a conditional point's fit away everywhere else.
-- **5.2 Time step.** Models are saved with a 2 ms time step (MyoConverter saved the 5 ms its analysis last set, which
-  made forward simulation inaccurate).
+- **5.1** OpenSim's on/off jumps no longer drag conditional points off the path elsewhere.
+- **5.2** Models are saved with a 2 ms time step. MyoConverter left 5 ms, which broke forward simulation.
 - **5.3** A conditional point next to a fixed one can switch toward it through a helper joint.
-- **5.4** The force refit leaves out the few poses where the path itself is wrong.
+- **5.4** The force fit skips the few poses where the path itself is wrong.
 
-Details: {repo}`station5/FINDINGS.md`.
+{repo}`station5/FINDINGS.md`
 
-## Past MyoConverter's limitations (Station 6)
+## MyoConverter's limitations
 
-| Change | What |
+| | |
 | --- | --- |
-| 6.1 | Read every OpenSim 4 file: `::` in element names, coordinates that omit `<range>`/`<clamped>`/`<locked>`, mesh extensions in any case, placeholder meshes, joints whose parent socket names a body |
+| 6.1 | Reads every OpenSim 4 file: `::` in element names, missing coordinate properties, any mesh-extension case, placeholder meshes, joints attached directly to bodies |
 | 6.2 | Planar, Free, Ball and Gimbal joints |
-| 6.3 | Mass properties exactly OpenSim's (the template's compiler bounds inflated small bodies) |
+| 6.3 | Exact masses and inertias (the template inflated small bodies) |
 | 6.4 | CoordinateLimitForce |
 | 6.5 | PathActuator and PathSpring |
-| 6.6 | Contact spheres, half-spaces and Hunt–Crossley forces, with calibrated contact parameters |
+| 6.6 | Contact spheres, half-spaces and Hunt–Crossley forces, with fitted parameters |
 | 6.7 | ASCII STL and OBJ meshes |
-| 6.8 | A half-space on a moving body becomes a box |
-| 6.9 | The contact calibration handles coupled coordinates and locked platforms |
-| 6.10 | No damping on joints a coupling drives (it made Rajagopal's kneecap lag the knee by 1.9°) |
-| 6.11 | A mesh file named in another case is found |
-| 6.12 | Contact parameters must keep the whole model stable (the best fit threw a free walker model 4 m into the air) |
-| 6.13 | The calibration's OpenSim simulations run in a fresh process (they failed now and then inside the conversion) |
-| 6.14 | A spline fit whose least-squares solve breaks down keeps its best result so far instead of failing the conversion (it happened now and then on GitHub's machines) |
+| 6.8 | Half-spaces on moving bodies become boxes |
+| 6.9 | Contact fitting handles coupled coordinates and locked platforms |
+| 6.10 | No damping on coupling-driven joints (Rajagopal's kneecap lagged the knee by 1.9°) |
+| 6.11 | Mesh files are found regardless of name case |
+| 6.12 | Contact parameters must keep the whole model stable (the best fit launched the walker model 4 m up) |
+| 6.13 | The contact fitting's OpenSim simulations run in a separate process (they occasionally failed in the main one) |
+| 6.14 | A spline fit that hits a numerical breakdown keeps its best result instead of failing |
 
-Details: {repo}`station6/FINDINGS.md`.
+{repo}`station6/FINDINGS.md`
 
-## The tool around it
+## Beyond the converter
 
-MyoConverter is a conversion pipeline. osim2mujoco adds:
-
-- the support report (`osim2mujoco check`), which predicts whether and how a model converts before converting it;
-- the validation report, with the checks used throughout this project;
-- a `convert` command that refuses an output folder holding old results (MyoConverter's pipeline would silently
-  resume from them) and a model it can't convert, before doing anything.
+- `osim2mujoco check` predicts whether a model will convert before trying.
+- Every conversion can produce a validation report.
+- `convert` refuses non-empty output folders. MyoConverter would quietly resume from whatever old results it found.

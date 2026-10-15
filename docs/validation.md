@@ -1,100 +1,91 @@
-# How it's validated
+# Validation
 
-## The method
+## Method
 
-The converter was built and checked in stations, each a harder test than the last. Each station has **gates**:
-pass/fail rules written down, and posted publicly, before any result they apply to was seen. When a gate failed, the
-fix was made as its own change and the station was rerun under a new name; failed runs are kept, not overwritten. A
-gate that had to change after a result was seen gets a dated amendment saying why. Every run, failed ones included,
-is logged in {repo}`EXPERIMENTS.md` (intended, actual, deviation).
+The converter was developed in stages ("stations"), each testing more of the model than the last. Pass/fail criteria
+for each station were written and published before any of its results existed. When a station failed, the fix went in
+as a separate change and the station was rerun; failed runs stay in the record. Criteria changed after seeing results
+get a dated amendment. Every run is logged in {repo}`EXPERIMENTS.md`.
 
-Every number is compared with MyoConverter's result for the same model, on the same poses, with the same code.
+Results are always compared with MyoConverter on the same model, poses and comparison code.
 
-| Station | Question | Gates |
+| Station | Checks | Criteria |
 | --- | --- | --- |
-| 0 | Does MyoConverter reproduce its own published results? | {repo}`baseline/GATES.md` |
-| 1 | Does it run on a current stack, and can we predict what it will fail on? | {repo}`station1/GATES.md` |
-| 2 | Are the bones in the same place in every pose? | {repo}`station2/GATES.md` |
-| 3 | Do the muscles take the same paths (lengths and moment arms)? | {repo}`station3/GATES.md` |
-| 4 | Do the muscles pull with the same static force? | {repo}`station4/GATES.md` |
-| 5 | Along a real walking trial, do lengths, moment arms and the joint moments needed to walk match? | {repo}`station5/GATES.md` |
-| 6 | Does it get past MyoConverter's documented limitations, on every model OpenSim distributes? | {repo}`station6/GATES.md` |
+| 0 | MyoConverter reproduces its own published results | {repo}`baseline/GATES.md` |
+| 1 | It runs on current OpenSim/MuJoCo/NumPy, and failures can be predicted | {repo}`station1/GATES.md` |
+| 2 | Bones are in the same place in every pose | {repo}`station2/GATES.md` |
+| 3 | Muscle lengths and moment arms | {repo}`station3/GATES.md` |
+| 4 | Static muscle forces | {repo}`station4/GATES.md` |
+| 5 | Lengths, moment arms and joint moments along real walking trials | {repo}`station5/GATES.md` |
+| 6 | MyoConverter's documented limitations, on all 56 OpenSim example models | {repo}`station6/GATES.md` |
 
-## Models
-
-- **gait10dof18musc**: 10 degrees of freedom, 18 muscles (MyoConverter's own test model).
-- **gait2354**: 23 degrees of freedom, 54 muscles.
-- **Rajagopal 2016**: a full-body model with 80 leg muscles and 40 wrapping cylinders.
-- **RajagopalLaiUhlrich2023**: Rajagopal's successor, with polynomial knees (Station 2 only).
-- Station 6: all 56 model files in [opensim-models](https://github.com/opensim-org/opensim-models) (@ `d9b05d4`).
+Models: gait10dof18musc (10 DOF, 18 muscles), gait2354 (23 DOF, 54 muscles), Rajagopal 2016 (80 leg muscles, 40 wrap
+cylinders), RajagopalLaiUhlrich2023 (Station 2 only), and for Station 6 every model in
+[opensim-models](https://github.com/opensim-org/opensim-models) at `d9b05d4`.
 
 ## Results
 
-Final converter, against MyoConverter on the same model. Lower is better.
+MyoConverter's numbers in brackets. Lower is better.
 
-### Bones (Station 2): worst body position error over 1400–2200 poses
+### Bones: worst position error, 1,400–2,200 poses
 
-| Model | osim2mujoco | MyoConverter |
+| Model | Error |
+| --- | --- |
+| gait10dof18musc | 0.22 mm (0.88) |
+| gait2354 | 0.22 mm (0.89) |
+| Rajagopal 2016 | 0.15 mm, 0.04° (15.6 mm, 0.89°) |
+| RajagopalLaiUhlrich2023 | 0.42 mm, 0.07° (MyoConverter can't convert it) |
+
+Limit: 1 mm and 0.5°. All pass. {repo}`station2/FINDINGS.md`
+
+### Muscle paths: mean moment-arm error
+
+| Model | Error |
+| --- | --- |
+| gait10dof18musc | 0.86 mm (7.58) |
+| gait2354 | 0.36 mm (1.54) |
+| Rajagopal 2016 | 0.46 mm (1.64) |
+
+No muscle–joint pair may be worse than MyoConverter's beyond a tolerance. All pass. {repo}`station3/FINDINGS.md`
+
+### Muscle forces: mean error, % of max isometric force
+
+| Model | Full activation | Passive |
 | --- | --- | --- |
-| gait10dof18musc | **0.22 mm** | 0.88 mm |
-| gait2354 | **0.22 mm** | 0.89 mm |
-| Rajagopal 2016 | **0.15 mm, 0.04°** | 15.6 mm, 0.89° |
-| RajagopalLaiUhlrich2023 | **0.42 mm, 0.07°** | couldn't be converted |
+| gait10dof18musc | 3.1% (10.1) | 1.3% (13.2) |
+| gait2354 | 3.6% (16.1) | 2.9% (15.7) |
+| Rajagopal 2016 | 2.5% (6.9) | 1.1% (6.9) |
 
-Gate: within 1 mm and 0.5° in every pose. All pass. Details: {repo}`station2/FINDINGS.md`.
+No muscle may be worse than MyoConverter's beyond a tolerance unless there's a tested reason. Four muscles are listed
+as exceptions: two hip flexors, which only miss with the hip extended past −90° where OpenSim's own path jumps, and two
+Rajagopal muscles, which only miss against MyoConverter's lucky copy of a muscle whose mirror image it got much worse.
+{repo}`station4/FINDINGS.md`
 
-### Muscle paths (Station 3): mean moment-arm error
+### Walking: OpenSim's example trials
 
-| Model | osim2mujoco | MyoConverter |
-| --- | --- | --- |
-| gait10dof18musc | **0.86 mm** | 7.58 mm |
-| gait2354 | **0.36 mm** | 1.54 mm |
-| Rajagopal 2016 | **0.46 mm** | 1.64 mm |
-
-Gate: no muscle–joint pair worse than MyoConverter's beyond a tolerance. All pass. Details:
-{repo}`station3/FINDINGS.md`.
-
-### Muscle forces (Station 4): mean static-force error, % of max force
-
-| Model | osim2mujoco, full / passive | MyoConverter, full / passive |
-| --- | --- | --- |
-| gait10dof18musc | **3.1% / 1.3%** | 10.1% / 13.2% |
-| gait2354 | **3.6% / 2.9%** | 16.1% / 15.7% |
-| Rajagopal 2016 | **2.5% / 1.1%** | 6.9% / 6.9% |
-
-Gate: no muscle worse than MyoConverter's beyond a tolerance, or listed with a test-backed reason. All pass, with four
-listed muscles: two hip flexors (only in hip extension beyond −90°, where OpenSim's own path jumps) and two Rajagopal
-muscles (only against MyoConverter's luckier copy of a muscle whose mirror image it got far worse). Details:
-{repo}`station4/FINDINGS.md`.
-
-### Walking (Station 5): along OpenSim's own walking trials
-
-| Model | Muscle length | Moment arm | Joint moments needed to walk |
+| Model | Muscle length | Moment arm | Joint moments |
 | --- | --- | --- | --- |
-| gait10dof18musc | **0.13 mm** (MyoConverter 5.27) | **0.51 mm** (7.61) | **0.0047 N·m/kg** (0.0075) |
-| gait2354 | **0.05 mm** (1.64) | **0.11 mm** (1.20) | **0.0027 N·m/kg** (0.0039) |
-| Rajagopal 2016 | **0.37 mm** (14.48) | **0.22 mm** (1.22) | **0.0011 N·m/kg** (0.0112) |
+| gait10dof18musc | 0.13 mm (5.27) | 0.51 mm (7.61) | 0.0047 N·m/kg (0.0075) |
+| gait2354 | 0.05 mm (1.64) | 0.11 mm (1.20) | 0.0027 N·m/kg (0.0039) |
+| Rajagopal 2016 | 0.37 mm (14.48) | 0.22 mm (1.22) | 0.0011 N·m/kg (0.0112) |
 
-Gate: every muscle, muscle–joint pair and joint no worse than MyoConverter's beyond a tolerance, and joint moments
-within 0.02 N·m/kg. All pass. Open-loop replay of recorded muscle excitations (reported only) parts from OpenSim within milliseconds in
-every case, MyoConverter's included. Details: {repo}`station5/FINDINGS.md`.
+Nothing may be worse than MyoConverter beyond a tolerance, and joint moments must be within 0.02 N·m/kg. All pass.
+{repo}`station5/FINDINGS.md`
 
-### Every OpenSim model (Station 6)
+### All 56 OpenSim models
 
-| Gate | What | Result |
-| --- | --- | --- |
-| L0 | The support report predicts every file's outcome | **pass**: 56/56, for both converters |
-| L1 | Every file converts, except those with an out-of-scope element | **pass**: 54/56 (MyoConverter 40/56) |
-| L2 | Bones, on the newly converted files | **pass** |
-| L3 | Mass properties exact (1e-9) | **pass**: 54/54 (MyoConverter fails 32 of its 40) |
-| L4 | Limit forces within 1% of peak | **pass**: 24 forces in 9 files, worst 0.22% |
-| L5 | Path actuators and springs | **pass**: lengths within 0.19 mm, forces within 1.6% |
-| L6 | Contact geometry within 1e-6 m | **pass**: 66 pairs, worst 3e-14 m |
-| L7 | Contact dynamics on drops the calibration never saw | **fail**: see {doc}`limitations` |
+| Check | Result |
+| --- | --- |
+| Support report predicts which files convert | 56/56, for both converters |
+| Files that convert | 54/56 (MyoConverter 40/56) |
+| Bones | pass |
+| Mass properties exact | 54/54 (MyoConverter wrong on 32 of 40) |
+| Limit forces within 1% of peak | worst 0.22%, 24 forces in 9 files |
+| Path actuators and springs | lengths within 0.19 mm, forces within 1.6% |
+| Contact geometry within 1e-6 m | worst 3e-14 m, 66 pairs |
+| Contact dynamics on unseen drops | fail, see {doc}`limitations` |
 
-Details: {repo}`station6/FINDINGS.md`.
+{repo}`station6/FINDINGS.md`
 
-## Rerunning the checks
-
-Each station has a script that reruns it from scratch; see {doc}`developers`. GitHub Actions reruns Stations 2–6's
-quick checks on every push.
+Every station can be rerun from scratch ({doc}`developers`), and the quick versions run on GitHub Actions on every
+push.

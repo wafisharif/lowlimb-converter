@@ -6,85 +6,80 @@ osim2mujoco convert  MODEL.osim OUT_DIR [--geometry DIR] [--steps 1 2 3] [--vali
 osim2mujoco validate MODEL.osim CONVERTED.xml OUT_DIR [--levels ...] [--ik FILE --grf FILE] [...]
 ```
 
-`osim2mujoco --version` prints the version, and `-v` / `--verbose` (before the command) shows the full log of the
-conversion pipeline and OpenSim.
+`-v` / `--verbose`, placed before the command, prints the full pipeline and OpenSim log.
 
 ## check
 
-Lists every element of an OpenSim model and whether it converts. It doesn't convert anything and takes seconds.
+Reports what will happen to each element of a model without converting it.
 
-| Option | What it does |
+| Option | |
 | --- | --- |
-| `--geometry DIR` | Mesh folder: also checks that every mesh file exists (up to case, as the converter does) |
+| `--geometry DIR` | Also check that every mesh file exists |
 | `--md FILE` | Write the report as Markdown |
 | `--json FILE` | Write the report as JSON |
 
-Every element gets one status:
-
 | Status | Meaning |
 | --- | --- |
-| converted | Becomes the MuJoCo equivalent |
-| approximated | Converted, but not exactly (e.g. a spline joint coupling becomes a polynomial fit) |
-| skipped | The converter knows the element but doesn't convert it, and says so (e.g. bushing forces) |
-| ignored | Not read at all (e.g. display settings) |
-| unsupported | The converter would fail on it |
+| converted | Has an exact MuJoCo equivalent |
+| approximated | Converted, but not exactly (e.g. a spline coupling becomes a polynomial) |
+| skipped | Known but not converted; the converter warns (e.g. bushings) |
+| ignored | Never read |
+| unsupported | The conversion would fail here |
 
-Exit codes: **0** the model will convert, **1** it won't (the report names the first element it fails on), **2** the
-file couldn't be read. The report also names the converter source that handles each element, so you can see why.
+Exit codes: 0 will convert, 1 won't (the report names the first failing element), 2 couldn't read the file.
 
 ## convert
 
-Converts a model. It runs `check` first and refuses a model that won't convert, with the reason, before doing
-anything.
+Runs `check` first and stops if the model won't convert.
 
-| Option | What it does |
+| Option | |
 | --- | --- |
 | `OUT_DIR` | Output folder; must be new or empty |
-| `--geometry DIR` | Mesh folder (default: the `Geometry` folder next to the model) |
-| `--steps 1 2 3` | Which steps to run. 1 = XML conversion only (seconds); 1 2 3 = also fit muscle paths and forces (minutes; the default) |
-| `--validate` | Then write a validation report into `OUT_DIR/validation` |
+| `--geometry DIR` | Mesh folder (default: `Geometry` next to the model) |
+| `--steps 1 2 3` | 1 = XML conversion only; 1 2 3 = also fit muscle paths and forces (default) |
+| `--validate` | Write a validation report into `OUT_DIR/validation` afterwards |
 | `--speedy` | MyoConverter's faster, less thorough optimisation |
-| `--myoconverter-report` | Also run MyoConverter's own validation plots and PDF (slow) |
-| `--no-ground` | Don't add a ground plane (one is added unless the model has its own contact) |
-| `--ik`, `--grf`, `--start`, `--end`, `--controls` | A walking trial for the validation report (see `validate`) |
+| `--myoconverter-report` | Also produce MyoConverter's own plots and PDF (slow) |
+| `--no-ground` | Don't add a ground plane (none is added if the model has its own contact anyway) |
+| `--ik`, `--grf`, `--start`, `--end`, `--controls` | Walking trial for the report (see `validate`) |
 
-Output, for a model `model.osim`:
+Output for `model.osim`:
 
-| File | What |
+| File | |
 | --- | --- |
-| `model_cvt1.xml` | After step 1 (muscle paths and forces not fitted yet) |
-| `model_cvt2.xml` | After step 2 (muscle paths fitted) |
-| `model_cvt3.xml` | The converted model |
-| `Geometry/` | Meshes, as binary STL (or OBJ) |
-| `contact_calibration.json` | For a model with contacts: the fitted contact parameters and how well they match OpenSim's drops |
-| `model_conversion.log` | The full log |
-| `validation/` | With `--validate`: the validation report |
+| `model_cvt1.xml` | After step 1 |
+| `model_cvt2.xml` | After step 2 |
+| `model_cvt3.xml` | Final model |
+| `Geometry/` | Meshes (binary STL or OBJ) |
+| `contact_calibration.json` | Fitted contact parameters, for models with contact |
+| `model_conversion.log` | Full log |
+| `validation/` | Validation report, with `--validate` |
 
 ## validate
 
-Compares a converted model with its OpenSim original; see {doc}`report` for what each number means.
+Compares a converted model with the original. See {doc}`report`.
 
-| Option | What it does |
+| Option | |
 | --- | --- |
-| `XML` | The converted model (the `_cvt3.xml` for paths and forces) |
-| `OUT_DIR` | Folder for `report.md`, `report.json` and the detailed results |
-| `--levels` | Any of `kinematics`, `paths`, `forces`, `elements`, `walking` (default: all but walking) |
-| `--ik FILE` | OpenSim inverse-kinematics result of a walking trial (`.mot` or `.sto`) |
-| `--grf FILE` | Its ground reaction forces, as an OpenSim ExternalLoads file (`.xml`) |
-| `--start`, `--end` | The part of the trial to compare, in seconds (default: all of it) |
-| `--controls FILE` | Muscle excitations (`.sto`, e.g. CMC's `*_controls.sto`): also replay them open loop (reported only) |
+| `XML` | Converted model (use `_cvt3.xml` for paths and forces) |
+| `OUT_DIR` | Where `report.md`, `report.json` and the detailed results go |
+| `--levels` | Any of `kinematics`, `paths`, `forces`, `elements`, `walking`; default is all but `walking` |
+| `--ik FILE` | Inverse-kinematics result of a walking trial (`.mot` or `.sto`) |
+| `--grf FILE` | Its ground reaction forces (OpenSim ExternalLoads `.xml`) |
+| `--start`, `--end` | Part of the trial to compare, in seconds |
+| `--controls FILE` | Muscle excitations (`.sto`) to replay open loop; reported only |
 
-Giving `--ik` and `--grf` adds the walking level.
+`--ik` and `--grf` together add the walking level.
 
-## Running a module directly
+## Running checks individually
 
-The support report and each check also run on their own, which helps when debugging a single model:
+Each check has an OpenSim side, which writes a reference `.npz`, and a MuJoCo side that compares against it without
+needing OpenSim:
 
 ```bash
 python -m osim2mujoco.support model.osim --geometry Geometry/ --md report.md
-python -m osim2mujoco.checks.osim_reference model.osim reference.npz          # OpenSim side of kinematics
+python -m osim2mujoco.checks.osim_reference model.osim reference.npz
 python -m osim2mujoco.checks.mujoco_compare model_cvt3.xml reference.npz out.json
 ```
 
-Every check is split the same way: an OpenSim side writes a reference `.npz`, and a MuJoCo side compares against it
-without needing OpenSim. The modules are listed in {doc}`python-api`.
+All modules are listed in {doc}`python-api`.
