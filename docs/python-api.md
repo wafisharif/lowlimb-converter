@@ -42,7 +42,7 @@ print(to_markdown(report))
 
 ## Check modules
 
-Each pair is split into an OpenSim side (writes a reference `.npz`) and a MuJoCo side (compares against it, no OpenSim
+Each pair is split into an OpenSim side (writes a reference `.npz`) and a MuJoCo side (no OpenSim is
 needed). Every module runs with `python -m osim2mujoco.checks.<module>`, and its docstring describes the method.
 
 | Module | Compares |
@@ -50,7 +50,7 @@ needed). Every module runs with `python -m osim2mujoco.checks.<module>`, and its
 | `osim_reference` / `mujoco_compare` | Body positions and orientations |
 | `osim_paths` / `mujoco_paths` | Muscle lengths and moment arms |
 | `osim_forces` / `mujoco_forces` | Static muscle forces |
-| `osim_gait` / `mujoco_gait` | Lengths, moment arms and joint moments along a walking trial |
+| `osim_gait` / `mujoco_gait` | Lengths, moment arms, and joint moments along a walking trial |
 | `osim_replay` / `mujoco_replay` | Open-loop replay of muscle excitations |
 | `mass_properties` | Mass, centre of mass, inertia |
 | `limit_forces` | CoordinateLimitForce |
