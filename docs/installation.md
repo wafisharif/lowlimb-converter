@@ -18,7 +18,7 @@ pip install --no-deps .
 osim2mujoco --version
 ```
 
-The lockfile pins every dependency, including OpenSim 4.6 and MuJoCo 3.15, to the versions the results were produced
+The lockfile pins every dependency, including OpenSim 4.6 and MuJoCo 3.15, to the versions that the results were produced
 with. Plain `pip install .` works too but may pull newer versions.
 
 On a bare Linux machine, mesh conversion needs:
@@ -27,7 +27,7 @@ On a bare Linux machine, mesh conversion needs:
 sudo apt-get install -y libgl1 libxrender1 libxext6
 ```
 
-The project was called lowlimb-converter until October 2026. The old `lowlimb-convert` command still works.
+This project was called lowlimb-converter until October 2026. The old `lowlimb-convert` command still works.
 
 ## Models to try
 
