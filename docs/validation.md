@@ -2,12 +2,12 @@
 
 ## Method
 
-The converter was developed in stages ("stations"), each testing more of the model than the last. Pass/fail criteria
-for each station were written and published before any of its results existed. When a station failed, the fix went in
-as a separate change and the station was rerun; failed runs stay in the record. Criteria changed after seeing results
+The converter was developed in stages ("stations"), with each station testing more of the model than the last. Pass/fail criteria
+for each station were written and published before any results existed. When a station failed, the fix went in
+as a separate change and the station was rerun; failed runs stay in the record. Criteria that changed after seeing results
 get a dated amendment. Every run is logged in {repo}`EXPERIMENTS.md`.
 
-Results are always compared with MyoConverter on the same model, poses and comparison code.
+Results are always compared with MyoConverter on the same model, poses, and comparison code.
 
 | Station | Checks | Criteria |
 | --- | --- | --- |
@@ -56,7 +56,7 @@ No muscle–joint pair may be worse than MyoConverter's beyond a tolerance. All 
 | gait2354 | 3.6% (16.1) | 2.9% (15.7) |
 | Rajagopal 2016 | 2.5% (6.9) | 1.1% (6.9) |
 
-No muscle may be worse than MyoConverter's beyond a tolerance unless there's a tested reason. Four muscles are listed
+No muscle may be worse than MyoConverter's beyond a tolerance unless there is a tested reason. Four muscles are listed
 as exceptions: two hip flexors, which only miss with the hip extended past −90° where OpenSim's own path jumps, and two
 Rajagopal muscles, which only miss against MyoConverter's lucky copy of a muscle whose mirror image it got much worse.
 {repo}`station4/FINDINGS.md`
