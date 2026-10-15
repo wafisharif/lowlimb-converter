@@ -25,15 +25,12 @@ exclude_patterns = ["_build"]
 myst_enable_extensions = ["colon_fence", "deflist"]
 myst_heading_anchors = 3
 
-# Repository files (findings, gates, results) are linked on GitHub rather than copied into the site.
 REPO = "https://github.com/wafisharif/osim2mujoco"
 extlinks = {
     "repo": (f"{REPO}/blob/main/%s", "%s"),
     "tree": (f"{REPO}/tree/main/%s", "%s"),
 }
 
-# The API reference documents the package without installing the simulators: these are imported lazily or only
-# inside functions, and mocked here so the build needs no OpenSim or MuJoCo.
 autodoc_mock_imports = ["opensim", "mujoco", "pyvista", "trimesh", "scipy", "matplotlib", "fpdf", "networkx",
                         "sklearn", "seaborn", "myoconverter"]
 autodoc_member_order = "bysource"
