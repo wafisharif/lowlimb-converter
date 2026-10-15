@@ -1,6 +1,6 @@
 # What converts
 
-Run `osim2mujoco check model.osim` for a specific model. This page is the general picture.
+Run `osim2mujoco check model.osim` for a specific model. This page is a general overview.
 
 ## Bodies and geometry
 
@@ -62,6 +62,6 @@ Tendon compliance, fiber damping and force–velocity parameters aren't converte
 | HuntCrossleyForce | contact pairs | stiffness, damping and friction fitted to OpenSim drops of the model |
 | Contact meshes, elastic foundation | not converted | |
 
-A ground plane is added unless the model has its own contact or you pass `--no-ground`.
+A ground plane is added, unless the model has its own contact or you pass `--no-ground`.
 
 Markers become sites named `<marker>_marker`.
