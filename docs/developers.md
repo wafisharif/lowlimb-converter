@@ -44,7 +44,7 @@ cores; Station 6 takes several hours.
 
 | Workflow | Runs |
 | --- | --- |
-| `tool` | Install from the lockfile, convert and validate gait10dof18musc (full on Linux, quick on macOS) |
+| `tool` | Install from the lockfile, convert, and validate gait10dof18musc |
 | `station2-kinematics` to `station5-walking` | Stations 2–5 on the gait models |
 | `station6-limitations` | Tests for every Station 6 change, and the support report on all 56 models |
 | `docs` | Builds this site, failing on warnings |
