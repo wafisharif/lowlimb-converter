@@ -1,8 +1,8 @@
-"""osim2mujoco: convert OpenSim gait models to MuJoCo and report how closely the result matches.
+"""o2m (osim2mujoco): convert OpenSim gait models to MuJoCo and report how closely the result matches.
 
-  osim2mujoco check    MODEL.osim [--geometry DIR] [--md FILE] [--json FILE]
-  osim2mujoco convert  MODEL.osim OUT_DIR [--geometry DIR] [--steps 1 2 3] [--validate] [...]
-  osim2mujoco validate MODEL.osim CONVERTED.xml OUT_DIR [--levels kinematics paths forces elements]
+  o2m check    MODEL.osim [--geometry DIR] [--md FILE] [--json FILE]
+  o2m convert  MODEL.osim OUT_DIR [--geometry DIR] [--steps 1 2 3] [--validate] [...]
+  o2m validate MODEL.osim CONVERTED.xml OUT_DIR [--levels kinematics paths forces elements]
                            [--ik TRIAL_IK.mot --grf TRIAL_GRF.xml [--start S --end S] [--controls CONTROLS.sto]]
 
 Exit codes: 0 success; 1 the model can't be converted / a check failed; 2 bad input.
@@ -107,7 +107,7 @@ def _add_walking_args(p):
 
 
 def build_parser():
-    ap = argparse.ArgumentParser(prog="osim2mujoco", description=__doc__.split("\n\n")[0])
+    ap = argparse.ArgumentParser(prog="o2m", description=__doc__.split("\n\n")[0])
     ap.add_argument("--version", action="version", version=f"osim2mujoco {__version__}")
     ap.add_argument("-v", "--verbose", action="store_true", help="show the pipeline's and OpenSim's full log")
     sub = ap.add_subparsers(dest="command", required=True)

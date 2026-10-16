@@ -10,7 +10,7 @@ MODEL=upstream/models/osim/Gait10dof18musc/gait10dof18musc.osim
 ## Check the model
 
 ```bash
-osim2mujoco check $MODEL --md check.md
+o2m check $MODEL --md check.md
 ```
 
 Lists every element in the model and what will happen to it: converted, approximated, skipped, ignored, or unsupported.
@@ -20,7 +20,7 @@ could not be read.
 ## Convert
 
 ```bash
-osim2mujoco convert $MODEL out/ --validate
+o2m convert $MODEL out/ --validate
 ```
 
 Conversion runs in three steps:
@@ -48,7 +48,7 @@ With an OpenSim inverse-kinematics result and the matching ground reaction force
 in both simulators:
 
 ```bash
-osim2mujoco validate $MODEL out/gait10dof18musc_cvt3.xml report/ \
+o2m validate $MODEL out/gait10dof18musc_cvt3.xml report/ \
     --ik subject01_walk_ik.mot --grf subject01_walk_grf.xml
 ```
 

@@ -6,8 +6,8 @@ lower-limb gait models and started as a fork of [MyoConverter](https://github.co
 affiliated with the OpenSim or MuJoCo teams.
 
 ```bash
-osim2mujoco check    model.osim                  # what will convert (seconds)
-osim2mujoco convert  model.osim out/ --validate  # convert, then compare with OpenSim (minutes)
+o2m check    model.osim                  # what will convert (seconds)
+o2m convert  model.osim out/ --validate  # convert, then compare with OpenSim (minutes)
 ```
 
 ## Compared with MyoConverter

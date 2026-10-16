@@ -70,7 +70,7 @@ second: Pelvis_ty 0.70 m, Pelvis_tx 0.42 m, Pelvis_rx 83°; reported only, not a
 What would be needed: a contact model closer to Hunt–Crossley (MuJoCo's solimp can make stiffness grow with
 penetration; a velocity-dependent friction can be approximated with soft friction constraints), and calibration
 scenarios that include rocking and sliding. Until then the converted contacts are geometrically exact, and their
-parameters a starting point to check against OpenSim for the motion at hand; `osim2mujoco validate` reports the
+parameters a starting point to check against OpenSim for the motion at hand; `o2m validate` reports the
 held-out drops for any model with a WalkerModel-like root.
 
 ## Checked along the way

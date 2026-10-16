@@ -9,7 +9,7 @@ RajagopalLaiUhlrich2023 (Station 2 only). Station 6 also runs the XML step on al
 
 | # | MyoConverter's limitation | Status here | Evidence |
 | --- | --- | --- | --- |
-| 1 | Only one kinematic tree | Unchanged, but detected | The support report (`osim2mujoco check`) lists every body not reached from ground as ignored before converting. None of the 56 files OpenSim distributes has one (support report, Station 6) |
+| 1 | Only one kinematic tree | Unchanged, but detected | The support report (`o2m check`) lists every body not reached from ground as ignored before converting. None of the 56 files OpenSim distributes has one (support report, Station 6) |
 | 2 | Contacts not converted (except a ground plane) | **Geometry fixed for spheres and half-spaces; dynamics open** (changes 6.6, 6.8, 6.9, 6.12, 6.13) | `ContactSphere`, `ContactHalfSpace` and `HuntCrossleyForce` become MuJoCo geoms and contact pairs with exactly OpenSim's geometry (Station 6 gate L6: signed distance within 1e-6 m in every pose), and the pair parameters are calibrated against OpenSim drops of the model. The calibrated parameters keep the whole model stable (6.12), but they don't generalise: on drops it never saw, OpenSim's WalkerModel is followed within 8 mm from another height, and only within 37–62 mm when tilted or sliding, worse than MuJoCo's default contact parameters on two of three (gate L7 fails; open item, `station6/FINDINGS.md`). A half-space on a moving body becomes a box (MuJoCo allows planes only on static bodies). Other contact geometry (meshes, elastic foundation) is still listed as ignored |
 | 3 | The `<defaults>` element is ignored | **Fixed** (change 1c.3) | A component that omits a property now takes it from `<defaults>`, as OpenSim does. `station1/tests/test_document_defaults.py` (OpenSim reads the default; the converted actuator strength, control range and muscle peak force match it; explicit values still win). In Rajagopal 2016 this sets every muscle's lowest control to OpenSim's 0.01 |
 | 4 | Conditional and moving path points may move tendons inaccurately | **Fixed** (changes 3.1–3.3, 5.1, 5.3) | Both point types are fitted to OpenSim's own path. Worst moment-arm error 69–78 mm → 3.5–6.3 mm over random poses (Station 3); muscle lengths along a real walking trial 33–42× closer than MyoConverter's (Station 5) |
@@ -42,5 +42,5 @@ What this fork adds that MyoConverter's documentation doesn't mention, each foun
   folder.
 - MyoConverter validates only static curves. This fork also checks a real walking trial: muscle lengths and moment arms
   over the gait cycle, and the joint moments needed to walk with the measured ground forces (Station 5), available to
-  any user through `osim2mujoco validate --ik ... --grf ...`; and contact, limit forces, path actuators and mass
+  any user through `o2m validate --ik ... --grf ...`; and contact, limit forces, path actuators and mass
   properties (the "elements" level, Station 6).

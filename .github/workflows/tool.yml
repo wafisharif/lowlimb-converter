@@ -1,7 +1,7 @@
 name: tool
 
 # The installable tool on clean machines: install the package (exact versions from the lockfile), then run
-# tests/test_tool.py, which converts gait10dof18musc with the `osim2mujoco` command and validates it.
+# tests/test_tool.py, which converts gait10dof18musc with the `o2m` command and validates it.
 # Linux runs the full conversion with --validate, including the walking level on OpenSim's gait10dof18musc example
 # trial and OpenSim's WalkerModel (contact, limit forces; the "elements" level); macOS (Apple Silicon) runs the quick
 # part, to check that the package installs and converts natively there.
@@ -41,8 +41,9 @@ jobs:
         run: |
           python -m pip install --require-hashes -r env/requirements.lock
           python -m pip install --no-deps .
-          osim2mujoco --version
-          lowlimb-convert --version   # the command's name before the rename still works
+          o2m --version
+          osim2mujoco --version       # the long name of the same command
+          lowlimb-convert --version   # the name before the 2026-10-14 rename
       - name: Clone upstream MyoConverter at the pinned commit (gait models)
         run: |
           git clone --quiet https://github.com/MyoHub/myoconverter.git upstream

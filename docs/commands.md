@@ -1,9 +1,9 @@
 # Commands
 
 ```text
-osim2mujoco check    MODEL.osim [--geometry DIR] [--md FILE] [--json FILE]
-osim2mujoco convert  MODEL.osim OUT_DIR [--geometry DIR] [--steps 1 2 3] [--validate] [...]
-osim2mujoco validate MODEL.osim CONVERTED.xml OUT_DIR [--levels ...] [--ik FILE --grf FILE] [...]
+o2m check    MODEL.osim [--geometry DIR] [--md FILE] [--json FILE]
+o2m convert  MODEL.osim OUT_DIR [--geometry DIR] [--steps 1 2 3] [--validate] [...]
+o2m validate MODEL.osim CONVERTED.xml OUT_DIR [--levels ...] [--ik FILE --grf FILE] [...]
 ```
 
 `-v` / `--verbose`, placed before the command, prints the full pipeline and OpenSim log.

@@ -5,6 +5,6 @@ Our own code, separate from the vendored MyoConverter in src/myoconverter:
   convert   safe wrapper around the conversion pipeline
   checks    comparisons of a converted model with OpenSim (Stations 2-4)
   validate  validation report built from those checks
-  cli       the `osim2mujoco` command
+  cli       the `o2m` command
 """
 __version__ = "0.1.0.dev0"

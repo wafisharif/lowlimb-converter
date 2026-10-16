@@ -1,7 +1,7 @@
 # The validation report
 
 ```bash
-osim2mujoco validate model.osim out/model_cvt3.xml report/
+o2m validate model.osim out/model_cvt3.xml report/
 ```
 
 Writes `report.md`, `report.json` (same content), one detailed JSON per level, and the OpenSim reference data
@@ -61,4 +61,4 @@ loop. That's reported only, since open-loop replays drift apart within milliseco
 
 - Force–velocity behavior
 - Forward simulation of whole movements, apart from the open-loop replay
-- Anything `osim2mujoco check` lists as skipped or ignored
+- Anything `o2m check` lists as skipped or ignored

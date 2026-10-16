@@ -6,8 +6,8 @@ measured.
 ## Reporting a problem
 
 Open an issue with the OpenSim model (or a link to it), the command you ran, and the output of
-`osim2mujoco check model.osim`. If the problem is in a converted model, attach `report.md` from
-`osim2mujoco validate`.
+`o2m check model.osim`. If the problem is in a converted model, attach `report.md` from
+`o2m validate`.
 
 ## Changing the converter
 

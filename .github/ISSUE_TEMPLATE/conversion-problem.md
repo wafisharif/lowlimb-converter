@@ -9,11 +9,11 @@ labels: conversion
 **Command and output:**
 
 ```
-(the osim2mujoco command you ran and what it printed)
+(the o2m command you ran and what it printed)
 ```
 
-**Support report:** output of `osim2mujoco check model.osim`
+**Support report:** output of `o2m check model.osim`
 
-**Validation report (if the model converted):** attach `report.md` from `osim2mujoco validate`
+**Validation report (if the model converted):** attach `report.md` from `o2m validate`
 
 **What you expected:**

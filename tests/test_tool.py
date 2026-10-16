@@ -1,4 +1,4 @@
-"""Tests of the installable tool (the `osim2mujoco` command and osim2mujoco.convert / .validate).
+"""Tests of the installable tool (the `o2m` command and osim2mujoco.convert / .validate).
 
 Run after `pip install .` (or with the repo root on sys.path):
     python tests/test_tool.py <upstream_myoconverter_clone> <scratch_dir> [--full] [--osm <opensim_models_clone>]
@@ -7,8 +7,8 @@ Run after `pip install .` (or with the repo root on sys.path):
   claim is released when a conversion ends, also when it fails;
 - the support pre-check rejects a model the converter can't handle (a degree-5 PolynomialFunction knee, made from
   gait10dof18musc) before anything runs, with the reason;
-- `osim2mujoco check` and its exit codes;
-- `osim2mujoco convert --steps 1` on gait10dof18musc, then `validate --levels kinematics`: the report must pass
+- `o2m check` and its exit codes;
+- `o2m convert --steps 1` on gait10dof18musc, then `validate --levels kinematics`: the report must pass
   and its numbers must equal the Station 2 check run directly (same code path, same result);
 - the walking options: --ik without --grf, a missing trial file, or a trial without --validate is refused (exit 2)
   before anything is converted;
@@ -44,7 +44,7 @@ def check(ok, msg):
 
 def cli(*args):
     """Run the command as a user would: the installed console script if there is one, else `python -m`."""
-    exe = shutil.which("osim2mujoco")
+    exe = shutil.which("o2m")
     if exe:                                   # the installed package, exactly as a user runs it
         return subprocess.run([exe] + list(args), capture_output=True, text=True)
     env = dict(os.environ, PYTHONPATH=os.pathsep.join([REPO, os.path.join(REPO, "src")]))

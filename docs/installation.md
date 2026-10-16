@@ -15,7 +15,7 @@ python3.12 -m venv .venv
 source .venv/bin/activate
 pip install --require-hashes -r env/requirements.lock
 pip install --no-deps .
-osim2mujoco --version
+o2m --version
 ```
 
 The lockfile pins every dependency, including OpenSim 4.6 and MuJoCo 3.15, to the versions that the results were produced
@@ -27,7 +27,8 @@ On a bare Linux machine, mesh conversion needs:
 sudo apt-get install -y libgl1 libxrender1 libxext6
 ```
 
-This project was called lowlimb-converter until October 2026. The old `lowlimb-convert` command still works.
+The command is `o2m`. `osim2mujoco` and `lowlimb-convert` (the project's name until October 2026) run the same
+thing. The package isn't on PyPI yet, so install it from the repository as above.
 
 ## Models to try
 

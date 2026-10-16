@@ -1,6 +1,6 @@
 # What converts
 
-Run `osim2mujoco check model.osim` for a specific model. This page is a general overview.
+Run `o2m check model.osim` for a specific model. This page is a general overview.
 
 ## Bodies and geometry
 

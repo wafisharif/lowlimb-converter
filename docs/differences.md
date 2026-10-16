@@ -87,6 +87,6 @@ MyoConverter's own path optimization only moves wrap sites, so it did nothing fo
 
 ## Beyond the converter
 
-- `osim2mujoco check` predicts whether a model will convert before trying.
+- `o2m check` predicts whether a model will convert before trying.
 - Every conversion can produce a validation report.
 - `convert` refuses non-empty output folders. MyoConverter would quietly resume from whatever old results it found.
