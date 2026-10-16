@@ -6,7 +6,7 @@ Run `osim2mujoco check model.osim` for a specific model. This page is a general 
 
 | OpenSim | MuJoCo | Notes |
 | --- | --- | --- |
-| Body mass, centre of mass, inertia | same values, exactly | |
+| Body mass, center of mass, inertia | same values, exactly | |
 | Meshes (`.vtp`, `.stl`, `.obj`) | mesh geoms | `.vtp` and ASCII STL become binary STL; file-name case doesn't matter |
 | `Unassigned` placeholder meshes | nothing | |
 | Other attached geometry, geometry on offset frames | not converted | visual only |

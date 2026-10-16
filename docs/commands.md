@@ -38,7 +38,7 @@ Runs `check` first and stops if the model won't convert.
 | `--geometry DIR` | Mesh folder (default: `Geometry` next to the model) |
 | `--steps 1 2 3` | 1 = XML conversion only; 1 2 3 = also fit muscle paths and forces (default) |
 | `--validate` | Write a validation report into `OUT_DIR/validation` afterwards |
-| `--speedy` | MyoConverter's faster, less thorough optimisation |
+| `--speedy` | MyoConverter's faster, less thorough optimization |
 | `--myoconverter-report` | Also produce MyoConverter's own plots and PDF (slow) |
 | `--no-ground` | Don't add a ground plane (none is added if the model has its own contact anyway) |
 | `--ik`, `--grf`, `--start`, `--end`, `--controls` | Walking trial for the report (see `validate`) |

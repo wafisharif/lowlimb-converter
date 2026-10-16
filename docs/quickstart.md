@@ -13,7 +13,7 @@ MODEL=upstream/models/osim/Gait10dof18musc/gait10dof18musc.osim
 osim2mujoco check $MODEL --md check.md
 ```
 
-Lists every element in the model and what happened to it: converted, approximated, skipped, ignored, or unsupported.
+Lists every element in the model and what will happen to it: converted, approximated, skipped, ignored, or unsupported.
 Exit code 0 means it will convert, 1 means it will not (the report names the element it would fail on), and 2 means the file
 could not be read.
 

@@ -33,7 +33,7 @@ Each muscle is held still at activation 0, 0.25, 0.5 and 1 and its force compare
 force. Errors are RMS over poses, as a percentage of max isometric force. Poses where OpenSim has no equilibrium are
 dropped and counted.
 
-MuJoCo tendons are rigid and OpenSim's are elastic, so these can't match exactly. The fit favours full activation and
+MuJoCo tendons are rigid and OpenSim's are elastic, so these can't match exactly. The fit favors full activation and
 passive. Tested models: 1–3% passive, 2.5–3.6% at full activation.
 
 ## Elements
@@ -42,7 +42,7 @@ Whatever else the model has:
 
 | Check | Pass |
 | --- | --- |
-| Mass, centre of mass and inertia of every body | within 1e-9 |
+| Mass, center of mass and inertia of every body | within 1e-9 |
 | CoordinateLimitForce over a sweep of its coordinate | within 1% of peak |
 | PathActuator and PathSpring length and force | 1 mm RMS, 2% |
 | Signed distance between contact shapes | within 1e-6 m |
@@ -59,6 +59,6 @@ loop. That's reported only, since open-loop replays drift apart within milliseco
 
 ## Not checked
 
-- Force–velocity behaviour
+- Force–velocity behavior
 - Forward simulation of whole movements, apart from the open-loop replay
 - Anything `osim2mujoco check` lists as skipped or ignored

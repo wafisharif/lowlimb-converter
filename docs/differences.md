@@ -40,7 +40,7 @@ compared with `[]` (an error in NumPy 2) is fixed. {repo}`station1/FINDINGS.md`
 - **3.5** Constrained wraps keep their side only where that matches OpenSim better. Iliacus and psoas were going the
   long way round the pelvis, up to 180 mm.
 
-MyoConverter's own path optimisation only moves wrap sites, so it did nothing for either gait model.
+MyoConverter's own path optimization only moves wrap sites, so it did nothing for either gait model.
 {repo}`station3/FINDINGS.md`
 
 ## Muscle forces

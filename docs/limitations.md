@@ -2,9 +2,9 @@
 
 ## Contact dynamics
 
-Contact geometry converts exactly, although contact behaviour does not. OpenSim's Hunt–Crossley contact is a nonlinear spring
+Contact geometry converts exactly, although contact behavior does not. OpenSim's Hunt–Crossley contact is a nonlinear spring
 (force grows with penetration^1.5) with speed-dependent damping and smooth friction. MuJoCo's is a linear
-spring–damper with Coulomb friction. The converter aligns with MuJoCo's stiffness, damping, and friction to two vertical drops
+spring–damper with Coulomb friction. The converter fits MuJoCo's stiffness, damping, and friction to two vertical drops
 of the model in OpenSim, which doesn't carry over to other motions. On WalkerModel, using drops the fit was never exposed to
 (pelvis position RMS error over 1 s):
 
@@ -21,7 +21,7 @@ contact model closer to Hunt–Crossley and fitting drops that include rocking a
 ## Rigid tendons
 
 MuJoCo muscles don't have elastic tendons. A rigid tendon can't reproduce how an elastic one shifts the force–length
-curve with activation, so the force fit favours full activation and passive. Force–velocity behaviour isn't checked.
+curve with activation, so the force fit favors full activation and passive. Force–velocity behavior isn't checked.
 
 ## MyoConverter's listed limitations
 
@@ -33,7 +33,7 @@ curve with activation, so the force fit favours full activation and passive. For
 | 4 | Conditional and moving path points inaccurate | Fixed: fitted to OpenSim's path. Worst moment-arm error went from 69–78 mm to 3.5–6.3 mm. |
 | 5 | No bushings, CoordinateLimitForce, PointActuator, TorqueActuator | CoordinateLimitForce now converts (as do PathActuator and PathSpring). The others are still skipped; no OpenSim example uses PointActuator or TorqueActuator. |
 | 6 | CustomJoint non-linear dependencies | Splines are fitted, polynomials up to degree 4 are exact, and four more joint types convert. Higher-degree polynomials, multi-input couplers, and PointOnLineConstraint are still unsupported. |
-| 7 | Ellipsoid wraps approximated, wrap side not optimised | Wrap sides fixed. Ellipsoids are still approximated. A path over two wraps in a row keeps only one, since MuJoCo needs a site between them (Rajagopal 2016's gastrocnemius: 13 mm RMS). |
+| 7 | Ellipsoid wraps approximated, wrap side not optimized | Wrap sides fixed. Ellipsoids are still approximated. A path over two wraps in a row keeps only one, since MuJoCo needs a site between them (Rajagopal 2016's gastrocnemius: 13 mm RMS). |
 | 8 | Moment-arm jumps at wraps not smoothed | Not changed; the worst single error per pair is reported |
 | 9 | Muscle operating range assumed within [0, 1.8] | Removed |
 | 10 | Rigid tendons | Unchanged; force error at full activation is 2.5–3.6% of max force |

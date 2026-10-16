@@ -52,7 +52,7 @@ needed). Every module runs with `python -m osim2mujoco.checks.<module>`, and its
 | `osim_forces` / `mujoco_forces` | Static muscle forces |
 | `osim_gait` / `mujoco_gait` | Lengths, moment arms, and joint moments along a walking trial |
 | `osim_replay` / `mujoco_replay` | Open-loop replay of muscle excitations |
-| `mass_properties` | Mass, centre of mass, inertia |
+| `mass_properties` | Mass, center of mass, inertia |
 | `limit_forces` | CoordinateLimitForce |
 | `path_forces` | PathActuator and PathSpring |
 | `contact_geometry` | Distances between contact shapes |
